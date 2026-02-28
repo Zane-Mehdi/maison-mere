@@ -1,10 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
-import HeroSlider from 'hero-slider';
-import 'hero-slider/build/index.css';
 
 interface SlideItem {
   id: string;
@@ -44,6 +42,16 @@ export default function HeroSlideshow({
 }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  useEffect(() => {
+    if (!autoPlay || slides.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [autoPlay, autoPlayInterval, slides.length]);
+
   const handleSlideChange = useCallback((index: number) => {
     setCurrentSlide(index);
     onSlideChange?.(index);
@@ -53,98 +61,67 @@ export default function HeroSlideshow({
 
   return (
     <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden bg-black">
-      <HeroSlider
-        width="100%"
-        height="100%"
-        autoplay
-        autoplayDuration={autoPlayInterval}
-        sliderImageComponent={
-          <div className="w-full h-full">
-            {slides.map((slide, index) => (
-              <div
-                key={slide.id}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                {slide.type === 'image' ? (
-                  <Image
-                    src={slide.src}
-                    alt={slide.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <video
-                    src={slide.src}
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                  />
-                )}
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/30" />
-              </div>
-            ))}
-          </div>
-        }
-        navButtonsWrapperPosition="bottom"
-        navButtonsProps={{
-          style: {
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-            color: 'white',
-            borderRadius: '50%',
-            padding: '12px',
-            backdropFilter: 'blur(4px)',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-          },
-          onMouseEnter: (e: any) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-          },
-          onMouseLeave: (e: any) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-          },
-        }}
-        leftNavButtonStyle={{
-          position: 'absolute',
-          left: '32px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 30,
-        }}
-        rightNavButtonStyle={{
-          position: 'absolute',
-          right: '32px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 30,
-        }}
-        onNavButtonClick={(newIndex: number) => handleSlideChange(newIndex)}
-        navButtonsWrapperStyle={{
-          position: 'absolute',
-          bottom: '32px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 30,
-          display: 'flex',
-          gap: '8px',
-        }}
-        indicators={slides.map((_, index) => (
-          <div
-            key={index}
-            style={{
-              width: index === currentSlide ? '32px' : '8px',
-              height: '8px',
-              backgroundColor: index === currentSlide ? 'white' : 'rgba(255, 255, 255, 0.5)',
-              borderRadius: '4px',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-            }}
-          />
+      <div className="w-full h-full relative">
+        {slides.map((slide, index) => (
+          <motion.div
+            key={slide.id}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: index === currentSlide ? 1 : 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            {slide.type === 'image' ? (
+              <Image
+                src={slide.src}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <video
+                src={slide.src}
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+              />
+            )}
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/30" />
+          </motion.div>
         ))}
-      >
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={() => handleSlideChange((currentSlide - 1 + slides.length) % slides.length)}
+          className="absolute left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all duration-300 backdrop-blur-sm border border-white/20"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+
+        <button
+          onClick={() => handleSlideChange((currentSlide + 1) % slides.length)}
+          className="absolute right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all duration-300 backdrop-blur-sm border border-white/20"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Indicators */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleSlideChange(index)}
+              className={`transition-all duration-300 rounded-full ${
+                index === currentSlide
+                  ? 'w-8 h-2 bg-white'
+                  : 'w-2 h-2 bg-white/50 hover:bg-white/75'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <div className="container mx-auto px-4 text-center text-white">
@@ -185,7 +162,7 @@ export default function HeroSlideshow({
         >
           <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent mx-auto" />
         </motion.div>
-      </HeroSlider>
+      </div>
     </section>
   );
 }
