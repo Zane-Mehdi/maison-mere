@@ -41,6 +41,8 @@ export default function HeroSlideshow({
   onSlideChange
 }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
     if (!autoPlay || slides.length === 0) return;
@@ -57,10 +59,32 @@ export default function HeroSlideshow({
     onSlideChange?.(index);
   }, [onSlideChange]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      handleSlideChange((currentSlide + 1) % slides.length);
+    } else if (isRightSwipe) {
+      handleSlideChange((currentSlide - 1 + slides.length) % slides.length);
+    }
+  };
+
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden bg-black">
+    <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden bg-black" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <div className="w-full h-full relative">
         {slides.map((slide, index) => (
           <motion.div

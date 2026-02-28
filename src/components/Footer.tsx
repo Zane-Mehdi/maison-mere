@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
-          <div>
+           <div>
             <h3 className="text-2xl font-heading font-bold mb-4">MAISON MÈRE</h3>
             <p className="text-background/80 font-paragraph text-sm leading-relaxed">
               A women-only reformer Pilates space dedicated to empowering women through mindful movement and inclusive wellness.
@@ -51,12 +51,12 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-background/80 font-paragraph text-sm">Harrow, United Kingdom</span>
+                <span className="text-background/80 font-paragraph text-sm">207 Watford Rd, Harrow HA1 3UA</span>
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
                 <span className="text-background/80 font-paragraph text-sm">
-                  Contact us for details
+                  07304 499808
                 </span>
               </li>
               <li className="flex items-start gap-2">

@@ -180,7 +180,7 @@ export default function HomePage() {
     {
       id: '1',
       type: 'image' as const,
-      src: 'https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04718-scaled.jpeg',
+      src: 'https://static.wixstatic.com/media/980ffc_c08a8735d35a4fa6a2baeb0678a12c3e~mv2.png?originWidth=1152&originHeight=768',
       title: 'The Maison Mère Standard',
       subtitle: 'Welcome to Maison Mère Studio',
       cta: {
@@ -191,7 +191,7 @@ export default function HomePage() {
     {
       id: '2',
       type: 'image' as const,
-      src: 'https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04408-scaled.jpeg',
+      src: 'https://static.wixstatic.com/media/980ffc_8f47758c084f4318b303d3169f16af22~mv2.png?originWidth=1152&originHeight=768',
       title: 'Transform Your Body',
       subtitle: 'Expert Instruction & Premium Equipment',
       cta: {
@@ -202,7 +202,7 @@ export default function HomePage() {
     {
       id: '3',
       type: 'image' as const,
-      src: 'https://hnbstudio.co.uk/wp-content/uploads/2025/09/DSC04653-576x864.jpeg',
+      src: 'https://static.wixstatic.com/media/980ffc_ad92d84463b446f685b9126dcc4dd81d~mv2.png?originWidth=1152&originHeight=768',
       title: 'Women\'s Only Space',
       subtitle: 'Safe, Supportive & Empowering',
       cta: {
@@ -257,7 +257,7 @@ export default function HomePage() {
               <div className="aspect-[4/5] overflow-hidden rounded-sm relative">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <Image 
-                  src="https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04408-scaled.jpeg" 
+                  src="https://static.wixstatic.com/media/980ffc_abd1282a728f4ec8808bf96efe76eea8~mv2.png?originWidth=768&originHeight=960" 
                   alt="Pilates Intro Offer"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
@@ -273,13 +273,13 @@ export default function HomePage() {
       <section className="py-24 bg-secondary/20">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <FadeIn>
-            <p className="text-primary text-sm uppercase tracking-widest mb-6 font-semibold">Welcome to HNB Studio...</p>
+            <p className="text-primary text-sm uppercase tracking-widest mb-6 font-semibold">Welcome to Maison Mère Studio...</p>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">
               A space to <span className="italic text-primary">grow</span>, <span className="italic text-primary">strengthen</span>, and <span className="italic text-primary">connect</span> exclusively for women.
             </h2>
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-              At HNB Studio in Oldham, every class is more than just movement; it's a chance to grow physically and mentally in a supportive, women-only environment designed for your comfort and confidence.
+              At Maison Mère Studio in Harrow, every class is more than just movement; it's a chance to grow physically and mentally in a supportive, women-only environment designed for your comfort and confidence.
             </p>
             <Button 
               onClick={() => navigate('/about')}
@@ -318,7 +318,7 @@ export default function HomePage() {
                           {cls.difficultyLevel || 'All Levels'}
                         </div>
                         <Image 
-                          src={cls.itemImage || "https://hnbstudio.co.uk/wp-content/uploads/2025/09/DSC04666-576x768.jpeg"} 
+                          src={cls.itemImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"} 
                           alt={cls.itemName || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
@@ -333,7 +333,7 @@ export default function HomePage() {
                         <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
                           {cls.itemDescription}
                         </p>
-                        <span className="inline-block border-b border-primary text-primary text-sm uppercase tracking-widest pb-1 group-hover:border-foreground group-hover:text-foreground transition-all">
+                        <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
                           Book Class
                         </span>
                       </CardContent>
@@ -385,10 +385,10 @@ export default function HomePage() {
               <Star className="w-6 h-6 inline-block mx-1 fill-current" />
             </div>
             <blockquote className="text-2xl md:text-4xl font-heading font-light italic leading-tight text-foreground mb-8">
-              "As a complete beginner, I felt so welcomed and comfortable at HNB Studio. The instructors are patient and encouraging—I’m already hooked!"
+              "Can't recommend this studio enough!! The owner is very welcoming and sweet and goes to lengths to make you feel comfortable. As a pregnant woman, the instructor was very accomodating.and made sure I was feeling okay during the whole session. I can't wait to try the different classes that they offer."
             </blockquote>
             <cite className="not-italic text-sm font-bold uppercase tracking-widest text-muted-foreground">
-              — Sarah J., Member
+              — Member
             </cite>
           </FadeIn>
         </div>
@@ -401,7 +401,7 @@ export default function HomePage() {
             <FadeIn className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
                 <Image 
-                  src="https://hnbstudio.co.uk/wp-content/uploads/2025/09/DSC04653-576x864.jpeg" 
+                  src="https://static.wixstatic.com/media/980ffc_84bdf9424e494e0dbc4b0a4e9b5a9121~mv2.png?originWidth=768&originHeight=960" 
                   alt="Women Only Studio"
                   className="w-full h-full object-cover"
                 />
@@ -440,7 +440,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <FadeIn>
-                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">HNB Studio</p>
+                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Maison Mère Studio</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
                   More Than Just Pilates
                 </h2>
@@ -462,7 +462,7 @@ export default function HomePage() {
                 <StaggerItem>
                   <Card className="border-none shadow-none bg-secondary/10 h-full">
                     <div className="aspect-video overflow-hidden">
-                      <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/03/Screenshot-2025-06-10-at-14.50.34.png" alt="Wellness Bar" className="w-full h-full object-cover" />
+                      <Image src="https://static.wixstatic.com/media/980ffc_545fe52b1e4442d1856102c05a047fed~mv2.png?originWidth=768&originHeight=448" alt="Wellness Bar" className="w-full h-full object-cover" />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">Wellness Bar</h3>
@@ -473,7 +473,7 @@ export default function HomePage() {
                 <StaggerItem>
                   <Card className="border-none shadow-none bg-secondary/10 h-full">
                     <div className="aspect-video overflow-hidden">
-                      <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/01/Screenshot-2025-06-10-at-14.53.17.png" alt="Private Hire" className="w-full h-full object-cover" />
+                      <Image src="https://static.wixstatic.com/media/980ffc_5488cdab3c194676b17782d1783a30a3~mv2.png?originWidth=768&originHeight=448" alt="Private Hire" className="w-full h-full object-cover" />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
@@ -544,7 +544,7 @@ export default function HomePage() {
               From Beginners To Advanced
             </h2>
             <p className="text-2xl md:text-3xl font-light mb-10 tracking-wide">
-              JOIN HNB STUDIO TODAY
+              JOIN MAISON MÈRE STUDIO TODAY
             </p>
             <Button 
               onClick={() => navigate('/classes')}
