@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -24,6 +24,14 @@ export default function Footer() {
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >
                   Classes
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/wellness-bar" 
+                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                >
+                  Wellness Bar
                 </Link>
               </li>
               <li>
@@ -91,6 +99,15 @@ export default function Footer() {
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-background/80 hover:text-primary transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
             </a>
           </div>
         </div>

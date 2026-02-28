@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Instagram, ShoppingBag } from 'lucide-react';
+import { Menu, X, Instagram, Linkedin, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 import { useCart } from '@/integrations';
@@ -41,6 +41,12 @@ export default function Header() {
                 About
               </Link>
               <Link 
+                to="/wellness-bar" 
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                Wellness Bar
+              </Link>
+              <Link 
                 to="/contact" 
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
@@ -58,6 +64,15 @@ export default function Header() {
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
               </a>
               <button
                 onClick={actions.toggleCart}
@@ -114,6 +129,13 @@ export default function Header() {
               Classes
             </Link>
             <Link 
+              to="/wellness-bar" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Wellness Bar
+            </Link>
+            <Link 
               to="/about" 
               onClick={() => setMobileMenuOpen(false)}
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
@@ -136,6 +158,15 @@ export default function Header() {
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
               </a>
             </div>
             <Button 
