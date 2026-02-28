@@ -17,13 +17,13 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <Image 
-                src="https://static.wixstatic.com/media/980ffc_cc7f59e9bf6c4337bcf851b4117a3b88~mv2.png"
-                alt="MAISON MÈRE Logo"
+              <Image
+                src="https://static.wixstatic.com/media/980ffc_216f68e3d33646088d33a14a1c16dab3~mv2.png"
                 width={160}
                 height={64}
                 className="h-16 w-auto"
-              />
+                originWidth={500}
+                originHeight={254} />
             </Link>
 
             {/* Desktop Navigation */}
@@ -179,7 +179,6 @@ export default function Header() {
         )}
       </div>
       </header>
-      
       <Cart />
     </>
   );
