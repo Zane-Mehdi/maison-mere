@@ -1,4 +1,3 @@
-// WI-HPI
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
@@ -6,7 +5,6 @@ import {
   ChevronRight, 
   Star, 
   Instagram, 
-  Linkedin, 
   Check, 
   ArrowRight, 
   Play,
@@ -71,6 +69,51 @@ const StaggerItem = ({ children, className = "" }: { children: React.ReactNode, 
     {children}
   </motion.div>
 );
+
+// Counter animation component
+const Counter = ({ target }: { target: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let start = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 30);
+
+    return () => clearInterval(timer);
+  }, [isVisible, target]);
+
+  return <div ref={ref}>{count}</div>;
+};
 
 // --- Main Page Component ---
 
@@ -312,14 +355,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
             {[
-              { number: "42", label: "Classes A Week" },
-              { number: "08", label: "Expert Instructors" },
-              { number: "06", label: "Classes A Day" },
-              { number: "11", label: "Luxury Beds" }
+              { number: 42, label: "Classes A Week" },
+              { number: 8, label: "Expert Instructors" },
+              { number: 6, label: "Classes A Day" },
+              { number: 11, label: "Luxury Beds" }
             ].map((stat, idx) => (
               <StaggerItem key={idx} className="p-4">
                 <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
-                  {stat.number}
+                  <Counter target={stat.number} />
                 </div>
                 <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
                   {stat.label}

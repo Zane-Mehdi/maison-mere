@@ -5,7 +5,6 @@ import { ScrollToTop } from '@/lib/scroll-to-top';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import ClassesPage from '@/components/pages/ClassesPage';
-import WellnessBarPage from '@/components/pages/WellnessBarPage';
 import AboutPage from '@/components/pages/AboutPage';
 import ContactPage from '@/components/pages/ContactPage';
 import BookAClassPage from '@/components/pages/BookAClassPage';
@@ -38,13 +37,6 @@ const router = createBrowserRouter([
         element: <ClassesPage />,
         routeMetadata: {
           pageIdentifier: 'classes',
-        },
-      },
-      {
-        path: "wellness-bar",
-        element: <WellnessBarPage />,
-        routeMetadata: {
-          pageIdentifier: 'wellness-bar',
         },
       },
       {
