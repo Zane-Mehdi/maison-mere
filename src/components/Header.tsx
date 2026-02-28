@@ -90,7 +90,7 @@ export default function Header() {
                 asChild
                 className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
               >
-                <Link to="/book-a-class" className="bg-primary">Book Now</Link>
+                <Link to="/book-a-class" className="bg-primary no-underline [text-shadow:none] font-paragraph">Book Now</Link>
               </Button>
             </div>
 

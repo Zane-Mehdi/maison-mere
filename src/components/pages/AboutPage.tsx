@@ -77,9 +77,7 @@ export default function AboutPage() {
                 About Us
               </p>
               <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mere Studoi</h1>
-              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">
-                A women-only reformer Pilates space in Oldham, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.
-              </p>
+              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">A women-only reformer Pilates space in Harrow, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.</p>
             </div>
           </AnimatedSection>
         </div>
@@ -108,9 +106,7 @@ export default function AboutPage() {
                   <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
                     Empowering Women Through Movement
                   </h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
-                    At HNB Studio, we believe that fitness is more than just physical transformation. It&apos;s about building confidence, fostering community, and creating a space where every woman feels supported and empowered.
-                  </p>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studios, we believe that fitness is more than just physical transformation. It's about building confidence, fostering community, and creating a space where every woman feels supported and empowered.</p>
                   <p className="text-base text-foreground/70 font-paragraph mb-8 leading-relaxed">
                     Our studio combines premium reformer equipment with expert instruction in a beautifully designed, women-only environment. We&apos;re committed to providing an inclusive space where women of all backgrounds, fitness levels, and abilities can thrive.
                   </p>
