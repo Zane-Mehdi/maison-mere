@@ -75,7 +75,6 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
@@ -99,7 +98,6 @@ export default function ContactPage() {
           </AnimatedSection>
         </div>
       </section>
-
       {/* Contact Info Cards */}
       <section className="py-16 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -112,9 +110,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                   Location
                 </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">
-                  Oldham, United Kingdom
-                </p>
+                <p className="text-foreground/70 font-paragraph text-sm">Harrow, United Kingdom</p>
               </Card>
             </AnimatedSection>
 
@@ -140,9 +136,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                   Email
                 </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">
-                  info@hnbstudio.co.uk
-                </p>
+                <p className="text-foreground/70 font-paragraph text-sm">email@example.com</p>
               </Card>
             </AnimatedSection>
 
@@ -162,7 +156,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       {/* Contact Form & Info Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -357,7 +350,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       {/* Map Placeholder Section */}
       <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
@@ -366,9 +358,7 @@ export default function ContactPage() {
               <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl flex items-center justify-center border border-primary/20">
                 <div className="text-center">
                   <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                    Find Us in Oldham
-                  </h3>
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">Find Us in Harrow</h3>
                   <p className="text-foreground/70 font-paragraph">
                     Convenient location with easy access
                   </p>
@@ -378,7 +368,6 @@ export default function ContactPage() {
           </AnimatedSection>
         </div>
       </section>
-
       <Footer />
     </div>
   );
