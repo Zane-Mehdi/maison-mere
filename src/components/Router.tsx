@@ -7,6 +7,7 @@ import ClassesPage from '@/components/pages/ClassesPage';
 import WellnessBarPage from '@/components/pages/WellnessBarPage';
 import AboutPage from '@/components/pages/AboutPage';
 import ContactPage from '@/components/pages/ContactPage';
+import BookAClassPage from '@/components/pages/BookAClassPage';
 
 // Layout component that includes ScrollToTop
 function Layout() {
@@ -57,6 +58,13 @@ const router = createBrowserRouter([
         element: <ContactPage />,
         routeMetadata: {
           pageIdentifier: 'contact',
+        },
+      },
+      {
+        path: "book-a-class",
+        element: <BookAClassPage />,
+        routeMetadata: {
+          pageIdentifier: 'book-a-class',
         },
       },
       {

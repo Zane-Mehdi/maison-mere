@@ -223,7 +223,7 @@ export default function ClassesPage() {
                               })}
                               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
                             >
-                              {isAdding ? 'Adding...' : 'Book Now'}
+                              {isAdding ? 'Adding...' : 'Add to Cart'}
                             </Button>
                           </div>
                         </CardContent>

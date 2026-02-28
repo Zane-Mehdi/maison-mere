@@ -35,6 +35,12 @@ export default function Header() {
                 Classes
               </Link>
               <Link 
+                to="/book-a-class" 
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                Book Now
+              </Link>
+              <Link 
                 to="/wellness-bar" 
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
@@ -127,6 +133,13 @@ export default function Header() {
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Classes
+            </Link>
+            <Link 
+              to="/book-a-class" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Book Now
             </Link>
             <Link 
               to="/wellness-bar" 
