@@ -5,7 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { Badge } from '@/components/ui/badge';
 import { BaseCrudService } from '@/integrations';
-import { WellnessBarMenu } from '@/entities';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Coffee, Leaf, Droplets } from 'lucide-react';
@@ -43,7 +42,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 };
 
 export default function WellnessBarPage() {
-  const [menuItems, setMenuItems] = useState<WellnessBarMenu[]>([]);
+  const [menuItems, setMenuItems] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const { addingItemId, actions } = useCart();
@@ -52,7 +51,7 @@ export default function WellnessBarPage() {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const result = await BaseCrudService.getAll<WellnessBarMenu>('wellnessbarmenu');
+        const result = await BaseCrudService.getAll<any>('wellnessbarmenu');
         setMenuItems(result.items);
       } catch (error) {
         console.error('Error fetching wellness bar menu:', error);

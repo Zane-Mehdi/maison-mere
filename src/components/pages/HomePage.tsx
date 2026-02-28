@@ -21,7 +21,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { Input } from '@/components/ui/input';
 import { BaseCrudService } from '@/integrations';
-import { Classes, WellnessBarMenu, Instructors } from '@/entities';
+import { Classes, Instructors } from '@/entities';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSlideshow from '@/components/HeroSlideshow';
@@ -77,7 +77,6 @@ const StaggerItem = ({ children, className = "" }: { children: React.ReactNode, 
 export default function HomePage() {
   const navigate = useNavigate();
   const [classes, setClasses] = useState<Classes[]>([]);
-  const [wellnessItems, setWellnessItems] = useState<WellnessBarMenu[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -90,14 +89,12 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [classesResult, wellnessResult, instructorsResult] = await Promise.all([
+        const [classesResult, instructorsResult] = await Promise.all([
           BaseCrudService.getAll<Classes>('classes', {}, { limit: 3 }),
-          BaseCrudService.getAll<WellnessBarMenu>('wellnessbarmenu', {}, { limit: 4 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 })
         ]);
         
         setClasses(classesResult.items);
-        setWellnessItems(wellnessResult.items);
         setInstructors(instructorsResult.items);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -408,68 +405,40 @@ export default function HomePage() {
                   Enhance your wellness journey at our in-studio Wellness Bar, or speak to us about private hire. We offer a curated selection of health drinks and a beautiful space for events.
                 </p>
                 <Button 
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/wellness-bar')}
                   variant="outline"
                   className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent"
                 >
-                  Contact Us
+                  View Menu
                 </Button>
               </FadeIn>
             </div>
 
             <div className="lg:col-span-8">
-              {isLoading ? (
-                <LoadingSpinner />
-              ) : (
-                <StaggerContainer className="grid sm:grid-cols-2 gap-6">
-                  {wellnessItems.length > 0 ? wellnessItems.map((item, idx) => (
-                    <StaggerItem key={item._id || idx}>
-                      <Card className="border-none shadow-none bg-secondary/10 hover:bg-secondary/20 transition-colors duration-300 h-full">
-                        <div className="aspect-video overflow-hidden">
-                          <Image 
-                            src={item.itemImage || "https://hnbstudio.co.uk/wp-content/uploads/2025/03/Screenshot-2025-06-10-at-14.50.34.png"} 
-                            alt={item.itemName || "Wellness Item"}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                        <CardContent className="p-6">
-                          <h3 className="text-xl font-heading font-bold mb-2">{item.itemName}</h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2">{item.itemDescription}</p>
-                          {item.itemPrice && (
-                            <p className="mt-4 font-bold text-primary">£{item.itemPrice.toFixed(2)}</p>
-                          )}
-                        </CardContent>
-                      </Card>
-                    </StaggerItem>
-                  )) : (
-                    // Fallback if no wellness items
-                    <>
-                      <StaggerItem>
-                        <Card className="border-none shadow-none bg-secondary/10 h-full">
-                          <div className="aspect-video overflow-hidden">
-                            <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/03/Screenshot-2025-06-10-at-14.50.34.png" alt="Wellness Bar" className="w-full h-full object-cover" />
-                          </div>
-                          <CardContent className="p-6">
-                            <h3 className="text-xl font-heading font-bold mb-2">Wellness Bar</h3>
-                            <p className="text-sm text-muted-foreground">Enjoy a selection of Matcha, cold-pressed juices, and healthy snacks.</p>
-                          </CardContent>
-                        </Card>
-                      </StaggerItem>
-                      <StaggerItem>
-                        <Card className="border-none shadow-none bg-secondary/10 h-full">
-                          <div className="aspect-video overflow-hidden">
-                            <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/01/Screenshot-2025-06-10-at-14.53.17.png" alt="Private Hire" className="w-full h-full object-cover" />
-                          </div>
-                          <CardContent className="p-6">
-                            <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
-                            <p className="text-sm text-muted-foreground">Our beautiful studio is available for private hire and special events.</p>
-                          </CardContent>
-                        </Card>
-                      </StaggerItem>
-                    </>
-                  )}
-                </StaggerContainer>
-              )}
+              <StaggerContainer className="grid sm:grid-cols-2 gap-6">
+                <StaggerItem>
+                  <Card className="border-none shadow-none bg-secondary/10 h-full">
+                    <div className="aspect-video overflow-hidden">
+                      <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/03/Screenshot-2025-06-10-at-14.50.34.png" alt="Wellness Bar" className="w-full h-full object-cover" />
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-heading font-bold mb-2">Wellness Bar</h3>
+                      <p className="text-sm text-muted-foreground">Enjoy a selection of Matcha, cold-pressed juices, and healthy snacks.</p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
+                <StaggerItem>
+                  <Card className="border-none shadow-none bg-secondary/10 h-full">
+                    <div className="aspect-video overflow-hidden">
+                      <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/01/Screenshot-2025-06-10-at-14.53.17.png" alt="Private Hire" className="w-full h-full object-cover" />
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
+                      <p className="text-sm text-muted-foreground">Our beautiful studio is available for private hire and special events.</p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
+              </StaggerContainer>
             </div>
           </div>
         </div>
