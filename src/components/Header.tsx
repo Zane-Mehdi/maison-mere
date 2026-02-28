@@ -19,9 +19,7 @@ export default function Header() {
             <Link to="/" className="flex items-center flex-shrink-0">
               <Image
                 src="https://static.wixstatic.com/media/980ffc_216f68e3d33646088d33a14a1c16dab3~mv2.png"
-                width={160}
-                height={64}
-                className="h-16 w-auto object-contain"
+                className="h-16 w-auto object-contain max-w-xs"
                 originWidth={500}
                 originHeight={254}
                 alt="HNB Studio Logo"
