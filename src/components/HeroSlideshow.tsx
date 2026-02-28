@@ -23,17 +23,20 @@ interface HeroSlideshowProps {
   onSlideChange?: (index: number) => void;
 }
 
-const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.6, delay, ease: "easeOut" }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
+const SlideInText = ({ children, delay = 0, className = "", direction = "left" }: { children: React.ReactNode, delay?: number, className?: string, direction?: "left" | "right" }) => {
+  const initialX = direction === "left" ? -100 : 100;
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: initialX }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -initialX }}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export default function HeroSlideshow({
   slides,
@@ -64,19 +67,24 @@ export default function HeroSlideshow({
     onSlideChange?.(currentSlide);
   }, [currentSlide, onSlideChange]);
 
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left');
+
   const goToSlide = (index: number) => {
+    setSlideDirection(index > currentSlide ? 'left' : 'right');
     setCurrentSlide(index);
     setIsAutoPlay(false);
     setTimeout(() => setIsAutoPlay(autoPlay), 1000);
   };
 
   const nextSlide = () => {
+    setSlideDirection('left');
     setCurrentSlide((prev) => (prev + 1) % slides.length);
     setIsAutoPlay(false);
     setTimeout(() => setIsAutoPlay(autoPlay), 1000);
   };
 
   const prevSlide = () => {
+    setSlideDirection('right');
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     setIsAutoPlay(false);
     setTimeout(() => setIsAutoPlay(autoPlay), 1000);
@@ -92,9 +100,9 @@ export default function HeroSlideshow({
           key={currentSlide}
           style={{ y: heroY, opacity: heroOpacity }}
           className="absolute inset-0 z-0"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
+          initial={{ x: slideDirection === 'left' ? 1000 : -1000 }}
+          animate={{ x: 0 }}
+          exit={{ x: slideDirection === 'left' ? -1000 : 1000 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
           {/* Dark Overlay - Only affects background, not text */}
@@ -137,20 +145,20 @@ export default function HeroSlideshow({
 
       {/* Hero Content */}
       <div className="container relative z-20 px-4 mx-auto text-center text-white">
-        <FadeIn delay={0.2}>
+        <SlideInText delay={0.2} direction={slideDirection === 'left' ? 'left' : 'right'}>
           <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
             {currentSlideData.subtitle}
           </p>
-        </FadeIn>
+        </SlideInText>
 
-        <FadeIn delay={0.4}>
+        <SlideInText delay={0.4} direction={slideDirection === 'left' ? 'left' : 'right'}>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
             {currentSlideData.title}
           </h1>
-        </FadeIn>
+        </SlideInText>
 
         {currentSlideData.cta && (
-          <FadeIn delay={0.8}>
+          <SlideInText delay={0.8} direction={slideDirection === 'left' ? 'left' : 'right'}>
             <Button
               onClick={currentSlideData.cta.action}
               size="lg"
@@ -158,7 +166,7 @@ export default function HeroSlideshow({
             >
               {currentSlideData.cta.text}
             </Button>
-          </FadeIn>
+          </SlideInText>
         )}
       </div>
 
