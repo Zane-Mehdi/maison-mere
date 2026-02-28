@@ -158,13 +158,13 @@ export default function HomePage() {
         <div className="container relative z-20 px-4 mx-auto text-center text-white">
           <FadeIn delay={0.2}>
             <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
-              Welcome to HNB Studio
+              Welcome to Maison Mère Studio
             </p>
           </FadeIn>
           
           <FadeIn delay={0.4}>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
-              The <span className="italic font-serif text-primary-foreground">HNB</span> Standard
+              The <span className="italic font-serif text-primary-foreground">Maison Mère</span> Standard
             </h1>
           </FadeIn>
           

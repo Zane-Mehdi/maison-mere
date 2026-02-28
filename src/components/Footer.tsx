@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-heading font-bold mb-4">HNB STUDIO</h3>
+            <h3 className="text-2xl font-heading font-bold mb-4">MAISON MÈRE</h3>
             <p className="text-background/80 font-paragraph text-sm leading-relaxed">
               A women-only reformer Pilates space dedicated to empowering women through mindful movement and inclusive wellness.
             </p>
@@ -92,7 +92,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-background/60 font-paragraph text-sm">
-            © 2026 hnbstudio.co.uk. All rights reserved.
+            © 2026 maisonerestudio.co.uk. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a 

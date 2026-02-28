@@ -17,7 +17,7 @@ export default function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-heading font-bold text-foreground tracking-tight">
-                HNB STUDIO
+                MAISON MÈRE
               </span>
             </Link>
 
