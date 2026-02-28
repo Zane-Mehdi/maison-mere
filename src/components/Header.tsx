@@ -1,0 +1,181 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X, Instagram, Linkedin, ShoppingBag } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useCart } from '@/integrations';
+import Cart from '@/components/Cart';
+
+export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { itemCount, actions } = useCart();
+
+  return (
+    <>
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link to="/" className="flex items-center">
+              <span className="text-2xl font-heading font-bold text-foreground tracking-tight">
+                HNB STUDIO
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              <Link 
+                to="/classes" 
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                Classes
+              </Link>
+              <Link 
+                to="/wellness-bar" 
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                Wellness Bar
+              </Link>
+              <Link 
+                to="/about" 
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                About
+              </Link>
+              <Link 
+                to="/contact" 
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                Contact
+              </Link>
+            </nav>
+
+            {/* Social Icons & CTA */}
+            <div className="hidden md:flex items-center gap-4">
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <button
+                onClick={actions.toggleCart}
+                className="relative text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="Shopping cart"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {itemCount}
+                  </span>
+                )}
+              </button>
+              <Button 
+                asChild
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
+              >
+                <Link to="/classes">Book Now</Link>
+              </Button>
+            </div>
+
+          {/* Mobile Menu & Cart Button */}
+          <div className="md:hidden flex items-center gap-3">
+            <button
+              onClick={actions.toggleCart}
+              className="relative text-foreground hover:text-primary transition-colors duration-200"
+              aria-label="Shopping cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-foreground hover:text-primary transition-colors duration-200"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-border pt-4">
+            <Link 
+              to="/classes" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Classes
+            </Link>
+            <Link 
+              to="/wellness-bar" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Wellness Bar
+            </Link>
+            <Link 
+              to="/about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              About
+            </Link>
+            <Link 
+              to="/contact" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Contact
+            </Link>
+            <div className="flex items-center gap-4 pt-2">
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+            <Button 
+              asChild
+              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full"
+            >
+              <Link to="/classes" onClick={() => setMobileMenuOpen(false)}>Book Now</Link>
+            </Button>
+          </nav>
+        )}
+      </div>
+      </header>
+      
+      <Cart />
+    </>
+  );
+}

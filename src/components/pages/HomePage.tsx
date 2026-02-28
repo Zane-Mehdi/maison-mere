@@ -1,0 +1,564 @@
+// WI-HPI
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { 
+  ChevronRight, 
+  Star, 
+  Instagram, 
+  Linkedin, 
+  Check, 
+  ArrowRight, 
+  Play,
+  Plus,
+  Minus,
+  MapPin,
+  Clock,
+  Phone
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Image } from '@/components/ui/image';
+import { Input } from '@/components/ui/input';
+import { BaseCrudService } from '@/integrations';
+import { Classes, WellnessBarMenu, Instructors } from '@/entities';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+// --- Utility Components ---
+
+const LoadingSpinner = () => (
+  <div className="flex justify-center items-center h-40">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+  </div>
+);
+
+const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.6, delay, ease: "easeOut" }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+const StaggerContainer = ({ children, className = "", staggerDelay = 0.1 }: { children: React.ReactNode, className?: string, staggerDelay?: number }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: "-50px" }}
+    variants={{
+      visible: { transition: { staggerChildren: staggerDelay } }
+    }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+const StaggerItem = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+// --- Main Page Component ---
+
+export default function HomePage() {
+  const navigate = useNavigate();
+  const [classes, setClasses] = useState<Classes[]>([]);
+  const [wellnessItems, setWellnessItems] = useState<WellnessBarMenu[]>([]);
+  const [instructors, setInstructors] = useState<Instructors[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  // Parallax scroll effect for hero
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.5]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [classesResult, wellnessResult, instructorsResult] = await Promise.all([
+          BaseCrudService.getAll<Classes>('classes', {}, { limit: 3 }),
+          BaseCrudService.getAll<WellnessBarMenu>('wellnessbarmenu', {}, { limit: 4 }),
+          BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 })
+        ]);
+        
+        setClasses(classesResult.items);
+        setWellnessItems(wellnessResult.items);
+        setInstructors(instructorsResult.items);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const faqs = [
+    {
+      q: "What is Reformer Pilates?",
+      a: "A machine-based version of Pilates using springs, straps, pulleys, and a sliding carriage to deliver a full-body workout that enhances strength, posture, flexibility, and balance."
+    },
+    {
+      q: "I have never done Reformer pilates before, where do I begin?",
+      a: "Pilates Fundamentals is our dedicated beginners' course designed just for you. It's a gentle, step-by-step introduction to the Reformer, led by one of our expert instructors. Arrive about 5–10 minutes early to meet your instructor."
+    },
+    {
+      q: "When should I arrive?",
+      a: "Arrive 5–15 minutes early to settle in, set up equipment, and meet the instructor."
+    },
+    {
+      q: "How do I book a class?",
+      a: "Booking a class couldn't be simpler with our user-friendly online booking system. Just head to our classes section, select your preferred session, and proceed to pay."
+    },
+    {
+      q: "What do I need to wear?",
+      a: "We recommend wearing comfortable, breathable clothing that allows for a full range of movement. Pilates is typically done wearing grip socks, which are obligatory in our Studio."
+    }
+  ];
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground">
+      <Header />
+      
+      {/* HERO SECTION */}
+      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Parallax */}
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="absolute inset-0 z-0"
+        >
+          <div className="absolute inset-0 bg-black/30 z-10" /> {/* Overlay */}
+          <Image 
+            src="https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04718-scaled.jpeg" 
+            alt="HNB Studio Reformer Pilates"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Hero Content */}
+        <div className="container relative z-20 px-4 mx-auto text-center text-white">
+          <FadeIn delay={0.2}>
+            <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
+              Welcome to HNB Studio
+            </p>
+          </FadeIn>
+          
+          <FadeIn delay={0.4}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
+              The <span className="italic font-serif text-primary-foreground">HNB</span> Standard
+            </h1>
+          </FadeIn>
+          
+          <FadeIn delay={0.6}>
+            <p className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+              Premium reformer equipment and expert instruction in every session.
+            </p>
+          </FadeIn>
+          
+          <FadeIn delay={0.8}>
+            <Button 
+              onClick={() => navigate('/classes')}
+              size="lg"
+              className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
+            >
+              Book Now
+            </Button>
+          </FadeIn>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/70"
+        >
+          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent mx-auto" />
+        </motion.div>
+      </section>
+
+      {/* INTRO OFFER SECTION */}
+      <section className="py-24 bg-background relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn className="order-2 lg:order-1">
+              <div className="relative">
+                <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />
+                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Intro Offer</p>
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+                  Strongest version of <span className="italic text-primary">yourself</span>.
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  We are reintroducing you to our intro offer available for everyone not just your first time. Experience the difference with our specialized equipment and expert guidance.
+                </p>
+                
+                <div className="bg-secondary/30 p-8 rounded-2xl border border-secondary mb-8">
+                  <p className="text-2xl font-heading font-bold text-foreground text-center">
+                    3 Classes for <span className="text-primary text-3xl">£50</span>
+                  </p>
+                </div>
+
+                <Button 
+                  onClick={() => navigate('/classes')}
+                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm"
+                >
+                  Claim Offer
+                </Button>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2} className="order-1 lg:order-2 relative group">
+              <div className="aspect-[4/5] overflow-hidden rounded-sm relative">
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <Image 
+                  src="https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04408-scaled.jpeg" 
+                  alt="Pilates Intro Offer"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              {/* Decorative Element */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-r-2 border-b-2 border-primary/30 hidden md:block" />
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* WELCOME SECTION */}
+      <section className="py-24 bg-secondary/20">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <FadeIn>
+            <p className="text-primary text-sm uppercase tracking-widest mb-6 font-semibold">Welcome to HNB Studio...</p>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">
+              A space to <span className="italic text-primary">grow</span>, <span className="italic text-primary">strengthen</span>, and <span className="italic text-primary">connect</span> exclusively for women.
+            </h2>
+            <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
+              At HNB Studio in Oldham, every class is more than just movement; it's a chance to grow physically and mentally in a supportive, women-only environment designed for your comfort and confidence.
+            </p>
+            <Button 
+              onClick={() => navigate('/about')}
+              variant="outline"
+              className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent"
+            >
+              Join Now
+            </Button>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* CLASSES SECTION */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <FadeIn>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                We Offer A Range Of Classes
+              </h2>
+              <p className="text-muted-foreground text-lg">To Suit All Levels of Fitness & Experience</p>
+            </FadeIn>
+          </div>
+
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <StaggerContainer className="grid md:grid-cols-3 gap-8">
+              {classes.length > 0 ? classes.map((cls, index) => (
+                <StaggerItem key={cls._id} className="group">
+                  <Link to="/classes" className="block h-full">
+                    <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
+                      <div className="aspect-[3/4] overflow-hidden relative mb-6">
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
+                          {cls.difficultyLevel || 'All Levels'}
+                        </div>
+                        <Image 
+                          src={cls.itemImage || "https://hnbstudio.co.uk/wp-content/uploads/2025/09/DSC04666-576x768.jpeg"} 
+                          alt={cls.itemName || "Class Image"}
+                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        />
+                      </div>
+                      <CardContent className="p-4 pt-0 text-center">
+                        <div className="text-4xl font-heading font-bold text-primary/20 mb-2">
+                          0{index + 1}
+                        </div>
+                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                          {cls.itemName}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
+                          {cls.itemDescription}
+                        </p>
+                        <span className="inline-block border-b border-primary text-primary text-sm uppercase tracking-widest pb-1 group-hover:border-foreground group-hover:text-foreground transition-all">
+                          Book Class
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </StaggerItem>
+              )) : (
+                <div className="col-span-3 text-center py-12 text-muted-foreground">
+                  No classes currently available.
+                </div>
+              )}
+            </StaggerContainer>
+          )}
+        </div>
+      </section>
+
+      {/* STATS SECTION */}
+      <section className="py-20 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
+            {[
+              { number: "42", label: "Classes A Week" },
+              { number: "08", label: "Expert Instructors" },
+              { number: "06", label: "Classes A Day" },
+              { number: "11", label: "Luxury Beds" }
+            ].map((stat, idx) => (
+              <StaggerItem key={idx} className="p-4">
+                <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
+                  {stat.number}
+                </div>
+                <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
+                  {stat.label}
+                </p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* TESTIMONIAL */}
+      <section className="py-24 bg-background flex items-center justify-center">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <FadeIn>
+            <div className="mb-8 text-primary">
+              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
+              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
+              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
+              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
+              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
+            </div>
+            <blockquote className="text-2xl md:text-4xl font-heading font-light italic leading-tight text-foreground mb-8">
+              "As a complete beginner, I felt so welcomed and comfortable at HNB Studio. The instructors are patient and encouraging—I’m already hooked!"
+            </blockquote>
+            <cite className="not-italic text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              — Sarah J., Member
+            </cite>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* WOMEN ONLY SECTION */}
+      <section className="py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn className="relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+                <Image 
+                  src="https://hnbstudio.co.uk/wp-content/uploads/2025/09/DSC04653-576x864.jpeg" 
+                  alt="Women Only Studio"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-10 -left-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
+                <p className="font-heading font-bold text-xl mb-2">Safe Space</p>
+                <p className="text-sm text-muted-foreground">Designed for privacy, comfort, and community.</p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">A Safe Place To Grow</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                Women's Only Studio & <br/><span className="italic text-primary">Hijab Friendly</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey.
+              </p>
+              <Button 
+                onClick={() => navigate('/about')}
+                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm"
+              >
+                Learn More
+              </Button>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* WELLNESS BAR SECTION */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
+              <FadeIn>
+                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">HNB Studio</p>
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                  More Than Just Pilates
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Enhance your wellness journey at our in-studio Wellness Bar, or speak to us about private hire. We offer a curated selection of health drinks and a beautiful space for events.
+                </p>
+                <Button 
+                  onClick={() => navigate('/contact')}
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent"
+                >
+                  Contact Us
+                </Button>
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-8">
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : (
+                <StaggerContainer className="grid sm:grid-cols-2 gap-6">
+                  {wellnessItems.length > 0 ? wellnessItems.map((item, idx) => (
+                    <StaggerItem key={item._id || idx}>
+                      <Card className="border-none shadow-none bg-secondary/10 hover:bg-secondary/20 transition-colors duration-300 h-full">
+                        <div className="aspect-video overflow-hidden">
+                          <Image 
+                            src={item.itemImage || "https://hnbstudio.co.uk/wp-content/uploads/2025/03/Screenshot-2025-06-10-at-14.50.34.png"} 
+                            alt={item.itemName || "Wellness Item"}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <CardContent className="p-6">
+                          <h3 className="text-xl font-heading font-bold mb-2">{item.itemName}</h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2">{item.itemDescription}</p>
+                          {item.itemPrice && (
+                            <p className="mt-4 font-bold text-primary">£{item.itemPrice.toFixed(2)}</p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </StaggerItem>
+                  )) : (
+                    // Fallback if no wellness items
+                    <>
+                      <StaggerItem>
+                        <Card className="border-none shadow-none bg-secondary/10 h-full">
+                          <div className="aspect-video overflow-hidden">
+                            <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/03/Screenshot-2025-06-10-at-14.50.34.png" alt="Wellness Bar" className="w-full h-full object-cover" />
+                          </div>
+                          <CardContent className="p-6">
+                            <h3 className="text-xl font-heading font-bold mb-2">Wellness Bar</h3>
+                            <p className="text-sm text-muted-foreground">Enjoy a selection of Matcha, cold-pressed juices, and healthy snacks.</p>
+                          </CardContent>
+                        </Card>
+                      </StaggerItem>
+                      <StaggerItem>
+                        <Card className="border-none shadow-none bg-secondary/10 h-full">
+                          <div className="aspect-video overflow-hidden">
+                            <Image src="https://hnbstudio.co.uk/wp-content/uploads/2025/01/Screenshot-2025-06-10-at-14.53.17.png" alt="Private Hire" className="w-full h-full object-cover" />
+                          </div>
+                          <CardContent className="p-6">
+                            <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
+                            <p className="text-sm text-muted-foreground">Our beautiful studio is available for private hire and special events.</p>
+                          </CardContent>
+                        </Card>
+                      </StaggerItem>
+                    </>
+                  )}
+                </StaggerContainer>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-24 bg-secondary/20">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="text-center mb-16">
+            <FadeIn>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Common Questions</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">FAQ'S</h2>
+            </FadeIn>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <FadeIn key={index} delay={index * 0.1}>
+                <div className="bg-background border border-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-secondary/10 transition-colors"
+                  >
+                    <span className="font-heading font-bold text-lg text-foreground pr-8">{faq.q}</span>
+                    <span className="text-primary flex-shrink-0">
+                      {openFaqIndex === index ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {openFaqIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-6 pt-0 text-muted-foreground leading-relaxed border-t border-border/50">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="py-24 bg-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <FadeIn>
+            <p className="text-white/80 text-sm uppercase tracking-widest mb-6 font-semibold">
+              Ready To Try Pilates For The First Time?
+            </p>
+            <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8">
+              From Beginners To Advanced
+            </h2>
+            <p className="text-2xl md:text-3xl font-light mb-10 tracking-wide">
+              JOIN HNB STUDIO TODAY
+            </p>
+            <Button 
+              onClick={() => navigate('/classes')}
+              size="lg"
+              className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg"
+            >
+              Our Classes
+            </Button>
+          </FadeIn>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

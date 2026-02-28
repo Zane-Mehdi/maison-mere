@@ -1,0 +1,211 @@
+{
+  "id": "01d943ff-4a9c-41f0-b3e5-e6e350a0c8fe",
+  "initialPrompt": "Create a website inspired by https://hnbstudio.co.uk/",
+  "siteName": "hnbstudio.co.uk",
+  "brandBook": {
+    "tones": [
+      "Empowering",
+      "Serene",
+      "Functional",
+      "Clear",
+      "Supportive",
+      "Professional",
+      "Holistic"
+    ],
+    "designStyle": {
+      "primaryStyle": [
+        "Minimalist"
+      ],
+      "supportingStyles": [
+        "Functional",
+        "Clean",
+        "Serene"
+      ]
+    },
+    "toneOfVoice": "Calm, empowering, clear, supportive, and professional.",
+    "graphicElements": {
+      "icons": "Minimalist, line-based icons with a single stroke weight. Use #313330 or #B3A083. Avoid fills or complex details.",
+      "stickers": "Not supported. Avoid any decorative stickers or embellishments.",
+      "illustrations": "Avoidance is key. If absolutely necessary, illustrations should be abstract, geometric, and monochromatic, adhering strictly to the 'Minimal' personality. No decorative or complex illustrations."
+    },
+    "designSummary": "**Zenith of Clarity: The Minimalist Pilates Sanctuary**\n\nThe Vision: HNB Studio's mission of empowering women through holistic wellness is translated into a design that embodies serenity, functionality, and absolute clarity. Inspired by Japanese minimalism and Dieter Rams' philosophy of 'less, but better,' the aesthetic is a transparent, silent container for content, allowing the user to focus on the studio's offerings and community. Every element serves a purpose, creating an uncluttered, breathable, and highly functional digital sanctuary.\n\n**Execution Blueprint:**\n1. The Grid as Foundation: A strict 12-column grid will be the backbone, ensuring perfect alignment and predictable spacing. All elements will adhere to this structure.\n2. Typography as the Sole Decorator: A single, highly legible sans-serif font will be used for all text. Hierarchy will be achieved solely through size, weight, and case, adhering to the 'Minimal' personality's avoidance of decorative fonts or mixing families.\n3. Monochromatic Palette with Restrained Accent: The primary palette will be black, white, and shades of grey, with the extracted primary color (#B3A083) used sparingly for critical interactive elements like links and buttons, maintaining a functional accent approach.\n4. Whitespace as a Design Element: Extreme and disciplined use of negative space will define the layout, creating a sense of calm and focus. Margins and padding will be generous and multiples of the base unit.\n5. Functional Components: UI elements will be devoid of decoration, defined by their placement and typography. Borders and shadows will be avoided, relying on spacing and color for definition.",
+    "layout": {
+      "grid": {
+        "margins": "Generous, multiples of 8px base unit.",
+        "padding": "Generous, multiples of 8px base unit, applied consistently within containers.",
+        "compositionApproach": "Strict 12-column grid with perfect alignment.",
+        "spacing": {
+          "gaps": "Base unit: 8px. All grid gaps are 24px (3x base unit).",
+          "rows": "Flexible, based on content",
+          "columns": "12 columns",
+          "compositionApproach": "Not specified"
+        }
+      },
+      "layoutDna": {
+        "contrastSpectrum": "High contrast between text and background, with minimal use of accent color.",
+        "densitySpectrum": "Extremely low density, prioritizing whitespace.",
+        "textVsImageEmphasis": "Text-driven, with images used as functional, clean elements rather than decorative backdrops.",
+        "complexitySpectrum": "Extremely low; simple, functional, and direct.",
+        "gridAlignmentSpectrum": "Perfect alignment to a strict 12-column grid.",
+        "negativeSpaceUsage": "Dominant; used as a primary design element to create calm and focus."
+      },
+      "heroSectionLayout": "**The Zen Reveal**\nComposition (Tailwind Spec): Main container (h-screen grid place-items-center p-8). Headline 'Empower Your Practice' (text-7xl font-bold text-center).\nSignature Hook (Framer Motion Spec): Parent `motion.div` with `initial={{ opacity: 0 }}` and `animate={{ opacity: 1 }}` with `transition={{ duration: 1.5 }}`. Headline uses `motion.h1` with `variants` and `transition: { staggerChildren: 0.05 }`. Each `motion.span` (for letter-by-letter reveal) has a variant with `initial={{ opacity: 0, y: 20 }}` and `animate={{ opacity: 1, y: 0 }}`."
+    },
+    "components": {
+      "images": "Layout Role: Clean, functional elements. | Gallery Type: Standard grid display (e.g., 2-3 columns) or full-width banners. Images should be well-composed and serve to illustrate content directly, without decorative framing or overlap.",
+      "buttons": "Primary: background-color: #B3A083, color: #313330, border-radius: 800px, padding: 12px 32px, font-weight: 600. Secondary: background-color: transparent, color: #B3A083, border: 1px solid #B3A083, border-radius: 800px, padding: 12px 32px, font-weight: 600.",
+      "containers": "Method: Whitespace, Style: 80px vertical margin between sections. Content containers are implicitly defined by grid alignment and padding, with no explicit borders or backgrounds."
+    },
+    "palette": {
+      "colors": {
+        "customColors": [
+          {
+            "name": "destructive",
+            "value": "#E53935"
+          },
+          {
+            "name": "destructiveForeground",
+            "value": "#FFFFFF"
+          }
+        ],
+        "background": "#FFFDF9",
+        "secondary": "#E6E0D2",
+        "foreground": "#313330",
+        "secondaryForeground": "#313330",
+        "primaryForeground": "#313330",
+        "primary": "#B3A083"
+      },
+      "paletteUsageGuide": "The palette is strictly monochromatic with a single, restrained accent. Use #FFFDF9 (background) and #313330 (foreground) for the majority of content. #B3A083 (primary) is reserved for interactive elements like buttons and links. #E6E0D2 (secondary) can be used for subtle backgrounds or secondary text elements. Ensure high contrast for readability.",
+      "paletteAccessibilityNotes": "The primary color (#B3A083) has sufficient contrast against the background (#FFFDF9) for links and interactive elements. Text color (#313330) has excellent contrast against the background (#FFFDF9) and secondary color (#E6E0D2). Ensure all interactive elements meet WCAG AA contrast ratios."
+    },
+    "typography": {
+      "headings": {
+        "font": {
+          "fontFamily": "helvetica-w01-roman",
+          "role": "heading",
+          "fontJustification": ""
+        },
+        "headingsAccessibilityNotes": "Ensure sufficient size and weight for headings to be easily distinguishable from body text. Maintain consistent line height for readability.",
+        "headingsSimilarFonts": [],
+        "headingsUsageGuide": "Headings should be used sparingly and with clear hierarchy. Employ variations in size and weight from the 'fontSizes' scale. Avoid mixing font families for headings; use only the designated sans-serif."
+      },
+      "paragraphs": {
+        "font": {
+          "fontFamily": "helvetica-w01-roman",
+          "role": "body",
+          "fontJustification": ""
+        },
+        "paragraphsUsageGuide": "Use for all body text, descriptions, and longer content blocks. Maintain consistent line height and spacing for optimal readability. Hierarchy within paragraphs is achieved through size and weight variations.",
+        "paragraphsSimilarFonts": [],
+        "paragraphsAccessibilityNotes": "Paragraph text must be legible at a minimum size of 16px. Ensure adequate line height (1.5x font size) and letter spacing (0.05em) for comfortable reading."
+      },
+      "customFontFamilies": {},
+      "fontSizes": [
+        {
+          "name": "xs",
+          "size": "0.75rem",
+          "lineHeight": "1.2",
+          "letterSpacing": "0.05em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "sm",
+          "size": "0.875rem",
+          "lineHeight": "1.3",
+          "letterSpacing": "0.05em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "base",
+          "size": "1rem",
+          "lineHeight": "1.5",
+          "letterSpacing": "0.05em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "lg",
+          "size": "1.125rem",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.05em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "xl",
+          "size": "1.25rem",
+          "lineHeight": "1.3",
+          "letterSpacing": "0.05em",
+          "fontWeight": "600"
+        },
+        {
+          "name": "2xl",
+          "size": "1.5rem",
+          "lineHeight": "1.2",
+          "letterSpacing": "0.05em",
+          "fontWeight": "600"
+        },
+        {
+          "name": "3xl",
+          "size": "1.875rem",
+          "lineHeight": "1.2",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "4xl",
+          "size": "2.25rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "5xl",
+          "size": "3rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "6xl",
+          "size": "3.75rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "7xl",
+          "size": "4.5rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "8xl",
+          "size": "6rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "9xl",
+          "size": "8rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.05em",
+          "fontWeight": "700"
+        }
+      ],
+      "welcomeSectionTypography": {
+        "placement": "Centered, prominent display.",
+        "implementation": "Use the largest font sizes (e.g., 8xl, 9xl) for the main headline, with a clear weight distinction. Body text below should use a base or lg size. Ensure ample line height and letter spacing for readability."
+      }
+    },
+    "originImagesUrls": []
+  },
+  "attachments": {
+    "contentImagesUrls": [],
+    "inspirationImagesUrls": [
+      "https://wixmp-c562ea68f10846b458285ce5.wixmp.com/scraped-screenshots/screenshot-1772281969382.webp"
+    ]
+  },
+  "status": "READY",
+  "plan": "\n\n```json\n{\n  \"sections\": [\n    {\n      \"id\": \"overview\",\n      \"title\": \"## Overview\",\n      \"content\": \"This plan creates a women-only reformer Pilates studio website showcasing class offerings, booking capabilities, and wellness services with an inclusive, empowering brand identity.\"\n    },\n    {\n      \"id\": \"key-features\",\n      \"title\": \"## Key features\",\n      \"content\": \"- **View Class Listing**: Browse all available Pilates class types and schedules.\\n- **View Class Details**: See detailed information about each class including level, duration, and instructor.\\n- **Book Classes**: Reserve spots in upcoming Pilates sessions.\\n- **View Intro Offer**: Access the special 3 classes for £50 introductory package.\\n- **View Wellness Bar Menu**: Browse available health drinks and wellness products.\\n- **Submit Contact Form**: Send inquiries about private hire, memberships, or general questions.\\n- **View Studio Information**: Learn about the women-only, hijab-friendly environment and amenities.\",\n      \"metadata\": [\n        { \"id\": \"view-class-listing\", \"name\": \"View Class Listing\" },\n        { \"id\": \"view-class-details\", \"name\": \"View Class Details\" },\n        { \"id\": \"book-classes\", \"name\": \"Book Classes\" },\n        { \"id\": \"view-intro-offer\", \"name\": \"View Intro Offer\" },\n        { \"id\": \"view-wellness-bar-menu\", \"name\": \"View Wellness Bar Menu\" },\n        { \"id\": \"submit-contact-form\", \"name\": \"Submit Contact Form\" },\n        { \"id\": \"view-studio-information\", \"name\": \"View Studio Information\" }\n      ]\n    },\n    {\n      \"id\": \"structure\",\n      \"title\": \"## Structure\",\n      \"content\": \"- **Header (Reusable)**: Contains studio logo, navigation menu with links to Classes, Wellness Bar, About, and Contact pages.\\n- **Footer (Reusable)**: Includes studio address, contact information, social media links, and opening hours.\\n- **Home Page**: Features hero section highlighting the women-only studio, intro offer callout, class overview cards, and wellness bar preview.\\n- **Classes Page**: Displays all class types (Fundamentals, Reformer Sculpt, Power Pilates) with filtering by level, detailed descriptions, and booking functionality.\\n- **Wellness Bar Page**: Showcases the health drinks menu and wellness products available at the studio.\\n- **About Page**: Presents the studio's mission, inclusive environment details, hijab-friendly facilities, and instructor profiles.\\n- **Contact Page**: Provides contact form for inquiries about private hire and memberships, studio location map, and contact details.\"\n    }\n  ],\n  \"apps\": [\n    {\n      \"id\": \"wix-cms\",\n      \"keyFeatures\": [\n        { \"id\": \"view-class-listing\", \"name\": \"View Class Listing\" },\n        { \"id\": \"view-class-details\", \"name\": \"View Class Details\" },\n        { \"id\": \"book-classes\", \"name\": \"Book Classes\" },\n        { \"id\": \"view-intro-offer\", \"name\": \"View Intro Offer\" },\n        { \"id\": \"view-wellness-bar-menu\", \"name\": \"View Wellness Bar Menu\" },\n        { \"id\": \"submit-contact-form\", \"name\": \"Submit Contact Form\" },\n        { \"id\": \"view-studio-information\", \"name\": \"View Studio Information\" }\n      ]\n    }\n  ],\n  \"version\": \"4.0.1\"\n}\n```"
+}
