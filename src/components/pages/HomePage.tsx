@@ -24,6 +24,7 @@ import { BaseCrudService } from '@/integrations';
 import { Classes, WellnessBarMenu, Instructors } from '@/entities';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import HeroSlideshow from '@/components/HeroSlideshow';
 
 // --- Utility Components ---
 
@@ -135,66 +136,52 @@ export default function HomePage() {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
+  const heroSlides = [
+    {
+      id: '1',
+      type: 'image' as const,
+      src: 'https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04718-scaled.jpeg',
+      title: 'The Maison Mère Standard',
+      subtitle: 'Welcome to Maison Mère Studio',
+      cta: {
+        text: 'Book Now',
+        action: () => navigate('/classes')
+      }
+    },
+    {
+      id: '2',
+      type: 'image' as const,
+      src: 'https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04408-scaled.jpeg',
+      title: 'Transform Your Body',
+      subtitle: 'Expert Instruction & Premium Equipment',
+      cta: {
+        text: 'Explore Classes',
+        action: () => navigate('/classes')
+      }
+    },
+    {
+      id: '3',
+      type: 'image' as const,
+      src: 'https://hnbstudio.co.uk/wp-content/uploads/2025/09/DSC04653-576x864.jpeg',
+      title: 'Women\'s Only Space',
+      subtitle: 'Safe, Supportive & Empowering',
+      cta: {
+        text: 'Learn More',
+        action: () => navigate('/about')
+      }
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground">
       <Header />
       
-      {/* HERO SECTION */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Parallax */}
-        <motion.div 
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0"
-        >
-          <div className="absolute inset-0 bg-black/30 z-10" /> {/* Overlay */}
-          <Image 
-            src="https://hnbstudio.co.uk/wp-content/uploads/2025/08/DSC04718-scaled.jpeg" 
-            alt="HNB Studio Reformer Pilates"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-
-        {/* Hero Content */}
-        <div className="container relative z-20 px-4 mx-auto text-center text-white">
-          <FadeIn delay={0.2}>
-            <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
-              Welcome to Maison Mère Studio
-            </p>
-          </FadeIn>
-          
-          <FadeIn delay={0.4}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
-              The <span className="italic font-serif text-primary-foreground">Maison Mère</span> Standard
-            </h1>
-          </FadeIn>
-          
-          <FadeIn delay={0.6}>
-            <p className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-              Premium reformer equipment and expert instruction in every session.
-            </p>
-          </FadeIn>
-          
-          <FadeIn delay={0.8}>
-            <Button 
-              onClick={() => navigate('/classes')}
-              size="lg"
-              className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
-            >
-              Book Now
-            </Button>
-          </FadeIn>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/70"
-        >
-          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent mx-auto" />
-        </motion.div>
-      </section>
+      {/* HERO SLIDESHOW SECTION */}
+      <HeroSlideshow 
+        slides={heroSlides}
+        autoPlay={true}
+        autoPlayInterval={5000}
+      />
 
       {/* INTRO OFFER SECTION */}
       <section className="py-24 bg-background relative overflow-hidden">
