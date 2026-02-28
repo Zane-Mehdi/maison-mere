@@ -114,10 +114,10 @@ export default function HeroSlideshow({
           </motion.div>
         ))}
 
-        {/* Navigation Buttons */}
+        {/* Navigation Buttons - Hidden on mobile, visible on md and up */}
         <button
           onClick={() => handleSlideChange((currentSlide - 1 + slides.length) % slides.length)}
-          className="absolute left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all duration-300 backdrop-blur-sm border border-white/20"
+          className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all duration-300 backdrop-blur-sm border border-white/20"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -125,7 +125,7 @@ export default function HeroSlideshow({
 
         <button
           onClick={() => handleSlideChange((currentSlide + 1) % slides.length)}
-          className="absolute right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all duration-300 backdrop-blur-sm border border-white/20"
+          className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/40 text-white transition-all duration-300 backdrop-blur-sm border border-white/20"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
