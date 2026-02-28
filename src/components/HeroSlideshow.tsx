@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import React, { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
+import HeroSlider from 'hero-slider';
+import 'hero-slider/build/index.css';
 
 interface SlideItem {
   id: string;
@@ -23,20 +25,16 @@ interface HeroSlideshowProps {
   onSlideChange?: (index: number) => void;
 }
 
-const SlideInText = ({ children, delay = 0, className = "", direction = "left" }: { children: React.ReactNode, delay?: number, className?: string, direction?: "left" | "right" }) => {
-  const initialX = direction === "left" ? -100 : 100;
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: initialX }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -initialX }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+const SlideInText = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay, ease: "easeOut" }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
 
 export default function HeroSlideshow({
   slides,
@@ -45,181 +43,149 @@ export default function HeroSlideshow({
   onSlideChange
 }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(autoPlay);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Parallax scroll effect for hero
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.5]);
-
-  useEffect(() => {
-    if (!isAutoPlay || slides.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlay, autoPlayInterval, slides.length]);
-
-  useEffect(() => {
-    onSlideChange?.(currentSlide);
-  }, [currentSlide, onSlideChange]);
-
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left');
-
-  const goToSlide = (index: number) => {
-    setSlideDirection(index > currentSlide ? 'left' : 'right');
+  const handleSlideChange = useCallback((index: number) => {
     setCurrentSlide(index);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(autoPlay), 1000);
-  };
-
-  const nextSlide = () => {
-    setSlideDirection('left');
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(autoPlay), 1000);
-  };
-
-  const prevSlide = () => {
-    setSlideDirection('right');
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(autoPlay), 1000);
-  };
+    onSlideChange?.(index);
+  }, [onSlideChange]);
 
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Slides Container */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0"
-          initial={{ x: slideDirection === 'left' ? 1000 : -1000 }}
-          animate={{ x: 0 }}
-          exit={{ x: slideDirection === 'left' ? -1000 : 1000 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
-        >
-          {/* Dark Overlay - Only affects background, not text */}
-          <motion.div 
-            className="absolute inset-0 bg-black/30 z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-          />
-
-          {/* Image or Video */}
-          {currentSlideData.type === 'image' ? (
-            <Image
-              src={currentSlideData.src}
-              alt={currentSlideData.title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="relative w-full h-full bg-black">
-              <video
-                src={currentSlideData.src}
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-              />
-              {!isVideoPlaying && (
-                <button
-                  onClick={() => setIsVideoPlaying(true)}
-                  className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-colors z-20"
-                >
-                  <Play className="w-16 h-16 text-white fill-white" />
-                </button>
-              )}
-            </div>
-          )}
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Hero Content */}
-      <div className="container relative z-20 px-4 mx-auto text-center text-white">
-        <SlideInText delay={0.2} direction={slideDirection === 'left' ? 'left' : 'right'}>
-          <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
-            {currentSlideData.subtitle}
-          </p>
-        </SlideInText>
-
-        <SlideInText delay={0.4} direction={slideDirection === 'left' ? 'left' : 'right'}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
-            {currentSlideData.title}
-          </h1>
-        </SlideInText>
-
-        {currentSlideData.cta && (
-          <SlideInText delay={0.8} direction={slideDirection === 'left' ? 'left' : 'right'}>
-            <Button
-              onClick={currentSlideData.cta.action}
-              size="lg"
-              className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
-            >
-              {currentSlideData.cta.text}
-            </Button>
-          </SlideInText>
-        )}
-      </div>
-
-      {/* Navigation Controls */}
-      {slides.length > 1 && (
-        <>
-          {/* Previous Button */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/40 transition-colors p-3 rounded-full text-white backdrop-blur-sm"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          {/* Next Button */}
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/40 transition-colors p-3 rounded-full text-white backdrop-blur-sm"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Slide Indicators */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentSlide
-                    ? 'bg-white w-8 h-2'
-                    : 'bg-white/50 w-2 h-2 hover:bg-white/70'
+    <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden bg-black">
+      <HeroSlider
+        width="100%"
+        height="100%"
+        autoplay
+        autoplayDuration={autoPlayInterval}
+        sliderImageComponent={
+          <div className="w-full h-full">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-700 ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
                 }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
+              >
+                {slide.type === 'image' ? (
+                  <Image
+                    src={slide.src}
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <video
+                    src={slide.src}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                  />
+                )}
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/30" />
+              </div>
             ))}
           </div>
-        </>
-      )}
+        }
+        navButtonsWrapperPosition="bottom"
+        navButtonsProps={{
+          style: {
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            color: 'white',
+            borderRadius: '50%',
+            padding: '12px',
+            backdropFilter: 'blur(4px)',
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+          },
+          onMouseEnter: (e: any) => {
+            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+          },
+          onMouseLeave: (e: any) => {
+            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+          },
+        }}
+        leftNavButtonStyle={{
+          position: 'absolute',
+          left: '32px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 30,
+        }}
+        rightNavButtonStyle={{
+          position: 'absolute',
+          right: '32px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 30,
+        }}
+        onNavButtonClick={(newIndex: number) => handleSlideChange(newIndex)}
+        navButtonsWrapperStyle={{
+          position: 'absolute',
+          bottom: '32px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 30,
+          display: 'flex',
+          gap: '8px',
+        }}
+        indicators={slides.map((_, index) => (
+          <div
+            key={index}
+            style={{
+              width: index === currentSlide ? '32px' : '8px',
+              height: '8px',
+              backgroundColor: index === currentSlide ? 'white' : 'rgba(255, 255, 255, 0.5)',
+              borderRadius: '4px',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
+      >
+        {/* Hero Content Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+          <div className="container mx-auto px-4 text-center text-white">
+            <SlideInText delay={0.2}>
+              <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
+                {currentSlideData?.subtitle}
+              </p>
+            </SlideInText>
 
-      {/* Scroll Indicator */}
-      {slides.length > 0 && (
+            <SlideInText delay={0.4}>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
+                {currentSlideData?.title}
+              </h1>
+            </SlideInText>
+
+            {currentSlideData?.cta && (
+              <SlideInText delay={0.8}>
+                <div className="pointer-events-auto">
+                  <Button
+                    onClick={currentSlideData.cta.action}
+                    size="lg"
+                    className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
+                  >
+                    {currentSlideData.cta.text}
+                  </Button>
+                </div>
+              </SlideInText>
+            )}
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 10, 0] }}
           transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/70"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/70 pointer-events-none"
         >
           <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent mx-auto" />
         </motion.div>
-      )}
+      </HeroSlider>
     </section>
   );
 }
