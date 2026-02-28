@@ -80,32 +80,7 @@ export default function ClassesPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
-          backgroundSize: '30px 30px'
-        }} />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
-                Reformer Pilates Classes
-              </p>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">
-                Find Your Perfect Class
-              </h1>
-              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">
-                From beginners to advanced practitioners, we have a class designed for your fitness level and goals.
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Full Schedule Banner */}
       <section className="py-6 bg-accent text-accent-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -130,7 +105,29 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-
+      <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
+          backgroundSize: '30px 30px'
+        }} />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedSection>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
+                Reformer Pilates Classes
+              </p>
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">
+                Find Your Perfect Class
+              </h1>
+              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">
+                From beginners to advanced practitioners, we have a class designed for your fitness level and goals.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+      {/* Full Schedule Banner */}
       {/* Intro Offer Banner */}
       <section className="py-12 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
@@ -149,7 +146,6 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-
       {/* Filter Section */}
       <section className="py-8 bg-background border-b border-border">
         <div className="container mx-auto px-4">
@@ -187,7 +183,6 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-
       {/* Classes Grid */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -268,7 +263,6 @@ export default function ClassesPage() {
           </div>
         </div>
       </section>
-
       {/* Benefits Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -315,7 +309,6 @@ export default function ClassesPage() {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
