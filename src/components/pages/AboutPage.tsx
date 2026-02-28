@@ -63,7 +63,6 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
@@ -77,17 +76,12 @@ export default function AboutPage() {
               <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                 About Us
               </p>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">
-                HNB Studio
-              </h1>
-              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">
-                A women-only reformer Pilates space in Oldham, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.
-              </p>
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mere Studoi</h1>
+              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">Maison Mere Studios</p>
             </div>
           </AnimatedSection>
         </div>
       </section>
-
       {/* Mission Section */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -131,7 +125,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* Values Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -186,7 +179,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* Women-Only & Hijab Friendly Section */}
       <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
@@ -249,7 +241,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* Instructors Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -311,7 +302,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
@@ -344,7 +334,6 @@ export default function AboutPage() {
           </AnimatedSection>
         </div>
       </section>
-
       <Footer />
     </div>
   );

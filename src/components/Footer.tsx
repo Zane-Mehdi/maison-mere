@@ -59,9 +59,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-background/80 font-paragraph text-sm">
-                  Oldham, United Kingdom
-                </span>
+                <span className="text-background/80 font-paragraph text-sm">Harrow, United Kingdom</span>
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
@@ -71,9 +69,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-background/80 font-paragraph text-sm">
-                  info@hnbstudio.co.uk
-                </span>
+                <span className="text-background/80 font-paragraph text-sm">Contact@maisonmerestudio.com</span>
               </li>
             </ul>
           </div>
