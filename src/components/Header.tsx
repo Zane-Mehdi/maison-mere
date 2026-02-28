@@ -59,7 +59,7 @@ export default function Header() {
               asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline"
             >
-              <Link to="/book-a-class" className="no-underline">Reserve</Link>
+              <Link to="/book-a-class" className="no-underline">Book Now</Link>
             </Button>
           </div>
 
@@ -114,7 +114,7 @@ export default function Header() {
               asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline"
             >
-              <Link to="/book-a-class" onClick={() => setMobileMenuOpen(false)} className="no-underline">Reserve</Link>
+              <Link to="/book-a-class" onClick={() => setMobileMenuOpen(false)} className="no-underline">Book Now</Link>
             </Button>
           </nav>
         )}
