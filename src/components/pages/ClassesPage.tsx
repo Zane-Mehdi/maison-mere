@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { useCart, useCurrency, formatPrice, DEFAULT_CURRENCY } from '@/integrations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
@@ -46,8 +45,6 @@ export default function ClassesPage() {
   const [classes, setClasses] = useState<Classes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
-  const { addingItemId, actions } = useCart();
-  const { currency } = useCurrency();
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -95,9 +92,9 @@ export default function ClassesPage() {
               </div>
               <Button 
                 asChild
-                className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading"
+                className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading no-underline"
               >
-                <a href="/book-a-class" className="flex items-center gap-2">
+                <a href="/book-a-class" className="flex items-center gap-2 no-underline">
                   View Full Schedule
                 </a>
               </Button>
@@ -127,7 +124,6 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-      {/* Full Schedule Banner */}
       {/* Intro Offer Banner */}
       <section className="py-12 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
@@ -140,7 +136,7 @@ export default function ClassesPage() {
                 3 Classes for £50 - Available to Everyone!
               </p>
               <p className="text-base opacity-80">
-                Not just for first-timers. Experience the HNB difference with our exclusive package.
+                Not just for first-timers. Experience the Maison Mère difference with our exclusive package.
               </p>
             </div>
           </AnimatedSection>
@@ -154,28 +150,28 @@ export default function ClassesPage() {
               <Button
                 onClick={() => setSelectedLevel('all')}
                 variant={selectedLevel === 'all' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'all' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
+                className={`${selectedLevel === 'all' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
               >
                 All Classes
               </Button>
               <Button
                 onClick={() => setSelectedLevel('beginner')}
                 variant={selectedLevel === 'beginner' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'beginner' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
+                className={`${selectedLevel === 'beginner' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
               >
                 Beginner
               </Button>
               <Button
                 onClick={() => setSelectedLevel('intermediate')}
                 variant={selectedLevel === 'intermediate' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'intermediate' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
+                className={`${selectedLevel === 'intermediate' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
               >
                 Intermediate
               </Button>
               <Button
                 onClick={() => setSelectedLevel('advanced')}
                 variant={selectedLevel === 'advanced' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'advanced' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
+                className={`${selectedLevel === 'advanced' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
               >
                 Advanced
               </Button>
@@ -189,69 +185,62 @@ export default function ClassesPage() {
           <div className="min-h-[500px]">
             {isLoading ? null : filteredClasses.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                {filteredClasses.map((classItem, index) => {
-                  const isAdding = addingItemId === classItem._id;
-                  return (
-                    <AnimatedSection key={classItem._id} delay={index * 50}>
-                      <Card className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-border bg-card overflow-hidden h-full flex flex-col">
-                        <div className="aspect-[4/5] overflow-hidden relative">
-                          <Image 
-                            src={classItem.itemImage || 'https://static.wixstatic.com/media/980ffc_4fdc28c05cbc407ab07a224b0cd2f5ad~mv2.png?originWidth=384&originHeight=448'}
-                            alt={classItem.itemName || 'Class'}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            width={400}
-                          />
-                          {classItem.difficultyLevel && (
-                            <div className="absolute top-4 right-4">
-                              <Badge className={`${getLevelBadgeColor(classItem.difficultyLevel)} border`}>
-                                {classItem.difficultyLevel}
-                              </Badge>
+                {filteredClasses.map((classItem, index) => (
+                  <AnimatedSection key={classItem._id} delay={index * 50}>
+                    <Card className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-border bg-card overflow-hidden h-full flex flex-col">
+                      <div className="aspect-[4/5] overflow-hidden relative">
+                        <Image 
+                          src={classItem.itemImage || 'https://static.wixstatic.com/media/980ffc_4fdc28c05cbc407ab07a224b0cd2f5ad~mv2.png?originWidth=384&originHeight=448'}
+                          alt={classItem.itemName || 'Class'}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          width={400}
+                        />
+                        {classItem.difficultyLevel && (
+                          <div className="absolute top-4 right-4">
+                            <Badge className={`${getLevelBadgeColor(classItem.difficultyLevel)} border`}>
+                              {classItem.difficultyLevel}
+                            </Badge>
+                          </div>
+                        )}
+                      </div>
+                      <CardContent className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
+                          {classItem.itemName}
+                        </h3>
+                        <p className="text-foreground/70 font-paragraph text-sm mb-4 leading-relaxed flex-1">
+                          {classItem.itemDescription}
+                        </p>
+                        
+                        <div className="space-y-3 mb-4">
+                          {classItem.duration && (
+                            <div className="flex items-center gap-2 text-foreground/60">
+                              <Clock className="w-4 h-4 text-primary" />
+                              <span className="text-sm font-paragraph">{classItem.duration} minutes</span>
+                            </div>
+                          )}
+                          {classItem.instructorName && (
+                            <div className="flex items-center gap-2 text-foreground/60">
+                              <Users className="w-4 h-4 text-primary" />
+                              <span className="text-sm font-paragraph">Instructor: {classItem.instructorName}</span>
                             </div>
                           )}
                         </div>
-                        <CardContent className="p-6 flex-1 flex flex-col">
-                          <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
-                            {classItem.itemName}
-                          </h3>
-                          <p className="text-foreground/70 font-paragraph text-sm mb-4 leading-relaxed flex-1">
-                            {classItem.itemDescription}
-                          </p>
-                          
-                          <div className="space-y-3 mb-4">
-                            {classItem.duration && (
-                              <div className="flex items-center gap-2 text-foreground/60">
-                                <Clock className="w-4 h-4 text-primary" />
-                                <span className="text-sm font-paragraph">{classItem.duration} minutes</span>
-                              </div>
-                            )}
-                            {classItem.instructorName && (
-                              <div className="flex items-center gap-2 text-foreground/60">
-                                <Users className="w-4 h-4 text-primary" />
-                                <span className="text-sm font-paragraph">Instructor: {classItem.instructorName}</span>
-                              </div>
-                            )}
-                          </div>
 
-                          <div className="flex items-center justify-between pt-4 border-t border-border">
-                            <span className="text-2xl font-heading font-bold text-primary">
-                              {formatPrice(classItem.itemPrice || 0, currency ?? DEFAULT_CURRENCY)}
-                            </span>
-                            <Button 
-                              disabled={isAdding}
-                              onClick={() => actions.addToCart({ 
-                                collectionId: 'classes', 
-                                itemId: classItem._id 
-                              })}
-                              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95"
-                            >
-                              {isAdding ? 'Adding...' : 'Buy Now'}
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </AnimatedSection>
-                  );
-                })}
+                        <div className="flex items-center justify-between pt-4 border-t border-border">
+                          <span className="text-2xl font-heading font-bold text-primary">
+                            £{classItem.itemPrice?.toFixed(2) || '0.00'}
+                          </span>
+                          <Button 
+                            onClick={() => window.open('https://example.com/booking', '_blank')}
+                            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline"
+                          >
+                            Reserve
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </AnimatedSection>
+                ))}
               </div>
             ) : (
               <div className="text-center py-20">
@@ -269,7 +258,7 @@ export default function ClassesPage() {
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                Why Choose HNB Studio?
+                Why Choose Maison Mère Studio?
               </h2>
             </div>
           </AnimatedSection>

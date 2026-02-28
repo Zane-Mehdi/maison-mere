@@ -152,23 +152,23 @@ export default function HomePage() {
   const faqs = [
     {
       q: "What is Reformer Pilates?",
-      a: "A machine-based version of Pilates using springs, straps, pulleys, and a sliding carriage to deliver a full-body workout that enhances strength, posture, flexibility, and balance."
+      a: "Reformer Pilates is a sophisticated, machine-based practice that utilizes precision springs, straps, and a sliding carriage to deliver a comprehensive full-body transformation. This refined discipline enhances strength, posture, flexibility, and balance through controlled, intentional movement."
     },
     {
-      q: "I have never done Reformer pilates before, where do I begin?",
-      a: "Pilates Fundamentals is our dedicated beginners' course designed just for you. It's a gentle, step-by-step introduction to the Reformer, led by one of our expert instructors. Arrive about 5–10 minutes early to meet your instructor."
+      q: "I have never done Reformer Pilates before, where do I begin?",
+      a: "Our Pilates Fundamentals class is thoughtfully designed for the discerning beginner. This elegant, step-by-step introduction to the Reformer is led by our expert instructors in an intimate setting. We recommend arriving 5–10 minutes early to meet your instructor and settle into our serene studio environment."
     },
     {
       q: "When should I arrive?",
-      a: "Arrive 5–15 minutes early to settle in, set up equipment, and meet the instructor."
+      a: "We invite you to arrive 5–15 minutes early to acclimate to our luxurious studio space, prepare your equipment, and connect with your instructor. This allows for a seamless transition into your practice."
     },
     {
       q: "How do I book a class?",
-      a: "Booking a class couldn't be simpler with our user-friendly online booking system. Just head to our classes section, select your preferred session, and proceed to pay."
+      a: "Booking your Maison Mère experience is effortless through our sophisticated online reservation system. Simply browse our curated class schedule, select your preferred session, and secure your spot with ease."
     },
     {
       q: "What do I need to wear?",
-      a: "We recommend wearing comfortable, breathable clothing that allows for a full range of movement. Pilates is typically done wearing grip socks, which are obligatory in our Studio."
+      a: "We recommend elegant, breathable attire that allows for complete freedom of movement. Pilates is practiced in grip socks, which are essential in our studio to ensure safety and stability on the Reformer."
     }
   ];
 
@@ -246,7 +246,7 @@ export default function HomePage() {
 
                 <Button 
                   onClick={() => navigate('/classes')}
-                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95"
+                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95 no-underline"
                 >
                   Claim Offer
                 </Button>
@@ -284,7 +284,7 @@ export default function HomePage() {
             <Button 
               onClick={() => navigate('/about')}
               variant="outline"
-              className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95"
+              className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
             >
               Join Now
             </Button>
@@ -425,7 +425,7 @@ export default function HomePage() {
               </p>
               <Button 
                 onClick={() => navigate('/about')}
-                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm"
+                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
               >
                 Learn More
               </Button>
@@ -450,7 +450,7 @@ export default function HomePage() {
                <Button 
                  onClick={() => navigate('/wellness-bar')}
                  variant="outline"
-                 className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95"
+                 className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
                >
                  View Menu
                </Button>
@@ -549,7 +549,7 @@ export default function HomePage() {
             <Button 
               onClick={() => navigate('/classes')}
               size="lg"
-              className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95"
+              className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95 no-underline"
             >
               Our Classes
             </Button>
