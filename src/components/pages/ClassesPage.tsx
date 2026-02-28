@@ -105,6 +105,32 @@ export default function ClassesPage() {
         </div>
       </section>
 
+      {/* Full Schedule Banner */}
+      <section className="py-6 bg-accent text-accent-foreground">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <h2 className="text-lg md:text-xl font-heading font-bold">
+                  Want to see our full schedule?
+                </h2>
+                <p className="text-accent-foreground/90 font-paragraph text-sm mt-1">
+                  Visit our booking page to view all available class times and book your spot.
+                </p>
+              </div>
+              <Button 
+                asChild
+                className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading"
+              >
+                <a href="/book-a-class" className="flex items-center gap-2">
+                  View Full Schedule
+                </a>
+              </Button>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Intro Offer Banner */}
       <section className="py-12 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
@@ -132,28 +158,28 @@ export default function ClassesPage() {
               <Button
                 onClick={() => setSelectedLevel('all')}
                 variant={selectedLevel === 'all' ? 'default' : 'outline'}
-                className={selectedLevel === 'all' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'}
+                className={`${selectedLevel === 'all' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
               >
                 All Classes
               </Button>
               <Button
                 onClick={() => setSelectedLevel('beginner')}
                 variant={selectedLevel === 'beginner' ? 'default' : 'outline'}
-                className={selectedLevel === 'beginner' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'}
+                className={`${selectedLevel === 'beginner' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
               >
                 Beginner
               </Button>
               <Button
                 onClick={() => setSelectedLevel('intermediate')}
                 variant={selectedLevel === 'intermediate' ? 'default' : 'outline'}
-                className={selectedLevel === 'intermediate' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'}
+                className={`${selectedLevel === 'intermediate' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
               >
                 Intermediate
               </Button>
               <Button
                 onClick={() => setSelectedLevel('advanced')}
                 variant={selectedLevel === 'advanced' ? 'default' : 'outline'}
-                className={selectedLevel === 'advanced' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'}
+                className={`${selectedLevel === 'advanced' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95`}
               >
                 Advanced
               </Button>
@@ -221,9 +247,9 @@ export default function ClassesPage() {
                                 collectionId: 'classes', 
                                 itemId: classItem._id 
                               })}
-                              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
+                              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95"
                             >
-                              {isAdding ? 'Adding...' : 'Add to Cart'}
+                              {isAdding ? 'Adding...' : 'Buy Now'}
                             </Button>
                           </div>
                         </CardContent>

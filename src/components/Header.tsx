@@ -73,9 +73,9 @@ export default function Header() {
               </button>
               <Button 
                 asChild
-                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95"
               >
-                <Link to="/book-a-class" className="bg-primary no-underline [text-shadow:none] font-paragraph">Book Now</Link>
+                <Link to="/book-a-class" className="bg-primary no-underline [text-shadow:none] font-heading">Book Now</Link>
               </Button>
             </div>
 
@@ -140,7 +140,7 @@ export default function Header() {
             </div>
             <Button 
               asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95"
             >
               <Link to="/classes" onClick={() => setMobileMenuOpen(false)}>Book Now</Link>
             </Button>

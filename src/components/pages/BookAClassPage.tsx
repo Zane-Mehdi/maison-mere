@@ -57,7 +57,7 @@ export default function BookAClassPage() {
               </div>
               <Button 
                 asChild
-                className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap"
+                className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading hover:scale-105 active:scale-95"
               >
                 <Link to="/classes" className="flex items-center gap-2">
                   View Classes

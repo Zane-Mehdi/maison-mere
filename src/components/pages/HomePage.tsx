@@ -246,7 +246,7 @@ export default function HomePage() {
 
                 <Button 
                   onClick={() => navigate('/classes')}
-                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm"
+                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95"
                 >
                   Claim Offer
                 </Button>
@@ -284,7 +284,7 @@ export default function HomePage() {
             <Button 
               onClick={() => navigate('/about')}
               variant="outline"
-              className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent"
+              className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95"
             >
               Join Now
             </Button>
@@ -447,13 +447,13 @@ export default function HomePage() {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Enhance your wellness journey at our in-studio Wellness Bar, or speak to us about private hire. We offer a curated selection of health drinks and a beautiful space for events.
                 </p>
-                <Button 
-                  onClick={() => navigate('/wellness-bar')}
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent"
-                >
-                  View Menu
-                </Button>
+               <Button 
+                 onClick={() => navigate('/wellness-bar')}
+                 variant="outline"
+                 className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95"
+               >
+                 View Menu
+               </Button>
               </FadeIn>
             </div>
 
@@ -549,7 +549,7 @@ export default function HomePage() {
             <Button 
               onClick={() => navigate('/classes')}
               size="lg"
-              className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg"
+              className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95"
             >
               Our Classes
             </Button>

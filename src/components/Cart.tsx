@@ -29,7 +29,7 @@ export default function Cart() {
             </p>
             <Button 
               onClick={actions.closeCart}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-heading transition-all duration-200 hover:scale-105 active:scale-95"
             >
               Continue Shopping
             </Button>
@@ -65,7 +65,7 @@ export default function Cart() {
                         size="sm"
                         variant="outline"
                         onClick={() => actions.updateQuantity(item, Math.max(1, item.quantity - 1))}
-                        className="h-7 w-7 p-0 border-border"
+                        className="h-7 w-7 p-0 border-border font-heading transition-all duration-200 hover:scale-110 active:scale-95"
                       >
                         <Minus className="w-3 h-3" />
                       </Button>
@@ -76,7 +76,7 @@ export default function Cart() {
                         size="sm"
                         variant="outline"
                         onClick={() => actions.updateQuantity(item, item.quantity + 1)}
-                        className="h-7 w-7 p-0 border-border"
+                        className="h-7 w-7 p-0 border-border font-heading transition-all duration-200 hover:scale-110 active:scale-95"
                       >
                         <Plus className="w-3 h-3" />
                       </Button>
@@ -107,20 +107,15 @@ export default function Cart() {
               </div>
 
               <Button
-                onClick={actions.checkout}
-                disabled={isCheckingOut}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 h-12 text-base font-semibold"
-              >
-                {isCheckingOut ? 'Processing...' : 'Checkout'}
-              </Button>
-
-              <Button
                 onClick={actions.clearCart}
-                variant="ghost"
-                className="w-full mt-2 text-muted-foreground hover:text-foreground"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 h-12 text-base font-semibold font-heading hover:scale-105 active:scale-95"
               >
                 Clear Cart
               </Button>
+
+              <p className="text-xs text-muted-foreground text-center mt-3 font-paragraph">
+                Proceed to checkout on the next page
+              </p>
             </div>
           </div>
         )}
