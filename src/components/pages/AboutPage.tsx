@@ -76,7 +76,7 @@ export default function AboutPage() {
               <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                 About Us
               </p>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mere Studoi</h1>
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mere Studios</h1>
               <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">A women-only reformer Pilates space in Harrow, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.</p>
             </div>
           </AnimatedSection>
