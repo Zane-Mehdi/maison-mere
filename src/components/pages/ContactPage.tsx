@@ -110,7 +110,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                   Location
                 </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">Harrow, United Kingdom</p>
+                <p className="text-foreground/70 font-paragraph text-sm">207 Watford Rd, Harrow HA1 3UA</p>
               </Card>
             </AnimatedSection>
 
@@ -122,9 +122,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                   Phone
                 </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">
-                  Contact us for details
-                </p>
+                <p className="text-foreground/70 font-paragraph text-sm">07304 499808</p>
               </Card>
             </AnimatedSection>
 
@@ -136,7 +134,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                   Email
                 </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">email@example.com</p>
+                <p className="text-foreground/70 font-paragraph text-sm">Contact@maisonmerestudio.com</p>
               </Card>
             </AnimatedSection>
 
