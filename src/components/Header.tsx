@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Instagram, Linkedin, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
 import { useCart } from '@/integrations';
 import Cart from '@/components/Cart';
 
@@ -16,9 +17,13 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-heading font-bold text-foreground tracking-tight">
-                MAISON MÈRE
-              </span>
+              <Image 
+                src="https://static.wixstatic.com/media/980ffc_cc7f59e9bf6c4337bcf851b4117a3b88~mv2.png"
+                alt="MAISON MÈRE Logo"
+                width={160}
+                height={64}
+                className="h-16 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
