@@ -35,22 +35,16 @@ export default function Header() {
                 Classes
               </Link>
               <Link 
-                to="/book-a-class" 
+                to="/about" 
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
-                Book Now
+                About
               </Link>
               <Link 
                 to="/wellness-bar" 
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
                 Wellness Bar
-              </Link>
-              <Link 
-                to="/about" 
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-              >
-                About
               </Link>
               <Link 
                 to="/contact" 
@@ -96,7 +90,7 @@ export default function Header() {
                 asChild
                 className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
               >
-                <Link to="/classes">Book Now</Link>
+                <Link to="/book-a-class" className="bg-primary">Book Now</Link>
               </Button>
             </div>
 
@@ -133,13 +127,6 @@ export default function Header() {
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Classes
-            </Link>
-            <Link 
-              to="/book-a-class" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-            >
-              Book Now
             </Link>
             <Link 
               to="/wellness-bar" 
