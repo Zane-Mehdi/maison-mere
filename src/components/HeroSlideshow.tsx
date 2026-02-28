@@ -25,10 +25,10 @@ interface HeroSlideshowProps {
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -40 }}
-    transition={{ duration: 0.7, delay, ease: "easeOut" }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.6, delay, ease: "easeOut" }}
     className={className}
   >
     {children}
@@ -92,13 +92,19 @@ export default function HeroSlideshow({
           key={currentSlide}
           style={{ y: heroY, opacity: heroOpacity }}
           className="absolute inset-0 z-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         >
           {/* Dark Overlay - Only affects background, not text */}
-          <div className="absolute inset-0 bg-black/30 z-10" />
+          <motion.div 
+            className="absolute inset-0 bg-black/30 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+          />
 
           {/* Image or Video */}
           {currentSlideData.type === 'image' ? (
