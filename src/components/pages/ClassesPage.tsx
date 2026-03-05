@@ -56,8 +56,8 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
   const isExpanded = expandedPlanId === plan._id;
   
   return (
-    <div className="h-full">
-      <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col h-full overflow-hidden">
+    <div className="w-full">
+      <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
         <div className="p-6 flex flex-col flex-grow">
           <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
           <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
@@ -89,7 +89,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
                 className={`w-5 h-5 text-primary transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
               />
             </button>
-            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96' : 'max-h-0'}`}>
+            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-none' : 'max-h-0'}`}>
               <div className="px-6 py-4 bg-secondary/20 border-t border-border">
                 <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">{plan.specialNotes}</p>
               </div>
@@ -281,48 +281,9 @@ export default function ClassesPage() {
               <div>
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Unlimited Membership</h3>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
-                  {groupedPlans.unlimited.map((plan) => {
-                    const isExpanded = expandedPlanId === plan._id;
-                    return (
-                      <div key={plan._id} className="h-full">
-                        <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col h-full overflow-hidden">
-                          <div className="p-6 flex flex-col flex-grow">
-                            <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
-                            <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                            <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.itemDescription}</p>
-                            {plan.buyNowUrl && (
-                              <Button 
-                                asChild
-                                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
-                              >
-                                <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                                  Buy Now
-                                </a>
-                              </Button>
-                            )}
-                          </div>
-                          {plan.specialNotes && (
-                            <div className="border-t border-border">
-                              <button
-                                onClick={() => setExpandedPlanId(isExpanded ? null : plan._id)}
-                                className="w-full px-6 py-3 flex items-center justify-between hover:bg-secondary/30 transition-colors duration-200"
-                              >
-                                <span className="font-heading font-semibold text-foreground">Pack Details</span>
-                                <ChevronDown 
-                                  className={`w-5 h-5 text-primary transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-                                />
-                              </button>
-                              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96' : 'max-h-0'}`}>
-                                <div className="px-6 py-4 bg-secondary/20 border-t border-border">
-                                  <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">{plan.specialNotes}</p>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </Card>
-                      </div>
-                    );
-                  })}
+                  {groupedPlans.unlimited.map((plan) => (
+                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
+                  ))}
                 </div>
                 <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
                   <p className="text-sm text-foreground/70 font-paragraph">
