@@ -170,10 +170,7 @@ export default function ClassesPage() {
           {groupedPlans.dropIn.length > 0 && (
             <AnimatedSection delay={100}>
               <div className="mb-16">
-                <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
-                  <h3 className="text-3xl font-heading font-bold text-foreground">Drop-In Sessions</h3>
-
-                </div>
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Drop-In Sessions</h3>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.dropIn.map((plan) => (
                     <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -186,7 +183,7 @@ export default function ClassesPage() {
                           className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
                         >
                           <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Book Now
+                            Buy Now
                           </a>
                         </Button>
                       )}
@@ -207,10 +204,7 @@ export default function ClassesPage() {
           {groupedPlans.standardPack.length > 0 && (
             <AnimatedSection delay={150}>
               <div className="mb-16">
-                <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
-                  <h3 className="text-3xl font-heading font-bold text-foreground">Standard Pack</h3>
-
-                </div>
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Standard Pack</h3>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.standardPack.map((plan) => (
                     <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -225,7 +219,7 @@ export default function ClassesPage() {
                           className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
                         >
                           <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Book Now
+                            Buy Now
                           </a>
                         </Button>
                       )}
@@ -245,10 +239,7 @@ export default function ClassesPage() {
           {groupedPlans.mummyPack.length > 0 && (
             <AnimatedSection delay={200}>
               <div className="mb-16">
-                <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
-                  <h3 className="text-3xl font-heading font-bold text-foreground">Mummy & Me Pack</h3>
-
-                </div>
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Mummy & Me Pack</h3>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.mummyPack.map((plan) => (
                     <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -263,7 +254,7 @@ export default function ClassesPage() {
                           className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
                         >
                           <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Book Now
+                            Buy Now
                           </a>
                         </Button>
                       )}
@@ -284,10 +275,7 @@ export default function ClassesPage() {
           {groupedPlans.unlimited.length > 0 && (
             <AnimatedSection delay={250}>
               <div>
-                <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
-                  <h3 className="text-3xl font-heading font-bold text-foreground">Unlimited Membership</h3>
-
-                </div>
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Unlimited Membership</h3>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.unlimited.map((plan) => (
                     <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -300,7 +288,7 @@ export default function ClassesPage() {
                           className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
                         >
                           <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Book Now
+                            Buy Now
                           </a>
                         </Button>
                       )}
