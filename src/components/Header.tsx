@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
+import { Instagram, Menu, X } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,26 +24,26 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Home
             </Link>
-            <Link 
-              to="/classes" 
+            <Link
+              to="/classes"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Membership and Pricing
             </Link>
-            <Link 
-              to="/about" 
+            <Link
+              to="/about"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               About
             </Link>
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Contact
@@ -52,16 +52,16 @@ export default function Header() {
 
           {/* Social Icons & CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
+            <a
+              href="https://www.instagram.com/maisonmerestudio/?hl=en"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors duration-200"
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5" />
             </a>
-            <Button 
+            <Button
               asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline"
             >
@@ -84,38 +84,38 @@ export default function Header() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-border pt-4">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               onClick={() => setMobileMenuOpen(false)}
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Home
             </Link>
-            <Link 
-              to="/classes" 
+            <Link
+              to="/classes"
               onClick={() => setMobileMenuOpen(false)}
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Membership and Pricing
             </Link>
-            <Link 
-              to="/about" 
+            <Link
+              to="/about"
               onClick={() => setMobileMenuOpen(false)}
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               About
             </Link>
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Contact
             </Link>
             <div className="flex items-center gap-4 pt-2">
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <a
+                href="https://instagram.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground hover:text-primary transition-colors duration-200"
                 aria-label="Instagram"
@@ -123,7 +123,7 @@ export default function Header() {
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
-            <Button 
+            <Button
               asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline"
             >
