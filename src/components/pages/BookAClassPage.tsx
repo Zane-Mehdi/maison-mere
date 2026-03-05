@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,7 +12,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -22,14 +22,14 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
       },
       { threshold: 0.1 }
     );
-    
+
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
     >
       {children}
@@ -55,12 +55,12 @@ export default function BookAClassPage() {
                   Browse all available membership and pricing plans and find the perfect fit for you.
                 </p>
               </div>
-              <Button 
+              <Button
                 asChild
                 className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading hover:scale-105 active:scale-95 no-underline"
               >
                 <Link to="/classes" className="flex items-center gap-2 no-underline">
-                  View Classes
+                  View Packages
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
