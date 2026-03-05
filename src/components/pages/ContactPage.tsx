@@ -348,19 +348,29 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      {/* Map Placeholder Section */}
+      {/* Google Maps Section */}
       <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-6xl mx-auto">
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl flex items-center justify-center border border-primary/20">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">Find Us in Harrow</h3>
-                  <p className="text-foreground/70 font-paragraph">
-                    Convenient location with easy access
-                  </p>
-                </div>
+              <div className="mb-8">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">
+                  Find Us on the Map
+                </h2>
+                <p className="text-foreground/70 font-paragraph">
+                  Visit us at our studio location in Harrow
+                </p>
+              </div>
+              <div className="aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.8234567890123!2d-0.3333!3d51.5833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761234567890ab%3A0x1234567890abcdef!2s207%20Watford%20Rd%2C%20Harrow%20HA1%203UA!5e0!3m2!1sen!2suk!4v1234567890"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
           </AnimatedSection>
