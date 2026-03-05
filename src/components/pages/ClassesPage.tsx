@@ -17,6 +17,7 @@ interface PricingPlan {
   numberOfClasses?: number;
   specialNotes?: string;
   buyNowUrl?: string;
+  planGroup?: string;
 }
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
@@ -70,12 +71,12 @@ export default function ClassesPage() {
     fetchPricingPlans();
   }, []);
 
-  // Group pricing plans by category
+  // Group pricing plans by planGroup field
   const groupedPlans = {
-    dropIn: pricingPlans.filter(p => p.itemName?.includes('Drop-In')),
-    standardPack: pricingPlans.filter(p => p.itemName?.includes('Standard Pack') && !p.itemName?.includes('Mummy')),
-    mummyPack: pricingPlans.filter(p => p.itemName?.includes('Mummy & Me Pack')),
-    unlimited: pricingPlans.filter(p => p.itemName?.includes('Unlimited')),
+    dropIn: pricingPlans.filter(p => p.planGroup === 'Drop-In Sessions'),
+    standardPack: pricingPlans.filter(p => p.planGroup === 'Standard Pack'),
+    mummyPack: pricingPlans.filter(p => p.planGroup === 'Mummy & Me Pack'),
+    unlimited: pricingPlans.filter(p => p.planGroup === 'Unlimited Membership'),
     introOffer: pricingPlans.find(p => p.itemName?.includes('Intro'))
   };
 
