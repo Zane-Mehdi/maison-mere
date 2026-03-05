@@ -1,14 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Image } from '@/components/ui/image';
-import { Badge } from '@/components/ui/badge';
-import { BaseCrudService } from '@/integrations';
-import { Classes } from '@/entities';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Clock, Users, TrendingUp, ChevronDown } from 'lucide-react';
+import Header from '@/components/Header';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { BaseCrudService } from '@/integrations';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, ChevronDown, Clock, TrendingUp, Users } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 interface PricingPlan {
   _id: string;
@@ -28,7 +25,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -38,14 +35,14 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
       },
       { threshold: 0.1 }
     );
-    
+
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
     >
       {children}
@@ -55,7 +52,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 
 const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void}> = ({ plan, expandedPlanId, setExpandedPlanId }) => {
   const isExpanded = expandedPlanId === plan._id;
-  
+
   return (
     <div className="w-full">
       <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
@@ -70,7 +67,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
             <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
           ) : null}
           {plan.buyNowUrl && (
-            <Button 
+            <Button
               asChild
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
             >
@@ -104,7 +101,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
                   className="overflow-hidden"
                 >
                   <div className="px-6 py-4 bg-secondary/20 border-t border-border">
-                    <motion.p 
+                    <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -169,12 +166,13 @@ export default function ClassesPage() {
                   Visit our booking page to view all available class times and book your spot.
                 </p>
               </div>
-              <Button 
+              <Button
                 asChild
                 className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading no-underline"
               >
                 <a href="/book-a-class" className="flex items-center gap-2 no-underline">
                   View Full Schedule
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </Button>
             </div>
@@ -186,7 +184,7 @@ export default function ClassesPage() {
           backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
           backgroundSize: '30px 30px'
         }} />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
