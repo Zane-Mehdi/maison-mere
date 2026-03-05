@@ -27,27 +27,6 @@ export interface Instructors {
 
 
 /**
- * Collection ID: pricinggroups
- * Interface for PricingGroups
- */
-export interface PricingGroups {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-  /** @wixFieldType text */
-  groupName?: string;
-  /** @wixFieldType text */
-  groupDescription?: string;
-  /** @wixFieldType boolean */
-  isActive?: boolean;
-  /** @wixFieldType number */
-  sortOrder?: number;
-  /** @wixFieldType text */
-  slug?: string;
-}
-
-
-/**
  * Collection ID: pricingplans
  * @catalog This collection is an eCommerce catalog
  * Interface for PricingPlans
