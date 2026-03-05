@@ -61,6 +61,8 @@ export interface PricingPlans {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
+  /** @wixFieldType url */
+  buyNowUrl?: string;
   /** @wixFieldType text */
   itemName?: string;
   /** @wixFieldType number */

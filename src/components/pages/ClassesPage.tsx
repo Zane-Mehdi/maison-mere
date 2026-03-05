@@ -16,6 +16,7 @@ interface PricingPlan {
   itemDescription?: string;
   numberOfClasses?: number;
   specialNotes?: string;
+  buyNowUrl?: string;
 }
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
@@ -178,10 +179,20 @@ export default function ClassesPage() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.dropIn.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
                       <h4 className="text-xl font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
                       <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                      <p className="text-sm text-foreground/60 font-paragraph">Per session</p>
+                      <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
+                      {plan.buyNowUrl && (
+                        <Button 
+                          asChild
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
+                        >
+                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+                            Book Now
+                          </a>
+                        </Button>
+                      )}
                     </Card>
                   ))}
                 </div>
@@ -207,11 +218,21 @@ export default function ClassesPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.standardPack.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
                       <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
                       <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
                       {plan.numberOfClasses && (
-                        <p className="text-sm text-foreground/60 font-paragraph">{plan.numberOfClasses} classes</p>
+                        <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
+                      )}
+                      {plan.buyNowUrl && (
+                        <Button 
+                          asChild
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
+                        >
+                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+                            Book Now
+                          </a>
+                        </Button>
                       )}
                     </Card>
                   ))}
@@ -237,11 +258,21 @@ export default function ClassesPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.mummyPack.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
                       <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
                       <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
                       {plan.numberOfClasses && (
-                        <p className="text-sm text-foreground/60 font-paragraph">{plan.numberOfClasses} classes</p>
+                        <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
+                      )}
+                      {plan.buyNowUrl && (
+                        <Button 
+                          asChild
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
+                        >
+                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+                            Book Now
+                          </a>
+                        </Button>
                       )}
                     </Card>
                   ))}
@@ -268,10 +299,20 @@ export default function ClassesPage() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.unlimited.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
                       <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
                       <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                      <p className="text-sm text-foreground/60 font-paragraph">{plan.itemDescription}</p>
+                      <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.itemDescription}</p>
+                      {plan.buyNowUrl && (
+                        <Button 
+                          asChild
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
+                        >
+                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+                            Book Now
+                          </a>
+                        </Button>
+                      )}
                     </Card>
                   ))}
                 </div>
