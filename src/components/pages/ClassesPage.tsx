@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
@@ -85,15 +86,36 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
               className="w-full px-6 py-3 flex items-center justify-between hover:bg-secondary/30 transition-colors duration-200"
             >
               <span className="font-heading font-semibold text-foreground">Pack Details</span>
-              <ChevronDown 
-                className={`w-5 h-5 text-primary transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-              />
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              >
+                <ChevronDown className="w-5 h-5 text-primary" />
+              </motion.div>
             </button>
-            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-none' : 'max-h-0'}`}>
-              <div className="px-6 py-4 bg-secondary/20 border-t border-border">
-                <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">{plan.specialNotes}</p>
-              </div>
-            </div>
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 py-4 bg-secondary/20 border-t border-border">
+                    <motion.p 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="text-sm text-foreground/80 font-paragraph leading-relaxed"
+                    >
+                      {plan.specialNotes}
+                    </motion.p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )}
       </Card>
