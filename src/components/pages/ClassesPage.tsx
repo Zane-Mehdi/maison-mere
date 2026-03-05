@@ -18,6 +18,15 @@ interface PricingPlan {
   planGroup?: string;
 }
 
+interface PricingGroup {
+  _id: string;
+  groupName?: string;
+  groupDescription?: string;
+  isActive?: boolean;
+  sortOrder?: number;
+  slug?: string;
+}
+
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -50,7 +59,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   );
 };
 
-const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void}> = ({ plan, expandedPlanId, setExpandedPlanId }) => {
+const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void; groupName?: string}> = ({ plan, expandedPlanId, setExpandedPlanId, groupName }) => {
   const isExpanded = expandedPlanId === plan._id;
 
   return (
@@ -59,7 +68,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
         <div className="p-6 flex flex-col flex-grow">
           <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
           <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-          {plan.planGroup === 'Unlimited Membership' ? (
+          {groupName === 'Unlimited Membership' ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">All Classes</p>
           ) : plan.numberOfClasses ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
@@ -123,39 +132,63 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
 
 export default function ClassesPage() {
   const [pricingPlans, setPricingPlans] = useState<PricingPlan[]>([]);
+  const [pricingGroups, setPricingGroups] = useState<PricingGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPricingPlans = async () => {
+    const fetchData = async () => {
       try {
-        const result = await BaseCrudService.getAll<PricingPlan>('pricingplans');
-        setPricingPlans(result.items || []);
+        const [plansResult, groupsResult] = await Promise.all([
+          BaseCrudService.getAll<PricingPlan>('pricingplans', { singleRef: ['planGroup'] }),
+          BaseCrudService.getAll<PricingGroup>('pricinggroups')
+        ]);
+        setPricingPlans(plansResult.items || []);
+        setPricingGroups(groupsResult.items || []);
       } catch (error) {
-        console.error('Error fetching pricing plans:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchPricingPlans();
+    fetchData();
   }, []);
 
-  // Extract intro offer (planGroup === 'Intro')
-  const introOffer = pricingPlans.find(p => p.planGroup === 'Intro');
-  
-  // Get unique plan groups (excluding Intro) and sort alphabetically
-  const uniqueGroups = Array.from(new Set(
-    pricingPlans
-      .filter(p => p.planGroup && p.planGroup !== 'Intro')
-      .map(p => p.planGroup)
-  )).sort();
-
-  // Create dynamic grouped plans
-  const groupedPlans = uniqueGroups.reduce((acc, group) => {
-    acc[group] = pricingPlans.filter(p => p.planGroup === group);
+  // Create a map of group IDs to group details for quick lookup
+  const groupMap = pricingGroups.reduce((acc, group) => {
+    acc[group._id] = group;
     return acc;
-  }, {} as Record<string, PricingPlan[]>);
+  }, {} as Record<string, PricingGroup>);
+
+  // Extract intro offer (planGroup reference to 'Intro' group)
+  const introGroup = pricingGroups.find(g => g.groupName === 'Intro');
+  const introOffer = introGroup ? pricingPlans.find(p => p.planGroup === introGroup._id) : null;
+  
+  // Get unique plan groups (excluding Intro) sorted by sortOrder
+  const uniqueGroupIds = Array.from(new Set(
+    pricingPlans
+      .filter(p => p.planGroup && groupMap[p.planGroup]?.groupName !== 'Intro')
+      .map(p => p.planGroup)
+  )).sort((a, b) => {
+    const groupA = groupMap[a];
+    const groupB = groupMap[b];
+    const orderA = groupA?.sortOrder ?? 999;
+    const orderB = groupB?.sortOrder ?? 999;
+    return orderA - orderB;
+  });
+
+  // Create dynamic grouped plans with group details
+  const groupedPlans = uniqueGroupIds.reduce((acc, groupId) => {
+    const group = groupMap[groupId];
+    if (group) {
+      acc[groupId] = {
+        group,
+        plans: pricingPlans.filter(p => p.planGroup === groupId)
+      };
+    }
+    return acc;
+  }, {} as Record<string, { group: PricingGroup; plans: PricingPlan[] }>);
 
   return (
     <div className="min-h-screen bg-background">
@@ -235,24 +268,28 @@ export default function ClassesPage() {
           </AnimatedSection>
 
           {/* Dynamic Plan Groups */}
-          {uniqueGroups.map((group, groupIndex) => (
-            <AnimatedSection key={group} delay={100 + groupIndex * 50}>
+          {uniqueGroupIds.map((groupId, groupIndex) => {
+            const { group, plans } = groupedPlans[groupId];
+            return (
+            <AnimatedSection key={groupId} delay={100 + groupIndex * 50}>
               <div className="mb-16">
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{group}</h3>
-                <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 max-w-2xl' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 max-w-4xl' : 'md:grid-cols-2 max-w-2xl'} gap-6`}>
-                  {groupedPlans[group].map((plan) => (
-                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{group.groupName}</h3>
+                <div className={`grid ${plans.length === 2 ? 'md:grid-cols-2 max-w-2xl' : plans.length === 3 ? 'md:grid-cols-3 max-w-4xl' : 'md:grid-cols-2 max-w-2xl'} gap-6`}>
+                  {plans.map((plan) => (
+                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} groupName={group.groupName} />
                   ))}
                 </div>
-                <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
-                  <p className="text-sm text-foreground/70 font-paragraph">
-                    * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
-                    * All classes expire after 30 days of purchase
-                  </p>
-                </div>
+                {group.groupDescription && (
+                  <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
+                    <p className="text-sm text-foreground/70 font-paragraph">
+                      {group.groupDescription}
+                    </p>
+                  </div>
+                )}
               </div>
             </AnimatedSection>
-          ))}
+            );
+          })}
         </div>
       </section>
 
