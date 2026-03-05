@@ -141,14 +141,21 @@ export default function ClassesPage() {
     fetchPricingPlans();
   }, []);
 
-  // Group pricing plans by planGroup field
-  const groupedPlans = {
-    dropIn: pricingPlans.filter(p => p.planGroup === 'Drop-In Sessions'),
-    standardPack: pricingPlans.filter(p => p.planGroup === 'Standard Pack'),
-    mummyPack: pricingPlans.filter(p => p.planGroup === 'Mummy & Me Pack'),
-    unlimited: pricingPlans.filter(p => p.planGroup === 'Unlimited Membership'),
-    introOffer: pricingPlans.find(p => p.itemName?.includes('Intro'))
-  };
+  // Extract intro offer (planGroup === 'Intro')
+  const introOffer = pricingPlans.find(p => p.planGroup === 'Intro');
+  
+  // Get unique plan groups (excluding Intro) and sort alphabetically
+  const uniqueGroups = Array.from(new Set(
+    pricingPlans
+      .filter(p => p.planGroup && p.planGroup !== 'Intro')
+      .map(p => p.planGroup)
+  )).sort();
+
+  // Create dynamic grouped plans
+  const groupedPlans = uniqueGroups.reduce((acc, group) => {
+    acc[group] = pricingPlans.filter(p => p.planGroup === group);
+    return acc;
+  }, {} as Record<string, PricingPlan[]>);
 
   return (
     <div className="min-h-screen bg-background">
@@ -181,27 +188,38 @@ export default function ClassesPage() {
       </section>
 
       {/* Intro Offer Banner */}
-      {groupedPlans.introOffer && (
+      {introOffer && (
         <section className="py-12 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                  {groupedPlans.introOffer.itemName}
+                  {introOffer.itemName}
                 </h2>
                 <p className="text-xl mb-6 opacity-90">
-                  {groupedPlans.introOffer.itemDescription}
+                  {introOffer.itemDescription}
                 </p>
-                {groupedPlans.introOffer.specialNotes && (
-                  <p className="text-base opacity-80">
-                    {groupedPlans.introOffer.specialNotes}
+                {introOffer.specialNotes && (
+                  <p className="text-base opacity-80 mb-6">
+                    {introOffer.specialNotes}
                   </p>
+                )}
+                {introOffer.buyNowUrl && (
+                  <Button
+                    asChild
+                    className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline"
+                  >
+                    <a href={introOffer.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+                      Get Started
+                    </a>
+                  </Button>
                 )}
               </div>
             </AnimatedSection>
           </div>
         </section>
       )}
+
       {/* Membership & Pricing Section */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -216,13 +234,13 @@ export default function ClassesPage() {
             </div>
           </AnimatedSection>
 
-          {/* Drop-In Sessions */}
-          {groupedPlans.dropIn.length > 0 && (
-            <AnimatedSection delay={100}>
+          {/* Dynamic Plan Groups */}
+          {uniqueGroups.map((group, groupIndex) => (
+            <AnimatedSection key={group} delay={100 + groupIndex * 50}>
               <div className="mb-16">
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Drop-In Sessions</h3>
-                <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
-                  {groupedPlans.dropIn.map((plan) => (
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{group}</h3>
+                <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 max-w-2xl' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 max-w-4xl' : 'md:grid-cols-2 max-w-2xl'} gap-6`}>
+                  {groupedPlans[group].map((plan) => (
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
@@ -234,68 +252,10 @@ export default function ClassesPage() {
                 </div>
               </div>
             </AnimatedSection>
-          )}
-
-          {/* Standard Pack */}
-          {groupedPlans.standardPack.length > 0 && (
-            <AnimatedSection delay={150}>
-              <div className="mb-16">
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Standard Pack</h3>
-                <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
-                  {groupedPlans.standardPack.map((plan) => (
-                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
-                  ))}
-                </div>
-                <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
-                  <p className="text-sm text-foreground/70 font-paragraph">
-                    * All classes expire after 30 days of purchase
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
-
-          {/* Mummy & Me Pack */}
-          {groupedPlans.mummyPack.length > 0 && (
-            <AnimatedSection delay={200}>
-              <div className="mb-16">
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Mummy & Me Pack</h3>
-                <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
-                  {groupedPlans.mummyPack.map((plan) => (
-                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
-                  ))}
-                </div>
-                <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
-                  <p className="text-sm text-foreground/70 font-paragraph">
-                    * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
-                    * All classes expire after 30 days of purchase
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
-
-          {/* Unlimited Membership */}
-          {groupedPlans.unlimited.length > 0 && (
-            <AnimatedSection delay={250}>
-              <div>
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Unlimited Membership</h3>
-                <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
-                  {groupedPlans.unlimited.map((plan) => (
-                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
-                  ))}
-                </div>
-                <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
-                  <p className="text-sm text-foreground/70 font-paragraph">
-                    * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
-                    * All classes expire after 30 days of purchase
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
+          ))}
         </div>
       </section>
+
       {/* Benefits Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
