@@ -7,7 +7,7 @@ import { BaseCrudService } from '@/integrations';
 import { Classes } from '@/entities';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Clock, Users, TrendingUp } from 'lucide-react';
+import { Clock, Users, TrendingUp, ChevronDown } from 'lucide-react';
 
 interface PricingPlan {
   _id: string;
@@ -52,9 +52,55 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   );
 };
 
+const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void}> = ({ plan, expandedPlanId, setExpandedPlanId }) => {
+  return (
+    <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
+      <div className="p-6 flex flex-col flex-grow">
+        <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
+        <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
+        {plan.numberOfClasses && (
+          <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
+        )}
+        {!plan.numberOfClasses && plan.itemName?.includes('Drop-In') && (
+          <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
+        )}
+        {plan.buyNowUrl && (
+          <Button 
+            asChild
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
+          >
+            <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+              Buy Now
+            </a>
+          </Button>
+        )}
+      </div>
+      {plan.specialNotes && (
+        <div className="border-t border-border">
+          <button
+            onClick={() => setExpandedPlanId(expandedPlanId === plan._id ? null : plan._id)}
+            className="w-full px-6 py-3 flex items-center justify-between hover:bg-secondary/30 transition-colors duration-200"
+          >
+            <span className="font-heading font-semibold text-foreground">Pack Details</span>
+            <ChevronDown 
+              className={`w-5 h-5 text-primary transition-transform duration-300 ${expandedPlanId === plan._id ? 'rotate-180' : ''}`}
+            />
+          </button>
+          {expandedPlanId === plan._id && (
+            <div className="px-6 py-4 bg-secondary/20 border-t border-border">
+              <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">{plan.specialNotes}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </Card>
+  );
+};
+
 export default function ClassesPage() {
   const [pricingPlans, setPricingPlans] = useState<PricingPlan[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPricingPlans = async () => {
@@ -173,21 +219,7 @@ export default function ClassesPage() {
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Drop-In Sessions</h3>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.dropIn.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
-                      <h4 className="text-xl font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
-                      <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                      <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
-                      {plan.buyNowUrl && (
-                        <Button 
-                          asChild
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
-                        >
-                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Buy Now
-                          </a>
-                        </Button>
-                      )}
-                    </Card>
+                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
                 <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
@@ -207,23 +239,7 @@ export default function ClassesPage() {
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Standard Pack</h3>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.standardPack.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
-                      <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
-                      <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                      {plan.numberOfClasses && (
-                        <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
-                      )}
-                      {plan.buyNowUrl && (
-                        <Button 
-                          asChild
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
-                        >
-                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Buy Now
-                          </a>
-                        </Button>
-                      )}
-                    </Card>
+                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
                 <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
@@ -242,23 +258,7 @@ export default function ClassesPage() {
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Mummy & Me Pack</h3>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.mummyPack.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
-                      <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
-                      <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                      {plan.numberOfClasses && (
-                        <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
-                      )}
-                      {plan.buyNowUrl && (
-                        <Button 
-                          asChild
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
-                        >
-                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Buy Now
-                          </a>
-                        </Button>
-                      )}
-                    </Card>
+                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
                 <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
@@ -278,19 +278,39 @@ export default function ClassesPage() {
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">Unlimited Membership</h3>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.unlimited.map((plan) => (
-                    <Card key={plan._id} className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col">
-                      <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
-                      <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-                      <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.itemDescription}</p>
-                      {plan.buyNowUrl && (
-                        <Button 
-                          asChild
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
-                        >
-                          <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                            Buy Now
-                          </a>
-                        </Button>
+                    <Card key={plan._id} className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
+                        <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
+                        <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.itemDescription}</p>
+                        {plan.buyNowUrl && (
+                          <Button 
+                            asChild
+                            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
+                          >
+                            <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
+                              Buy Now
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                      {plan.specialNotes && (
+                        <div className="border-t border-border">
+                          <button
+                            onClick={() => setExpandedPlanId(expandedPlanId === plan._id ? null : plan._id)}
+                            className="w-full px-6 py-3 flex items-center justify-between hover:bg-secondary/30 transition-colors duration-200"
+                          >
+                            <span className="font-heading font-semibold text-foreground">Pack Details</span>
+                            <ChevronDown 
+                              className={`w-5 h-5 text-primary transition-transform duration-300 ${expandedPlanId === plan._id ? 'rotate-180' : ''}`}
+                            />
+                          </button>
+                          {expandedPlanId === plan._id && (
+                            <div className="px-6 py-4 bg-secondary/20 border-t border-border">
+                              <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">{plan.specialNotes}</p>
+                            </div>
+                          )}
+                        </div>
                       )}
                     </Card>
                   ))}
