@@ -25,10 +25,16 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link 
+              to="/" 
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Home
+            </Link>
+            <Link 
               to="/classes" 
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
-              Classes
+              Membership and Pricing
             </Link>
             <Link 
               to="/about" 
@@ -79,11 +85,18 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-border pt-4">
             <Link 
+              to="/" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Home
+            </Link>
+            <Link 
               to="/classes" 
               onClick={() => setMobileMenuOpen(false)}
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
-              Classes
+              Membership and Pricing
             </Link>
             <Link 
               to="/about" 
