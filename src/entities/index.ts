@@ -50,3 +50,27 @@ export interface Instructors {
   /** @wixFieldType url */
   socialMediaLink?: string;
 }
+
+
+/**
+ * Collection ID: pricingplans
+ * @catalog This collection is an eCommerce catalog
+ * Interface for PricingPlans
+ */
+export interface PricingPlans {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  itemName?: string;
+  /** @wixFieldType number */
+  itemPrice?: number;
+  /** @wixFieldType text */
+  itemDescription?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  itemImage?: string;
+  /** @wixFieldType number */
+  numberOfClasses?: number;
+  /** @wixFieldType text */
+  specialNotes?: string;
+}
