@@ -42,37 +42,6 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 };
 
 export default function ClassesPage() {
-  const [classes, setClasses] = useState<Classes[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedLevel, setSelectedLevel] = useState<string>('all');
-
-  useEffect(() => {
-    const fetchClasses = async () => {
-      try {
-        const result = await BaseCrudService.getAll<Classes>('classes');
-        setClasses(result.items);
-      } catch (error) {
-        console.error('Error fetching classes:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchClasses();
-  }, []);
-
-  const filteredClasses = selectedLevel === 'all' 
-    ? classes 
-    : classes.filter(c => c.difficultyLevel?.toLowerCase() === selectedLevel.toLowerCase());
-
-  const getLevelBadgeColor = (level?: string) => {
-    switch(level?.toLowerCase()) {
-      case 'beginner': return 'bg-green-100 text-green-800 border-green-200';
-      case 'intermediate': return 'bg-blue-100 text-blue-800 border-blue-200';
-      case 'advanced': return 'bg-purple-100 text-purple-800 border-purple-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -142,114 +111,142 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-      {/* Filter Section */}
-      <section className="py-8 bg-background border-b border-border">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Button
-                onClick={() => setSelectedLevel('all')}
-                variant={selectedLevel === 'all' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'all' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
-              >
-                All Classes
-              </Button>
-              <Button
-                onClick={() => setSelectedLevel('beginner')}
-                variant={selectedLevel === 'beginner' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'beginner' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
-              >
-                Beginner
-              </Button>
-              <Button
-                onClick={() => setSelectedLevel('intermediate')}
-                variant={selectedLevel === 'intermediate' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'intermediate' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
-              >
-                Intermediate
-              </Button>
-              <Button
-                onClick={() => setSelectedLevel('advanced')}
-                variant={selectedLevel === 'advanced' ? 'default' : 'outline'}
-                className={`${selectedLevel === 'advanced' ? 'bg-primary text-primary-foreground' : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'} font-heading transition-all duration-200 hover:scale-105 active:scale-95 no-underline`}
-              >
-                Advanced
-              </Button>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-      {/* Classes Grid */}
+      {/* Membership & Pricing Section */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
-          <div className="min-h-[500px]">
-            {isLoading ? null : filteredClasses.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                {filteredClasses.map((classItem, index) => (
-                  <AnimatedSection key={classItem._id} delay={index * 50}>
-                    <Card className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-border bg-card overflow-hidden h-full flex flex-col">
-                      <div className="aspect-[4/5] overflow-hidden relative">
-                        <Image 
-                          src={classItem.itemImage || 'https://static.wixstatic.com/media/980ffc_4fdc28c05cbc407ab07a224b0cd2f5ad~mv2.png?originWidth=384&originHeight=448'}
-                          alt={classItem.itemName || 'Class'}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          width={400}
-                        />
-                        {classItem.difficultyLevel && (
-                          <div className="absolute top-4 right-4">
-                            <Badge className={`${getLevelBadgeColor(classItem.difficultyLevel)} border`}>
-                              {classItem.difficultyLevel}
-                            </Badge>
-                          </div>
-                        )}
-                      </div>
-                      <CardContent className="p-6 flex-1 flex flex-col">
-                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
-                          {classItem.itemName}
-                        </h3>
-                        <p className="text-foreground/70 font-paragraph text-sm mb-4 leading-relaxed flex-1">
-                          {classItem.itemDescription}
-                        </p>
-                        
-                        <div className="space-y-3 mb-4">
-                          {classItem.duration && (
-                            <div className="flex items-center gap-2 text-foreground/60">
-                              <Clock className="w-4 h-4 text-primary" />
-                              <span className="text-sm font-paragraph">{classItem.duration} minutes</span>
-                            </div>
-                          )}
-                          {classItem.instructorName && (
-                            <div className="flex items-center gap-2 text-foreground/60">
-                              <Users className="w-4 h-4 text-primary" />
-                              <span className="text-sm font-paragraph">Instructor: {classItem.instructorName}</span>
-                            </div>
-                          )}
-                        </div>
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                Membership & Pricing
+              </h2>
+              <p className="text-xl text-foreground/70 font-paragraph max-w-2xl mx-auto">
+                Choose the perfect plan for your fitness journey
+              </p>
+            </div>
+          </AnimatedSection>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-border">
-                          <span className="text-2xl font-heading font-bold text-primary">
-                            £{classItem.itemPrice?.toFixed(2) || '0.00'}
-                          </span>
-                          <Button 
-                            onClick={() => window.open('https://example.com/booking', '_blank')}
-                            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline"
-                          >
-                            Reserve
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </AnimatedSection>
-                ))}
+          {/* Drop-In Sessions */}
+          <AnimatedSection delay={100}>
+            <div className="mb-16">
+              <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
+                <h3 className="text-3xl font-heading font-bold text-foreground">Drop-In Sessions</h3>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
+                  Book Now
+                </Button>
               </div>
-            ) : (
-              <div className="text-center py-20">
-                <p className="text-foreground/60 font-paragraph text-lg">
-                  {selectedLevel === 'all' ? 'No classes available at the moment.' : `No ${selectedLevel} classes available.`}
+              <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-xl font-heading font-bold text-foreground mb-2">Standard Drop-In</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£25.00</p>
+                  <p className="text-sm text-foreground/60 font-paragraph">Per session</p>
+                </Card>
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-xl font-heading font-bold text-foreground mb-2">Mummy Drop-In</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£20.00</p>
+                  <p className="text-sm text-foreground/60 font-paragraph">Per session</p>
+                </Card>
+              </div>
+              <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
+                <p className="text-sm text-foreground/70 font-paragraph">
+                  * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
+                  * All classes expire after 30 days of purchase
                 </p>
               </div>
-            )}
-          </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Standard Pack */}
+          <AnimatedSection delay={150}>
+            <div className="mb-16">
+              <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
+                <h3 className="text-3xl font-heading font-bold text-foreground">Standard Pack</h3>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
+                  Book Now
+                </Button>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">4 Class Pack</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£90.00</p>
+                </Card>
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">8 Class Pack</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£170.00</p>
+                </Card>
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">12 Class Pack</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£240.00</p>
+                </Card>
+              </div>
+              <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
+                <p className="text-sm text-foreground/70 font-paragraph">
+                  * All classes expire after 30 days of purchase
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Mummy & Me Pack */}
+          <AnimatedSection delay={200}>
+            <div className="mb-16">
+              <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
+                <h3 className="text-3xl font-heading font-bold text-foreground">Mummy & Me Pack</h3>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
+                  Book Now
+                </Button>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">4 Class Pack</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£75.00</p>
+                </Card>
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">8 Class Pack</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£155.00</p>
+                </Card>
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">12 Class Pack</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£225.00</p>
+                </Card>
+              </div>
+              <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
+                <p className="text-sm text-foreground/70 font-paragraph">
+                  * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
+                  * All classes expire after 30 days of purchase
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Unlimited Membership */}
+          <AnimatedSection delay={250}>
+            <div>
+              <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
+                <h3 className="text-3xl font-heading font-bold text-foreground">Unlimited Membership</h3>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
+                  Book Now
+                </Button>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">Monthly Unlimited</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£220.00</p>
+                  <p className="text-sm text-foreground/60 font-paragraph">Per month</p>
+                </Card>
+                <Card className="border-border bg-card p-6 hover:shadow-lg transition-all duration-300">
+                  <h4 className="text-lg font-heading font-bold text-foreground mb-2">Monthly Mummy & Me Unlimited</h4>
+                  <p className="text-3xl font-heading font-bold text-primary mb-4">£155.00</p>
+                  <p className="text-sm text-foreground/60 font-paragraph">16 sessions per month</p>
+                </Card>
+              </div>
+              <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
+                <p className="text-sm text-foreground/70 font-paragraph">
+                  * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
+                  * All classes expire after 30 days of purchase
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
       {/* Benefits Section */}
