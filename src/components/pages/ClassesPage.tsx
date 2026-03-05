@@ -130,7 +130,6 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-      
       {/* Intro Offer Banner */}
       {groupedPlans.introOffer && (
         <section className="py-12 bg-primary text-primary-foreground">
@@ -153,7 +152,6 @@ export default function ClassesPage() {
           </div>
         </section>
       )}
-
       {/* Membership & Pricing Section */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -174,9 +172,7 @@ export default function ClassesPage() {
               <div className="mb-16">
                 <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                   <h3 className="text-3xl font-heading font-bold text-foreground">Drop-In Sessions</h3>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
-                    Book Now
-                  </Button>
+
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.dropIn.map((plan) => (
@@ -213,9 +209,7 @@ export default function ClassesPage() {
               <div className="mb-16">
                 <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                   <h3 className="text-3xl font-heading font-bold text-foreground">Standard Pack</h3>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
-                    Book Now
-                  </Button>
+
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.standardPack.map((plan) => (
@@ -253,9 +247,7 @@ export default function ClassesPage() {
               <div className="mb-16">
                 <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                   <h3 className="text-3xl font-heading font-bold text-foreground">Mummy & Me Pack</h3>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
-                    Book Now
-                  </Button>
+
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                   {groupedPlans.mummyPack.map((plan) => (
@@ -294,9 +286,7 @@ export default function ClassesPage() {
               <div>
                 <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                   <h3 className="text-3xl font-heading font-bold text-foreground">Unlimited Membership</h3>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline">
-                    Book Now
-                  </Button>
+
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
                   {groupedPlans.unlimited.map((plan) => (
@@ -328,7 +318,6 @@ export default function ClassesPage() {
           )}
         </div>
       </section>
-
       {/* Benefits Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
