@@ -62,12 +62,13 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
         <div className="p-6 flex flex-col flex-grow">
           <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
           <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
-          {plan.numberOfClasses && (
+          {plan.planGroup === 'Unlimited Membership' ? (
+            <p className="text-sm text-foreground/60 font-paragraph mb-4">All Classes</p>
+          ) : plan.numberOfClasses ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">{plan.numberOfClasses} classes</p>
-          )}
-          {!plan.numberOfClasses && plan.itemName?.includes('Drop-In') && (
+          ) : plan.itemName?.includes('Drop-In') ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
-          )}
+          ) : null}
           {plan.buyNowUrl && (
             <Button 
               asChild
