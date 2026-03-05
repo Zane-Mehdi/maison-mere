@@ -49,10 +49,10 @@ export default function BookAClassPage() {
             <div className="flex items-center justify-between gap-4 flex-wrap">
               <div>
                 <h2 className="text-xl md:text-2xl font-heading font-bold">
-                  Want to explore our class offerings?
+                  Want to explore our membership and pricing options?
                 </h2>
                 <p className="text-accent-foreground/90 font-paragraph text-sm mt-1">
-                  Browse all available classes and find the perfect fit for you.
+                  Browse all available membership and pricing plans and find the perfect fit for you.
                 </p>
               </div>
               <Button 
