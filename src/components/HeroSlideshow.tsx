@@ -43,6 +43,7 @@ export default function HeroSlideshow({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     if (!autoPlay || slides.length === 0) return;
@@ -61,10 +62,12 @@ export default function HeroSlideshow({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
+    setIsDragging(true);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     setTouchEnd(e.changedTouches[0].clientX);
+    setIsDragging(false);
     handleSwipe();
   };
 
@@ -84,15 +87,15 @@ export default function HeroSlideshow({
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden bg-black" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-      <div className="w-full h-full relative">
+    <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden bg-black cursor-grab active:cursor-grabbing" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div className="w-full h-full relative select-none">
         {slides.map((slide, index) => (
           <motion.div
             key={slide.id}
             className="absolute inset-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: index === currentSlide ? 1 : 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: isDragging ? 0 : 0.7 }}
           >
             {slide.type === 'image' ? (
               <Image
