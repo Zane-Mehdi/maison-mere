@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
