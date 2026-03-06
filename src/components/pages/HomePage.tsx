@@ -4,7 +4,7 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Classes, Instructors } from '@/entities';
+import { PricingPlans, Instructors } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
@@ -110,7 +110,7 @@ const Counter = ({ target }: { target: number }) => {
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [classes, setClasses] = useState<Classes[]>([]);
+  const [classes, setClasses] = useState<PricingPlans[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -128,7 +128,7 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const [classesResult, instructorsResult] = await Promise.all([
-          BaseCrudService.getAll<Classes>('classes', {}, { limit: 3 }),
+          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 3 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 })
         ]);
 
@@ -311,7 +311,7 @@ export default function HomePage() {
                     <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
                       <div className="aspect-[3/4] overflow-hidden relative mb-6">
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
-                          {cls.difficultyLevel || 'All Levels'}
+                          {cls.planGroup || 'All Levels'}
                         </div>
                         <Image
                           src={cls.itemImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
