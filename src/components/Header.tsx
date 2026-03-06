@@ -48,6 +48,12 @@ export default function Header() {
             >
               Contact
             </Link>
+            <Link
+              to="/book-a-class"
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Schedule
+            </Link>
           </nav>
 
           {/* Social Icons & CTA */}
@@ -111,6 +117,13 @@ export default function Header() {
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Contact
+            </Link>
+            <Link
+              to="/book-a-class"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Schedule
             </Link>
             <div className="flex items-center gap-4 pt-2">
               <a
