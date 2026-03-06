@@ -1,28 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { 
-  ChevronRight, 
-  Star, 
-  Instagram, 
-  Check, 
-  ArrowRight, 
-  Play,
-  Plus,
-  Minus,
-  MapPin,
-  Clock,
-  Phone
-} from 'lucide-react';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Input } from '@/components/ui/input';
-import { BaseCrudService } from '@/integrations';
 import { Classes, Instructors } from '@/entities';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import HeroSlideshow from '@/components/HeroSlideshow';
+import { BaseCrudService } from '@/integrations';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import {
+  Minus,
+  Plus,
+  Star
+} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // --- Utility Components ---
 
@@ -140,7 +131,7 @@ export default function HomePage() {
           BaseCrudService.getAll<Classes>('classes', {}, { limit: 3 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 })
         ]);
-        
+
         setClasses(classesResult.items);
         setInstructors(instructorsResult.items);
       } catch (error) {
@@ -220,9 +211,9 @@ export default function HomePage() {
     <>
       <Header />
       <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground pt-24">
-      
+
       {/* HERO SLIDESHOW SECTION */}
-      <HeroSlideshow 
+      <HeroSlideshow
         slides={heroSlides}
         autoPlay={true}
         autoPlayInterval={5000}
@@ -242,14 +233,14 @@ export default function HomePage() {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   We are reintroducing you to our intro offer available for everyone not just your first time. Experience the difference with our specialized equipment and expert guidance.
                 </p>
-                
+
                 <div className="bg-secondary/30 p-8 rounded-2xl border border-secondary mb-8">
                   <p className="text-2xl font-heading font-bold text-foreground text-center">
                     3 Classes for <span className="text-primary text-3xl">£50</span>
                   </p>
                 </div>
 
-                <Button 
+                <Button
                   onClick={() => navigate('/classes')}
                   className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95 no-underline"
                 >
@@ -261,8 +252,8 @@ export default function HomePage() {
             <FadeIn delay={0.2} className="order-1 lg:order-2 relative group">
               <div className="aspect-[4/5] overflow-hidden rounded-sm relative">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <Image 
-                  src="https://static.wixstatic.com/media/980ffc_abd1282a728f4ec8808bf96efe76eea8~mv2.png?originWidth=768&originHeight=960" 
+                <Image
+                  src="https://static.wixstatic.com/media/980ffc_abd1282a728f4ec8808bf96efe76eea8~mv2.png?originWidth=768&originHeight=960"
                   alt="Pilates Intro Offer"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
@@ -286,7 +277,7 @@ export default function HomePage() {
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
               At Maison Mère Studio in Harrow, every class is more than just movement; it's a chance to grow physically and mentally in a supportive, women-only environment designed for your comfort and confidence.
             </p>
-            <Button 
+            <Button
               onClick={() => navigate('/about')}
               variant="outline"
               className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
@@ -322,8 +313,8 @@ export default function HomePage() {
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
                           {cls.difficultyLevel || 'All Levels'}
                         </div>
-                        <Image 
-                          src={cls.itemImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"} 
+                        <Image
+                          src={cls.itemImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
                           alt={cls.itemName || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
@@ -405,8 +396,8 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
-                <Image 
-                  src="https://static.wixstatic.com/media/980ffc_84bdf9424e494e0dbc4b0a4e9b5a9121~mv2.png?originWidth=768&originHeight=960" 
+                <Image
+                  src="https://static.wixstatic.com/media/980ffc_84bdf9424e494e0dbc4b0a4e9b5a9121~mv2.png?originWidth=768&originHeight=960"
                   alt="Women Only Studio"
                   className="w-full h-full object-cover"
                 />
@@ -428,7 +419,7 @@ export default function HomePage() {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey.
               </p>
-              <Button 
+              <Button
                 onClick={() => navigate('/about')}
                 className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
               >
@@ -452,13 +443,11 @@ export default function HomePage() {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Enhance your wellness journey at our in-studio Wellness Bar, or speak to us about private hire. We offer a curated selection of health drinks and a beautiful space for events.
                 </p>
-               <Button 
-                 onClick={() => navigate('/wellness-bar')}
+               <Button
+                 onClick={() => navigate('/contact')}
                  variant="outline"
                  className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
-               >
-                 View Menu
-               </Button>
+               >eNQUIRE</Button>
               </FadeIn>
             </div>
 
@@ -551,7 +540,7 @@ export default function HomePage() {
             <p className="text-2xl md:text-3xl font-light mb-10 tracking-wide">
               JOIN MAISON MÈRE STUDIO TODAY
             </p>
-            <Button 
+            <Button
               onClick={() => navigate('/classes')}
               size="lg"
               className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95 no-underline"
