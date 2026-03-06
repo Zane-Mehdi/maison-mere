@@ -47,7 +47,7 @@ export default function BookAClassPage() {
       <Header />
 
       {/* Banner CTA */}
-      <section className="bg-accent text-accent-foreground py-6">
+      <section className="bg-accent text-accent-foreground py-6 pt-32">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex items-center justify-between gap-4 flex-wrap">

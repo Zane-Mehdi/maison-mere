@@ -165,7 +165,7 @@ export default function ClassesPage() {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Hero Section */}
-      <section className="py-6 bg-accent text-accent-foreground">
+      <section className="pt-32 pb-6 bg-accent text-accent-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex items-center justify-between gap-4 flex-wrap">
