@@ -226,12 +226,12 @@ export default function HomePage() {
             <FadeIn className="order-2 lg:order-1">
               <div className="relative">
                 <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />
-                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Intro Offer</p>
+                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Special Offer</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
-                  Strongest version of <span className="italic text-primary">yourself</span>.
+                  Unlock your <span className="italic text-primary">potential</span>.
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  We are reintroducing you to our intro offer available for everyone not just your first time. Experience the difference with our specialized equipment and expert guidance.
+                  Begin your Pilates journey with our exclusive introductory package. Perfect for newcomers and returning clients alike, this offer gives you the chance to experience our world-class instruction and premium Reformer equipment in a welcoming, supportive setting.
                 </p>
 
                 <div className="bg-secondary/30 p-8 rounded-2xl border border-secondary mb-8">
