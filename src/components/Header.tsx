@@ -37,6 +37,12 @@ export default function Header() {
               Membership and Pricing
             </Link>
             <Link
+              to="/book-a-class"
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Schedule
+            </Link>
+          <Link
               to="/about"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
@@ -48,13 +54,7 @@ export default function Header() {
             >
               Contact
             </Link>
-            <Link
-              to="/book-a-class"
-              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-            >
-              Schedule
-            </Link>
-          </nav>
+            </nav>
 
           {/* Social Icons & CTA */}
           <div className="hidden md:flex items-center gap-4">

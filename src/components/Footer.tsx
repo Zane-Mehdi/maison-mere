@@ -26,7 +26,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/book-now"
+                  to="/book-a-class"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >
                   Schedule
