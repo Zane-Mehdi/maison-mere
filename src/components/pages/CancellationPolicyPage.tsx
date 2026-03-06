@@ -84,8 +84,8 @@ export default function CancellationPolicyPage() {
                 For questions about our cancellation policy or to request a cancellation, please contact us:
               </p>
               <div className="mt-4 font-paragraph text-lg">
-                <p>Email: support@ourpilatesstudio.com</p>
-                <p>Phone: (555) 123-4567</p>
+                <p>Email: Contact@maisonmerestudio.com</p>
+                <p>Phone: 07304 499808</p>
               </div>
             </section>
           </div>
