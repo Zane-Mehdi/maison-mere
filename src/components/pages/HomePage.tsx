@@ -275,7 +275,7 @@ export default function HomePage() {
             </h2>
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-              At Maison Mère Studio in Harrow, every class is more than just movement; it's a chance to grow physically and mentally in a supportive, women-only environment designed for your comfort and confidence.
+              Maison Mère Studio is a sanctuary where women come together to transform their bodies and minds. Our expert instructors guide you through transformative Reformer Pilates sessions in a welcoming, judgment-free space designed exclusively for you.
             </p>
             <Button
               onClick={() => navigate('/about')}

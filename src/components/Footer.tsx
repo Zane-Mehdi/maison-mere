@@ -10,7 +10,7 @@ export default function Footer() {
            <div>
             <h3 className="text-2xl font-heading font-bold mb-4">MAISON MÈRE</h3>
             <p className="text-background/80 font-paragraph text-sm leading-relaxed">
-              A women-only reformer Pilates space dedicated to empowering women through mindful movement and inclusive wellness.
+              Premium Reformer Pilates for women seeking strength, balance, and wellness in an inclusive, supportive community environment.
             </p>
           </div>
 
