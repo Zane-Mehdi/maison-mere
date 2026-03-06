@@ -8,6 +8,9 @@ import ClassesPage from '@/components/pages/ClassesPage';
 import AboutPage from '@/components/pages/AboutPage';
 import ContactPage from '@/components/pages/ContactPage';
 import BookAClassPage from '@/components/pages/BookAClassPage';
+import PrivacyPolicyPage from '@/components/pages/PrivacyPolicyPage';
+import CancellationPolicyPage from '@/components/pages/CancellationPolicyPage';
+import TermsAndConditionsPage from '@/components/pages/TermsAndConditionsPage';
 
 // Layout component that includes ScrollToTop
 function Layout() {
@@ -58,6 +61,27 @@ const router = createBrowserRouter([
         element: <BookAClassPage />,
         routeMetadata: {
           pageIdentifier: 'book-a-class',
+        },
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicyPage />,
+        routeMetadata: {
+          pageIdentifier: 'privacy-policy',
+        },
+      },
+      {
+        path: "cancellation-policy",
+        element: <CancellationPolicyPage />,
+        routeMetadata: {
+          pageIdentifier: 'cancellation-policy',
+        },
+      },
+      {
+        path: "terms-and-conditions",
+        element: <TermsAndConditionsPage />,
+        routeMetadata: {
+          pageIdentifier: 'terms-and-conditions',
         },
       },
       {

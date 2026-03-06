@@ -84,20 +84,46 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-background/60 font-paragraph text-sm">
-            © 2026 maisonerestudio.co.uk. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-background/80 hover:text-primary transition-colors duration-200"
-              aria-label="Instagram"
+        <div className="border-t border-background/20 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+            <p className="text-background/60 font-paragraph text-sm">
+              © 2026 maisonerestudio.co.uk. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-background/80 hover:text-primary transition-colors duration-200"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+          
+          {/* Legal Links */}
+          <div className="flex flex-wrap justify-center gap-6 text-background/70 font-paragraph text-sm">
+            <Link
+              to="/privacy-policy"
+              className="hover:text-primary transition-colors duration-200"
             >
-              <Instagram className="w-5 h-5" />
-            </a>
+              Privacy Policy
+            </Link>
+            <span className="text-background/40">•</span>
+            <Link
+              to="/cancellation-policy"
+              className="hover:text-primary transition-colors duration-200"
+            >
+              Cancellation Policy
+            </Link>
+            <span className="text-background/40">•</span>
+            <Link
+              to="/terms-and-conditions"
+              className="hover:text-primary transition-colors duration-200"
+            >
+              Terms & Conditions
+            </Link>
           </div>
         </div>
       </div>
