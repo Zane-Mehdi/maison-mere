@@ -27,6 +27,73 @@ export interface PilatesClassTypes {
 
 
 /**
+ * Collection ID: faqs
+ * Interface for FrequentlyAskedQuestions
+ */
+export interface FrequentlyAskedQuestions {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  question?: string;
+  /** @wixFieldType text */
+  answer?: string;
+  /** @wixFieldType text */
+  category?: string;
+  /** @wixFieldType boolean */
+  isFeatured?: boolean;
+  /** @wixFieldType number */
+  displayOrder?: number;
+  /** @wixFieldType datetime */
+  lastUpdated?: Date | string;
+}
+
+
+/**
+ * Collection ID: heroslides
+ * Interface for HeroSlides
+ */
+export interface HeroSlides {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  slideImage?: string;
+  /** @wixFieldType text */
+  heading?: string;
+  /** @wixFieldType text */
+  subheading?: string;
+  /** @wixFieldType text */
+  ctaText?: string;
+  /** @wixFieldType url */
+  ctaLink?: string;
+}
+
+
+/**
+ * Collection ID: homepagestats
+ * Interface for HomepageStats
+ */
+export interface HomepageStats {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  statLabel?: string;
+  /** @wixFieldType number */
+  statValue?: number;
+  /** @wixFieldType text */
+  unitSuffix?: string;
+  /** @wixFieldType text */
+  description?: string;
+  /** @wixFieldType number */
+  displayOrder?: number;
+  /** @wixFieldType boolean */
+  isActive?: boolean;
+}
+
+
+/**
  * Collection ID: instructors
  * Interface for Instructors
  */

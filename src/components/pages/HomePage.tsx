@@ -1,11 +1,3 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import HeroSlideshow from '@/components/HeroSlideshow';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Image } from '@/components/ui/image';
-import { Instructors, PilatesClassTypes } from '@/entities';
-import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
   Minus,
@@ -14,6 +6,44 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import HeroSlideshow from '@/components/HeroSlideshow';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Image } from '@/components/ui/image';
+import { Instructors, PilatesClassTypes } from '@/entities';
+import { BaseCrudService } from '@/integrations';
+
+// Type definitions for CMS collections
+interface HomepageStats {
+  _id: string;
+  statLabel?: string;
+  statValue?: number;
+  unitSuffix?: string;
+  description?: string;
+  displayOrder?: number;
+  isActive?: boolean;
+}
+
+interface FAQ {
+  _id: string;
+  question?: string;
+  answer?: string;
+  category?: string;
+  isFeatured?: boolean;
+  displayOrder?: number;
+  lastUpdated?: Date;
+}
+
+interface HeroSlide {
+  _id: string;
+  slideImage?: string;
+  heading?: string;
+  subheading?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
 
 // --- Utility Components ---
 
@@ -112,6 +142,9 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
+  const [stats, setStats] = useState<HomepageStats[]>([]);
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
@@ -127,13 +160,32 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [classTypesResult, instructorsResult] = await Promise.all([
+        const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult] = await Promise.all([
           BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 3 }),
-          BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 })
+          BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 }),
+          BaseCrudService.getAll<HomepageStats>('homepagestats', {}, { limit: 10 }),
+          BaseCrudService.getAll<FAQ>('faqs', {}, { limit: 50 }),
+          BaseCrudService.getAll<HeroSlide>('heroslides', {}, { limit: 10 })
         ]);
 
         setClassTypes(classTypesResult.items);
         setInstructors(instructorsResult.items);
+        
+        // Filter active stats and sort by displayOrder
+        const activeStats = statsResult.items.filter(s => s.isActive).sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+        setStats(activeStats);
+        
+        // Sort FAQs by displayOrder
+        const sortedFaqs = faqsResult.items.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+        setFaqs(sortedFaqs);
+        
+        // Sort hero slides by creation date
+        const sortedSlides = heroSlidesResult.items.sort((a, b) => {
+          const aDate = new Date(a._createdDate || 0).getTime();
+          const bDate = new Date(b._createdDate || 0).getTime();
+          return aDate - bDate;
+        });
+        setHeroSlides(sortedSlides);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -144,68 +196,30 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  const faqs = [
-    {
-      q: "What is Reformer Pilates?",
-      a: "Reformer Pilates is a sophisticated, machine-based practice that utilizes precision springs, straps, and a sliding carriage to deliver a comprehensive full-body transformation. This refined discipline enhances strength, posture, flexibility, and balance through controlled, intentional movement."
-    },
-    {
-      q: "I have never done Reformer Pilates before, where do I begin?",
-      a: "Our Pilates Fundamentals class is thoughtfully designed for the discerning beginner. This elegant, step-by-step introduction to the Reformer is led by our expert instructors in an intimate setting. We recommend arriving 5–10 minutes early to meet your instructor and settle into our serene studio environment."
-    },
-    {
-      q: "When should I arrive?",
-      a: "We invite you to arrive 5–15 minutes early to acclimate to our luxurious studio space, prepare your equipment, and connect with your instructor. This allows for a seamless transition into your practice."
-    },
-    {
-      q: "How do I book a class?",
-      a: "Booking your Maison Mère experience is effortless through our sophisticated online reservation system. Simply browse our curated class schedule, select your preferred session, and secure your spot with ease."
-    },
-    {
-      q: "What do I need to wear?",
-      a: "We recommend elegant, breathable attire that allows for complete freedom of movement. Pilates is practiced in grip socks, which are essential in our studio to ensure safety and stability on the Reformer."
-    }
-  ];
-
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
-  const heroSlides = [
-    {
-      id: '1',
-      type: 'image' as const,
-      src: 'https://static.wixstatic.com/media/980ffc_c08a8735d35a4fa6a2baeb0678a12c3e~mv2.png?originWidth=1152&originHeight=768',
-      title: 'The Maison Mère Standard',
-      subtitle: 'Welcome to Maison Mère Studio',
-      cta: {
-        text: 'Book Now',
-        action: () => navigate('/classes')
-      }
-    },
-    {
-      id: '2',
-      type: 'image' as const,
-      src: 'https://static.wixstatic.com/media/980ffc_8f47758c084f4318b303d3169f16af22~mv2.png?originWidth=1152&originHeight=768',
-      title: 'Transform Your Body',
-      subtitle: 'Expert Instruction & Premium Equipment',
-      cta: {
-        text: 'Explore Classes',
-        action: () => navigate('/classes')
-      }
-    },
-    {
-      id: '3',
-      type: 'image' as const,
-      src: 'https://static.wixstatic.com/media/980ffc_ad92d84463b446f685b9126dcc4dd81d~mv2.png?originWidth=1152&originHeight=768',
-      title: 'Women\'s Only Space',
-      subtitle: 'Safe, Supportive & Empowering',
-      cta: {
-        text: 'Learn More',
-        action: () => navigate('/about')
+  // Transform hero slides for HeroSlideshow component
+  const transformedHeroSlides = heroSlides.map((slide) => ({
+    id: slide._id,
+    type: 'image' as const,
+    src: slide.slideImage || '',
+    title: slide.heading || '',
+    subtitle: slide.subheading || '',
+    cta: {
+      text: slide.ctaText || 'Learn More',
+      action: () => {
+        if (slide.ctaLink) {
+          if (slide.ctaLink.startsWith('/')) {
+            navigate(slide.ctaLink);
+          } else {
+            window.location.href = slide.ctaLink;
+          }
+        }
       }
     }
-  ];
+  }));
 
   return (
     <>
@@ -214,7 +228,19 @@ export default function HomePage() {
 
       {/* HERO SLIDESHOW SECTION */}
       <HeroSlideshow
-        slides={heroSlides}
+        slides={transformedHeroSlides.length > 0 ? transformedHeroSlides : [
+          {
+            id: '1',
+            type: 'image' as const,
+            src: 'https://static.wixstatic.com/media/980ffc_c08a8735d35a4fa6a2baeb0678a12c3e~mv2.png?originWidth=1152&originHeight=768',
+            title: 'The Maison Mère Standard',
+            subtitle: 'Welcome to Maison Mère Studio',
+            cta: {
+              text: 'Book Now',
+              action: () => navigate('/classes')
+            }
+          }
+        ]}
         autoPlay={true}
         autoPlayInterval={5000}
       />
@@ -350,21 +376,34 @@ export default function HomePage() {
       <section className="py-20 bg-foreground text-background">
         <div className="container mx-auto px-4">
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
-            {[
-              { number: 42, label: "Classes A Week" },
-              { number: 8, label: "Expert Instructors" },
-              { number: 6, label: "Classes A Day" },
-              { number: 11, label: "Luxury Beds" }
-            ].map((stat, idx) => (
-              <StaggerItem key={idx} className="p-4">
+            {stats.length > 0 ? stats.map((stat, idx) => (
+              <StaggerItem key={stat._id} className="p-4">
                 <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
-                  <Counter target={stat.number} />
+                  <Counter target={stat.statValue || 0} />
                 </div>
                 <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
-                  {stat.label}
+                  {stat.statLabel}
                 </p>
               </StaggerItem>
-            ))}
+            )) : (
+              <>
+                {[
+                  { number: 42, label: "Classes A Week" },
+                  { number: 8, label: "Expert Instructors" },
+                  { number: 6, label: "Classes A Day" },
+                  { number: 11, label: "Luxury Beds" }
+                ].map((stat, idx) => (
+                  <StaggerItem key={idx} className="p-4">
+                    <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
+                      <Counter target={stat.number} />
+                    </div>
+                    <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
+                      {stat.label}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </>
+            )}
           </StaggerContainer>
         </div>
       </section>
@@ -492,14 +531,14 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <FadeIn key={index} delay={index * 0.1}>
+            {faqs.length > 0 ? faqs.map((faq, index) => (
+              <FadeIn key={faq._id} delay={index * 0.1}>
                 <div className="bg-background border border-border rounded-lg overflow-hidden">
                   <button
                     onClick={() => toggleFaq(index)}
                     className="w-full flex items-center justify-between p-6 text-left hover:bg-secondary/10 transition-colors"
                   >
-                    <span className="font-heading font-bold text-lg text-foreground pr-8">{faq.q}</span>
+                    <span className="font-heading font-bold text-lg text-foreground pr-8">{faq.question}</span>
                     <span className="text-primary flex-shrink-0">
                       {openFaqIndex === index ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                     </span>
@@ -514,14 +553,18 @@ export default function HomePage() {
                         className="overflow-hidden"
                       >
                         <div className="p-6 pt-0 text-muted-foreground leading-relaxed border-t border-border/50">
-                          {faq.a}
+                          {faq.answer}
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
               </FadeIn>
-            ))}
+            )) : (
+              <div className="text-center py-12 text-muted-foreground">
+                No FAQs available.
+              </div>
+            )}
           </div>
         </div>
       </section>
