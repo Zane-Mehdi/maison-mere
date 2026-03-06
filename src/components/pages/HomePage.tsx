@@ -4,7 +4,7 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { PricingPlans, Instructors } from '@/entities';
+import { PricingPlans, Instructors, PilatesClassTypes } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
@@ -110,7 +110,7 @@ const Counter = ({ target }: { target: number }) => {
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [classes, setClasses] = useState<PricingPlans[]>([]);
+  const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -127,12 +127,12 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [classesResult, instructorsResult] = await Promise.all([
-          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 3 }),
+        const [classTypesResult, instructorsResult] = await Promise.all([
+          BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 3 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 })
         ]);
 
-        setClasses(classesResult.items);
+        setClassTypes(classTypesResult.items);
         setInstructors(instructorsResult.items);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -305,17 +305,17 @@ export default function HomePage() {
             <LoadingSpinner />
           ) : (
             <StaggerContainer className="grid md:grid-cols-3 gap-8">
-              {classes.length > 0 ? classes.map((cls, index) => (
-                <StaggerItem key={cls._id} className="group">
+              {classTypes.length > 0 ? classTypes.map((classType, index) => (
+                <StaggerItem key={classType._id} className="group">
                   <Link to="/classes" className="block h-full">
                     <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
                       <div className="aspect-[3/4] overflow-hidden relative mb-6">
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
-                          {cls.planGroup || 'All Levels'}
+                          {classType.difficultyLevel || 'All Levels'}
                         </div>
                         <Image
-                          src={cls.itemImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                          alt={cls.itemName || "Class Image"}
+                          src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
+                          alt={classType.name || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
@@ -324,10 +324,10 @@ export default function HomePage() {
                           0{index + 1}
                         </div>
                         <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {cls.itemName}
+                          {classType.name}
                         </h3>
                         <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
-                          {cls.itemDescription}
+                          {classType.description}
                         </p>
                         <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
                           Book Class
