@@ -262,24 +262,24 @@ export default function AboutPage() {
 
           <div className="min-h-[400px]">
             {isLoading ? null : instructors.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {instructors.map((instructor, index) => (
                   <AnimatedSection key={instructor._id} delay={index * 50}>
-                    <Card className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-border bg-card overflow-hidden">
-                      <div className="aspect-[3/4] overflow-hidden">
+                    <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                      <div className="aspect-square overflow-hidden">
                         <Image 
                           src={instructor.photo || 'https://static.wixstatic.com/media/980ffc_76032d75a8b044b2bc400d64f0786611~mv2.png?originWidth=256&originHeight=384'}
                           alt={instructor.name || 'Instructor'}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover"
                           width={300}
                         />
                       </div>
                       <CardContent className="p-6">
-                        <h3 className="text-xl font-heading font-bold text-foreground mb-2">
+                        <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                           {instructor.name}
                         </h3>
                         {instructor.specialties && (
-                          <p className="text-primary font-paragraph text-sm mb-3">
+                          <p className="text-primary font-paragraph text-sm mb-2">
                             {instructor.specialties}
                           </p>
                         )}
