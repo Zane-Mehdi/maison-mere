@@ -274,7 +274,7 @@ export default function ClassesPage() {
             <AnimatedSection key={group} delay={100 + groupIndex * 50}>
               <div className="mb-16">
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{group}</h3>
-                <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 max-w-6xl' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 max-w-7xl' : 'md:grid-cols-2 max-w-6xl'} gap-6`}>
+                <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
                   {groupedPlans[group].map((plan) => (
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
