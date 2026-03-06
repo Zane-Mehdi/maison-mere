@@ -312,9 +312,7 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
                 Ready to Start Your Journey?
               </h2>
-              <p className="text-lg text-foreground/80 font-paragraph mb-8 leading-relaxed">
-                Join our welcoming community and experience the HNB difference. Your first step towards a stronger, more confident you starts here.
-              </p>
+              <p className="text-lg text-foreground/80 font-paragraph mb-8 leading-relaxed">Join our welcoming community.Your first step towards a stronger, more confident you starts here.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   asChild
