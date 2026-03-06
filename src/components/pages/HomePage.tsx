@@ -1,11 +1,3 @@
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
-import {
-  Minus,
-  Plus,
-  Star
-} from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import HeroSlideshow from '@/components/HeroSlideshow';
@@ -14,6 +6,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { Instructors, PilatesClassTypes } from '@/entities';
 import { BaseCrudService } from '@/integrations';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import {
+  Minus,
+  Plus,
+  Star
+} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Type definitions for CMS collections
 interface HomepageStats {
@@ -170,15 +170,15 @@ export default function HomePage() {
 
         setClassTypes(classTypesResult.items);
         setInstructors(instructorsResult.items);
-        
+
         // Filter active stats and sort by displayOrder
         const activeStats = statsResult.items.filter(s => s.isActive).sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
         setStats(activeStats);
-        
+
         // Sort FAQs by displayOrder
         const sortedFaqs = faqsResult.items.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
         setFaqs(sortedFaqs);
-        
+
         // Sort hero slides by creation date
         const sortedSlides = heroSlidesResult.items.sort((a, b) => {
           const aDate = new Date(a._createdDate || 0).getTime();
@@ -587,9 +587,7 @@ export default function HomePage() {
               onClick={() => navigate('/classes')}
               size="lg"
               className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95 no-underline"
-            >
-              Our Classes
-            </Button>
+            >Our Packages</Button>
           </FadeIn>
         </div>
       </section>
