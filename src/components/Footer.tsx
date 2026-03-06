@@ -1,5 +1,5 @@
+import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Instagram, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -19,24 +19,30 @@ export default function Footer() {
             <h4 className="text-lg font-heading font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  to="/classes" 
+                <Link
+                  to="/classes"
+                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                >Membership and Pricing</Link>
+              </li>
+              <li>
+                <Link
+                  to="/book-now"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >
-                  Classes
+                  Schedule
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/about" 
+                <Link
+                  to="/about"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >
                   Contact
@@ -83,9 +89,9 @@ export default function Footer() {
             © 2026 maisonerestudio.co.uk. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
+            <a
+              href="https://instagram.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-background/80 hover:text-primary transition-colors duration-200"
               aria-label="Instagram"
