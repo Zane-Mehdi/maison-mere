@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import Header from '@/components/Header';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -15,7 +15,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -25,14 +25,14 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
       },
       { threshold: 0.1 }
     );
-    
+
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
     >
       {children}
@@ -58,14 +58,14 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setSubmitSuccess(true);
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    
+
     setTimeout(() => setSubmitSuccess(false), 5000);
   };
 
@@ -85,7 +85,7 @@ export default function ContactPage() {
           backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
           backgroundSize: '30px 30px'
         }} />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
@@ -107,9 +107,9 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             <AnimatedSection>
-              <a 
-                href="https://www.google.com/maps/search/207+Watford+Rd,+Harrow+HA1+3UA" 
-                target="_blank" 
+              <a
+                href="https://www.google.com/maps/search/207+Watford+Rd,+Harrow+HA1+3UA"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="block"
               >
@@ -126,7 +126,7 @@ export default function ContactPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={100}>
-              <a 
+              <a
                 href="tel:07304499808"
                 className="block"
               >
@@ -143,7 +143,7 @@ export default function ContactPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={200}>
-              <a 
+              <a
                 href="mailto:Contact@maisonmerestudio.com"
                 className="block"
               >
@@ -382,7 +382,7 @@ export default function ContactPage() {
               </div>
               <div className="aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.8234567890123!2d-0.3333!3d51.5833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761234567890ab%3A0x1234567890abcdef!2s207%20Watford%20Rd%2C%20Harrow%20HA1%203UA!5e0!3m2!1sen!2suk!4v1234567890"
+                  src="  src="https://www.google.com/maps?q=Maison+M%C3%A8re+Studio+Harrow&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
