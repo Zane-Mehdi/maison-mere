@@ -255,7 +255,7 @@ export default function HomePage() {
           <FadeIn>
             <p className="text-primary text-sm uppercase tracking-widest mb-6 font-semibold">Welcome to Maison Mère Studio...</p>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">
-              A space to <span className="italic text-primary">grow</span>, <span className="italic text-primary">strengthen</span>, and <span className="italic text-primary">connect</span> exclusively for women.
+              Discover your strength through <span className="italic text-primary">mindful movement</span>, <span className="italic text-primary">expert guidance</span>, and <span className="italic text-primary">sisterhood</span>.
             </h2>
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
