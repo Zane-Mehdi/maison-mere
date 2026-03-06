@@ -107,39 +107,56 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             <AnimatedSection>
-              <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 text-center p-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-heading font-bold text-foreground mb-2">
-                  Location
-                </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">207 Watford Rd, Harrow HA1 3UA</p>
-              </Card>
+              <a 
+                href="https://www.google.com/maps/search/207+Watford+Rd,+Harrow+HA1+3UA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 text-center p-6 cursor-pointer hover:bg-primary/5">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-heading font-bold text-foreground mb-2">
+                    Location
+                  </h3>
+                  <p className="text-foreground/70 font-paragraph text-sm hover:text-primary transition-colors">207 Watford Rd, Harrow HA1 3UA</p>
+                </Card>
+              </a>
             </AnimatedSection>
 
             <AnimatedSection delay={100}>
-              <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 text-center p-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-heading font-bold text-foreground mb-2">
-                  Phone
-                </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">07304 499808</p>
-              </Card>
+              <a 
+                href="tel:07304499808"
+                className="block"
+              >
+                <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 text-center p-6 cursor-pointer hover:bg-primary/5">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-heading font-bold text-foreground mb-2">
+                    Phone
+                  </h3>
+                  <p className="text-foreground/70 font-paragraph text-sm hover:text-primary transition-colors">07304 499808</p>
+                </Card>
+              </a>
             </AnimatedSection>
 
             <AnimatedSection delay={200}>
-              <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 text-center p-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-heading font-bold text-foreground mb-2">
-                  Email
-                </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">Contact@maisonmerestudio.com</p>
-              </Card>
+              <a 
+                href="mailto:Contact@maisonmerestudio.com"
+                className="block"
+              >
+                <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 text-center p-6 cursor-pointer hover:bg-primary/5">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-heading font-bold text-foreground mb-2">
+                    Email
+                  </h3>
+                  <p className="text-foreground/70 font-paragraph text-sm hover:text-primary transition-colors">Contact@maisonmerestudio.com</p>
+                </Card>
+              </a>
             </AnimatedSection>
 
             <AnimatedSection delay={300}>
@@ -286,9 +303,7 @@ export default function ContactPage() {
                     <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
                       Visit Our Studio
                     </h2>
-                    <p className="text-foreground/70 font-paragraph leading-relaxed mb-6">
-                      We&apos;re located in the heart of Oldham, providing a convenient and accessible location for women across the area.
-                    </p>
+                    <p className="text-foreground/70 font-paragraph leading-relaxed mb-6">We're located in the heart of Harrow, providing a convenient and accessible location for women across the area.</p>
                   </div>
 
                   <Card className="border-border bg-gradient-to-br from-primary/5 to-accent/10 p-8">
