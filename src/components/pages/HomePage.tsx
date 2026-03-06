@@ -217,8 +217,9 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground">
+    <>
       <Header />
+      <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground">
       
       {/* HERO SLIDESHOW SECTION */}
       <HeroSlideshow 
@@ -562,6 +563,7 @@ export default function HomePage() {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
