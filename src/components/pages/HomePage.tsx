@@ -4,7 +4,7 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Instructors, PilatesClassTypes } from '@/entities';
+import { Instructors, PilatesClassTypes, PricingPlans } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
@@ -145,6 +145,7 @@ export default function HomePage() {
   const [stats, setStats] = useState<HomepageStats[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
+  const [pricingPlans, setPricingPlans] = useState<PricingPlans[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
@@ -160,12 +161,13 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult] = await Promise.all([
+        const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult, pricingPlansResult] = await Promise.all([
           BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 3 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 }),
           BaseCrudService.getAll<HomepageStats>('homepagestats', {}, { limit: 10 }),
           BaseCrudService.getAll<FAQ>('faqs', {}, { limit: 50 }),
-          BaseCrudService.getAll<HeroSlide>('heroslides', {}, { limit: 10 })
+          BaseCrudService.getAll<HeroSlide>('heroslides', {}, { limit: 10 }),
+          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 50 })
         ]);
 
         setClassTypes(classTypesResult.items);
@@ -186,6 +188,8 @@ export default function HomePage() {
           return aDate - bDate;
         });
         setHeroSlides(sortedSlides);
+
+        setPricingPlans(pricingPlansResult.items);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -245,54 +249,8 @@ export default function HomePage() {
         autoPlayInterval={5000}
       />
 
-      {/* INTRO OFFER SECTION */}
-      <section className="py-24 bg-background relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <FadeIn className="order-2 lg:order-1">
-              <div className="relative">
-                <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />
-                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Special Offer</p>
-                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
-                  Unlock your <span className="italic text-primary">potential</span>.
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Begin your Pilates journey with our exclusive introductory package. Perfect for newcomers and returning clients alike, this offer gives you the chance to experience our world-class instruction and premium Reformer equipment in a welcoming, supportive setting.
-                </p>
-
-                <div className="bg-secondary/30 p-8 rounded-2xl border border-secondary mb-8">
-                  <p className="text-2xl font-heading font-bold text-foreground text-center">
-                    3 Classes for <span className="text-primary text-3xl">£50</span>
-                  </p>
-                </div>
-
-                <Button
-                  onClick={() => navigate('/classes')}
-                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95 no-underline"
-                >
-                  Claim Offer
-                </Button>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2} className="order-1 lg:order-2 relative group">
-              <div className="aspect-[4/5] overflow-hidden rounded-sm relative">
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <Image
-                  src="https://static.wixstatic.com/media/980ffc_abd1282a728f4ec8808bf96efe76eea8~mv2.png?originWidth=768&originHeight=960"
-                  alt="Pilates Intro Offer"
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              {/* Decorative Element */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-r-2 border-b-2 border-primary/30 hidden md:block" />
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* WELCOME SECTION */}
-      <section className="py-24 bg-secondary/20">
+      {/* WELCOME SECTION - MOVED UP */}
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <FadeIn>
             <p className="text-primary text-sm uppercase tracking-widest mb-6 font-semibold">Welcome to Maison Mère Studio...</p>
@@ -311,6 +269,82 @@ export default function HomePage() {
               Join Now
             </Button>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* STATS SECTION - MOVED UP EARLY */}
+      <section className="py-20 bg-foreground text-background">
+        <div className="container mx-auto px-4">
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
+            {stats.length > 0 ? stats.map((stat, idx) => (
+              <StaggerItem key={stat._id} className="p-4">
+                <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
+                  <Counter target={stat.statValue || 0} />
+                </div>
+                <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
+                  {stat.statLabel}
+                </p>
+              </StaggerItem>
+            )) : (
+              <>
+                {[
+                  { number: 42, label: "Classes A Week" },
+                  { number: 8, label: "Expert Instructors" },
+                  { number: 6, label: "Classes A Day" },
+                  { number: 11, label: "Luxury Beds" }
+                ].map((stat, idx) => (
+                  <StaggerItem key={idx} className="p-4">
+                    <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
+                      <Counter target={stat.number} />
+                    </div>
+                    <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
+                      {stat.label}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </>
+            )}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* WOMEN ONLY SECTION - MOVED UP */}
+      <section className="py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn delay={0.2}>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">A Safe Place To Grow</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                Women's Only Studio & <br/><span className="italic text-primary">Hijab Friendly</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey.
+              </p>
+              <Button
+                onClick={() => navigate('/about')}
+                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
+              >
+                Learn More
+              </Button>
+            </FadeIn>
+
+            <FadeIn className="relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+                <Image
+                  src="https://static.wixstatic.com/media/980ffc_84bdf9424e494e0dbc4b0a4e9b5a9121~mv2.png?originWidth=768&originHeight=960"
+                  alt="Women Only Studio"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-10 -right-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
+                <p className="font-heading font-bold text-xl mb-2">Safe Space</p>
+                <p className="text-sm text-muted-foreground">Designed for privacy, comfort, and community.</p>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -372,43 +406,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* STATS SECTION */}
-      <section className="py-20 bg-foreground text-background">
+      {/* INTRO OFFER SECTION - MOVED DOWN */}
+      <section className="py-24 bg-secondary/20 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
-            {stats.length > 0 ? stats.map((stat, idx) => (
-              <StaggerItem key={stat._id} className="p-4">
-                <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
-                  <Counter target={stat.statValue || 0} />
-                </div>
-                <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
-                  {stat.statLabel}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn delay={0.2} className="relative group">
+              <div className="aspect-[4/5] overflow-hidden rounded-sm relative">
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <Image
+                  src="https://static.wixstatic.com/media/980ffc_abd1282a728f4ec8808bf96efe76eea8~mv2.png?originWidth=768&originHeight=960"
+                  alt="Pilates Intro Offer"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              {/* Decorative Element */}
+              <div className="absolute -top-6 -left-6 w-24 h-24 border-l-2 border-t-2 border-primary/30 hidden md:block" />
+            </FadeIn>
+
+            <FadeIn>
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />
+                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Special Offer</p>
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+                  Unlock your <span className="italic text-primary">potential</span>.
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Begin your Pilates journey with our exclusive introductory package. Perfect for newcomers and returning clients alike, this offer gives you the chance to experience our world-class instruction and premium Reformer equipment in a welcoming, supportive setting.
                 </p>
-              </StaggerItem>
-            )) : (
-              <>
-                {[
-                  { number: 42, label: "Classes A Week" },
-                  { number: 8, label: "Expert Instructors" },
-                  { number: 6, label: "Classes A Day" },
-                  { number: 11, label: "Luxury Beds" }
-                ].map((stat, idx) => (
-                  <StaggerItem key={idx} className="p-4">
-                    <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3">
-                      <Counter target={stat.number} />
-                    </div>
-                    <p className="text-xs md:text-sm uppercase tracking-widest text-background/70">
-                      {stat.label}
+
+                <div className="bg-primary/10 p-8 rounded-2xl border border-primary/20 mb-8">
+                  {pricingPlans.length > 0 && pricingPlans[0] ? (
+                    <p className="text-2xl font-heading font-bold text-foreground text-center">
+                      {pricingPlans[0].numberOfClasses} Classes for <span className="text-primary text-3xl">£{pricingPlans[0].itemPrice}</span>
                     </p>
-                  </StaggerItem>
-                ))}
-              </>
-            )}
-          </StaggerContainer>
+                  ) : (
+                    <p className="text-2xl font-heading font-bold text-foreground text-center">
+                      3 Classes for <span className="text-primary text-3xl">£50</span>
+                    </p>
+                  )}
+                </div>
+
+                <Button
+                  onClick={() => navigate('/classes')}
+                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95 no-underline"
+                >
+                  Claim Offer
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
+      {/* TESTIMONIAL - MOVED EARLIER */}
       <section className="py-24 bg-background flex items-center justify-center">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <FadeIn>
@@ -429,50 +479,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WOMEN ONLY SECTION */}
-      <section className="py-24 bg-secondary/30">
+      {/* WELLNESS BAR SECTION - REPOSITIONED */}
+      <section className="py-24 bg-secondary/20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <FadeIn className="relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
-                <Image
-                  src="https://static.wixstatic.com/media/980ffc_84bdf9424e494e0dbc4b0a4e9b5a9121~mv2.png?originWidth=768&originHeight=960"
-                  alt="Women Only Studio"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-10 -left-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
-                <p className="font-heading font-bold text-xl mb-2">Safe Space</p>
-                <p className="text-sm text-muted-foreground">Designed for privacy, comfort, and community.</p>
-              </div>
-            </FadeIn>
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-8">
+              <StaggerContainer className="grid sm:grid-cols-2 gap-6">
+                <StaggerItem>
+                  <Card className="border-none shadow-none bg-background h-full">
+                    <div className="aspect-video overflow-hidden">
+                      <Image src="https://static.wixstatic.com/media/980ffc_545fe52b1e4442d1856102c05a047fed~mv2.png?originWidth=768&originHeight=448" alt="Wellness Bar" className="w-full h-full object-cover" />
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-heading font-bold mb-2">Wellness Bar</h3>
+                      <p className="text-sm text-muted-foreground">Enjoy a selection of Matcha, cold-pressed juices, and healthy snacks.</p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
+                <StaggerItem>
+                  <Card className="border-none shadow-none bg-background h-full">
+                    <div className="aspect-video overflow-hidden">
+                      <Image src="https://static.wixstatic.com/media/980ffc_5488cdab3c194676b17782d1783a30a3~mv2.png?originWidth=768&originHeight=448" alt="Private Hire" className="w-full h-full object-cover" />
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
+                      <p className="text-sm text-muted-foreground">Our beautiful studio is available for private hire and special events.</p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
+              </StaggerContainer>
+            </div>
 
-            <FadeIn delay={0.2}>
-              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">A Safe Place To Grow</p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                Women's Only Studio & <br/><span className="italic text-primary">Hijab Friendly</span>
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
-              </p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey.
-              </p>
-              <Button
-                onClick={() => navigate('/about')}
-                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
-              >
-                Learn More
-              </Button>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* WELLNESS BAR SECTION */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <FadeIn>
                 <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Maison Mère Studio</p>
@@ -489,39 +526,12 @@ export default function HomePage() {
                >eNQUIRE</Button>
               </FadeIn>
             </div>
-
-            <div className="lg:col-span-8">
-              <StaggerContainer className="grid sm:grid-cols-2 gap-6">
-                <StaggerItem>
-                  <Card className="border-none shadow-none bg-secondary/10 h-full">
-                    <div className="aspect-video overflow-hidden">
-                      <Image src="https://static.wixstatic.com/media/980ffc_545fe52b1e4442d1856102c05a047fed~mv2.png?originWidth=768&originHeight=448" alt="Wellness Bar" className="w-full h-full object-cover" />
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-heading font-bold mb-2">Wellness Bar</h3>
-                      <p className="text-sm text-muted-foreground">Enjoy a selection of Matcha, cold-pressed juices, and healthy snacks.</p>
-                    </CardContent>
-                  </Card>
-                </StaggerItem>
-                <StaggerItem>
-                  <Card className="border-none shadow-none bg-secondary/10 h-full">
-                    <div className="aspect-video overflow-hidden">
-                      <Image src="https://static.wixstatic.com/media/980ffc_5488cdab3c194676b17782d1783a30a3~mv2.png?originWidth=768&originHeight=448" alt="Private Hire" className="w-full h-full object-cover" />
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
-                      <p className="text-sm text-muted-foreground">Our beautiful studio is available for private hire and special events.</p>
-                    </CardContent>
-                  </Card>
-                </StaggerItem>
-              </StaggerContainer>
-            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-24 bg-secondary/20">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-16">
             <FadeIn>
@@ -533,10 +543,10 @@ export default function HomePage() {
           <div className="space-y-4">
             {faqs.length > 0 ? faqs.map((faq, index) => (
               <FadeIn key={faq._id} delay={index * 0.1}>
-                <div className="bg-background border border-border rounded-lg overflow-hidden">
+                <div className="bg-secondary/10 border border-border rounded-lg overflow-hidden">
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-secondary/10 transition-colors"
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-secondary/20 transition-colors"
                   >
                     <span className="font-heading font-bold text-lg text-foreground pr-8">{faq.question}</span>
                     <span className="text-primary flex-shrink-0">
