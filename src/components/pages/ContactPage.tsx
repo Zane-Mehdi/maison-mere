@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { contacts } from 'wix-contacts-backend';
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -50,6 +51,7 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     document.title = 'Contact | Maison Mère Studio';
@@ -58,15 +60,30 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError('');
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Create a contact with the form data
+      await contacts.createContact({
+        firstName: formData.name.split(' ')[0],
+        lastName: formData.name.split(' ').slice(1).join(' '),
+        emails: [{ email: formData.email, primary: true }],
+        phones: formData.phone ? [{ phone: formData.phone, primary: true }] : undefined,
+        info: {
+          notes: `Subject: ${formData.subject}\n\nMessage: ${formData.message}`
+        }
+      });
 
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
 
-    setTimeout(() => setSubmitSuccess(false), 5000);
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError('Failed to submit form. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -193,7 +210,15 @@ export default function ContactPage() {
                   {submitSuccess && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                       <p className="text-green-800 font-paragraph text-sm">
-                        Thank you for your message! We&apos;ll be in touch soon.
+                        Thank you for your message! We'll be in touch soon.
+                      </p>
+                    </div>
+                  )}
+
+                  {submitError && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <p className="text-red-800 font-paragraph text-sm">
+                        {submitError}
                       </p>
                     </div>
                   )}
