@@ -262,11 +262,24 @@ export default function AboutPage() {
 
           <div className="min-h-[400px]">
             {isLoading ? null : instructors.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              <div className="max-w-7xl mx-auto" style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gridAutoRows: 'auto',
+                gap: '2rem',
+                gridAutoFlow: 'dense'
+              }}>
                 {instructors.map((instructor, index) => (
-                  <AnimatedSection key={instructor._id} delay={index * 50}>
-                    <Card className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-border bg-card overflow-hidden">
-                      <div className="aspect-[3/4] overflow-hidden">
+                  <AnimatedSection 
+                    key={instructor._id} 
+                    delay={index * 50}
+                    style={{
+                      gridColumn: index % 5 === 0 ? 'span 2' : 'span 1',
+                      gridRow: index % 5 === 0 ? 'span 2' : 'span 1'
+                    }}
+                  >
+                    <Card className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-border bg-card overflow-hidden h-full">
+                      <div className="w-full h-full overflow-hidden">
                         <Image 
                           src={instructor.photo || 'https://static.wixstatic.com/media/980ffc_76032d75a8b044b2bc400d64f0786611~mv2.png?originWidth=256&originHeight=384'}
                           alt={instructor.name || 'Instructor'}
@@ -274,7 +287,7 @@ export default function AboutPage() {
                           width={300}
                         />
                       </div>
-                      <CardContent className="p-6">
+                      <CardContent className="p-6 bg-card">
                         <h3 className="text-xl font-heading font-bold text-foreground mb-2">
                           {instructor.name}
                         </h3>
