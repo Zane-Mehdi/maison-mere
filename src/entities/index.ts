@@ -4,6 +4,29 @@
  */
 
 /**
+ * Collection ID: classtypes
+ * Interface for PilatesClassTypes
+ */
+export interface PilatesClassTypes {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  name?: string;
+  /** @wixFieldType text */
+  description?: string;
+  /** @wixFieldType text */
+  tagline?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  image?: string;
+  /** @wixFieldType text */
+  benefits?: string;
+  /** @wixFieldType text */
+  difficultyLevel?: string;
+}
+
+
+/**
  * Collection ID: instructors
  * Interface for Instructors
  */
