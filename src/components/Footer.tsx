@@ -57,17 +57,32 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-background/80 font-paragraph text-sm">207 Watford Rd, Harrow HA1 3UA</span>
+                <a 
+                  href="https://maps.google.com/?q=207+Watford+Rd,+Harrow+HA1+3UA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                >
+                  207 Watford Rd, Harrow HA1 3UA
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-background/80 font-paragraph text-sm">
+                <a 
+                  href="tel:+447304499808"
+                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                >
                   07304 499808
-                </span>
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-background/80 font-paragraph text-sm">Contact@maisonmerestudio.com</span>
+                <a 
+                  href="mailto:Contact@maisonmerestudio.com"
+                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                >
+                  Contact@maisonmerestudio.com
+                </a>
               </li>
             </ul>
           </div>
