@@ -49,6 +49,10 @@ export default function WellnessBarPage() {
   const { currency } = useCurrency();
 
   useEffect(() => {
+    document.title = 'Wellness Bar | Maison Mère Studio';
+  }, []);
+
+  useEffect(() => {
     const fetchMenu = async () => {
       try {
         const result = await BaseCrudService.getAll<any>('wellnessbarmenu');

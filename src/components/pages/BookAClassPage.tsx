@@ -38,6 +38,10 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 };
 
 export default function BookAClassPage() {
+  useEffect(() => {
+    document.title = 'Book a Class | Maison Mère Studio';
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

@@ -46,6 +46,10 @@ export default function AboutPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'About | Maison Mère Studio';
+  }, []);
+
+  useEffect(() => {
     const fetchInstructors = async () => {
       try {
         const result = await BaseCrudService.getAll<Instructors>('instructors');

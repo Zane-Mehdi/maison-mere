@@ -130,6 +130,10 @@ export default function HomePage() {
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.5]);
 
   useEffect(() => {
+    document.title = 'Home | Maison Mère Studio';
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const [classesResult, instructorsResult] = await Promise.all([

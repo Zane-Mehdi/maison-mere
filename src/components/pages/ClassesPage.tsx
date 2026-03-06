@@ -127,6 +127,10 @@ export default function ClassesPage() {
   const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
 
   useEffect(() => {
+    document.title = 'Classes | Maison Mère Studio';
+  }, []);
+
+  useEffect(() => {
     const fetchPricingPlans = async () => {
       try {
         const result = await BaseCrudService.getAll<PricingPlan>('pricingplans');
