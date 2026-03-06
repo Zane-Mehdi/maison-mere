@@ -66,8 +66,8 @@ export default function PrivacyPolicyPage() {
                 If you have questions or comments about this Privacy Policy, please contact us at:
               </p>
               <div className="mt-4 font-paragraph text-lg">
-                <p>Email: privacy@ourpilatesstudio.com</p>
-                <p>Phone: (555) 123-4567</p>
+                <p>Email: Contact@maisonmerestudio.com</p>
+                <p>Phone: 07304 499808</p>
               </div>
             </section>
 

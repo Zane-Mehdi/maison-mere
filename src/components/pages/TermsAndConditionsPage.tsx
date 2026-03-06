@@ -92,8 +92,8 @@ export default function TermsAndConditionsPage() {
                 If you have any questions about these Terms & Conditions, please contact us:
               </p>
               <div className="mt-4 font-paragraph text-lg">
-                <p>Email: legal@ourpilatesstudio.com</p>
-                <p>Phone: (555) 123-4567</p>
+                <p>Email: Contact@maisonmerestudio.com</p>
+                <p>Phone: 07304 499808</p>
               </div>
             </section>
           </div>
