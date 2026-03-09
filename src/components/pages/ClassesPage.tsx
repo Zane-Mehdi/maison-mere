@@ -327,14 +327,14 @@ export default function ClassesPage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-background via-background to-transparent pointer-events-none md:hidden"
+                  className="absolute left-0 top-0 bottom-2 w-20 bg-gradient-to-r from-background via-background to-transparent pointer-events-none md:hidden"
                 />
               )}
               {canScrollRight && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background via-background to-transparent pointer-events-none md:hidden"
+                  className="absolute right-0 top-0 bottom-2 w-20 bg-gradient-to-l from-background via-background to-transparent pointer-events-none md:hidden"
                 />
               )}
             </div>
