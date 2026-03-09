@@ -125,6 +125,7 @@ export default function ClassesPage() {
   const [pricingPlans, setPricingPlans] = useState<PricingPlan[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = 'Classes | Maison Mère Studio';
@@ -135,6 +136,15 @@ export default function ClassesPage() {
       try {
         const result = await BaseCrudService.getAll<PricingPlan>('pricingplans');
         setPricingPlans(result.items || []);
+        // Set the first category as active
+        const groups = Array.from(new Set(
+          (result.items || [])
+            .filter(p => p.planGroup && p.planGroup !== 'Intro')
+            .map(p => p.planGroup)
+        )).sort();
+        if (groups.length > 0) {
+          setActiveCategory(groups[0]);
+        }
       } catch (error) {
         console.error('Error fetching pricing plans:', error);
       } finally {
@@ -258,6 +268,35 @@ export default function ClassesPage() {
       {/* Membership & Pricing Section */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
+          {/* Category Navigation Bar */}
+          <AnimatedSection>
+            <div className="mb-12">
+              <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:justify-center md:flex-wrap">
+                {uniqueGroups.map((group) => (
+                  <motion.button
+                    key={group}
+                    onClick={() => {
+                      setActiveCategory(group);
+                      const element = document.getElementById(`category-${group}`);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                    className={`px-4 py-2 rounded-full font-heading font-semibold text-sm whitespace-nowrap transition-all duration-300 ${
+                      activeCategory === group
+                        ? 'bg-primary text-primary-foreground shadow-md'
+                        : 'bg-secondary/50 text-foreground hover:bg-secondary'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {group}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </AnimatedSection>
+
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
@@ -272,7 +311,7 @@ export default function ClassesPage() {
           {/* Dynamic Plan Groups */}
           {uniqueGroups.map((group, groupIndex) => (
             <AnimatedSection key={group} delay={100 + groupIndex * 50}>
-              <div className="mb-16">
+              <div className="mb-16" id={`category-${group}`}>
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{group}</h3>
                 <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
                   {groupedPlans[group].map((plan) => (
