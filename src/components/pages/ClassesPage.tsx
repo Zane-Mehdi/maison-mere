@@ -126,33 +126,10 @@ export default function ClassesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.title = 'Classes | Maison Mère Studio';
-  }, []);
-
-  const checkScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  useEffect(() => {
-    checkScroll();
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', checkScroll);
-      window.addEventListener('resize', checkScroll);
-      return () => {
-        container.removeEventListener('scroll', checkScroll);
-        window.removeEventListener('resize', checkScroll);
-      };
-    }
   }, []);
 
   useEffect(() => {
@@ -297,7 +274,7 @@ export default function ClassesPage() {
             <div className="mb-12 relative">
               <div 
                 ref={scrollContainerRef}
-                className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:justify-center md:flex-wrap scroll-smooth"
+                className="grid grid-cols-2 md:flex md:justify-center md:flex-wrap gap-2"
               >
                 {uniqueGroups.map((group) => (
                   <motion.button
@@ -309,7 +286,7 @@ export default function ClassesPage() {
                         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
-                    className={`px-4 py-2 rounded-full font-heading font-semibold text-sm whitespace-nowrap transition-all duration-300 ${
+                    className={`px-4 py-2 rounded-full font-heading font-semibold text-sm transition-all duration-300 ${
                       activeCategory === group
                         ? 'bg-primary text-primary-foreground shadow-md'
                         : 'bg-secondary/50 text-foreground hover:bg-secondary'
@@ -321,22 +298,6 @@ export default function ClassesPage() {
                   </motion.button>
                 ))}
               </div>
-              
-              {/* Scroll indicators */}
-              {canScrollLeft && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="absolute left-0 top-0 bottom-2 w-20 bg-gradient-to-r from-background via-background to-transparent pointer-events-none md:hidden"
-                />
-              )}
-              {canScrollRight && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="absolute right-0 top-0 bottom-2 w-20 bg-gradient-to-l from-background via-background to-transparent pointer-events-none md:hidden"
-                />
-              )}
             </div>
           </AnimatedSection>
 
