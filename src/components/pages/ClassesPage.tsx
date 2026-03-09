@@ -126,9 +126,33 @@ export default function ClassesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.title = 'Classes | Maison Mère Studio';
+  }, []);
+
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', checkScroll);
+      window.addEventListener('resize', checkScroll);
+      return () => {
+        container.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -270,8 +294,11 @@ export default function ClassesPage() {
         <div className="container mx-auto px-4">
           {/* Category Navigation Bar */}
           <AnimatedSection>
-            <div className="mb-12">
-              <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:justify-center md:flex-wrap">
+            <div className="mb-12 relative">
+              <div 
+                ref={scrollContainerRef}
+                className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:justify-center md:flex-wrap scroll-smooth"
+              >
                 {uniqueGroups.map((group) => (
                   <motion.button
                     key={group}
@@ -294,6 +321,22 @@ export default function ClassesPage() {
                   </motion.button>
                 ))}
               </div>
+              
+              {/* Scroll indicators */}
+              {canScrollLeft && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-background via-background to-transparent pointer-events-none md:hidden"
+                />
+              )}
+              {canScrollRight && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background via-background to-transparent pointer-events-none md:hidden"
+                />
+              )}
             </div>
           </AnimatedSection>
 
