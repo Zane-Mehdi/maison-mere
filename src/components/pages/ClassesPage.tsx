@@ -283,7 +283,13 @@ export default function ClassesPage() {
                       setActiveCategory(group);
                       const element = document.getElementById(`category-${group}`);
                       if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        const headerHeight = 80;
+                        const offset = 200;
+                        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                          top: elementPosition - headerHeight - offset,
+                          behavior: 'smooth'
+                        });
                       }
                     }}
                     className={`px-4 py-2 rounded-full font-heading font-semibold text-sm transition-all duration-300 ${
