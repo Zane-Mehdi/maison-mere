@@ -49,10 +49,18 @@ export default function BookAClassPage() {
     script.async = true;
     document.body.appendChild(script);
 
+    // Reinitialize widget when script loads
+    script.onload = () => {
+      if (window.MBW) {
+        window.MBW.render();
+      }
+    };
+
     return () => {
-      // Cleanup: remove script when component unmounts
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+      // Don't remove the script - keep it in DOM for persistence
+      // Just reset the widget if needed
+      if (window.MBW) {
+        window.MBW.render();
       }
     };
   }, []);
