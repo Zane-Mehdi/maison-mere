@@ -20,9 +20,7 @@ export default {
             },
             fontFamily: {
                 heading: ["fraunces_120pt-semibold", "serif"],
-                paragraph: ["fraunces", "serif"],
-                roboto: ["roboto", "sans-serif"],
-                montserrat: ["montserrat", "sans-serif"]
+                paragraph: ["fraunces", "serif"]
             },
             colors: {
                 primary: "#D4A5A5",

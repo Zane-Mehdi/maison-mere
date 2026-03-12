@@ -73,6 +73,7 @@ export default function BookAClassPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+
       {/* Banner CTA */}
       <section className="bg-accent text-accent-foreground py-6 pt-32">
         <div className="container mx-auto px-4">
@@ -99,12 +100,13 @@ export default function BookAClassPage() {
           </AnimatedSection>
         </div>
       </section>
+
       {/* Main Content */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 font-montserrat">
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-4">
                 Book A Class
               </h1>
               <p className="text-xl text-foreground/70 font-paragraph mb-12">
@@ -124,7 +126,7 @@ export default function BookAClassPage() {
           <AnimatedSection delay={200}>
             <div className="max-w-4xl mx-auto mt-20 grid md:grid-cols-2 gap-8">
               <div className="bg-card border border-border rounded-lg p-8">
-                <h3 className="text-xl font-bold text-foreground mb-4 font-montserrat">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-4">
                   How to Book
                 </h3>
                 <ul className="space-y-3 font-paragraph text-foreground/70">
@@ -138,9 +140,9 @@ export default function BookAClassPage() {
                   </li>
                   <li className="flex gap-3">
                     <span className="text-primary font-bold">3.</span>
-                    <span className="font-montserrat">Complete your booking and receive confirmation</span>
+                    <span>Complete your booking and receive confirmation</span>
                   </li>
-                  <li className="flex gap-3 font-paragraph">
+                  <li className="flex gap-3">
                     <span className="text-primary font-bold">4.</span>
                     <span>Arrive 10 minutes early to get settled</span>
                   </li>
@@ -148,7 +150,7 @@ export default function BookAClassPage() {
               </div>
 
               <div className="bg-card border border-border rounded-lg p-8">
-                <h3 className="text-xl font-bold text-foreground mb-4 font-montserrat">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-4">
                   Cancellation Policy
                 </h3>
                 <p className="font-paragraph text-foreground/70 mb-4">
@@ -165,6 +167,7 @@ export default function BookAClassPage() {
           </AnimatedSection>
         </div>
       </section>
+
       <Footer />
     </div>
   );
