@@ -43,24 +43,48 @@ export default function BookAClassPage() {
   }, []);
 
   useEffect(() => {
-    // Load Mindbody widget script
-    const script = document.createElement('script');
-    script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Reinitialize widget when script loads
-    script.onload = () => {
-      if (window.MBW) {
-        window.MBW.render();
+    // Ensure Mindbody script is loaded globally (only once)
+    const ensureMindbodyScript = () => {
+      // Check if script already exists
+      const existingScript = document.querySelector('script[src="https://brandedweb.mindbodyonline.com/embed/widget.js"]');
+      
+      if (existingScript) {
+        // Script already loaded, just render the widget
+        if (window.MBW) {
+          window.MBW.render();
+        }
+        return;
       }
+
+      // Load script for the first time
+      const script = document.createElement('script');
+      script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
+      script.async = true;
+      
+      script.onload = () => {
+        // Give the script time to initialize
+        setTimeout(() => {
+          if (window.MBW) {
+            window.MBW.render();
+          }
+        }, 100);
+      };
+
+      script.onerror = () => {
+        console.error('Failed to load Mindbody widget script');
+      };
+
+      document.body.appendChild(script);
     };
 
+    ensureMindbodyScript();
+
     return () => {
-      // Don't remove the script - keep it in DOM for persistence
-      // Just reset the widget if needed
+      // On cleanup, re-render the widget if it exists
       if (window.MBW) {
-        window.MBW.render();
+        setTimeout(() => {
+          window.MBW.render();
+        }, 50);
       }
     };
   }, []);
