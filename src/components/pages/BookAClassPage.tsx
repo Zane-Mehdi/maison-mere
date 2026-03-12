@@ -75,34 +75,6 @@ export default function BookAClassPage() {
     document.title = 'Book a Class | Maison Mère Studio';
   }, []);
 
-  // Load Mindbody script once globally
-  useEffect(() => {
-    // Check if script is already loaded
-    if (window.MBWidgetAPI) {
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
-  // Re-initialize widget on mount
-  useEffect(() => {
-    // Wait for the script to load and MBWidgetAPI to be available
-    const initWidget = () => {
-      if (window.MBWidgetAPI) {
-        window.MBWidgetAPI.render();
-      } else {
-        // Retry if not ready yet
-        setTimeout(initWidget, 100);
-      }
-    };
-
-    initWidget();
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -150,9 +122,7 @@ export default function BookAClassPage() {
 
           {/* Mindbody Schedule Widget */}
           <AnimatedSection delay={100}>
-            <div className="w-full">
-              <div className="mindbody-widget" data-widget-type="Schedules" data-widget-id="8932765aa51"></div>
-            </div>
+                          <MindbodySchedule />
           </AnimatedSection>
 
           {/* Info Section */}
