@@ -514,10 +514,10 @@ export default function HomePage() {
               <FadeIn>
                 <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Maison Mère Studio</p>
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                  More Than Just Pilates
+                  Pilates Beyond the Studio
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Enhance your wellness journey at our in-studio Wellness Bar, or speak to us about private hire. We offer a curated selection of health drinks and a beautiful space for events.
+                  At Maison Mère, we believe pilates is a complete wellness experience. Complement your practice with our curated Wellness Bar featuring matcha, cold-pressed juices, and nourishing snacks. Or host your private pilates events in our serene, beautifully designed studio.
                 </p>
                <Button
                  onClick={() => navigate('/contact')}
