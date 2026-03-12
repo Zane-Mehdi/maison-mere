@@ -5,7 +5,11 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
+const AnimatedSection: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,51 +34,63 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      className={`transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      } ${className}`}
     >
       {children}
     </div>
   );
 };
 
-export default function BookAClassPage() {
-  useEffect(() => {
-    document.title = 'Book a Class | Maison Mère Studio';
-  }, []);
+function MindbodySchedule() {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Load Mindbody script once globally
   useEffect(() => {
-    // Check if script is already loaded
-    if (window.MBWidgetAPI) {
-      return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Clear previous widget markup
+    container.innerHTML = '';
+
+    // Recreate widget element
+    const widget = document.createElement('div');
+    widget.className = 'mindbody-widget';
+    widget.setAttribute('data-widget-type', 'Schedules');
+    widget.setAttribute('data-widget-id', '8932765aa51');
+    container.appendChild(widget);
+
+    // Remove old script so it can initialise again
+    const oldScript = document.querySelector(
+      'script[src="https://brandedweb.mindbodyonline.com/embed/widget.js"]'
+    );
+    if (oldScript) {
+      oldScript.remove();
     }
 
+    // Add fresh script
     const script = document.createElement('script');
     script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
     script.async = true;
     document.body.appendChild(script);
+
+    return () => {
+      container.innerHTML = '';
+    };
   }, []);
 
-  // Re-initialize widget on mount
-  useEffect(() => {
-    // Wait for the script to load and MBWidgetAPI to be available
-    const initWidget = () => {
-      if (window.MBWidgetAPI) {
-        window.MBWidgetAPI.render();
-      } else {
-        // Retry if not ready yet
-        setTimeout(initWidget, 100);
-      }
-    };
+  return <div ref={containerRef} className="w-full" />;
+}
 
-    initWidget();
+export default function BookAClassPage() {
+  useEffect(() => {
+    document.title = 'Book a Class | Maison Mère Studio';
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Banner CTA */}
       <section className="bg-accent text-accent-foreground py-6 pt-32">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -87,6 +103,7 @@ export default function BookAClassPage() {
                   Browse all available membership and pricing plans and find the perfect fit for you.
                 </p>
               </div>
+
               <Button
                 asChild
                 className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading hover:scale-105 active:scale-95 no-underline"
@@ -101,7 +118,6 @@ export default function BookAClassPage() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -115,14 +131,12 @@ export default function BookAClassPage() {
             </div>
           </AnimatedSection>
 
-          {/* Mindbody Schedule Widget */}
           <AnimatedSection delay={100}>
-            <div className="w-full">
-              <div className="mindbody-widget" data-widget-type="Schedules" data-widget-id="8932765aa51"></div>
+            <div className="max-w-4xl mx-auto">
+              <MindbodySchedule />
             </div>
           </AnimatedSection>
 
-          {/* Info Section */}
           <AnimatedSection delay={200}>
             <div className="max-w-4xl mx-auto mt-20 grid md:grid-cols-2 gap-8">
               <div className="bg-card border border-border rounded-lg p-8">
@@ -154,7 +168,7 @@ export default function BookAClassPage() {
                   Cancellation Policy
                 </h3>
                 <p className="font-paragraph text-foreground/70 mb-4">
-                  We understand that plans change. Here's our cancellation policy:
+                  We understand that plans change. Here&apos;s our cancellation policy:
                 </p>
                 <ul className="space-y-2 font-paragraph text-foreground/70 text-sm">
                   <li>• Cancel up to 24 hours before class for a full credit</li>

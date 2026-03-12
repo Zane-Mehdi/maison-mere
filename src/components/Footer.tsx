@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
            <div>
-            <h3 className="text-2xl font-heading font-bold mb-4">MAISON MÈRE</h3>
+            <h3 className="text-2xl font-bold mb-4 font-montserrat">MAISON MÈRE</h3>
             <p className="text-background/80 font-paragraph text-sm leading-relaxed">
               Premium Reformer Pilates for women seeking strength, balance, and wellness in an inclusive, supportive community environment.
             </p>
