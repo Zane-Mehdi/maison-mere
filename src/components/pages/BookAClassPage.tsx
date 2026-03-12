@@ -104,7 +104,7 @@ export default function BookAClassPage() {
 
           {/* Mindbody Schedule Widget */}
           <AnimatedSection delay={100}>
-            <div className="max-w-4xl mx-auto">
+            <div className="w-full">
               <div className="mindbody-widget" data-widget-type="Schedules" data-widget-id="8932765aa51"></div>
             </div>
           </AnimatedSection>
