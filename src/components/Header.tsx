@@ -31,24 +31,24 @@ export default function Header() {
               Home
             </Link>
             <Link
+                to="/about"
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                About
+              </Link>
+            <Link
               to="/classes"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Membership and Pricing
             </Link>
             <Link
-              to="/book-a-class"
-              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-            >
-              Schedule
-            </Link>
+            to="/book-a-class"
+            className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+          >
+            Schedule
+          </Link>
           <Link
-              to="/about"
-              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-            >
-              About
-            </Link>
-            <Link
               to="/contact"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
