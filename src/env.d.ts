@@ -17,12 +17,6 @@ declare global {
   interface ImportMetaEnv {
     readonly BASE_NAME: string;
   }
-
-  interface Window {
-    MBW?: {
-      render: () => void;
-    };
-  }
 }
 
 declare module "react-router-dom" {

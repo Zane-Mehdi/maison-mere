@@ -6,7 +6,6 @@ import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Clock, TrendingUp, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 interface PricingPlan {
   _id: string;
@@ -193,10 +192,10 @@ export default function ClassesPage() {
                 asChild
                 className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading no-underline"
               >
-                <Link to="/book-a-class" className="flex items-center gap-2 no-underline">
+                <a href="/book-a-class" className="flex items-center gap-2 no-underline">
                   View Full Schedule
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </a>
               </Button>
             </div>
           </AnimatedSection>

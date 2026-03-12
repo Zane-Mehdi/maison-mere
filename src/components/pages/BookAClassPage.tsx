@@ -43,51 +43,16 @@ export default function BookAClassPage() {
   }, []);
 
   useEffect(() => {
-    // Force fresh reload of Mindbody widget every time user visits this page
-    const loadMindbodyScript = () => {
-      // Remove existing script to force fresh load
-      const existingScript = document.querySelector('script[src="https://brandedweb.mindbodyonline.com/embed/widget.js"]');
-      if (existingScript) {
-        existingScript.remove();
-      }
+    // Load Mindbody widget script
+    const script = document.createElement('script');
+    script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-      // Clear the MBW global object to reset state
-      if (window.MBW) {
-        delete window.MBW;
-      }
-
-      // Create and load fresh script
-      const script = document.createElement('script');
-      script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
-      script.async = true;
-      
-      script.onload = () => {
-        // Render after script loads
-        if (window.MBW) {
-          window.MBW.render();
-        }
-        // Also render after a delay to ensure full initialization
-        setTimeout(() => {
-          if (window.MBW) {
-            window.MBW.render();
-          }
-        }, 300);
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load Mindbody widget script');
-      };
-
-      document.body.appendChild(script);
-    };
-
-    loadMindbodyScript();
-
-    // Cleanup on unmount to prepare for fresh load on next visit
     return () => {
-      const script = document.querySelector('script[src="https://brandedweb.mindbodyonline.com/embed/widget.js"]');
-      if (script) {
-        script.remove();
+      // Cleanup: remove script when component unmounts
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
       }
     };
   }, []);
