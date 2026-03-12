@@ -41,12 +41,12 @@ export default function Header() {
             >
               Membership and Pricing
             </Link>
-            <Link
-            to="/book-a-class"
+            <a
+            href="/book-a-class"
             className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
           >
             Schedule
-          </Link>
+          </a>
           <Link
               to="/contact"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
