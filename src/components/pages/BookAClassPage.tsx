@@ -42,19 +42,32 @@ export default function BookAClassPage() {
     document.title = 'Book a Class | Maison Mère Studio';
   }, []);
 
+  // Load Mindbody script once globally
   useEffect(() => {
-    // Load Mindbody widget script
+    // Check if script is already loaded
+    if (window.MBWidgetAPI) {
+      return;
+    }
+
     const script = document.createElement('script');
     script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
     script.async = true;
     document.body.appendChild(script);
+  }, []);
 
-    return () => {
-      // Cleanup: remove script when component unmounts
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+  // Re-initialize widget on mount
+  useEffect(() => {
+    // Wait for the script to load and MBWidgetAPI to be available
+    const initWidget = () => {
+      if (window.MBWidgetAPI) {
+        window.MBWidgetAPI.render();
+      } else {
+        // Retry if not ready yet
+        setTimeout(initWidget, 100);
       }
     };
+
+    initWidget();
   }, []);
 
   return (
