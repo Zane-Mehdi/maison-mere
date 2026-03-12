@@ -87,27 +87,13 @@ export default function BookAClassPage() {
             </div>
           </AnimatedSection>
 
-          {/* Mindbody Placeholder */}
+          {/* Mindbody Schedule Widget */}
           <AnimatedSection delay={100}>
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-secondary/30 to-secondary/10 border-2 border-dashed border-primary/30 rounded-lg p-16 text-center">
-                <div className="space-y-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
-                    <div className="w-8 h-8 bg-primary/20 rounded-full" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold text-foreground">
-                    Mindbody Schedule System
-                  </h3>
-                  <p className="text-foreground/60 font-paragraph max-w-md mx-auto">
-                    Our class scheduling system will be embedded here. You'll be able to view available time slots, book your preferred classes, and manage your reservations.
-                  </p>
-                  <div className="pt-6">
-                    <p className="text-sm text-foreground/50 font-paragraph">
-                      [Mindbody Embed Code Placeholder]
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <div dangerouslySetInnerHTML={{__html: `
+                <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="8932765aa51"></div>
+                <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"><\/script>
+              `}} />
             </div>
           </AnimatedSection>
 
