@@ -168,11 +168,12 @@ export default function HeroSlideshow({
               <SlideInText delay={0.8}>
                 <div className="pointer-events-auto">
                   <Button
-                    onClick={currentSlideData.cta.action}
                     size="lg"
                     className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
                   >
-                    {currentSlideData.cta.text}
+                    <a href={currentSlideData.cta.action}>
+    {currentSlideData.cta.text}
+  </a>
                   </Button>
                 </div>
               </SlideInText>
