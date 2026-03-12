@@ -43,16 +43,21 @@ export default function BookAClassPage() {
   }, []);
 
   useEffect(() => {
-    // Ensure Mindbody script is loaded globally (only once)
-    const ensureMindbodyScript = () => {
-      // Check if script already exists
+    // Load Mindbody script if not already loaded
+    const loadMindbodyScript = () => {
       const existingScript = document.querySelector('script[src="https://brandedweb.mindbodyonline.com/embed/widget.js"]');
       
       if (existingScript) {
-        // Script already loaded, just render the widget
+        // Script exists, render immediately and after a delay to ensure DOM is ready
         if (window.MBW) {
           window.MBW.render();
         }
+        // Also try rendering after a short delay to catch any timing issues
+        setTimeout(() => {
+          if (window.MBW) {
+            window.MBW.render();
+          }
+        }, 200);
         return;
       }
 
@@ -62,12 +67,16 @@ export default function BookAClassPage() {
       script.async = true;
       
       script.onload = () => {
-        // Give the script time to initialize
+        // Render immediately after script loads
+        if (window.MBW) {
+          window.MBW.render();
+        }
+        // Also render after a delay to ensure full initialization
         setTimeout(() => {
           if (window.MBW) {
             window.MBW.render();
           }
-        }, 100);
+        }, 200);
       };
 
       script.onerror = () => {
@@ -77,16 +86,7 @@ export default function BookAClassPage() {
       document.body.appendChild(script);
     };
 
-    ensureMindbodyScript();
-
-    return () => {
-      // On cleanup, re-render the widget if it exists
-      if (window.MBW) {
-        setTimeout(() => {
-          window.MBW.render();
-        }, 50);
-      }
-    };
+    loadMindbodyScript();
   }, []);
 
   return (
