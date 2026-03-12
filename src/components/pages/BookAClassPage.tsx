@@ -89,12 +89,8 @@ export default function BookAClassPage() {
 
           {/* Mindbody Schedule Widget */}
           <AnimatedSection delay={100}>
-            <div className="max-w-4xl mx-auto">
-              <div dangerouslySetInnerHTML={{__html: `
-                <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="8932765aa51"></div>
-                <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"><\/script>
-              `}} />
-            </div>
+<div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="8932765aa51"></div>
+<script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
           </AnimatedSection>
 
           {/* Info Section */}
