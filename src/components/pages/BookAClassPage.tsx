@@ -37,6 +37,39 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   );
 };
 
+function MindbodySchedule() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    const widget = document.createElement('div');
+    widget.className = 'mindbody-widget';
+    widget.setAttribute('data-widget-type', 'Schedules');
+    widget.setAttribute('data-widget-id', '8932765aa51');
+    container.appendChild(widget);
+
+    const oldScript = document.querySelector(
+      'script[src="https://brandedweb.mindbodyonline.com/embed/widget.js"]'
+    );
+    if (oldScript) oldScript.remove();
+
+    const script = document.createElement('script');
+    script.src = 'https://brandedweb.mindbodyonline.com/embed/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      container.innerHTML = '';
+    };
+  }, []);
+
+  return <div ref={containerRef} className="w-full" />;
+}
+
 export default function BookAClassPage() {
   useEffect(() => {
     document.title = 'Book a Class | Maison Mère Studio';
