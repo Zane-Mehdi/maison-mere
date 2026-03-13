@@ -167,9 +167,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                   Hours
                 </h3>
-                <p className="text-foreground/70 font-paragraph text-sm">
-                  Mon-Fri: 6am-9pm
-                </p>
+                <p className="text-foreground/70 font-paragraph text-sm">Mon-Fri: 7am-9pmSat: 3-5pm</p>
               </Card>
             </AnimatedSection>
           </div>
@@ -313,11 +311,11 @@ export default function ContactPage() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Monday - Friday</span>
-                        <span className="text-foreground font-paragraph font-semibold">6:00 AM - 9:00 PM</span>
+                        <span className="text-foreground font-paragraph font-semibold">7:00 AM - 9:00 PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Saturday</span>
-                        <span className="text-foreground font-paragraph font-semibold">8:00 AM - 6:00 PM</span>
+                        <span className="text-foreground font-paragraph font-semibold">15:00 PM - 17:00 PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Sunday</span>
