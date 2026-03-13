@@ -20,7 +20,8 @@ export default {
             },
             fontFamily: {
                 heading: ["fraunces", "serif"],
-                paragraph: ["fraunces", "serif"]
+                paragraph: ["fraunces", "serif"],
+                "fraunces_120pt-light": ["fraunces_120pt-light", "serif"]
             },
             colors: {
                 primary: "#D4A5A5",

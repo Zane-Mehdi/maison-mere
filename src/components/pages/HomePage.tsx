@@ -492,7 +492,7 @@ export default function HomePage() {
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>
-                      <p className="text-sm text-muted-foreground">Personalized sessions tailored to your specific goals and needs. Ideal for beginners, rehabilitation, or advanced practitioners.</p>
+                      <p className="text-sm text-muted-foreground">Personalised sessions tailored to your specific goals and needs. Ideal for beginners, rehabilitation, or advanced practitioners.</p>
                     </CardContent>
                   </Card>
                 </StaggerItem>
@@ -503,7 +503,7 @@ export default function HomePage() {
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
-                      <p className="text-sm text-muted-foreground">Our beautiful studio is available for private hire and special events.</p>
+                      <p className="text-sm text-muted-foreground">A beautiful and peaceful studio space available for private hire, ideal for workshops, wellness events and intimate gatherings.</p>
                     </CardContent>
                   </Card>
                 </StaggerItem>
