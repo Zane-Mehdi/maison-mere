@@ -80,9 +80,7 @@ export default function Footer() {
                 <a 
                   href="mailto:Contact@maisonmerestudio.com"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
-                >
-                  Contact@maisonmerestudio.com
-                </a>
+                >contact@maisonmerestudio.com</a>
               </li>
             </ul>
           </div>
@@ -91,7 +89,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-heading font-semibold mb-4">Opening Hours</h4>
             <ul className="space-y-2 text-background/80 font-paragraph text-sm">
-              <li>Monday - Friday: 6am - 9pm</li>
+              <li>Monday - Friday: 7:00am - 9:00am6:00pm - 9:00pm</li>
               <li>Saturday: 8am - 6pm</li>
               <li>Sunday: 9am - 5pm</li>
             </ul>

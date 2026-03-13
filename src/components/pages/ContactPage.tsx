@@ -319,7 +319,7 @@ export default function ContactPage() {
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Sunday</span>
-                        <span className="text-foreground font-paragraph font-semibold text-justify">12:00 PM - 1:00 PM      8:00PM - 9:00PM</span>
+                        <span className="text-foreground font-paragraph font-semibold text-center">12:00 PM - 1:00 PM      8:00PM - 9:00PM</span>
                       </div>
                     </div>
                   </Card>
@@ -371,12 +371,8 @@ export default function ContactPage() {
           <AnimatedSection>
             <div className="max-w-6xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">
-                  Find Us on the Map
-                </h2>
-                <p className="text-foreground/70 font-paragraph">
-                  Visit us at our studio location in Harrow
-                </p>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">Find Us</h2>
+
               </div>
               <div className="aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-lg">
                 <iframe
