@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button';
-import { Image } from '@/components/ui/image';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import React, { useCallback, useEffect, useState } from 'react';
+import { Image } from '@/components/ui/image';
+import { Button } from '@/components/ui/button';
 
 interface SlideItem {
   id: string;
@@ -168,13 +168,11 @@ export default function HeroSlideshow({
               <SlideInText delay={0.8}>
                 <div className="pointer-events-auto">
                   <Button
-                    asChild
+                    onClick={currentSlideData.cta.action}
                     size="lg"
                     className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
                   >
-                    <a href={currentSlideData.cta.action}>
-    {currentSlideData.cta.text}
-  </a>
+                    {currentSlideData.cta.text}
                   </Button>
                 </div>
               </SlideInText>
