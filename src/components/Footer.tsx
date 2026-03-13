@@ -89,8 +89,8 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-heading font-semibold mb-4">Opening Hours</h4>
             <ul className="space-y-2 text-background/80 font-paragraph text-sm">
-              <li>Monday - Friday: 7:00am - 9:00am6:00pm - 9:00pm</li>
               <li>Saturday: 3pm - 5pm</li>
+              <li>Monday - Friday: 7:00am - 9:00am6:00pm - 9:00pm</li>
               <li>Sunday: 12pm - 1pm9:00pm - 9:00pm</li>
             </ul>
           </div>
@@ -99,9 +99,6 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-            <p className="text-background/60 font-paragraph text-sm">
-              © 2026 maisonerestudio.co.uk. All rights reserved.
-            </p>
             <div className="flex items-center gap-4">
               <a
                 href="https://instagram.com"
@@ -113,7 +110,8 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
-          </div>
+          <p className="text-background/60 font-paragraph text-sm">© 2025 Maison Mère Studio.  All rights reserved.</p>
+            </div>
           
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-6 text-background/70 font-paragraph text-sm">
