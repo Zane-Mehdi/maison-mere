@@ -491,7 +491,7 @@ export default function HomePage() {
                       <Image src="https://static.wixstatic.com/media/980ffc_545fe52b1e4442d1856102c05a047fed~mv2.png?originWidth=768&originHeight=448" alt="Wellness Bar" className="w-full h-full object-cover" />
                     </div>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-heading font-bold mb-2">1:1 sessions</h3>
+                      <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>
                       <p className="text-sm text-muted-foreground">Enquire about our tailored 1:1 sessions designed to meet your specific fitness goals.</p>
                     </CardContent>
                   </Card>
