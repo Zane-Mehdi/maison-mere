@@ -473,7 +473,7 @@ export default function HomePage() {
               "I've been to several Pilates studios, but I felt the warmest and most welcomed at Maison Mère Studio. I truly love and stand by their values, and I deeply appreciate their inclusivity as well as the variety of classes they offer."
             </blockquote>
             <cite className="not-italic text-sm font-bold uppercase tracking-widest text-muted-foreground">
-              — Member
+              — Maryam N
             </cite>
           </FadeIn>
         </div>
