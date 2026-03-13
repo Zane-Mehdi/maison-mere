@@ -492,7 +492,7 @@ export default function HomePage() {
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">1:1 sessions</h3>
-                      <p className="text-sm text-muted-foreground">Enjoy a selection of Matcha, cold-pressed juices, and healthy snacks.</p>
+                      <p className="text-sm text-muted-foreground">Enquire about our tailored 1:1 sessions designed to meet your specific fitness goals.</p>
                     </CardContent>
                   </Card>
                 </StaggerItem>
