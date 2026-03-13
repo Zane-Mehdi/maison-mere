@@ -492,7 +492,7 @@ export default function HomePage() {
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>
-                      <p className="text-sm text-muted-foreground">Discover bespoke sessions crafted to align with your unique aspirations and requirements. Perfect for those starting their journey, recovering, or seeking advanced practice.</p>
+                      <p className="text-sm text-muted-foreground">Personalized sessions tailored to your specific goals and needs. Ideal for beginners, rehabilitation, or advanced practitioners.</p>
                     </CardContent>
                   </Card>
                 </StaggerItem>
