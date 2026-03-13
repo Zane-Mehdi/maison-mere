@@ -311,15 +311,15 @@ export default function ContactPage() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Monday - Friday</span>
-                        <span className="text-foreground font-paragraph font-semibold">7:00 AM - 9:00 PM</span>
+                        <span className="text-foreground font-paragraph font-semibold">7:00 AM - 9:00 AM6:00 PM - 9:00PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Saturday</span>
-                        <span className="text-foreground font-paragraph font-semibold">15:00 PM - 17:00 PM</span>
+                        <span className="text-foreground font-paragraph font-semibold">3:00 PM - 5:00 PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Sunday</span>
-                        <span className="text-foreground font-paragraph font-semibold">9:00 AM - 5:00 PM</span>
+                        <span className="text-foreground font-paragraph font-semibold">12:00 PM - 1:00 PM8:00PM - 9:00PM</span>
                       </div>
                     </div>
                   </Card>
