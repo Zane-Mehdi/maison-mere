@@ -154,7 +154,7 @@ export default function ContactPage() {
                   <h3 className="text-lg font-heading font-bold text-foreground mb-2">
                     Email
                   </h3>
-                  <p className="text-foreground/70 font-paragraph text-sm hover:text-primary transition-colors">Contact@maisonmerestudio.com</p>
+                  <p className="text-foreground/70 font-paragraph text-sm hover:text-primary transition-colors">contact@maisonmerestudio.com</p>
                 </Card>
               </a>
             </AnimatedSection>
