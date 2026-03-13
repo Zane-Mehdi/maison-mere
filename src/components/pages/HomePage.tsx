@@ -470,7 +470,7 @@ export default function HomePage() {
               <Star className="w-6 h-6 inline-block mx-1 fill-current" />
             </div>
             <blockquote className="text-2xl md:text-4xl font-heading font-light italic leading-tight text-foreground mb-8">
-              "Can't recommend this studio enough!! The owner is very welcoming and sweet and goes to lengths to make you feel comfortable. As a pregnant woman, the instructor was very accomodating.and made sure I was feeling okay during the whole session. I can't wait to try the different classes that they offer."
+              "I've been to several Pilates studios, but I felt the warmest and most welcomed at Maison Mère Studio. I truly love and stand by their values, and I deeply appreciate their inclusivity as well as the variety of classes they offer."
             </blockquote>
             <cite className="not-italic text-sm font-bold uppercase tracking-widest text-muted-foreground">
               — Member
