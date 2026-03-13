@@ -231,7 +231,7 @@ export default function ClassesPage() {
                   {introOffer.itemPrice && (
                     <div className="mb-6 inline-block">
                       <p className="text-5xl md:text-6xl font-heading font-bold text-primary-foreground">
-                        £{introOffer.itemPrice.toFixed(2)}
+                        £65
                       </p>
                       <p className="text-primary-foreground/80 text-sm mt-2 font-paragraph">Limited time offer</p>
                     </div>
