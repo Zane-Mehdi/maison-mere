@@ -19,9 +19,11 @@ export default {
                 '9xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.01em', fontWeight: 'bold' }],
             },
             fontFamily: {
-                heading: ["fraunces_120pt-light", "serif"],
-                paragraph: ["fraunces_120pt-light", "serif"],
-                "fraunces_120pt-light": ["fraunces_120pt-light", "serif"]
+                heading: ["fraunces", "serif"],
+                paragraph: ["noticia text", "serif"],
+                "fraunces_120pt-light": ["fraunces_120pt-light", "serif"],
+                montserrat: ["montserrat", "sans-serif"],
+                "noticia-text": ["noticia text", "serif"]
             },
             colors: {
                 primary: "#D4A5A5",

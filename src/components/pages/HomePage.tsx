@@ -258,7 +258,7 @@ export default function HomePage() {
               Discover your strength through <span className="italic text-primary">mindful movement</span>, <span className="italic text-primary">expert guidance</span>, and <span className="italic text-primary">sisterhood</span>.
             </h2>
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">A space to grow stronger and reconnect. Created exclusively for women.</p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">At Maison Mère Studio every class is more than movement. It is an opportunity to build strength, confidence and connection in a supportive women's - only environment designed for comfort and empowerment.</p>
             <Button
               onClick={() => navigate('/about')}
               variant="outline"
@@ -313,14 +313,10 @@ export default function HomePage() {
             <FadeIn delay={0.2}>
               <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">A Safe Place To Grow</p>
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                Women's Only Studio & <br/><span className="italic text-primary">Hijab Friendly</span>
+                Women's Only Studio & <br/><span className="italic text-primary">Designed for Comfort</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
-              </p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey.
-              </p>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Step into a serene, elegant space designed exclusively for women. Our studio combines blends modern design with comfort, creating a welcoming environment where you can move freely and focus on yourself.</p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">Our studio is proudly hijabi-friendly and built to provide a private space where women can focus on their well-being. We offer group classes, private sessions and specialised training including pre and postnatal support.</p>
               <Button
                 onClick={() => navigate('/about')}
                 className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
