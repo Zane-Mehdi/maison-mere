@@ -490,11 +490,11 @@ export default function HomePage() {
                     <div className="aspect-video overflow-hidden">
                       <Image
                         src="https://static.wixstatic.com/media/3133d9_66ff80aab54244578853afa086cf075f~mv2.jpg"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-[1]"
                         originWidth={1365}
                         originHeight={2048}
                         focalPointX={72.23443223443223}
-                        focalPointY={39.0380859375} />
+                        focalPointY={65} />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>
