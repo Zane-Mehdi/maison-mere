@@ -19,8 +19,8 @@ export default {
                 '9xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.01em', fontWeight: 'bold' }],
             },
             fontFamily: {
-                heading: ["fraunces", "serif"],
-                paragraph: ["fraunces", "serif"],
+                heading: ["fraunces_120pt-light", "serif"],
+                paragraph: ["fraunces_120pt-light", "serif"],
                 "fraunces_120pt-light": ["fraunces_120pt-light", "serif"]
             },
             colors: {

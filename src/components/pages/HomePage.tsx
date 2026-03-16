@@ -258,9 +258,7 @@ export default function HomePage() {
               Discover your strength through <span className="italic text-primary">mindful movement</span>, <span className="italic text-primary">expert guidance</span>, and <span className="italic text-primary">sisterhood</span>.
             </h2>
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-              Maison Mère Studio is a sanctuary where women come together to transform their bodies and minds. Our expert instructors guide you through transformative Reformer Pilates sessions in a welcoming, judgment-free space designed exclusively for you.
-            </p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">A space to grow stronger and reconnect. Created exclusively for women.</p>
             <Button
               onClick={() => navigate('/about')}
               variant="outline"
