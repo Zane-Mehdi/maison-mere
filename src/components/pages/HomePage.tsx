@@ -361,7 +361,7 @@ export default function HomePage() {
                 <StaggerItem key={classType._id} className="group">
                   <Link to="/book-a-class" className="block h-full">
                     <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
-                      <div className="aspect-[3/4] overflow-hidden relative mb-6">
+                      <div className="aspect-[3/4] overflow-hidden relative mb-3">
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
                           {classType.difficultyLevel || 'All Levels'}
                         </div>
