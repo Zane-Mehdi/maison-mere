@@ -585,7 +585,11 @@ export default function HomePage() {
 
       {/* CTA SECTION */}
       <section className="py-24 bg-primary text-white relative overflow-hidden">
-        <Image src="https://static.wixstatic.com/media/3133d9_8eba6e6e91a749b0a6bee624bd6a57ee~mv2.png?originWidth=1152&originHeight=768" alt="Geometric cubes pattern" className="absolute inset-0 w-full h-full object-cover opacity-10" width={1152} height={768} />
+        <div
+          className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"
+          src="https://static.wixstatic.com/media/3133d9_f863f18b3720451a9b425571c2fbee26~mv2.jpg"
+          originWidth={2048}
+          originHeight={1365}></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <FadeIn>
             <p className="text-white/80 text-sm uppercase tracking-widest mb-6 font-semibold">
