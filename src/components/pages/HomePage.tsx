@@ -312,10 +312,8 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn delay={0.2}>
               <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">A Safe Place To Grow</p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                Women's Only Studio & <br className="text-4xl" /><span className="italic text-primary text-4xl">Designed for Comfort</span>
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Step into a serene, elegant space designed exclusively for women. Our studio combines blends modern design with comfort, creating a welcoming environment where you can move freely and focus on yourself.</p>
+
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Step into a serene, elegant space designed exclusively for women. Our studio blends modern design with comfort, creating a welcoming environment where you can move freely and focus on yourself.</p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">Our studio is proudly hijabi-friendly and built to provide a private space where women can focus on their well-being. We offer group classes, private sessions and specialised training including pre and postnatal support.</p>
               <Button
                 onClick={() => navigate('/about')}
@@ -334,8 +332,8 @@ export default function HomePage() {
                   originHeight={2048} />
               </div>
               <div className="absolute -bottom-10 -right-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
-                <p className="font-heading font-bold text-xl mb-2">Safe Space</p>
-                <p className="text-sm text-muted-foreground">Designed for privacy, comfort, and community.</p>
+                <p className="font-heading font-bold text-xl mb-2">Your Space To Move</p>
+                <p className="text-sm text-muted-foreground">Private, welcoming and designed for women.</p>
               </div>
             </FadeIn>
           </div>
