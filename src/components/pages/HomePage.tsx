@@ -334,10 +334,10 @@ export default function HomePage() {
             <FadeIn className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
                 <Image
-                  src="https://static.wixstatic.com/media/980ffc_84bdf9424e494e0dbc4b0a4e9b5a9121~mv2.png?originWidth=768&originHeight=960"
-                  alt="Women Only Studio"
+                  src="https://static.wixstatic.com/media/3133d9_7eea06941ae04d518bd04eebd7024da3~mv2.jpg"
                   className="w-full h-full object-cover"
-                />
+                  originWidth={1455}
+                  originHeight={2048} />
               </div>
               <div className="absolute -bottom-10 -right-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
                 <p className="font-heading font-bold text-xl mb-2">Safe Space</p>
@@ -488,7 +488,13 @@ export default function HomePage() {
                 <StaggerItem>
                   <Card className="border-none shadow-none bg-background h-full">
                     <div className="aspect-video overflow-hidden">
-                      <Image src="https://static.wixstatic.com/media/980ffc_545fe52b1e4442d1856102c05a047fed~mv2.png?originWidth=768&originHeight=448" alt="Wellness Bar" className="w-full h-full object-cover" />
+                      <Image
+                        src="https://static.wixstatic.com/media/3133d9_66ff80aab54244578853afa086cf075f~mv2.jpg"
+                        className="w-full h-full object-cover"
+                        originWidth={1365}
+                        originHeight={2048}
+                        focalPointX={72.23443223443223}
+                        focalPointY={39.0380859375} />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>

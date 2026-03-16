@@ -319,7 +319,7 @@ export default function ContactPage() {
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Sunday</span>
-                        <span className="text-foreground font-paragraph font-semibold text-center">12:00 PM - 1:00 PM      8:00PM - 9:00PM</span>
+                        <span className="text-foreground font-paragraph font-semibold text-center">12:00 PM - 1:00 PM</span>
                       </div>
                     </div>
                   </Card>
