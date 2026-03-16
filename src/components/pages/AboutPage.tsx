@@ -80,8 +80,8 @@ export default function AboutPage() {
               <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                 About Us
               </p>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mere Studios</h1>
-              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">A women-only reformer Pilates space in Harrow, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.</p>
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mère Studios</h1>
+              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">A women-only reformer Pilates space in harrow, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.</p>
             </div>
           </AnimatedSection>
         </div>
@@ -93,12 +93,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-                  <Image 
-                    src="https://static.wixstatic.com/media/980ffc_dbb2060d23a3454eb14f56e4364fbb2b~mv2.png?originWidth=448&originHeight=576"
-                    alt="HNB Studio interior"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    width={500}
-                  />
+
                 </div>
               </AnimatedSection>
 
@@ -107,10 +102,8 @@ export default function AboutPage() {
                   <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                     Our Mission
                   </p>
-                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                    Empowering Women Through Movement
-                  </h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studios, we believe that fitness is more than just physical transformation. It's about building confidence, fostering community, and creating a space where every woman feels supported and empowered.</p>
+                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">Movement Designed for Women</h2>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studios, we believe movement is about more than just exercise. It's about building strength, confidence and connection in a space where women feel supported and comfortable.Our studio brings together Reformer Pilates, mat Pilates and yoga in a welcoming women-only environment. We're also proud to be baby-friendly, with dedicated pre</p>
                   <p className="text-base text-foreground/70 font-paragraph mb-8 leading-relaxed">
                     Our studio combines premium reformer equipment with expert instruction in a beautifully designed, women-only environment. We&apos;re committed to providing an inclusive space where women of all backgrounds, fitness levels, and abilities can thrive.
                   </p>
