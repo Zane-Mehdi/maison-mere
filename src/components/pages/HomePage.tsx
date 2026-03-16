@@ -505,7 +505,13 @@ export default function HomePage() {
                 <StaggerItem>
                   <Card className="border-none shadow-none bg-background h-full">
                     <div className="aspect-video overflow-hidden">
-                      <Image src="https://static.wixstatic.com/media/980ffc_5488cdab3c194676b17782d1783a30a3~mv2.png?originWidth=768&originHeight=448" alt="Private Hire" className="w-full h-full object-cover" />
+                      <Image
+                        src="https://static.wixstatic.com/media/3133d9_ed403d35d6ba430a9e44904c548d4ab8~mv2.jpg"
+                        className="w-full h-full object-cover"
+                        originWidth={1365}
+                        originHeight={2048}
+                        focalPointX={68.05860805860806}
+                        focalPointY={42.7978515625} />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
