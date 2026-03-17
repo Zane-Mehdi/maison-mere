@@ -45,9 +45,7 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 
 export default function AboutPage() {
   const [instructors, setInstructors] = useState<Instructors[]>([]);
-  const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isClassesLoading, setIsClassesLoading] = useState(true);
 
   useEffect(() => {
     document.title = 'About | Maison Mère Studio';
@@ -66,21 +64,6 @@ export default function AboutPage() {
     };
 
     fetchInstructors();
-  }, []);
-
-  useEffect(() => {
-    const fetchClassTypes = async () => {
-      try {
-        const result = await BaseCrudService.getAll<PilatesClassTypes>('aboutclasstypes');
-        setClassTypes(result.items);
-      } catch (error) {
-        console.error('Error fetching class types:', error);
-      } finally {
-        setIsClassesLoading(false);
-      }
-    };
-
-    fetchClassTypes();
   }, []);
 
   return (
@@ -193,59 +176,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* Classes Section - From HomePage */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <AnimatedSection>
-              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes</p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-                We Offer A Range Of Classes
-              </h2>
-              <p className="text-muted-foreground text-lg">To Suit All Levels of Fitness & Experience</p>
-            </AnimatedSection>
-          </div>
 
-          {isClassesLoading ? null : (
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {classTypes.length > 0 ? classTypes.map((classType, index) => (
-                <AnimatedSection key={classType._id} delay={index * 50}>
-                  <Link to="/book-a-class" className="block h-full group">
-                    <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
-                      <div className="aspect-[3/4] overflow-hidden relative mb-0">
-                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
-                          {classType.difficultyLevel || 'All Levels'}
-                        </div>
-                        <Image
-                          src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                          alt={classType.name || "Class Image"}
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
-                      <CardContent className="p-4 pt-0 text-center">
-                        <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{index + 1}</div>
-                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {classType.name}
-                        </h3>
-                        <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
-                          {classType.description}
-                        </p>
-                        <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
-                          Book Class
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </AnimatedSection>
-              )) : (
-                <div className="col-span-3 text-center py-12 text-muted-foreground">
-                  No classes currently available.
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
       {/* 1-1 Private Classes Section */}
       <section className="py-24 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
