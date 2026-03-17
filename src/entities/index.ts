@@ -4,6 +4,31 @@
  */
 
 /**
+ * Collection ID: aboutusclasses
+ * Interface for AboutUsClasses
+ */
+export interface AboutUsClasses {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  className?: string;
+  /** @wixFieldType text */
+  description?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  classImage?: string;
+  /** @wixFieldType number */
+  durationMinutes?: number;
+  /** @wixFieldType text */
+  instructorName?: string;
+  /** @wixFieldType text */
+  classFocus?: string;
+  /** @wixFieldType url */
+  bookingLink?: string;
+}
+
+
+/**
  * Collection ID: classtypes
  * Interface for PilatesClassTypes
  */

@@ -9,6 +9,17 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Heart, Users, Award, Shield } from 'lucide-react';
 
+interface AboutUsClass {
+  _id: string;
+  className?: string;
+  description?: string;
+  classImage?: string;
+  durationMinutes?: number;
+  instructorName?: string;
+  classFocus?: string;
+  bookingLink?: string;
+}
+
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +54,9 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 
 export default function AboutPage() {
   const [instructors, setInstructors] = useState<Instructors[]>([]);
+  const [aboutUsClasses, setAboutUsClasses] = useState<AboutUsClass[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isClassesLoading, setIsClassesLoading] = useState(true);
 
   useEffect(() => {
     document.title = 'About | Maison Mère Studio';
@@ -62,6 +75,21 @@ export default function AboutPage() {
     };
 
     fetchInstructors();
+  }, []);
+
+  useEffect(() => {
+    const fetchAboutUsClasses = async () => {
+      try {
+        const result = await BaseCrudService.getAll<AboutUsClass>('aboutusclasses');
+        setAboutUsClasses(result.items);
+      } catch (error) {
+        console.error('Error fetching about us classes:', error);
+      } finally {
+        setIsClassesLoading(false);
+      }
+    };
+
+    fetchAboutUsClasses();
   }, []);
 
   return (
@@ -171,6 +199,79 @@ export default function AboutPage() {
                 </Card>
               </AnimatedSection>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Classes Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
+                Our Classes
+              </p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                Discover Our Pilates Classes
+              </h2>
+              <p className="text-lg text-foreground/80 font-paragraph max-w-2xl mx-auto">
+                From reformer to mat, find the perfect class to match your fitness journey.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="min-h-[400px]">
+            {isClassesLoading ? null : aboutUsClasses.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {aboutUsClasses.map((classItem, index) => (
+                  <AnimatedSection key={classItem._id} delay={index * 50}>
+                    <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <Image 
+                          src={classItem.classImage || 'https://static.wixstatic.com/media/3133d9_f70382d3dd5d49d3a61b344af8e5f188~mv2.png?originWidth=384&originHeight=256'}
+                          alt={classItem.className || 'Class'}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          width={400}
+                        />
+                      </div>
+                      <CardContent className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-heading font-bold text-foreground mb-2">
+                          {classItem.className}
+                        </h3>
+                        {classItem.classFocus && (
+                          <p className="text-primary font-paragraph text-sm mb-2">
+                            {classItem.classFocus}
+                          </p>
+                        )}
+                        <p className="text-foreground/70 font-paragraph text-sm mb-4 flex-1 leading-relaxed">
+                          {classItem.description}
+                        </p>
+                        <div className="flex justify-between items-center text-sm text-foreground/60 mb-4">
+                          {classItem.durationMinutes && (
+                            <span>{classItem.durationMinutes} min</span>
+                          )}
+                          {classItem.instructorName && (
+                            <span>with {classItem.instructorName}</span>
+                          )}
+                        </div>
+                        {classItem.bookingLink && (
+                          <Button 
+                            asChild
+                            size="sm"
+                            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full"
+                          >
+                            <Link to={classItem.bookingLink}>Book Now</Link>
+                          </Button>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </AnimatedSection>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-foreground/60 font-paragraph">Explore our class offerings at the studio.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
