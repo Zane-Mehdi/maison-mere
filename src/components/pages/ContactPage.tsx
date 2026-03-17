@@ -48,21 +48,30 @@ export default function ContactPage() {
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
     document.title = 'Contact | Maison Mère Studio';
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    // Validate form data
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      return;
+    }
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
+    // Create email body with all form data
+    const emailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\n${formData.message}`;
+    
+    // Create mailto link with pre-populated data
+    const mailtoLink = `mailto:contact@maisonmerestudio.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
     setSubmitSuccess(true);
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
 
@@ -277,18 +286,13 @@ export default function ContactPage() {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting}
                       size="lg"
                       className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
                     >
-                      {isSubmitting ? (
-                        'Sending...'
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4 mr-2" />
-                          Send Message
-                        </>
-                      )}
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </>
                     </Button>
                   </form>
                 </div>
