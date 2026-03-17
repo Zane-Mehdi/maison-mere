@@ -4,6 +4,29 @@
  */
 
 /**
+ * Collection ID: aboutclasstypes
+ * Interface for AboutClassTypes
+ */
+export interface AboutClassTypes {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  classTypeName?: string;
+  /** @wixFieldType text */
+  description?: string;
+  /** @wixFieldType text */
+  tagline?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  classTypeImage?: string;
+  /** @wixFieldType text */
+  keyBenefits?: string;
+  /** @wixFieldType text */
+  difficultyLevel?: string;
+}
+
+
+/**
  * Collection ID: aboutusclasses
  * Interface for AboutUsClasses
  */

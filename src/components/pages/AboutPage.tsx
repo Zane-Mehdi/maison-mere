@@ -71,7 +71,7 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchClassTypes = async () => {
       try {
-        const result = await BaseCrudService.getAll<PilatesClassTypes>('classtypes');
+        const result = await BaseCrudService.getAll<PilatesClassTypes>('aboutclasstypes');
         setClassTypes(result.items);
       } catch (error) {
         console.error('Error fetching class types:', error);
