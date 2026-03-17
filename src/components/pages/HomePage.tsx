@@ -360,7 +360,7 @@ export default function HomePage() {
             <LoadingSpinner />
           ) : (
             <StaggerContainer className="grid md:grid-cols-3 gap-8">
-              {aboutClassTypes.length > 0 ? aboutClassTypes.map((classType, index) => (
+              {classTypes.length > 0 ? classTypes.map((classType, index) => (
                 <StaggerItem key={classType._id} className="group">
                   <Link to="/book-a-class" className="block h-full">
                     <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
@@ -369,8 +369,8 @@ export default function HomePage() {
                           {classType.difficultyLevel || 'All Levels'}
                         </div>
                         <Image
-                          src={classType.classTypeImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                          alt={classType.classTypeName || "Class Image"}
+                          src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
+                          alt={classType.name || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
@@ -379,7 +379,7 @@ export default function HomePage() {
                           0{index + 1}
                         </div>
                         <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {classType.classTypeName}
+                          {classType.name}
                         </h3>
                         <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
                           {classType.description}
