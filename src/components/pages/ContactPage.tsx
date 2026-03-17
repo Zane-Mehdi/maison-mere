@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 // Sanitization utility to prevent XSS and injection attacks
 const sanitizeInput = (input: string): string => {
   if (!input) return '';
-  
+
   // Remove any HTML tags and dangerous characters
   return input
     .replace(/[<>]/g, '') // Remove angle brackets
@@ -122,7 +122,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form data
     if (!validateForm()) {
       return;
@@ -139,13 +139,13 @@ export default function ContactPage() {
 
     // Create email body with sanitized data
     const emailBody = `Name: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nPhone: ${sanitizedData.phone}\n\n${sanitizedData.message}`;
-    
+
     // Create mailto link with pre-populated data
     const mailtoLink = `mailto:contact@maisonmerestudio.com?subject=${encodeURIComponent(sanitizedData.subject)}&body=${encodeURIComponent(emailBody)}`;
-    
+
     // Open default email client
     window.location.href = mailtoLink;
-    
+
     // Show success message
     setSubmitSuccess(true);
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -201,7 +201,7 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             <AnimatedSection>
               <a
-                href="https://www.google.com/maps/search/207+Watford+Rd,+Harrow+HA1+3UA"
+                href="https://www.google.com/maps/place/Maison+M%C3%A8re+Studio/@51.5662353,-0.3214471,17z/data=!3m1!4b1!4m6!3m5!1s0x487613a616224053:0x85765e83dbf291a4!8m2!3d51.5662353!4d-0.3214471!16s%2Fg%2F11xyd0ld08?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
