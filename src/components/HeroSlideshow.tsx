@@ -168,14 +168,13 @@ export default function HeroSlideshow({
             {currentSlideData?.cta && (
               <SlideInText delay={0.8}>
                 <div className="pointer-events-auto">
-                  <a href={currentSlideData.link} target="_top">
-                      <Button
-                        size="lg"
-                        className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
-                      >
-                        {currentSlideData.cta?.text}
-                      </Button>
-                    </a>
+                  <Button
+                    size="lg"
+                    onClick={currentSlideData.cta.action}
+                    className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
+                  >
+                    {currentSlideData.cta?.text}
+                  </Button>
                 </div>
               </SlideInText>
             )}

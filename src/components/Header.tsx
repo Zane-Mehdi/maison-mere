@@ -104,12 +104,12 @@ export default function Header() {
             >
               Membership and Pricing
             </Link>
-            <a
-              href="/book-a-class"
+            <Link
+              to="/book-a-class"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Schedule
-            </a>
+            </Link>
             <Link
               to="/contact"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
@@ -129,12 +129,12 @@ export default function Header() {
             >
               <Instagram className="w-5 h-5" />
             </a>
-            <a
-              href="/book-a-class"
+            <Link
+              to="/book-a-class"
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block"
             >
               Book Now
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -249,13 +249,13 @@ export default function Header() {
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
-              <a
-                href="/book-a-class"
+              <Link
+                to="/book-a-class"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block text-center"
               >
                 Book Now
-              </a>
+              </Link>
             </motion.nav>
           )}
         </AnimatePresence>
