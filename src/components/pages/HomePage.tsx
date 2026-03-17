@@ -648,7 +648,7 @@ export default function HomePage() {
                 </ul>
               </div>
 
-              <div className="bg-primary/10 p-6 rounded-lg border border-primary/20 mb-8 pr-2 inline-block">
+              <div className="bg-primary/10 p-6 rounded-lg border border-primary/20 pr-2 inline-block mt-0 mr-[11px] mb-8 ml-[11px]">
                 {pricingPlans.length > 0 && pricingPlans[0] ? (
                   <p className="text-xl font-heading font-bold text-foreground">
                     {pricingPlans[0].numberOfClasses} Classes for <span className="text-primary text-2xl">£{pricingPlans[0].itemPrice}</span>
@@ -662,7 +662,7 @@ export default function HomePage() {
 
               <Button
                 onClick={() => navigate('/classes')}
-                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline mt-6"
+                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none uppercase tracking-widest text-sm no-underline mt-6 justify-center gap-1 py-6 px-8"
               >
                 Claim Offer
               </Button>
