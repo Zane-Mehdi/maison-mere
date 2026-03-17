@@ -6,7 +6,6 @@ import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Clock, TrendingUp, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { useCallback } from 'react';
 
 interface PricingPlan {
   _id: string;
@@ -159,7 +158,7 @@ export default function ClassesPage() {
 
   // Extract intro offer (planGroup === 'Intro')
   const introOffer = pricingPlans.find(p => p.planGroup === 'Intro');
-  
+
   // Get unique plan groups (excluding Intro) and sort alphabetically
   const uniqueGroups = Array.from(new Set(
     pricingPlans
@@ -180,14 +179,14 @@ export default function ClassesPage() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Determine scroll direction
       if (currentScrollY > lastScrollY) {
         setScrollDirection('down');
       } else {
         setScrollDirection('up');
       }
-      
+
       // Show sticky section when scrolled past hero
       setIsSticky(currentScrollY > 300);
       setLastScrollY(currentScrollY);
@@ -200,7 +199,7 @@ export default function ClassesPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Sticky Minimized CTA - Always visible when scrolling */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -212,7 +211,7 @@ export default function ClassesPage() {
         transition={{ duration: 0.3 }}
         className="fixed top-20 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg"
       >
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
+        <div className="container mx-auto px-4 py-7 flex items-center justify-between gap-4">
           <div className="flex-1 min-w-0">
             <p className="text-sm font-heading font-bold truncate">
               View our full class schedule
@@ -266,7 +265,7 @@ export default function ClassesPage() {
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-foreground rounded-full blur-3xl"></div>
           </div>
-          
+
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
@@ -276,13 +275,13 @@ export default function ClassesPage() {
                     <span className="text-sm font-heading font-semibold text-primary-foreground">✨ Special Offer</span>
                   </div>
                 </div>
-                
+
                 {/* Main content */}
                 <div className="text-center">
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-primary-foreground leading-tight">
                     {introOffer.itemName}
                   </h2>
-                  
+
                   {/* Price highlight */}
                   {introOffer.itemPrice && (
                     <div className="mb-6 inline-block">
@@ -292,11 +291,11 @@ export default function ClassesPage() {
                       <p className="text-primary-foreground/80 text-sm mt-2 font-paragraph">Limited time offer</p>
                     </div>
                   )}
-                  
+
                   <p className="text-lg md:text-xl mb-6 text-primary-foreground/95 font-paragraph leading-relaxed max-w-2xl mx-auto">
                     {introOffer.itemDescription}
                   </p>
-                  
+
                   {introOffer.specialNotes && (
                     <div className="mb-8 p-4 bg-primary-foreground/10 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
                       <p className="text-base text-primary-foreground/90 font-paragraph">
@@ -304,7 +303,7 @@ export default function ClassesPage() {
                       </p>
                     </div>
                   )}
-                  
+
                   {introOffer.buyNowUrl && (
                     <Button
                       asChild
@@ -328,7 +327,7 @@ export default function ClassesPage() {
           {/* Category Navigation Bar */}
           <AnimatedSection>
             <div className="mb-12 relative">
-              <div 
+              <div
                 ref={scrollContainerRef}
                 className="grid grid-cols-2 md:flex md:justify-center md:flex-wrap gap-2"
               >
