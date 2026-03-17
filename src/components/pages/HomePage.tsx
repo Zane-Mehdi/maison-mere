@@ -389,6 +389,7 @@ export default function HomePage() {
     src: slide.slideImage || '',
     title: slide.heading || '',
     subtitle: slide.subheading || '',
+    link: slide.link || '',
     cta: {
       text: slide.ctaText || 'Learn More',
       action: () => {
