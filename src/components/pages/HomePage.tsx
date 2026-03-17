@@ -16,7 +16,7 @@ import {
   Star
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AnimatedSection } from './AboutPage';
 
 // Testimonials type
@@ -619,7 +619,7 @@ export default function HomePage() {
             <div className="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
               {aboutClassTypes.length > 0 ? aboutClassTypes.map((classType, index) => (
                 <AnimatedSection key={classType._id} delay={index * 50}>
-                  <Link to="/book-a-class" className="block h-full group">
+                  <a href="/book-a-class" className="block h-full group">
                     <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
                       <div className="aspect-[3/4] overflow-hidden relative mb-0">
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
@@ -644,7 +644,7 @@ export default function HomePage() {
                         </span>
                       </CardContent>
                     </Card>
-                  </Link>
+                  </a>
                 </AnimatedSection>
               )) : (
                 <div className="col-span-4 text-center py-12 text-muted-foreground">
