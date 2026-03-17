@@ -1,24 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { BaseCrudService } from '@/integrations';
 import { Instructors, PilatesClassTypes } from '@/entities';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { Heart, Users, Award, Shield } from 'lucide-react';
+import { BaseCrudService } from '@/integrations';
+import { Award, Heart, Shield, Users } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // ... keep existing code (AnimatedSection component) ...
 
-const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
+export const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -28,14 +28,14 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
       },
       { threshold: 0.1 }
     );
-    
+
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
     >
       {children}
@@ -92,7 +92,7 @@ export default function AboutPage() {
           backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
           backgroundSize: '30px 30px'
         }} />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
@@ -126,7 +126,7 @@ export default function AboutPage() {
                   <p className="text-base text-foreground/70 font-paragraph mb-8 leading-relaxed">
                     Our studio combines premium reformer equipment with expert instruction in a beautifully designed, women-only environment. We&apos;re committed to providing an inclusive space where women of all backgrounds, fitness levels, and abilities can thrive.
                   </p>
-                  <Button 
+                  <Button
                     asChild
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg"
@@ -213,9 +213,9 @@ export default function AboutPage() {
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
                           {classType.difficultyLevel || 'All Levels'}
                         </div>
-                        <Image 
-                          src={classType.image || "https://static.wixstatic.com/media/3133d9_2da583053839462ea0438f0f93ba46f8~mv2.png?originWidth=384&originHeight=512"} 
-                          alt={classType.name || "Class Image"} 
+                        <Image
+                          src={classType.image || "https://static.wixstatic.com/media/3133d9_2da583053839462ea0438f0f93ba46f8~mv2.png?originWidth=384&originHeight=512"}
+                          alt={classType.name || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                           width={400}
                         />
@@ -258,9 +258,9 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
-                  <Image 
-                    src="https://static.wixstatic.com/media/3133d9_6b505d3904304c04aad4b39a3a0a69af~mv2.png?originWidth=384&originHeight=448" 
-                    alt="1-1 Private Classes" 
+                  <Image
+                    src="https://static.wixstatic.com/media/3133d9_6b505d3904304c04aad4b39a3a0a69af~mv2.png?originWidth=384&originHeight=448"
+                    alt="1-1 Private Classes"
                     className="w-full h-full object-cover"
                     width={400}
                   />
@@ -285,7 +285,7 @@ export default function AboutPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button 
+                  <Button
                     asChild
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg"
@@ -329,7 +329,7 @@ export default function AboutPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button 
+                  <Button
                     asChild
                     size="lg"
                     className="bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 transition-all duration-200 shadow-lg"
@@ -340,9 +340,9 @@ export default function AboutPage() {
               </AnimatedSection>
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
-                  <Image 
-                    src="https://static.wixstatic.com/media/3133d9_68426ea9bd044d899a25a178b018cd2c~mv2.png?originWidth=384&originHeight=448" 
-                    alt="Private Classes & Instructor Hire" 
+                  <Image
+                    src="https://static.wixstatic.com/media/3133d9_68426ea9bd044d899a25a178b018cd2c~mv2.png?originWidth=384&originHeight=448"
+                    alt="Private Classes & Instructor Hire"
                     className="w-full h-full object-cover"
                     width={400}
                   />
@@ -376,7 +376,7 @@ export default function AboutPage() {
                   <AnimatedSection key={instructor._id} delay={index * 50}>
                     <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300">
                       <div className="aspect-square overflow-hidden">
-                        <Image 
+                        <Image
                           src={instructor.photo || 'https://static.wixstatic.com/media/980ffc_76032d75a8b044b2bc400d64f0786611~mv2.png?originWidth=256&originHeight=384'}
                           alt={instructor.name || 'Instructor'}
                           className="w-full h-full object-cover"
@@ -423,14 +423,14 @@ export default function AboutPage() {
               </h2>
               <p className="text-lg text-foreground/80 font-paragraph mb-8 leading-relaxed">Join our welcoming community.Your first step towards a stronger, more confident you starts here.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
+                <Button
                   asChild
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg"
                 >
                   <Link to="/classes">Book Your First Class</Link>
                 </Button>
-                <Button 
+                <Button
                   asChild
                   size="lg"
                   variant="outline"
