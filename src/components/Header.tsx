@@ -57,8 +57,9 @@ export default function Header() {
               Home
             </Link>
             <div className="relative group">
-              <button
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center gap-1"
+              <Link
+                to="/about"
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center gap-1 cursor-pointer"
                 onMouseEnter={() => setAboutDropdownOpen(true)}
                 onMouseLeave={() => setAboutDropdownOpen(false)}
               >
@@ -69,7 +70,7 @@ export default function Header() {
                 >
                   <ChevronDown className="w-4 h-4" />
                 </motion.div>
-              </button>
+              </Link>
               <AnimatePresence>
                 {aboutDropdownOpen && (
                   <motion.div
