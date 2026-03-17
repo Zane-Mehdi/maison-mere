@@ -231,13 +231,13 @@ export default function Header() {
               >
                 Contact
               </Link>
-              <Link
-                to="/book-a-class"
+              <a
+                href="/book-a-class"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
                 Schedule
-              </Link>
+              </a>
               <div className="flex items-center gap-4 pt-2">
                 <a
                   href="https://www.instagram.com/maisonmerestudio/?hl=en"
@@ -249,13 +249,13 @@ export default function Header() {
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
-              <Link
-                to="/book-a-class"
+              <a
+                href="/book-a-class"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block text-center"
               >
                 Book Now
-              </Link>
+              </h>
             </motion.nav>
           )}
         </AnimatePresence>
