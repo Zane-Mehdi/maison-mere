@@ -186,7 +186,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="pt-32">
+      <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
         <SectionNavigator />
       </div>
       {/* Hero Section */}
