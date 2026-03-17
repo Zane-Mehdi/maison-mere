@@ -1,10 +1,26 @@
 import { Image } from '@/components/ui/image';
-import { Instagram, Menu, X } from 'lucide-react';
+import { Instagram, Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+
+  const aboutSections = [
+    { id: 'classes', label: 'Our Classes' },
+    { id: 'private-classes', label: 'Private Classes' },
+    { id: 'corporate', label: 'Corporate & Events' },
+    { id: 'instructors', label: 'Our Instructors' }
+  ];
+
+  const handleSectionScroll = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setAboutDropdownOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -29,12 +45,33 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
-                to="/about"
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            <div className="relative group">
+              <button
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center gap-1"
+                onMouseEnter={() => setAboutDropdownOpen(true)}
+                onMouseLeave={() => setAboutDropdownOpen(false)}
               >
                 About
-              </Link>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {aboutDropdownOpen && (
+                <div
+                  className="absolute left-0 mt-0 w-48 bg-white border border-border rounded-lg shadow-lg py-2 z-50"
+                  onMouseEnter={() => setAboutDropdownOpen(true)}
+                  onMouseLeave={() => setAboutDropdownOpen(false)}
+                >
+                  {aboutSections.map((section) => (
+                    <button
+                      key={section.id}
+                      onClick={() => handleSectionScroll(section.id)}
+                      className="w-full text-left px-4 py-2 text-foreground hover:bg-secondary/20 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                    >
+                      {section.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               to="/classes"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
@@ -42,18 +79,18 @@ export default function Header() {
               Membership and Pricing
             </Link>
             <a
-            href="/book-a-class"
-            className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-          >
-            Schedule
-          </a>
-          <Link
+              href="/book-a-class"
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Schedule
+            </a>
+            <Link
               to="/contact"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Contact
             </Link>
-            </nav>
+          </nav>
 
           {/* Social Icons & CTA */}
           <div className="hidden md:flex items-center gap-4">
