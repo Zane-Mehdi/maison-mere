@@ -255,7 +255,7 @@ export default function Header() {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block text-center"
               >
                 Book Now
-              </h>
+              </a>
             </motion.nav>
           )}
         </AnimatePresence>
