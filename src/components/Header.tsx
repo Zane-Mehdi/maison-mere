@@ -15,9 +15,18 @@ export default function Header() {
   ];
 
   const handleSectionScroll = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Check if we're already on the About page
+    const isOnAboutPage = window.location.pathname === '/about';
+    
+    if (isOnAboutPage) {
+      // If on About page, scroll to section directly
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // If not on About page, navigate to it with section hash
+      window.location.href = `/about#${sectionId}`;
     }
     setAboutDropdownOpen(false);
   };

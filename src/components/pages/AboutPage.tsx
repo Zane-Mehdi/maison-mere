@@ -133,6 +133,20 @@ export default function AboutPage() {
   }, []);
 
   useEffect(() => {
+    // Handle hash navigation when page loads
+    const hash = window.location.hash.slice(1); // Remove the '#' character
+    if (hash) {
+      // Wait for page to render, then scroll to section
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const [instructorsResult, classTypesResult] = await Promise.all([
