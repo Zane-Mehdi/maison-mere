@@ -244,6 +244,114 @@ export default function AboutPage() {
           )}
         </div>
       </section>
+      {/* 1-1 Private Classes Section */}
+      <section className="py-24 bg-gradient-to-b from-accent/10 to-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <AnimatedSection>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Personalized Training</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">1-1 Private Classes</h2>
+              <p className="text-muted-foreground text-lg">Tailored sessions designed specifically for your goals and fitness level</p>
+            </AnimatedSection>
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <AnimatedSection>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
+                  <Image 
+                    src="https://static.wixstatic.com/media/3133d9_6b505d3904304c04aad4b39a3a0a69af~mv2.png?originWidth=384&originHeight=448" 
+                    alt="1-1 Private Classes" 
+                    className="w-full h-full object-cover"
+                    width={400}
+                  />
+                </div>
+              </AnimatedSection>
+              <AnimatedSection delay={100}>
+                <div>
+                  <h3 className="text-3xl font-heading font-bold text-foreground mb-6">Get Expert Attention</h3>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
+                    Our 1-1 private classes offer personalized instruction in a dedicated environment. Work one-on-one with our certified instructors to achieve your specific fitness goals, whether you're recovering from an injury, preparing for an event, or seeking advanced training.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      'Customized workout plans tailored to your needs',
+                      'Flexible scheduling to fit your lifestyle',
+                      'Expert form correction and technique guidance',
+                      'Progressive training programs'
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span className="text-foreground/80 font-paragraph">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    asChild
+                    size="lg"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg"
+                  >
+                    <Link to="/contact">Book a Private Session</Link>
+                  </Button>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Private Classes & Hire Section */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <AnimatedSection>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Corporate & Events</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Private Classes & Instructor Hire</h2>
+              <p className="text-muted-foreground text-lg">Bring wellness to your team or event with our professional instructors</p>
+            </AnimatedSection>
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <AnimatedSection delay={100}>
+                <div>
+                  <h3 className="text-3xl font-heading font-bold text-foreground mb-6">Corporate Wellness & Events</h3>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
+                    Looking to bring wellness to your workplace or special event? We offer private group classes and can hire our expert instructors for corporate wellness programs, team building events, or special occasions. Create a memorable experience that promotes health and connection.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      'On-site or studio-based sessions available',
+                      'Flexible group sizes and scheduling',
+                      'Professional, certified instructors',
+                      'Customizable programs for your needs'
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
+                        <span className="text-foreground/80 font-paragraph">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    asChild
+                    size="lg"
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 transition-all duration-200 shadow-lg"
+                  >
+                    <Link to="/contact">Inquire About Hiring</Link>
+                  </Button>
+                </div>
+              </AnimatedSection>
+              <AnimatedSection>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
+                  <Image 
+                    src="https://static.wixstatic.com/media/3133d9_68426ea9bd044d899a25a178b018cd2c~mv2.png?originWidth=384&originHeight=448" 
+                    alt="Private Classes & Instructor Hire" 
+                    className="w-full h-full object-cover"
+                    width={400}
+                  />
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Instructors Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
