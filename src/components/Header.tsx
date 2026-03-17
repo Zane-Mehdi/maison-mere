@@ -1,8 +1,8 @@
 import { Image } from '@/components/ui/image';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Instagram, Menu, X } from 'lucide-react';
+import { Instagram, Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Header() {
   const handleSectionScroll = (sectionId: string) => {
     // Check if we're already on the About page
     const isOnAboutPage = window.location.pathname === '/about';
-
+    
     if (isOnAboutPage) {
       // If on About page, scroll to section directly
       const element = document.getElementById(sectionId);
@@ -57,8 +57,7 @@ export default function Header() {
               Home
             </Link>
             <div className="relative group">
-              <Link
-                to="/about"
+              <button
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center gap-1"
                 onMouseEnter={() => setAboutDropdownOpen(true)}
                 onMouseLeave={() => setAboutDropdownOpen(false)}
@@ -70,7 +69,7 @@ export default function Header() {
                 >
                   <ChevronDown className="w-4 h-4" />
                 </motion.div>
-              </Link>
+              </button>
               <AnimatePresence>
                 {aboutDropdownOpen && (
                   <motion.div
@@ -179,7 +178,7 @@ export default function Header() {
               >
                 Membership and Pricing
               </Link>
-
+              
               {/* Mobile About Dropdown */}
               <div className="flex flex-col gap-2">
                 <button
@@ -224,7 +223,7 @@ export default function Header() {
                   )}
                 </AnimatePresence>
               </div>
-
+              
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
@@ -232,13 +231,13 @@ export default function Header() {
               >
                 Contact
               </Link>
-              <a
-                href="/book-a-class"
+              <Link
+                to="/book-a-class"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
                 Schedule
-              </a>
+              </Link>
               <div className="flex items-center gap-4 pt-2">
                 <a
                   href="https://www.instagram.com/maisonmerestudio/?hl=en"

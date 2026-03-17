@@ -4,19 +4,19 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { AboutClassTypes, FrequentlyAskedQuestions, HeroSlides, HomepageStats, Instructors, PilatesClassTypes, PricingPlans } from '@/entities';
+import { Instructors, PilatesClassTypes, PricingPlans, HomepageStats, FrequentlyAskedQuestions, HeroSlides, AboutClassTypes } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
-  ChevronLeft,
-  ChevronRight,
   Minus,
   Plus,
-  Star
+  Star,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AnimatedSection, FadeIn, StaggerContainer, StaggerItem } from './AnimationUtils';
+import { AnimatedSection } from './AboutPage';
 
 // Testimonials type
 interface Testimonial {
@@ -34,6 +34,44 @@ const LoadingSpinner = () => (
   <div className="flex justify-center items-center h-40">
     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
   </div>
+);
+
+const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.6, delay, ease: "easeOut" }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+const StaggerContainer = ({ children, className = "", staggerDelay = 0.1 }: { children: React.ReactNode, className?: string, staggerDelay?: number }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: "-50px" }}
+    variants={{
+      visible: { transition: { staggerChildren: staggerDelay } }
+    }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+const StaggerItem = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    }}
+    className={className}
+  >
+    {children}
+  </motion.div>
 );
 
 // Counter animation component
@@ -299,13 +337,13 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult, pricingPlansResult, aboutClassTypesResult] = await Promise.all([
-          BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 100 }),
-          BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 100 }),
-          BaseCrudService.getAll<HomepageStats>('homepagestats', {}, { limit: 100 }),
-          BaseCrudService.getAll<FrequentlyAskedQuestions>('faqs', {}, { limit: 100 }),
-          BaseCrudService.getAll<HeroSlides>('heroslides', {}, { limit: 100 }),
-          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 100 }),
-          BaseCrudService.getAll<AboutClassTypes>('aboutclasstypes', {}, { limit: 100 })
+          BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 4 }),
+          BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 }),
+          BaseCrudService.getAll<HomepageStats>('homepagestats', {}, { limit: 10 }),
+          BaseCrudService.getAll<FrequentlyAskedQuestions>('faqs', {}, { limit: 50 }),
+          BaseCrudService.getAll<HeroSlides>('heroslides', {}, { limit: 10 }),
+          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 50 }),
+          BaseCrudService.getAll<AboutClassTypes>('aboutclasstypes', {}, { limit: 50 })
         ]);
 
         setClassTypes(classTypesResult.items);
@@ -351,7 +389,6 @@ export default function HomePage() {
     src: slide.slideImage || '',
     title: slide.heading || '',
     subtitle: slide.subheading || '',
-    link: slide.link || '',
     cta: {
       text: slide.ctaText || 'Learn More',
       action: () => {
@@ -630,78 +667,6 @@ export default function HomePage() {
               </Button>
             </FadeIn>
           </div>
-        </div>
-      </section>
-
-      {/* PRICING PLANS SECTION */}
-      <section className="py-24 bg-background relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <AnimatedSection>
-              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Pricing Plans</p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-                Choose Your Perfect Plan
-              </h2>
-              <p className="text-muted-foreground text-lg">Flexible options to suit your lifestyle</p>
-            </AnimatedSection>
-          </div>
-
-          {isLoading ? null : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {pricingPlans.length > 0 ? pricingPlans.map((plan, index) => (
-                <AnimatedSection key={plan._id} delay={index * 50}>
-                  <Card className="h-full border-none shadow-lg bg-white hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden flex flex-col">
-                    {plan.itemImage && (
-                      <div className="aspect-video overflow-hidden">
-                        <Image
-                          src={plan.itemImage}
-                          alt={plan.itemName || "Plan Image"}
-                          className="w-full h-full object-cover"
-                          width={400}
-                        />
-                      </div>
-                    )}
-                    <CardContent className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                        {plan.itemName}
-                      </h3>
-                      {plan.planGroup && (
-                        <p className="text-sm text-primary uppercase tracking-widest mb-4 font-semibold">
-                          {plan.planGroup}
-                        </p>
-                      )}
-                      <p className="text-3xl font-heading font-bold text-primary mb-4">
-                        £{plan.itemPrice}
-                      </p>
-                      {plan.numberOfClasses && (
-                        <p className="text-sm text-muted-foreground mb-4">
-                          {plan.numberOfClasses} Classes
-                        </p>
-                      )}
-                      <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">
-                        {plan.itemDescription}
-                      </p>
-                      {plan.specialNotes && (
-                        <p className="text-xs text-primary/70 mb-6 italic">
-                          {plan.specialNotes}
-                        </p>
-                      )}
-                      <Button
-                        onClick={() => navigate('/classes')}
-                        className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-6 py-3 uppercase tracking-widest text-sm w-full no-underline"
-                      >
-                        Learn More
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
-              )) : (
-                <div className="col-span-full text-center py-12 text-muted-foreground">
-                  No pricing plans available.
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </section>
 

@@ -6,7 +6,6 @@ import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Clock, TrendingUp, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatedSection } from './AnimationUtils';
 
 interface PricingPlan {
   _id: string;
@@ -18,6 +17,38 @@ interface PricingPlan {
   buyNowUrl?: string;
   planGroup?: string;
 }
+
+const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void}> = ({ plan, expandedPlanId, setExpandedPlanId }) => {
   const isExpanded = expandedPlanId === plan._id;
