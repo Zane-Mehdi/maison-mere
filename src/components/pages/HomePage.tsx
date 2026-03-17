@@ -446,7 +446,7 @@ export default function HomePage() {
       >
         <div className="container mx-auto px-4 py-5 pt-[2rem] flex items-center justify-between gap-4">
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-heading font-bold truncate">View our full class schedule</p>
+            <p className="text-sm font-heading font-bold truncate">View our full class schedule!</p>
           </div>
           <Button
             asChild

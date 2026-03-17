@@ -1,10 +1,10 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,6 +37,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
     </div>
   );
 };
+
 
 function MindbodySchedule() {
   const containerRef = useRef<HTMLDivElement>(null);
