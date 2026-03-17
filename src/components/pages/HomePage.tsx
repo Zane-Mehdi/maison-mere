@@ -4,15 +4,15 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Instructors, PilatesClassTypes, PricingPlans, HomepageStats, FrequentlyAskedQuestions, HeroSlides, AboutClassTypes } from '@/entities';
+import { AboutClassTypes, FrequentlyAskedQuestions, HeroSlides, HomepageStats, Instructors, PilatesClassTypes, PricingPlans } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
+  ChevronLeft,
+  ChevronRight,
   Minus,
   Plus,
-  Star,
-  ChevronLeft,
-  ChevronRight
+  Star
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -388,6 +388,7 @@ export default function HomePage() {
     src: slide.slideImage || '',
     title: slide.heading || '',
     subtitle: slide.subheading || '',
+    link: slide.link || '',
     cta: {
       text: slide.ctaText || 'Learn More',
       action: () => {
