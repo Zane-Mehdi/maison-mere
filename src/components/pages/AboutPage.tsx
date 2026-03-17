@@ -8,7 +8,7 @@ import { BaseCrudService } from '@/integrations';
 import { Award, Heart, Shield, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 // --- Utility Components ---
 
@@ -127,6 +127,10 @@ export default function AboutPage() {
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [ctaMinimized, setCtaMinimized] = useState(false);
+  const { scrollY } = useScroll();
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const ctaOffsetY = useTransform(scrollY, [0, 500], [0, -100]);
 
   useEffect(() => {
     document.title = 'About | Maison Mère Studio';
@@ -163,6 +167,20 @@ export default function AboutPage() {
     };
 
     fetchData();
+  }, []);
+
+  // Handle scroll to minimize CTA section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ctaRef.current) {
+        const rect = ctaRef.current.getBoundingClientRect();
+        // Minimize when CTA section scrolls past the header
+        setCtaMinimized(rect.top < 100);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -508,11 +526,18 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
+      {/* CTA Section - With Sticky Minimized State */}
+      <section ref={ctaRef} className="py-20 bg-gradient-to-b from-accent/10 to-background relative">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary/5 to-accent/10 rounded-3xl p-12 md:p-16 border border-primary/20 text-center">
+            <motion.div 
+              className="max-w-4xl mx-auto bg-gradient-to-br from-primary/5 to-accent/10 rounded-3xl p-12 md:p-16 border border-primary/20 text-center"
+              animate={{
+                opacity: ctaMinimized ? 0 : 1,
+                pointerEvents: ctaMinimized ? 'none' : 'auto'
+              }}
+              transition={{ duration: 0.3 }}
+            >
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
                 Ready to Start Your Journey?
               </h2>
@@ -534,9 +559,44 @@ export default function AboutPage() {
                   <Link to="/contact">Contact Us</Link>
                 </Button>
               </div>
-            </div>
+            </motion.div>
           </AnimatedSection>
         </div>
+
+        {/* Sticky Minimized CTA */}
+        <motion.div
+          className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${ctaMinimized ? 'bg-white border-b border-border shadow-md' : 'pointer-events-none'}`}
+          animate={{
+            opacity: ctaMinimized ? 1 : 0,
+            pointerEvents: ctaMinimized ? 'auto' : 'none'
+          }}
+          transition={{ duration: 0.3 }}
+          style={{ paddingTop: 'var(--header-height, 80px)' }}
+        >
+          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-heading font-bold text-foreground">Ready to Start Your Journey?</h3>
+              <p className="text-sm text-muted-foreground">Join our welcoming community today</p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                asChild
+                size="sm"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
+              >
+                <Link to="/classes">Book Class</Link>
+              </Button>
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+              >
+                <Link to="/contact">Contact</Link>
+              </Button>
+            </div>
+          </div>
+        </motion.div>
       </section>
       <Footer />
     </div>
