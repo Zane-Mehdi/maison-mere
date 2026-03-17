@@ -15,7 +15,7 @@ import {
   Star
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AnimatedSection } from './AboutPage';
 
 // Testimonials type
@@ -311,6 +311,7 @@ const TestimonialCarousel = () => {
 // --- Main Page Component ---
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [stats, setStats] = useState<HomepageStats[]>([]);
@@ -388,13 +389,12 @@ export default function HomePage() {
     src: slide.slideImage || '',
     title: slide.heading || '',
     subtitle: slide.subheading || '',
-    link: slide.link || '',
     cta: {
       text: slide.ctaText || 'Learn More',
       action: () => {
         if (slide.ctaLink) {
           if (slide.ctaLink.startsWith('/')) {
-            window.location.href = slide.ctaLink;
+            navigate(slide.ctaLink);
           } else {
             window.location.href = slide.ctaLink;
           }
@@ -419,7 +419,7 @@ export default function HomePage() {
             subtitle: 'Welcome to Maison Mère Studio',
             cta: {
               text: 'Book Now',
-              action: () => window.location.href = '/classes'
+              action: () => navigate('/classes')
             }
           }
         ]}
@@ -438,7 +438,7 @@ export default function HomePage() {
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">At Maison Mère Studio every class is more than movement. It is an opportunity to build strength, confidence and connection in a supportive women's - only environment designed for comfort and empowerment.</p>
             <Button
-              onClick={() => window.location.href = '/about'}
+              onClick={() => navigate('/about')}
               variant="outline"
               className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
             >
@@ -660,7 +660,7 @@ export default function HomePage() {
               </div>
 
               <Button
-                onClick={() => window.location.href = '/classes'}
+                onClick={() => navigate('/classes')}
                 className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
               >
                 Claim Offer
@@ -726,11 +726,11 @@ export default function HomePage() {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   At Maison Mère, we believe pilates is a complete wellness experience. Complement your practice with our curated Wellness Bar featuring matcha, cold-pressed juices, and nourishing snacks. Or host your private pilates events in our serene, beautifully designed studio.
                 </p>
-                <Button
-                  onClick={() => window.location.href = '/contact'}
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
-                >eNQUIRE</Button>
+               <Button
+                 onClick={() => navigate('/contact')}
+                 variant="outline"
+                 className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
+               >eNQUIRE</Button>
               </FadeIn>
             </div>
           </div>
@@ -805,7 +805,7 @@ export default function HomePage() {
               JOIN MAISON MÈRE STUDIO TODAY
             </p>
             <Button
-              onClick={() => window.location.href = '/classes'}
+              onClick={() => navigate('/classes')}
               size="lg"
               className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95 no-underline"
             >Our Packages</Button>
