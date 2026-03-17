@@ -200,7 +200,7 @@ const TestimonialCarousel = () => {
           >
             {/* Stars */}
             <div className="mb-8 flex justify-center gap-1">
-              {Array.from({ length: current.rating || 5 }).map((_, i) => (
+              {Array.from({ length: 5 }).map((_, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.5 }}
