@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AnimatedSection } from './AboutPage';
 
 // Type definitions for CMS collections
 interface HomepageStats {
@@ -148,6 +149,8 @@ export default function HomePage() {
   const [pricingPlans, setPricingPlans] = useState<PricingPlans[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+    const [isClassesLoading, setIsClassesLoading] = useState(true);
+
 
   // Parallax scroll effect for hero
   const { scrollY } = useScroll();
