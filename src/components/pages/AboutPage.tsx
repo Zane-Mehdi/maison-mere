@@ -107,7 +107,7 @@ const SectionNavigator = () => {
       className="bg-white border-b border-border shadow-sm sticky top-0 z-40"
     >
       <div className="container mx-auto px-4">
-        <div className="flex overflow-x-auto gap-2 py-4 md:justify-center md:flex-wrap">
+        <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
           {sections.map((section) => (
             <button
               key={section.id}
