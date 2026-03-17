@@ -1,2 +1,2 @@
 // Re-export from main entities file for backward compatibility
-export type { FrequentlyAskedQuestions } from './index';
+export type { FrequentlyAskedQuestionsHOMEPAGE } from './index';

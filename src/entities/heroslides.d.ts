@@ -1,2 +1,2 @@
 // Re-export from main entities file for backward compatibility
-export type { HeroSlides } from './index';
+export type { HeroSlidesHOMEPAGE } from './index';

@@ -5,9 +5,9 @@
 
 /**
  * Collection ID: aboutclasstypes
- * Interface for AboutClassTypes
+ * Interface for AboutClassTypesHOMEPAGE
  */
-export interface AboutClassTypes {
+export interface AboutClassTypesHOMEPAGE {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -28,9 +28,9 @@ export interface AboutClassTypes {
 
 /**
  * Collection ID: classtypes
- * Interface for PilatesClassTypes
+ * Interface for PilatesClassTypesABOUTUS
  */
-export interface PilatesClassTypes {
+export interface PilatesClassTypesABOUTUS {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -51,9 +51,9 @@ export interface PilatesClassTypes {
 
 /**
  * Collection ID: faqs
- * Interface for FrequentlyAskedQuestions
+ * Interface for FrequentlyAskedQuestionsHOMEPAGE
  */
-export interface FrequentlyAskedQuestions {
+export interface FrequentlyAskedQuestionsHOMEPAGE {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -74,9 +74,9 @@ export interface FrequentlyAskedQuestions {
 
 /**
  * Collection ID: heroslides
- * Interface for HeroSlides
+ * Interface for HeroSlidesHOMEPAGE
  */
-export interface HeroSlides {
+export interface HeroSlidesHOMEPAGE {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -97,9 +97,9 @@ export interface HeroSlides {
 
 /**
  * Collection ID: homepagestats
- * Interface for HomepageStats
+ * Interface for HomepageStatsHOMEPAGE
  */
-export interface HomepageStats {
+export interface HomepageStatsHOMEPAGE {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -120,9 +120,9 @@ export interface HomepageStats {
 
 /**
  * Collection ID: instructors
- * Interface for Instructors
+ * Interface for InstructorsABOUTUS
  */
-export interface Instructors {
+export interface InstructorsABOUTUS {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -144,9 +144,9 @@ export interface Instructors {
 /**
  * Collection ID: pricingplans
  * @catalog This collection is an eCommerce catalog
- * Interface for PricingPlans
+ * Interface for PricingPlansMEMBERSHIPSANDPLANS
  */
-export interface PricingPlans {
+export interface PricingPlansMEMBERSHIPSANDPLANS {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;
@@ -171,9 +171,9 @@ export interface PricingPlans {
 
 /**
  * Collection ID: testimonials
- * Interface for Testimonials
+ * Interface for TestimonialsHOMEPAGE
  */
-export interface Testimonials {
+export interface TestimonialsHOMEPAGE {
   _id: string;
   _createdDate?: Date;
   _updatedDate?: Date;

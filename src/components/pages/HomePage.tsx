@@ -8,6 +8,7 @@ import { AboutClassTypes, FrequentlyAskedQuestions, HeroSlides, HomepageStats, I
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
+  ArrowRight,
   ChevronLeft,
   ChevronRight,
   Minus,
@@ -322,6 +323,9 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isClassesLoading, setIsClassesLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isSticky, setIsSticky] = useState(false);
 
 
   // Parallax scroll effect for hero
@@ -332,6 +336,26 @@ export default function HomePage() {
   useEffect(() => {
     document.title = 'Home | Maison Mère Studio';
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Determine scroll direction
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+
+      // Show sticky section when scrolled past hero
+      setIsSticky(currentScrollY > 300);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -409,7 +433,37 @@ export default function HomePage() {
       <Header />
       <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground pt-24">
 
-      {/* HERO SLIDESHOW SECTION */}
+      {/* Sticky Minimized CTA - Always visible when scrolling */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{
+          opacity: isSticky && scrollDirection === 'down' ? 1 : 0,
+          y: isSticky && scrollDirection === 'down' ? 0 : -20,
+          pointerEvents: isSticky && scrollDirection === 'down' ? 'auto' : 'none',
+        }}
+        transition={{ duration: 0.3 }}
+        className="fixed top-20 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg"
+      >
+        <div className="container mx-auto px-4 py-5 pt-[2rem] flex items-center justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-heading font-bold truncate">
+              Discover our Pilates classes
+            </p>
+          </div>
+          <Button
+            asChild
+            className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading no-underline flex-shrink-0"
+            size="sm"
+          >
+            <a href="/classes" className="flex items-center gap-2 no-underline">
+              Explore
+              <ArrowRight className="w-3 h-3" />
+            </a>
+          </Button>
+        </div>
+      </motion.div>
+
+      {/* ... keep existing code (HERO SLIDESHOW SECTION through CTA SECTION) ... */}
       <HeroSlideshow
         slides={transformedHeroSlides.length > 0 ? transformedHeroSlides : [
           {

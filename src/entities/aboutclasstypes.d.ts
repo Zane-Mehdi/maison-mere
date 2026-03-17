@@ -1,2 +1,2 @@
 // Re-export from main entities file for backward compatibility
-export type { AboutClassTypes } from './index';
+export type { AboutClassTypesHOMEPAGE } from './index';
