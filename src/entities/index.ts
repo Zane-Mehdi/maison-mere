@@ -27,31 +27,6 @@ export interface AboutClassTypes {
 
 
 /**
- * Collection ID: aboutusclasses
- * Interface for AboutUsClasses
- */
-export interface AboutUsClasses {
-  _id: string;
-  _createdDate?: Date;
-  _updatedDate?: Date;
-  /** @wixFieldType text */
-  className?: string;
-  /** @wixFieldType text */
-  description?: string;
-  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
-  classImage?: string;
-  /** @wixFieldType number */
-  durationMinutes?: number;
-  /** @wixFieldType text */
-  instructorName?: string;
-  /** @wixFieldType text */
-  classFocus?: string;
-  /** @wixFieldType url */
-  bookingLink?: string;
-}
-
-
-/**
  * Collection ID: classtypes
  * Interface for PilatesClassTypes
  */
@@ -189,4 +164,25 @@ export interface PricingPlans {
   numberOfClasses?: number;
   /** @wixFieldType text */
   specialNotes?: string;
+}
+
+
+/**
+ * Collection ID: testimonials
+ * Interface for Testimonials
+ */
+export interface Testimonials {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  quote?: string;
+  /** @wixFieldType text */
+  authorName?: string;
+  /** @wixFieldType text */
+  authorTitle?: string;
+  /** @wixFieldType number */
+  rating?: number;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  authorPhoto?: string;
 }

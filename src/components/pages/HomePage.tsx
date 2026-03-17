@@ -10,11 +10,23 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import {
   Minus,
   Plus,
-  Star
+  Star,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AnimatedSection } from './AboutPage';
+
+// Testimonials type
+interface Testimonial {
+  _id: string;
+  quote?: string;
+  authorName?: string;
+  authorTitle?: string;
+  rating?: number;
+  authorPhoto?: string;
+}
 
 // --- Utility Components ---
 
@@ -105,6 +117,195 @@ const Counter = ({ target }: { target: number }) => {
   }, [isVisible, target]);
 
   return <div ref={ref}>{count}</div>;
+};
+
+// Testimonial Carousel Component - Clean & Minimalistic
+const TestimonialCarousel = () => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const autoPlayRef = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const result = await BaseCrudService.getAll<Testimonial>('testimonials');
+        setTestimonials(result.items || []);
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
+
+  // Auto-play carousel
+  useEffect(() => {
+    if (!autoPlay || testimonials.length === 0) return;
+
+    autoPlayRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 6000); // Change testimonial every 6 seconds
+
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [autoPlay, testimonials.length]);
+
+  const goToPrevious = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToNext = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setAutoPlay(false);
+    setCurrentIndex(index);
+  };
+
+  if (isLoading) {
+    return (
+      <section className="py-24 bg-background flex items-center justify-center">
+        <div className="flex justify-center items-center h-40">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null;
+  }
+
+  const current = testimonials[currentIndex];
+
+  return (
+    <section className="py-24 bg-background flex items-center justify-center">
+      <div className="container mx-auto px-4 max-w-5xl">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="text-center"
+          >
+            {/* Stars */}
+            <div className="mb-8 flex justify-center gap-1">
+              {Array.from({ length: current.rating || 5 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1, duration: 0.3 }}
+                >
+                  <Star className="w-5 h-5 text-primary fill-primary" />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Quote */}
+            <blockquote className="text-2xl md:text-3xl font-heading font-light italic leading-relaxed text-foreground mb-8">
+              "{current.quote}"
+            </blockquote>
+
+            {/* Author Info */}
+            <div className="flex flex-col items-center gap-3">
+              {current.authorPhoto && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                  className="w-12 h-12 rounded-full overflow-hidden border border-primary/20"
+                >
+                  <Image
+                    src={current.authorPhoto}
+                    className="w-full h-full object-cover"
+                    alt={current.authorName || 'Author'}
+                    width={48}
+                  />
+                </motion.div>
+              )}
+              <div>
+                <p className="text-sm font-bold uppercase tracking-widest text-foreground">
+                  {current.authorName}
+                </p>
+                {current.authorTitle && (
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">
+                    {current.authorTitle}
+                  </p>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Controls */}
+        {testimonials.length > 1 && (
+          <div className="mt-12 flex items-center justify-center gap-6">
+            {/* Previous Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={goToPrevious}
+              className="p-2 rounded-full border border-primary/30 text-primary hover:bg-primary/5 transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </motion.button>
+
+            {/* Dot Indicators */}
+            <div className="flex gap-2">
+              {testimonials.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === currentIndex
+                      ? 'bg-primary w-8'
+                      : 'bg-primary/20 w-2 hover:bg-primary/40'
+                  }`}
+                  whileHover={{ scale: 1.2 }}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Next Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={goToNext}
+              className="p-2 rounded-full border border-primary/30 text-primary hover:bg-primary/5 transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </motion.button>
+          </div>
+        )}
+
+        {/* Auto-play toggle */}
+        {testimonials.length > 1 && (
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => setAutoPlay(!autoPlay)}
+              className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {autoPlay ? '⏸ Pause' : '▶ Play'}
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
 };
 
 // --- Main Page Component ---
@@ -469,26 +670,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIAL - MOVED EARLIER */}
-      <section className="py-24 bg-background flex items-center justify-center">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <FadeIn>
-            <div className="mb-8 text-primary">
-              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
-              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
-              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
-              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
-              <Star className="w-6 h-6 inline-block mx-1 fill-current" />
-            </div>
-            <blockquote className="text-2xl md:text-4xl font-heading font-light italic leading-tight text-foreground mb-8">
-              "I've been to several Pilates studios, but I felt the warmest and most welcomed at Maison Mère Studio. I truly love and stand by their values, and I deeply appreciate their inclusivity as well as the variety of classes they offer."
-            </blockquote>
-            <cite className="not-italic text-sm font-bold uppercase tracking-widest text-muted-foreground">
-              — Maryam N
-            </cite>
-          </FadeIn>
-        </div>
-      </section>
+      {/* TESTIMONIALS CAROUSEL - CLEAN & MINIMALISTIC */}
+      <TestimonialCarousel />
 
       {/* OUR CLASSES SECTION - FROM ABOUT PAGE */}
       {/* WELLNESS BAR SECTION - REPOSITIONED */}
