@@ -446,9 +446,7 @@ export default function HomePage() {
       >
         <div className="container mx-auto px-4 py-5 pt-[2rem] flex items-center justify-between gap-4">
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-heading font-bold truncate">
-              Discover our Pilates classes
-            </p>
+            <p className="text-sm font-heading font-bold truncate">View our full class schedule</p>
           </div>
           <Button
             asChild
@@ -456,7 +454,7 @@ export default function HomePage() {
             size="sm"
           >
             <a href="/classes" className="flex items-center gap-2 no-underline">
-              Explore
+              View Full Schedule
               <ArrowRight className="w-3 h-3" />
             </a>
           </Button>
