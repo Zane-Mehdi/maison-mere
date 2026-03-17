@@ -662,7 +662,7 @@ export default function HomePage() {
 
               <Button
                 onClick={() => navigate('/classes')}
-                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
+                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline mt-6"
               >
                 Claim Offer
               </Button>
