@@ -136,7 +136,7 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult, pricingPlansResult, aboutClassTypesResult] = await Promise.all([
-          BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 3 }),
+          BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 4 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 }),
           BaseCrudService.getAll<HomepageStats>('homepagestats', {}, { limit: 10 }),
           BaseCrudService.getAll<FrequentlyAskedQuestions>('faqs', {}, { limit: 50 }),
@@ -362,7 +362,7 @@ export default function HomePage() {
           </div>
 
           {isClassesLoading ? null : (
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
               {aboutClassTypes.length > 0 ? aboutClassTypes.map((classType, index) => (
                 <AnimatedSection key={classType._id} delay={index * 50}>
                   <Link to="/book-a-class" className="block h-full group">
@@ -393,7 +393,7 @@ export default function HomePage() {
                   </Link>
                 </AnimatedSection>
               )) : (
-                <div className="col-span-3 text-center py-12 text-muted-foreground">
+                <div className="col-span-4 text-center py-12 text-muted-foreground">
                   No classes currently available.
                 </div>
               )}
