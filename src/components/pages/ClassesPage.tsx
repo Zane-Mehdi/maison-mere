@@ -212,7 +212,7 @@ export default function ClassesPage() {
         transition={{ duration: 0.3 }}
         className="fixed top-20 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg"
       >
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
           <div className="flex-1 min-w-0">
             <p className="text-sm font-heading font-bold truncate">
               View our full class schedule
