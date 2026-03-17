@@ -416,35 +416,51 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn>
-              <div className="relative">
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />
-                <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Special Offer</p>
-                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
-                  Unlock your <span className="italic text-primary">potential</span>.
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Begin your Pilates journey with our exclusive introductory package. Perfect for newcomers and returning clients alike, this offer gives you the chance to experience our world-class instruction and premium Reformer equipment in a welcoming, supportive setting.
-                </p>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Special Offer</p>
 
-                <div className="bg-primary/10 p-8 rounded-2xl border border-primary/20 mb-8">
-                  {pricingPlans.length > 0 && pricingPlans[0] ? (
-                    <p className="text-2xl font-heading font-bold text-foreground text-center">
-                      {pricingPlans[0].numberOfClasses} Classes for <span className="text-primary text-3xl">£{pricingPlans[0].itemPrice}</span>
-                    </p>
-                  ) : (
-                    <p className="text-2xl font-heading font-bold text-foreground text-center">
-                      3 Classes for <span className="text-primary text-3xl">£50</span>
-                    </p>
-                  )}
-                </div>
-
-                <Button
-                  onClick={() => navigate('/classes')}
-                  className="bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm font-heading hover:scale-105 active:scale-95 no-underline"
-                >
-                  Claim Offer
-                </Button>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Begin your Pilates journey with our exclusive introductory package. Perfect for newcomers and returning clients alike, this offer gives you the chance to experience our world-class instruction and premium Reformer equipment in a welcoming, supportive setting.</p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">Unlock your potential with our carefully curated starter classes designed to build strength, confidence and connection. Join our supportive community and discover why Maison Mère Studio is the perfect place to begin your wellness journey.</p>
+              
+              <div className="mb-8">
+                <h3 className="font-heading font-bold text-foreground mb-4">What's Included:</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="text-muted-foreground">Access to all class types and levels</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="text-muted-foreground">Expert guidance from our experienced instructors</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="text-muted-foreground">Premium Reformer equipment in a serene environment</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold mt-1">•</span>
+                    <span className="text-muted-foreground">Welcoming women-only community support</span>
+                  </li>
+                </ul>
               </div>
+
+              <div className="bg-primary/10 p-6 rounded-lg border border-primary/20 mb-8 inline-block">
+                {pricingPlans.length > 0 && pricingPlans[0] ? (
+                  <p className="text-xl font-heading font-bold text-foreground">
+                    {pricingPlans[0].numberOfClasses} Classes for <span className="text-primary text-2xl">£{pricingPlans[0].itemPrice}</span>
+                  </p>
+                ) : (
+                  <p className="text-xl font-heading font-bold text-foreground">
+                    3 Classes for <span className="text-primary text-2xl">£50</span>
+                  </p>
+                )}
+              </div>
+
+              <Button
+                onClick={() => navigate('/classes')}
+                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
+              >
+                Claim Offer
+              </Button>
             </FadeIn>
           </div>
         </div>
