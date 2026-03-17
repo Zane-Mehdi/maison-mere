@@ -174,68 +174,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* Women-Only & Hijab Friendly Section */}
-      <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <AnimatedSection>
-                <div>
-                  <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
-                    A Safe Place To Grow
-                  </p>
-                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                    Women-Only Studio & Hijab Friendly
-                  </h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
-                    Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
-                  </p>
-                  <p className="text-base text-foreground/70 font-paragraph mb-6 leading-relaxed">
-                    We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey. Our studio ensures that all women, regardless of their attire, feel welcome and respected.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <div className="w-2 h-2 rounded-full bg-primary" />
-                      </div>
-                      <p className="text-foreground/80 font-paragraph">Private, women-only environment</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <div className="w-2 h-2 rounded-full bg-primary" />
-                      </div>
-                      <p className="text-foreground/80 font-paragraph">Hijab-friendly facilities</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <div className="w-2 h-2 rounded-full bg-primary" />
-                      </div>
-                      <p className="text-foreground/80 font-paragraph">Comfortable changing areas</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <div className="w-2 h-2 rounded-full bg-primary" />
-                      </div>
-                      <p className="text-foreground/80 font-paragraph">Respectful, supportive community</p>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={100}>
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-                  <Image 
-                    src="https://static.wixstatic.com/media/980ffc_4f6a8e211a4b4abc8d918d0aac1066d4~mv2.png?originWidth=448&originHeight=576"
-                    alt="Women practicing Pilates"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    width={500}
-                  />
-                </div>
-              </AnimatedSection>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* Instructors Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">

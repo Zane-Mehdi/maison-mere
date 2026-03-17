@@ -306,36 +306,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WOMEN ONLY SECTION - MOVED UP */}
-      <section className="py-24 bg-secondary/30">
+      {/* WOMEN-ONLY & HIJAB FRIENDLY SECTION */}
+      <section className="py-20 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <FadeIn delay={0.2}>
-              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">A Safe Place To Grow</p>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <FadeIn>
+                <div>
+                  <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
+                    A Safe Place To Grow
+                  </p>
+                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                    Women-Only Studio & Hijab Friendly
+                  </h2>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
+                    Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
+                  </p>
+                  <p className="text-base text-foreground/70 font-paragraph mb-6 leading-relaxed">
+                    We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey. Our studio ensures that all women, regardless of their attire, feel welcome and respected.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-2 h-2 rounded-full bg-primary" />
+                      </div>
+                      <p className="text-foreground/80 font-paragraph">Private, women-only environment</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-2 h-2 rounded-full bg-primary" />
+                      </div>
+                      <p className="text-foreground/80 font-paragraph">Hijab-friendly facilities</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-2 h-2 rounded-full bg-primary" />
+                      </div>
+                      <p className="text-foreground/80 font-paragraph">Comfortable changing areas</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-2 h-2 rounded-full bg-primary" />
+                      </div>
+                      <p className="text-foreground/80 font-paragraph">Respectful, supportive community</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
 
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Step into a serene, elegant space designed exclusively for women. Our studio blends modern design with comfort, creating a welcoming environment where you can move freely and focus on yourself.</p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">Our studio is proudly hijabi-friendly and built to provide a private space where women can focus on their well-being. We offer group classes, private sessions and specialised training including pre and postnatal support.</p>
-              <Button
-                onClick={() => navigate('/about')}
-                className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
-              >
-                Learn More
-              </Button>
-            </FadeIn>
-
-            <FadeIn className="relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
-                <Image
-                  src="https://static.wixstatic.com/media/3133d9_7eea06941ae04d518bd04eebd7024da3~mv2.jpg"
-                  className="w-full h-full object-cover"
-                  originWidth={1455}
-                  originHeight={2048} />
-              </div>
-              <div className="absolute -bottom-10 -right-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
-                <p className="font-heading font-bold text-xl mb-2">Your Space To Move</p>
-                <p className="text-sm text-muted-foreground">Private, welcoming and designed for women.</p>
-              </div>
-            </FadeIn>
+              <FadeIn delay={0.1}>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image 
+                    src="https://static.wixstatic.com/media/980ffc_4f6a8e211a4b4abc8d918d0aac1066d4~mv2.png?originWidth=448&originHeight=576"
+                    alt="Women practicing Pilates"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    width={500}
+                  />
+                </div>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
