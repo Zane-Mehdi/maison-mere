@@ -4,7 +4,7 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Instructors, PilatesClassTypes, PricingPlans, HomepageStats, FrequentlyAskedQuestions, HeroSlides } from '@/entities';
+import { Instructors, PilatesClassTypes, PricingPlans, HomepageStats, FrequentlyAskedQuestions, HeroSlides, AboutClassTypes } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
@@ -117,6 +117,7 @@ export default function HomePage() {
   const [faqs, setFaqs] = useState<FrequentlyAskedQuestions[]>([]);
   const [heroSlides, setHeroSlides] = useState<HeroSlides[]>([]);
   const [pricingPlans, setPricingPlans] = useState<PricingPlans[]>([]);
+  const [aboutClassTypes, setAboutClassTypes] = useState<AboutClassTypes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
@@ -133,13 +134,14 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult, pricingPlansResult] = await Promise.all([
+        const [classTypesResult, instructorsResult, statsResult, faqsResult, heroSlidesResult, pricingPlansResult, aboutClassTypesResult] = await Promise.all([
           BaseCrudService.getAll<PilatesClassTypes>('classtypes', {}, { limit: 3 }),
           BaseCrudService.getAll<Instructors>('instructors', {}, { limit: 4 }),
           BaseCrudService.getAll<HomepageStats>('homepagestats', {}, { limit: 10 }),
           BaseCrudService.getAll<FrequentlyAskedQuestions>('faqs', {}, { limit: 50 }),
           BaseCrudService.getAll<HeroSlides>('heroslides', {}, { limit: 10 }),
-          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 50 })
+          BaseCrudService.getAll<PricingPlans>('pricingplans', {}, { limit: 50 }),
+          BaseCrudService.getAll<AboutClassTypes>('aboutclasstypes', {}, { limit: 50 })
         ]);
 
         setClassTypes(classTypesResult.items);
@@ -162,6 +164,7 @@ export default function HomePage() {
         setHeroSlides(sortedSlides);
 
         setPricingPlans(pricingPlansResult.items);
+        setAboutClassTypes(aboutClassTypesResult.items);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -357,7 +360,7 @@ export default function HomePage() {
             <LoadingSpinner />
           ) : (
             <StaggerContainer className="grid md:grid-cols-3 gap-8">
-              {classTypes.length > 0 ? classTypes.map((classType, index) => (
+              {aboutClassTypes.length > 0 ? aboutClassTypes.map((classType, index) => (
                 <StaggerItem key={classType._id} className="group">
                   <Link to="/book-a-class" className="block h-full">
                     <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
@@ -366,8 +369,8 @@ export default function HomePage() {
                           {classType.difficultyLevel || 'All Levels'}
                         </div>
                         <Image
-                          src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                          alt={classType.name || "Class Image"}
+                          src={classType.classTypeImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
+                          alt={classType.classTypeName || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
@@ -376,7 +379,7 @@ export default function HomePage() {
                           0{index + 1}
                         </div>
                         <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {classType.name}
+                          {classType.classTypeName}
                         </h3>
                         <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
                           {classType.description}

@@ -193,16 +193,19 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* Classes Section */}
+      {/* Classes Section - From HomePage */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <AnimatedSection>
               <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes</p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">We Offer A Range Of Classes</h2>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                We Offer A Range Of Classes
+              </h2>
               <p className="text-muted-foreground text-lg">To Suit All Levels of Fitness & Experience</p>
             </AnimatedSection>
           </div>
+
           {isClassesLoading ? null : (
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {classTypes.length > 0 ? classTypes.map((classType, index) => (
@@ -214,10 +217,9 @@ export default function AboutPage() {
                           {classType.difficultyLevel || 'All Levels'}
                         </div>
                         <Image
-                          src={classType.image || "https://static.wixstatic.com/media/3133d9_2da583053839462ea0438f0f93ba46f8~mv2.png?originWidth=384&originHeight=512"}
+                          src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
                           alt={classType.name || "Class Image"}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                          width={400}
                         />
                       </div>
                       <CardContent className="p-4 pt-0 text-center">
