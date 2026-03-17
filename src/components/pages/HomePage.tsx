@@ -417,6 +417,7 @@ export default function HomePage() {
             src: 'https://static.wixstatic.com/media/980ffc_c08a8735d35a4fa6a2baeb0678a12c3e~mv2.png?originWidth=1152&originHeight=768',
             title: 'The Maison Mère Standard',
             subtitle: 'Welcome to Maison Mère Studio',
+            link:
             cta: {
               text: 'Book Now',
               action: () => navigate('/classes')
