@@ -90,6 +90,8 @@ export interface HeroSlides {
   ctaText?: string;
   /** @wixFieldType url */
   ctaLink?: string;
+  /** @wixFieldType text */
+  link?: string;
 }
 
 
