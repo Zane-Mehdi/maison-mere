@@ -48,7 +48,7 @@ export const FadeIn = ({ children, delay = 0, className = "" }: { children: Reac
   </motion.div>
 );
 
-export const StaggerContainer = ({ children, className = "", staggerDelay = 0.1 }: { children: React.ReactNode, className?: string, staggerDelay?: number }) => (
+export const StaggerContainer = ({ children, className = "", staggerDelay = 0 }: { children: React.ReactNode, className?: string, staggerDelay?: number }) => (
   <motion.div
     initial="hidden"
     whileInView="visible"
