@@ -4,21 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { BaseCrudService } from '@/integrations';
-import { Instructors } from '@/entities';
+import { Instructors, PilatesClassTypes } from '@/entities';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Heart, Users, Award, Shield } from 'lucide-react';
 
-interface AboutUsClass {
-  _id: string;
-  className?: string;
-  description?: string;
-  classImage?: string;
-  durationMinutes?: number;
-  instructorName?: string;
-  classFocus?: string;
-  bookingLink?: string;
-}
+// ... keep existing code (AnimatedSection component) ...
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -54,7 +45,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 
 export default function AboutPage() {
   const [instructors, setInstructors] = useState<Instructors[]>([]);
-  const [aboutUsClasses, setAboutUsClasses] = useState<AboutUsClass[]>([]);
+  const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isClassesLoading, setIsClassesLoading] = useState(true);
 
@@ -78,18 +69,18 @@ export default function AboutPage() {
   }, []);
 
   useEffect(() => {
-    const fetchAboutUsClasses = async () => {
+    const fetchClassTypes = async () => {
       try {
-        const result = await BaseCrudService.getAll<AboutUsClass>('aboutusclasses');
-        setAboutUsClasses(result.items);
+        const result = await BaseCrudService.getAll<PilatesClassTypes>('classtypes');
+        setClassTypes(result.items);
       } catch (error) {
-        console.error('Error fetching about us classes:', error);
+        console.error('Error fetching class types:', error);
       } finally {
         setIsClassesLoading(false);
       }
     };
 
-    fetchAboutUsClasses();
+    fetchClassTypes();
   }, []);
 
   return (
@@ -203,76 +194,54 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Classes Section */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-16">
-              <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
-                Our Classes
-              </p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                Discover Our Pilates Classes
-              </h2>
-              <p className="text-lg text-foreground/80 font-paragraph max-w-2xl mx-auto">
-                From reformer to mat, find the perfect class to match your fitness journey.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="min-h-[400px]">
-            {isClassesLoading ? null : aboutUsClasses.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {aboutUsClasses.map((classItem, index) => (
-                  <AnimatedSection key={classItem._id} delay={index * 50}>
-                    <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-                      <div className="aspect-[4/3] overflow-hidden">
+          <div className="text-center mb-16">
+            <AnimatedSection>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">We Offer A Range Of Classes</h2>
+              <p className="text-muted-foreground text-lg">To Suit All Levels of Fitness & Experience</p>
+            </AnimatedSection>
+          </div>
+          {isClassesLoading ? null : (
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {classTypes.length > 0 ? classTypes.map((classType, index) => (
+                <AnimatedSection key={classType._id} delay={index * 50}>
+                  <Link to="/book-a-class" className="block h-full group">
+                    <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
+                      <div className="aspect-[3/4] overflow-hidden relative mb-0">
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
+                          {classType.difficultyLevel || 'All Levels'}
+                        </div>
                         <Image 
-                          src={classItem.classImage || 'https://static.wixstatic.com/media/3133d9_f70382d3dd5d49d3a61b344af8e5f188~mv2.png?originWidth=384&originHeight=256'}
-                          alt={classItem.className || 'Class'}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          src={classType.image || "https://static.wixstatic.com/media/3133d9_2da583053839462ea0438f0f93ba46f8~mv2.png?originWidth=384&originHeight=512"} 
+                          alt={classType.name || "Class Image"} 
+                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                           width={400}
                         />
                       </div>
-                      <CardContent className="p-6 flex-1 flex flex-col">
-                        <h3 className="text-xl font-heading font-bold text-foreground mb-2">
-                          {classItem.className}
+                      <CardContent className="p-4 pt-0 text-center">
+                        <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{index + 1}</div>
+                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                          {classType.name}
                         </h3>
-                        {classItem.classFocus && (
-                          <p className="text-primary font-paragraph text-sm mb-2">
-                            {classItem.classFocus}
-                          </p>
-                        )}
-                        <p className="text-foreground/70 font-paragraph text-sm mb-4 flex-1 leading-relaxed">
-                          {classItem.description}
+                        <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
+                          {classType.description}
                         </p>
-                        <div className="flex justify-between items-center text-sm text-foreground/60 mb-4">
-                          {classItem.durationMinutes && (
-                            <span>{classItem.durationMinutes} min</span>
-                          )}
-                          {classItem.instructorName && (
-                            <span>with {classItem.instructorName}</span>
-                          )}
-                        </div>
-                        {classItem.bookingLink && (
-                          <Button 
-                            asChild
-                            size="sm"
-                            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full"
-                          >
-                            <Link to={classItem.bookingLink}>Book Now</Link>
-                          </Button>
-                        )}
+                        <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
+                          Book Class
+                        </span>
                       </CardContent>
                     </Card>
-                  </AnimatedSection>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-foreground/60 font-paragraph">Explore our class offerings at the studio.</p>
-              </div>
-            )}
-          </div>
+                  </Link>
+                </AnimatedSection>
+              )) : (
+                <div className="col-span-3 text-center py-12 text-muted-foreground">
+                  No classes currently available.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
       {/* Instructors Section */}
