@@ -8,6 +8,31 @@ import { Textarea } from '@/components/ui/textarea';
 import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+// Sanitization utility to prevent XSS and injection attacks
+const sanitizeInput = (input: string): string => {
+  if (!input) return '';
+  
+  // Remove any HTML tags and dangerous characters
+  return input
+    .replace(/[<>]/g, '') // Remove angle brackets
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+\s*=/gi, '') // Remove event handlers (onclick, onerror, etc.)
+    .trim();
+};
+
+// Validate email format
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+// Validate phone format (basic validation)
+const isValidPhone = (phone: string): boolean => {
+  if (!phone) return true; // Phone is optional
+  const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+  return phoneRegex.test(phone) && phone.replace(/\D/g, '').length >= 10;
+};
+
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -49,24 +74,74 @@ export default function ContactPage() {
     message: ''
   });
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     document.title = 'Contact | Maison Mère Studio';
   }, []);
 
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    // Validate name
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length > 100) {
+      newErrors.name = 'Name must be less than 100 characters';
+    }
+
+    // Validate email
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!isValidEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Validate phone if provided
+    if (formData.phone && !isValidPhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    // Validate subject
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required';
+    } else if (formData.subject.length > 200) {
+      newErrors.subject = 'Subject must be less than 200 characters';
+    }
+
+    // Validate message
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.length > 5000) {
+      newErrors.message = 'Message must be less than 5000 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate form data
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    if (!validateForm()) {
       return;
     }
 
-    // Create email body with all form data
-    const emailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\n${formData.message}`;
+    // Sanitize all form inputs
+    const sanitizedData = {
+      name: sanitizeInput(formData.name),
+      email: sanitizeInput(formData.email),
+      phone: sanitizeInput(formData.phone),
+      subject: sanitizeInput(formData.subject),
+      message: sanitizeInput(formData.message)
+    };
+
+    // Create email body with sanitized data
+    const emailBody = `Name: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nPhone: ${sanitizedData.phone}\n\n${sanitizedData.message}`;
     
     // Create mailto link with pre-populated data
-    const mailtoLink = `mailto:contact@maisonmerestudio.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoLink = `mailto:contact@maisonmerestudio.com?subject=${encodeURIComponent(sanitizedData.subject)}&body=${encodeURIComponent(emailBody)}`;
     
     // Open default email client
     window.location.href = mailtoLink;
@@ -74,15 +149,24 @@ export default function ContactPage() {
     // Show success message
     setSubmitSuccess(true);
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setErrors({});
 
     setTimeout(() => setSubmitSuccess(false), 5000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   return (
@@ -217,9 +301,10 @@ export default function ContactPage() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="border-border focus:border-primary"
+                        className={`border-border focus:border-primary ${errors.name ? 'border-red-500' : ''}`}
                         placeholder="Your name"
                       />
+                      {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                     </div>
 
                     <div>
@@ -233,9 +318,10 @@ export default function ContactPage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="border-border focus:border-primary"
+                        className={`border-border focus:border-primary ${errors.email ? 'border-red-500' : ''}`}
                         placeholder="your.email@example.com"
                       />
+                      {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                     </div>
 
                     <div>
@@ -248,9 +334,10 @@ export default function ContactPage() {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="border-border focus:border-primary"
+                        className={`border-border focus:border-primary ${errors.phone ? 'border-red-500' : ''}`}
                         placeholder="Your phone number"
                       />
+                      {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                     </div>
 
                     <div>
@@ -264,9 +351,10 @@ export default function ContactPage() {
                         required
                         value={formData.subject}
                         onChange={handleChange}
-                        className="border-border focus:border-primary"
+                        className={`border-border focus:border-primary ${errors.subject ? 'border-red-500' : ''}`}
                         placeholder="What is this regarding?"
                       />
+                      {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
                     </div>
 
                     <div>
@@ -279,9 +367,10 @@ export default function ContactPage() {
                         required
                         value={formData.message}
                         onChange={handleChange}
-                        className="border-border focus:border-primary min-h-[150px]"
+                        className={`border-border focus:border-primary min-h-[150px] ${errors.message ? 'border-red-500' : ''}`}
                         placeholder="Tell us more about your inquiry..."
                       />
+                      {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                     </div>
 
                     <Button
