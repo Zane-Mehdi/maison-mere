@@ -1,8 +1,8 @@
 import { Image } from '@/components/ui/image';
-import { Instagram, Menu, X, ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown, Instagram, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Header() {
   const handleSectionScroll = (sectionId: string) => {
     // Check if we're already on the About page
     const isOnAboutPage = window.location.pathname === '/about';
-    
+
     if (isOnAboutPage) {
       // If on About page, scroll to section directly
       const element = document.getElementById(sectionId);
@@ -36,7 +36,7 @@ export default function Header() {
   const handleMobileSectionScroll = (sectionId: string) => {
     // Check if we're already on the About page
     const isOnAboutPage = window.location.pathname === '/about';
-    
+
     if (isOnAboutPage) {
       // If on About page, scroll to section directly
       const element = document.getElementById(sectionId);
@@ -198,7 +198,7 @@ export default function Header() {
               >
                 Membership and Pricing
               </Link>
-              
+
               {/* Mobile About Dropdown */}
               <div className="flex flex-col gap-2">
                 <button
@@ -239,7 +239,7 @@ export default function Header() {
                   )}
                 </AnimatePresence>
               </div>
-              
+
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
@@ -247,13 +247,13 @@ export default function Header() {
               >
                 Contact
               </Link>
-              <Link
-                to="/book-a-class"
+              <a
+                href="/book-a-class"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
                 Schedule
-              </Link>
+              </a>
               <div className="flex items-center gap-4 pt-2">
                 <a
                   href="https://www.instagram.com/maisonmerestudio/?hl=en"
