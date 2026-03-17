@@ -10,7 +10,6 @@ interface SlideItem {
   src: string;
   title: string;
   subtitle: string;
-  link?: string;
   cta?: {
     text: string;
     action: () => void;
@@ -168,6 +167,7 @@ export default function HeroSlideshow({
             {currentSlideData?.cta && (
               <SlideInText delay={0.8}>
                 <div className="pointer-events-auto">
+<<<<<<< HEAD
                   <a href={currentSlideData.link}>
                     <Button
                       size="lg"
@@ -176,6 +176,16 @@ export default function HeroSlideshow({
                       {currentSlideData.cta?.text}
                     </Button>
                   </a>
+=======
+                  <a href={currentSlideData.cta?.action} target="_top">
+                      <Button
+                        size="lg"
+                        className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
+                      >
+                        {currentSlideData.cta?.text}
+                      </Button>
+                    </a>
+>>>>>>> da87868 (Restored to checkpoint 08ae15f5a115987006207fa02b3953b230933087)
                 </div>
               </SlideInText>
             )}
