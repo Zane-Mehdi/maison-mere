@@ -129,12 +129,12 @@ export default function Header() {
             >
               <Instagram className="w-5 h-5" />
             </a>
-            <Link
-              to="/book-a-class"
+            <a
+              href="/book-a-class"
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block"
             >
               Book Now
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
