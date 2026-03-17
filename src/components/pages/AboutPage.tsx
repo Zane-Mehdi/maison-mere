@@ -82,6 +82,47 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
   );
 };
 
+const SectionNavigator = () => {
+  const sections = [
+    { id: 'mission', label: 'Our Mission' },
+    { id: 'values', label: 'Our Values' },
+    { id: 'classes', label: 'Our Classes' },
+    { id: 'private-classes', label: 'Private Classes' },
+    { id: 'corporate', label: 'Corporate & Events' },
+    { id: 'instructors', label: 'Our Instructors' }
+  ];
+
+  const handleScroll = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white border-b border-border shadow-sm sticky top-0 z-40"
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex overflow-x-auto gap-2 py-4 md:justify-center md:flex-wrap">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => handleScroll(section.id)}
+              className="px-4 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30"
+            >
+              {section.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function AboutPage() {
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
@@ -113,6 +154,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <SectionNavigator />
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
@@ -133,7 +175,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Mission Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-accent/10">
+      <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -167,7 +209,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Values Section */}
-      <section className="py-20 bg-background">
+      <section id="values" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -222,7 +264,7 @@ export default function AboutPage() {
       </section>
 
       {/* CLASSES SECTION - Moved from HomePage */}
-      <section className="py-24 bg-background">
+      <section id="classes" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <FadeIn>
@@ -282,7 +324,7 @@ export default function AboutPage() {
       </section>
 
       {/* 1-1 Private Classes Section */}
-      <section className="py-24 bg-gradient-to-b from-accent/10 to-background">
+      <section id="private-classes" className="py-24 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <AnimatedSection>
@@ -336,7 +378,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Private Classes & Hire Section */}
-      <section className="py-24 bg-background">
+      <section id="corporate" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <AnimatedSection>
@@ -390,7 +432,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Instructors Section */}
-      <section className="py-20 bg-background">
+      <section id="instructors" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-16">
