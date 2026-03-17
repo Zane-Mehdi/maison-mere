@@ -356,7 +356,7 @@ export default function HomePage() {
 
               <FadeIn delay={0.1}>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-                  <Image 
+                  <Image
                     src="https://static.wixstatic.com/media/980ffc_4f6a8e211a4b4abc8d918d0aac1066d4~mv2.png?originWidth=448&originHeight=576"
                     alt="Women practicing Pilates"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
@@ -368,6 +368,57 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+       {/* Classes Section */}
+            <section className="py-24 bg-background">
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                  <AnimatedSection>
+                    <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes</p>
+                    <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">We Offer A Range Of Classes</h2>
+                    <p className="text-muted-foreground text-lg">To Suit All Levels of Fitness & Experience</p>
+                  </AnimatedSection>
+                </div>
+                {isClassesLoading ? null : (
+                  <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {classTypes.length > 0 ? classTypes.map((classType, index) => (
+                      <AnimatedSection key={classType._id} delay={index * 50}>
+                        <Link to="/book-a-class" className="block h-full group">
+                          <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
+                            <div className="aspect-[3/4] overflow-hidden relative mb-0">
+                              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
+                                {classType.difficultyLevel || 'All Levels'}
+                              </div>
+                              <Image
+                                src={classType.image || "https://static.wixstatic.com/media/3133d9_2da583053839462ea0438f0f93ba46f8~mv2.png?originWidth=384&originHeight=512"}
+                                alt={classType.name || "Class Image"}
+                                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                width={400}
+                              />
+                            </div>
+                            <CardContent className="p-4 pt-0 text-center">
+                              <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{index + 1}</div>
+                              <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                                {classType.name}
+                              </h3>
+                              <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
+                                {classType.description}
+                              </p>
+                              <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
+                                Book Class
+                              </span>
+                            </CardContent>
+                          </Card>
+                        </Link>
+                      </AnimatedSection>
+                    )) : (
+                      <div className="col-span-3 text-center py-12 text-muted-foreground">
+                        No classes currently available.
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </section>
 
       {/* CLASSES SECTION */}
       <section className="py-24 bg-background">
@@ -449,7 +500,7 @@ export default function HomePage() {
 
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">Begin your Pilates journey with our exclusive introductory package. Perfect for newcomers and returning clients alike, this offer gives you the chance to experience our world-class instruction and premium Reformer equipment in a welcoming, supportive setting.</p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">Unlock your potential with our carefully curated starter classes designed to build strength, confidence and connection. Join our supportive community and discover why Maison Mère Studio is the perfect place to begin your wellness journey.</p>
-              
+
               <div className="mb-8">
                 <h3 className="font-heading font-bold text-foreground mb-4">What's Included:</h3>
                 <ul className="space-y-3">
