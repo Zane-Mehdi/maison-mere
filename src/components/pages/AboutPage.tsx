@@ -167,7 +167,7 @@ export default function AboutPage() {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto w-full">
             {[
               {
                 icon: <Heart className="w-8 h-8" />,
