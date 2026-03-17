@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
 
   const aboutSections = [
     { id: 'classes', label: 'Our Classes' },
@@ -149,13 +150,35 @@ export default function Header() {
             >
               Membership and Pricing
             </Link>
-            <Link
-              to="/about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-            >
-              About
-            </Link>
+            
+            {/* Mobile About Dropdown */}
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center justify-between"
+              >
+                About
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileAboutDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {mobileAboutDropdownOpen && (
+                <div className="flex flex-col gap-2 pl-4 border-l-2 border-primary/30">
+                  {aboutSections.map((section) => (
+                    <button
+                      key={section.id}
+                      onClick={() => {
+                        handleSectionScroll(section.id);
+                        setMobileMenuOpen(false);
+                        setMobileAboutDropdownOpen(false);
+                      }}
+                      className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm text-left"
+                    >
+                      {section.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
@@ -172,7 +195,7 @@ export default function Header() {
             </Link>
             <div className="flex items-center gap-4 pt-2">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/maisonmerestudio/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground hover:text-primary transition-colors duration-200"
