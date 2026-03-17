@@ -167,6 +167,7 @@ export default function HeroSlideshow({
             {currentSlideData?.cta && (
               <SlideInText delay={0.8}>
                 <div className="pointer-events-auto">
+                  <a
                   <Button
                     onClick={currentSlideData.cta.action}
                     size="lg"
