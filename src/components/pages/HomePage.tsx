@@ -4,15 +4,15 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Instructors, PilatesClassTypes, PricingPlans, HomepageStats, FrequentlyAskedQuestions, HeroSlides, AboutClassTypes } from '@/entities';
+import { AboutClassTypes, FrequentlyAskedQuestions, HeroSlides, HomepageStats, Instructors, PilatesClassTypes, PricingPlans } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
+  ChevronLeft,
+  ChevronRight,
   Minus,
   Plus,
-  Star,
-  ChevronLeft,
-  ChevronRight
+  Star
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -415,9 +415,8 @@ export default function HomePage() {
             id: '1',
             type: 'image' as const,
             src: 'https://static.wixstatic.com/media/980ffc_c08a8735d35a4fa6a2baeb0678a12c3e~mv2.png?originWidth=1152&originHeight=768',
-            title: 'The Maison Mère Standard',
+            title: '',
             subtitle: 'Welcome to Maison Mère Studio',
-            link:
             cta: {
               text: 'Book Now',
               action: () => navigate('/classes')
