@@ -170,7 +170,7 @@ export default function HeroSlideshow({
                 <div className="pointer-events-auto">
                   <Button
                     size="lg"
-                    onClick={currentSlideData.cta.action}
+                    onClick={currentSlideData.link}
                     className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-6 rounded-none uppercase tracking-widest"
                   >
                     {currentSlideData.cta?.text}

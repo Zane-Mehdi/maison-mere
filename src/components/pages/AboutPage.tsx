@@ -7,7 +7,6 @@ import { Instructors, PilatesClassTypes } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { Award, Heart, Shield, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // --- Utility Components ---

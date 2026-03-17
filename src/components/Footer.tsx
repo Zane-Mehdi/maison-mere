@@ -1,5 +1,4 @@
 import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -115,26 +114,26 @@ export default function Footer() {
           
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-6 text-background/70 font-paragraph text-sm">
-            <Link
-              to="/privacy-policy"
+            <a
+              href="/privacy-policy"
               className="hover:text-primary transition-colors duration-200"
             >
               Privacy Policy
-            </Link>
+            </a>
             <span className="text-background/40">•</span>
-            <Link
-              to="/cancellation-policy"
+            <a
+              href="/cancellation-policy"
               className="hover:text-primary transition-colors duration-200"
             >
               Cancellation Policy
-            </Link>
+            </a>
             <span className="text-background/40">•</span>
-            <Link
-              to="/terms-and-conditions"
+            <a
+              href="/terms-and-conditions"
               className="hover:text-primary transition-colors duration-200"
             >
               Terms & Conditions
-            </Link>
+            </a>
           </div>
         </div>
       </div>

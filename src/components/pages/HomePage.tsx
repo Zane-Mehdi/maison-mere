@@ -15,7 +15,6 @@ import {
   ChevronRight
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { AnimatedSection } from './AboutPage';
 
 // Testimonials type
@@ -311,7 +310,6 @@ const TestimonialCarousel = () => {
 // --- Main Page Component ---
 
 export default function HomePage() {
-  const navigate = useNavigate();
   const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
   const [stats, setStats] = useState<HomepageStats[]>([]);
@@ -394,7 +392,7 @@ export default function HomePage() {
       action: () => {
         if (slide.ctaLink) {
           if (slide.ctaLink.startsWith('/')) {
-            navigate(slide.ctaLink);
+            window.location.href = slide.ctaLink;
           } else {
             window.location.href = slide.ctaLink;
           }
@@ -419,7 +417,7 @@ export default function HomePage() {
             subtitle: 'Welcome to Maison Mère Studio',
             cta: {
               text: 'Book Now',
-              action: () => navigate('/classes')
+              action: () => window.location.href = '/classes'
             }
           }
         ]}
@@ -438,7 +436,7 @@ export default function HomePage() {
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">At Maison Mère Studio every class is more than movement. It is an opportunity to build strength, confidence and connection in a supportive women's - only environment designed for comfort and empowerment.</p>
             <Button
-              onClick={() => navigate('/about')}
+              onClick={() => window.location.href = '/about'}
               variant="outline"
               className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
             >
@@ -660,7 +658,7 @@ export default function HomePage() {
               </div>
 
               <Button
-                onClick={() => navigate('/classes')}
+                onClick={() => window.location.href = '/classes'}
                 className="bg-primary text-white hover:bg-foreground transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm no-underline"
               >
                 Claim Offer
@@ -726,11 +724,11 @@ export default function HomePage() {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   At Maison Mère, we believe pilates is a complete wellness experience. Complement your practice with our curated Wellness Bar featuring matcha, cold-pressed juices, and nourishing snacks. Or host your private pilates events in our serene, beautifully designed studio.
                 </p>
-               <Button
-                 onClick={() => navigate('/contact')}
-                 variant="outline"
-                 className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
-               >eNQUIRE</Button>
+                <Button
+                  onClick={() => window.location.href = '/contact'}
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
+                >eNQUIRE</Button>
               </FadeIn>
             </div>
           </div>
@@ -805,7 +803,7 @@ export default function HomePage() {
               JOIN MAISON MÈRE STUDIO TODAY
             </p>
             <Button
-              onClick={() => navigate('/classes')}
+              onClick={() => window.location.href = '/classes'}
               size="lg"
               className="bg-white text-primary hover:bg-foreground hover:text-white transition-all duration-300 rounded-none px-10 py-6 uppercase tracking-widest text-sm font-bold shadow-lg font-heading hover:scale-105 active:scale-95 no-underline"
             >Our Packages</Button>
