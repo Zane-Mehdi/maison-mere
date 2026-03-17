@@ -453,7 +453,7 @@ export default function HomePage() {
             className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 transition-all duration-200 whitespace-nowrap font-heading no-underline flex-shrink-0"
             size="sm"
           >
-            <a href="/classes" className="flex items-center gap-2 no-underline">
+            <a href="/book-a-class" className="flex items-center gap-2 no-underline">
               View Full Schedule
               <ArrowRight className="w-3 h-3" />
             </a>
