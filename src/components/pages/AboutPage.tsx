@@ -5,9 +5,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { Instructors, PilatesClassTypes } from '@/entities';
 import { BaseCrudService } from '@/integrations';
+import { motion } from 'framer-motion';
 import { Award, Heart, Shield, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 // --- Utility Components ---
 
