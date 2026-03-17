@@ -33,6 +33,25 @@ export default function Header() {
     setAboutDropdownOpen(false);
   };
 
+  const handleMobileSectionScroll = (sectionId: string) => {
+    // Check if we're already on the About page
+    const isOnAboutPage = window.location.pathname === '/about';
+    
+    if (isOnAboutPage) {
+      // If on About page, scroll to section directly
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // If not on About page, navigate to it with section hash
+      window.location.href = `/about#${sectionId}`;
+    }
+    // Close mobile menus
+    setMobileMenuOpen(false);
+    setMobileAboutDropdownOpen(false);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 py-4">
@@ -210,11 +229,7 @@ export default function Header() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -10 }}
                           transition={{ duration: 0.2 }}
-                          onClick={() => {
-                            handleSectionScroll(section.id);
-                            setMobileMenuOpen(false);
-                            setMobileAboutDropdownOpen(false);
-                          }}
+                          onClick={() => handleMobileSectionScroll(section.id)}
                           className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm text-left"
                         >
                           {section.label}
