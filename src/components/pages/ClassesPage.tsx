@@ -176,6 +176,19 @@ export default function ClassesPage() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
 
+  // Mapping for display names
+  const displayNameMap: Record<string, string> = {
+    'Drop-In Sessions': 'Drop-In Sessions',
+    'Intro': 'Intro',
+    'Mummy & Me Pack': 'Memberships',
+    'Standard Pack': 'Standard Packs',
+    'Unlimited Membership': 'Private 1-1'
+  };
+
+  const getDisplayName = (group: string): string => {
+    return displayNameMap[group] || group;
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -355,7 +368,7 @@ export default function ClassesPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {group}
+                    {getDisplayName(group)}
                   </motion.button>
                 ))}
               </div>
@@ -377,7 +390,7 @@ export default function ClassesPage() {
           {uniqueGroups.map((group, groupIndex) => (
             <AnimatedSection key={group} delay={100 + groupIndex * 50}>
               <div className="mb-16" id={`category-${group}`}>
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{group}</h3>
+                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{getDisplayName(group)}</h3>
                 <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
                   {groupedPlans[group].map((plan) => (
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
