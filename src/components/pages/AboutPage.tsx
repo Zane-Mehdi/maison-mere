@@ -189,32 +189,11 @@ export default function AboutPage() {
       <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
         <SectionNavigator />
       </div>
-      {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
-          backgroundSize: '30px 30px'
-        }} />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">A women-only reformer Pilates space in harrow, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.</p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-      {/* Mission Section */}
+      {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <AnimatedSection>
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-
-                </div>
-              </AnimatedSection>
-
               <AnimatedSection delay={100}>
                 <div>
                   <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
@@ -232,6 +211,12 @@ export default function AboutPage() {
                   >
                     <Link to="/classes">Join Our Community</Link>
                   </Button>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+
                 </div>
               </AnimatedSection>
             </div>
