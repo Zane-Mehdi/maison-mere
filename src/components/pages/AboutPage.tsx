@@ -82,14 +82,14 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
   );
 };
 
-const SectionNavigator = () => {
+const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
   const sections = [
-    { id: 'mission', label: 'Our Mission' },
-    { id: 'values', label: 'Our Values' },
-    { id: 'classes', label: 'Our Classes' },
-    { id: 'private-classes', label: 'Private Classes' },
-    { id: 'corporate', label: 'Corporate & Events' },
-    { id: 'instructors', label: 'Our Instructors' }
+    { id: 'mission', label: 'Our Mission', abbrev: 'Mission' },
+    { id: 'values', label: 'Our Values', abbrev: 'Values' },
+    { id: 'classes', label: 'Our Classes', abbrev: 'Levels' },
+    { id: 'private-classes', label: 'Private Classes', abbrev: '1-1' },
+    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp/Events' },
+    { id: 'instructors', label: 'Our Instructors', abbrev: 'Instructors' }
   ];
 
   const handleScroll = (sectionId: string) => {
@@ -104,17 +104,25 @@ const SectionNavigator = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-white border-b border-border shadow-sm sticky top-24 z-40"
+      className={`bg-white border-b border-border shadow-sm z-40 ${
+        isSticky ? 'fixed top-0 left-0 right-0 w-full' : 'relative'
+      }`}
+      style={isSticky ? { paddingTop: '80px' } : {}}
     >
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
+        <div className={`flex justify-center flex-wrap gap-2 ${isSticky ? 'py-2' : 'py-4'} transition-all duration-300`}>
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-4 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30"
+              className={`font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 ${
+                isSticky 
+                  ? 'px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-sm' 
+                  : 'px-4 py-2 text-sm'
+              }`}
             >
-              {section.label}
+              <span className="md:hidden">{section.abbrev}</span>
+              <span className="hidden md:inline">{section.label}</span>
             </button>
           ))}
         </div>
@@ -128,6 +136,7 @@ export default function AboutPage() {
   const [classTypes, setClassTypes] = useState<PilatesClassTypesABOUTUS[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [ctaMinimized, setCtaMinimized] = useState(false);
+  const [isNavigatorSticky, setIsNavigatorSticky] = useState(false);
   const { scrollY } = useScroll();
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaOffsetY = useTransform(scrollY, [0, 500], [0, -100]);
@@ -177,6 +186,9 @@ export default function AboutPage() {
         // Minimize when CTA section scrolls past the header
         setCtaMinimized(rect.top < 100);
       }
+      
+      // Sticky navigator at 300px scroll
+      setIsNavigatorSticky(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -187,8 +199,9 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background">
       <Header />
       <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
-        <SectionNavigator />
+        <SectionNavigator isSticky={false} />
       </div>
+      {/* ... keep existing code (Mission through Instructors sections) ... */}
       {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -578,6 +591,9 @@ export default function AboutPage() {
         </motion.div>
       </section>
       <Footer />
+      
+      {/* Sticky Navigator - appears after 300px scroll */}
+      {isNavigatorSticky && <SectionNavigator isSticky={true} />}
     </div>
   );
 }
