@@ -191,13 +191,6 @@ export default function Header() {
               >
                 Home
               </Link>
-              <Link
-                to="/classes"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-              >
-                Membership and Pricing
-              </Link>
 
               {/* Mobile About Dropdown */}
               <div className="flex flex-col gap-2">
@@ -241,12 +234,13 @@ export default function Header() {
               </div>
 
               <Link
-                to="/contact"
+                to="/classes"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
-                Contact
+                Membership and Pricing
               </Link>
+
               <a
                 href="/book-a-class"
                 onClick={() => setMobileMenuOpen(false)}
@@ -254,6 +248,14 @@ export default function Header() {
               >
                 Schedule
               </a>
+
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                Contact
+              </Link>
               <div className="flex items-center gap-4 pt-2">
                 <a
                   href="https://www.instagram.com/maisonmerestudio/?hl=en"
