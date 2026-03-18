@@ -121,7 +121,7 @@ export default function Header() {
               </AnimatePresence>
             </div>
             <Link
-              to="/membership-and-pricing"
+              to="/classes"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Membership and Pricing
@@ -236,7 +236,7 @@ export default function Header() {
               </div>
 
               <Link
-                to="/membership-and-pricing"
+                to="/classes"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
               >
