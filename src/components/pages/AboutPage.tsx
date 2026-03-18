@@ -123,6 +123,78 @@ const SectionNavigator = () => {
   );
 };
 
+const StickyScrollNavigator = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  const sections = [
+    { id: 'mission', label: 'Our Mission', abbrev: 'Mission' },
+    { id: 'values', label: 'Our Values', abbrev: 'Values' },
+    { id: 'classes', label: 'Our Classes', abbrev: 'Levels' },
+    { id: 'private-classes', label: 'Private Classes', abbrev: '1-1' },
+    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp/Events' },
+    { id: 'instructors', label: 'Our Instructors', abbrev: 'Instructors' }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky nav after scrolling past the initial navigator
+      const scrollPosition = window.scrollY;
+      setIsVisible(scrollPosition > 300);
+
+      // Determine active section
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 200) {
+            setActiveSection(section.id);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
+      transition={{ duration: 0.3 }}
+      className={`fixed top-24 left-0 right-0 z-50 bg-white border-b border-border shadow-sm ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex justify-center gap-1 md:gap-2 py-3 overflow-x-auto">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => handleClick(section.id)}
+              className={`px-3 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold whitespace-nowrap rounded-full transition-all duration-200 border border-transparent ${
+                activeSection === section.id
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-foreground/70 hover:text-primary hover:bg-secondary/20 hover:border-primary/30'
+              }`}
+            >
+              {/* Desktop: full label, Mobile/Tablet: abbreviated */}
+              <span className="hidden md:inline">{section.label}</span>
+              <span className="md:hidden">{section.abbrev}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function AboutPage() {
   const [instructors, setInstructors] = useState<InstructorsABOUTUS[]>([]);
   const [classTypes, setClassTypes] = useState<PilatesClassTypesABOUTUS[]>([]);
@@ -189,6 +261,7 @@ export default function AboutPage() {
       <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
         <SectionNavigator />
       </div>
+      <StickyScrollNavigator />
       {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
