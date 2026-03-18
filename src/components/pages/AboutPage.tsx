@@ -82,14 +82,14 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
   );
 };
 
-const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
+const SectionNavigator = () => {
   const sections = [
-    { id: 'mission', label: 'Our Mission', abbrev: 'Our Mission' },
-    { id: 'values', label: 'Our Values', abbrev: 'Our Values' },
-    { id: 'classes', label: 'Our Classes', abbrev: 'Our Classes' },
-    { id: 'private-classes', label: 'Private Classes', abbrev: 'Private Classes' },
-    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corporate & Events' },
-    { id: 'instructors', label: 'Our Instructors', abbrev: 'Our Instructors' }
+    { id: 'mission', label: 'Our Mission' },
+    { id: 'values', label: 'Our Values' },
+    { id: 'classes', label: 'Our Classes' },
+    { id: 'private-classes', label: 'Private Classes' },
+    { id: 'corporate', label: 'Corporate & Events' },
+    { id: 'instructors', label: 'Our Instructors' }
   ];
 
   const handleScroll = (sectionId: string) => {
@@ -99,58 +99,24 @@ const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
     }
   };
 
-  if (isSticky) {
-    // Sticky one-line navigation bar with all subtitles
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 w-full bg-white border-b border-border shadow-sm z-40"
-        style={{ paddingTop: '100px' }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center items-center gap-2 py-3 transition-all duration-300 overflow-x-auto">
-            {sections.map((section, index) => (
-              <div key={section.id} className="flex items-center gap-2">
-                <button
-                  onClick={() => handleScroll(section.id)}
-                  className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 px-3 py-1.5 text-xs md:text-sm flex-shrink-0"
-                >
-                  {section.abbrev}
-                </button>
-                {index < sections.length - 1 && (
-                  <span className="text-border text-xs md:text-sm flex-shrink-0">•</span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
-
-  // Initial centered layout with all 6 full titles
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative bg-white border-b border-border shadow-sm z-40"
+      className="bg-white border-b border-border shadow-sm sticky top-24 z-40"
     >
       <div className="container mx-auto px-4">
-        <div className="py-8 transition-all duration-300">
-          <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => handleScroll(section.id)}
-                className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-lg transition-all duration-200 border border-transparent hover:border-primary/30 px-4 py-3 text-sm text-center whitespace-nowrap"
-              >
-                {section.label}
-              </button>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => handleScroll(section.id)}
+              className="px-4 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30"
+            >
+              {section.label}
+            </button>
+          ))}
         </div>
       </div>
     </motion.div>
@@ -162,7 +128,6 @@ export default function AboutPage() {
   const [classTypes, setClassTypes] = useState<PilatesClassTypesABOUTUS[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [ctaMinimized, setCtaMinimized] = useState(false);
-  const [isNavigatorSticky, setIsNavigatorSticky] = useState(false);
   const { scrollY } = useScroll();
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaOffsetY = useTransform(scrollY, [0, 500], [0, -100]);
@@ -212,9 +177,6 @@ export default function AboutPage() {
         // Minimize when CTA section scrolls past the header
         setCtaMinimized(rect.top < 100);
       }
-      
-      // Sticky navigator at 300px scroll
-      setIsNavigatorSticky(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -224,9 +186,9 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      {/* Initial 3x3 Navigation - shown at top */}
-      {!isNavigatorSticky && <SectionNavigator isSticky={false} />}
-      {/* ... keep existing code (Mission through Instructors sections) ... */}
+      <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
+        <SectionNavigator />
+      </div>
       {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -616,9 +578,6 @@ export default function AboutPage() {
         </motion.div>
       </section>
       <Footer />
-      
-      {/* Sticky Navigator - appears after 300px scroll */}
-      {isNavigatorSticky && <SectionNavigator isSticky={true} />}
     </div>
   );
 }
