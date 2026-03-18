@@ -83,16 +83,26 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 };
 
 const SectionNavigator = () => {
-  const [isSticky, setIsSticky] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const sections = [
     { id: 'mission', label: 'Our Mission', shortLabel: 'Mission' },
     { id: 'classes', label: 'Our Classes', shortLabel: 'Classes' },
-    { id: 'corporate', label: 'Corporate & Events', shortLabel: 'Corp' },
+    { id: 'corporate', label: 'Corporate & Events', shortLabel: 'Corp/Events' },
     { id: 'values', label: 'Our Values', shortLabel: 'Values' },
     { id: 'private-classes', label: 'Private Classes', shortLabel: '1-1' },
-    { id: 'instructors', label: 'Our Instructors', shortLabel: 'Instr.' }
+    { id: 'instructors', label: 'Our Instructors', shortLabel: 'Instructors' }
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky banner after scrolling down 300px
+      setIsScrolled(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -101,32 +111,22 @@ const SectionNavigator = () => {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Become sticky after scrolling down 300px
-      setIsSticky(window.scrollY > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <>
-      {/* Navigation Banner - Fixed at top, then becomes sticky on scroll */}
+      {/* Sticky Navigation Banner - appears on scroll */}
       <motion.div
-        initial={{ opacity: 1, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: isScrolled ? 1 : 0, y: isScrolled ? 0 : -20 }}
         transition={{ duration: 0.3 }}
-        className={`${isSticky ? 'sticky' : 'fixed'} top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm pointer-events-auto`}
+        className={`fixed top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm ${isScrolled ? 'pointer-events-auto' : 'pointer-events-none'}`}
       >
-        <div className="container mx-auto px-2 md:px-4">
-          <div className="flex justify-center gap-0.5 md:gap-2 py-3 overflow-x-auto">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center gap-1 md:gap-2 py-3 overflow-x-auto">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleSectionClick(section.id)}
-                className="px-2 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 flex-shrink-0"
+                className="px-3 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 flex-shrink-0"
               >
                 <span className="hidden md:inline">{section.label}</span>
                 <span className="md:hidden">{section.shortLabel}</span>
