@@ -161,7 +161,19 @@ const StickyScrollNavigator = () => {
   const handleClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Get the sticky navigator height to account for offset
+      const stickyNav = document.querySelector('.sticky-scroll-navigator');
+      const offset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
+      
+      // Calculate the target scroll position
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const targetScroll = elementTop - offset - 20; // 20px extra padding
+      
+      // Smooth scroll to the calculated position
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -170,7 +182,7 @@ const StickyScrollNavigator = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
       transition={{ duration: 0.3 }}
-      className={`fixed top-24 left-0 right-0 z-50 bg-white border-b border-border shadow-sm ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      className={`sticky-scroll-navigator fixed top-24 left-0 right-0 z-50 bg-white border-b border-border shadow-sm ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
       <div className="container mx-auto px-1">
         <div className="flex justify-center gap-0.5 md:gap-2 py-2 overflow-x-auto">
