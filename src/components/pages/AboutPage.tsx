@@ -83,16 +83,28 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 };
 
 const SectionNavigator = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const sections = [
-    { id: 'mission', label: 'Our Mission' },
-    { id: 'values', label: 'Our Values' },
-    { id: 'classes', label: 'Our Classes' },
-    { id: 'private-classes', label: 'Private Classes' },
-    { id: 'corporate', label: 'Corporate & Events' },
-    { id: 'instructors', label: 'Our Instructors' }
+    { id: 'mission', label: 'Our Mission', shortLabel: 'Mission' },
+    { id: 'classes', label: 'Our Classes', shortLabel: 'Classes' },
+    { id: 'corporate', label: 'Corporate & Events', shortLabel: 'Corp/Events' },
+    { id: 'values', label: 'Our Values', shortLabel: 'Values' },
+    { id: 'private-classes', label: 'Private Classes', shortLabel: '1-1' },
+    { id: 'instructors', label: 'Our Instructors', shortLabel: 'Instructors' }
   ];
 
-  const handleScroll = (sectionId: string) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky banner after scrolling down 300px
+      setIsScrolled(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -100,26 +112,30 @@ const SectionNavigator = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="bg-white border-b border-border shadow-sm sticky top-24 z-40"
-    >
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => handleScroll(section.id)}
-              className="px-4 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30"
-            >
-              {section.label}
-            </button>
-          ))}
+    <>
+      {/* Sticky Navigation Banner - appears on scroll */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: isScrolled ? 1 : 0, y: isScrolled ? 0 : -20 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm ${isScrolled ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center gap-1 md:gap-2 py-3 overflow-x-auto">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => handleSectionClick(section.id)}
+                className="px-3 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 flex-shrink-0"
+              >
+                <span className="hidden md:inline">{section.label}</span>
+                <span className="md:hidden">{section.shortLabel}</span>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 
@@ -186,9 +202,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
-        <SectionNavigator />
-      </div>
+      <SectionNavigator />
       {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
