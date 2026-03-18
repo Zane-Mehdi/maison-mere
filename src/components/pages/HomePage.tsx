@@ -492,7 +492,7 @@ export default function HomePage() {
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">At Maison Mère Studio every class is more than movement. It is an opportunity to build strength, confidence and connection in a supportive women's - only environment designed for comfort and empowerment.</p>
             <Button
-              onClick={() => navigate('/membership-and-pricing')}
+              onClick={() => navigate('/classes')}
               variant="outline"
               className="border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 rounded-none px-8 py-6 uppercase tracking-widest text-sm bg-transparent font-heading hover:scale-105 active:scale-95 no-underline"
             >
