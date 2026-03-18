@@ -85,10 +85,10 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 const SectionNavigator = () => {
   const sections = [
     { id: 'mission', label: 'Our Mission' },
-    { id: 'classes', label: 'Our Classes' },
-    { id: 'corporate', label: 'Corporate & Events' },
     { id: 'values', label: 'Our Values' },
+    { id: 'classes', label: 'Our Classes' },
     { id: 'private-classes', label: 'Private Classes' },
+    { id: 'corporate', label: 'Corporate & Events' },
     { id: 'instructors', label: 'Our Instructors' }
   ];
 
@@ -112,9 +112,10 @@ const SectionNavigator = () => {
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-3 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded transition-all duration-200 whitespace-normal text-center border border-transparent hover:border-primary/30"
+              className="px-3 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-normal text-center relative group"
             >
               {section.label}
+              <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
             </button>
           ))}
         </div>
@@ -126,10 +127,10 @@ const SectionNavigator = () => {
 const StickyNavigationBanner = ({ showBanner }: { showBanner: boolean }) => {
   const sections = [
     { id: 'mission', shortLabel: 'Mission' },
-    { id: 'classes', shortLabel: 'Classes' },
-    { id: 'corporate', shortLabel: 'Corp/Events' },
     { id: 'values', shortLabel: 'Values' },
+    { id: 'classes', shortLabel: 'Classes' },
     { id: 'private-classes', shortLabel: '1-1' },
+    { id: 'corporate', shortLabel: 'Corp/Events' },
     { id: 'instructors', shortLabel: 'Instructors' }
   ];
 
@@ -153,9 +154,10 @@ const StickyNavigationBanner = ({ showBanner }: { showBanner: boolean }) => {
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-2 md:px-3 py-1.5 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 flex-shrink-0"
+              className="px-2 md:px-3 py-1.5 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap flex-shrink-0 relative group"
             >
               {section.shortLabel}
+              <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
             </button>
           ))}
         </div>
