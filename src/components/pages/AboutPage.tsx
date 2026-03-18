@@ -104,60 +104,17 @@ const SectionNavigator = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="hidden md:block bg-white border-b border-border shadow-sm sticky top-24 z-40"
+      className="bg-white border-b border-border shadow-sm sticky top-24 z-40"
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-center items-center gap-2 py-4">
+        <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-3 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap text-center relative group"
+              className="px-4 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30"
             >
               {section.label}
-              <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
-            </button>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const StickyNavigationBanner = ({ showBanner }: { showBanner: boolean }) => {
-  const sections = [
-    { id: 'mission', label: 'Our Mission' },
-    { id: 'values', label: 'Our Values' },
-    { id: 'classes', label: 'Our Classes' },
-    { id: 'private-classes', label: 'Private Classes' },
-    { id: 'corporate', label: 'Corporate & Events' },
-    { id: 'instructors', label: 'Our Instructors' }
-  ];
-
-  const handleScroll = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: showBanner ? 1 : 0, y: showBanner ? 0 : -20 }}
-      transition={{ duration: 0.3 }}
-      className={`md:hidden fixed top-24 left-0 right-0 z-30 bg-white border-b border-border shadow-md ${showBanner ? 'pointer-events-auto' : 'pointer-events-none'}`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex justify-center items-center gap-1 py-2 overflow-x-auto">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => handleScroll(section.id)}
-              className="px-2 py-1.5 text-xs font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap flex-shrink-0 relative group"
-            >
-              {section.label}
-              <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
             </button>
           ))}
         </div>
@@ -171,12 +128,8 @@ export default function AboutPage() {
   const [classTypes, setClassTypes] = useState<PilatesClassTypesABOUTUS[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [ctaMinimized, setCtaMinimized] = useState(false);
-  const [showStickyNav, setShowStickyNav] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
-  const [lastScrollY, setLastScrollY] = useState(0);
   const { scrollY } = useScroll();
   const ctaRef = useRef<HTMLDivElement>(null);
-  const sectionNavRef = useRef<HTMLDivElement>(null);
   const ctaOffsetY = useTransform(scrollY, [0, 500], [0, -100]);
 
   useEffect(() => {
@@ -216,46 +169,26 @@ export default function AboutPage() {
     fetchData();
   }, []);
 
-  // Handle scroll to minimize CTA section and show/hide sticky nav based on scroll direction
+  // Handle scroll to minimize CTA section
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (ctaRef.current && sectionNavRef.current) {
-        const ctaRect = ctaRef.current.getBoundingClientRect();
-        const sectionNavRect = sectionNavRef.current.getBoundingClientRect();
-        
+      if (ctaRef.current) {
+        const rect = ctaRef.current.getBoundingClientRect();
         // Minimize when CTA section scrolls past the header
-        setCtaMinimized(ctaRect.top < 100);
-        
-        // Determine scroll direction
-        if (currentScrollY > lastScrollY) {
-          setScrollDirection('down');
-        } else {
-          setScrollDirection('up');
-        }
-        setLastScrollY(currentScrollY);
-        
-        // Show sticky nav only when scrolling down past 300px
-        if (currentScrollY > 300 && scrollDirection === 'down') {
-          setShowStickyNav(true);
-        } else if (scrollDirection === 'up') {
-          setShowStickyNav(false);
-        }
+        setCtaMinimized(rect.top < 100);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrollDirection, lastScrollY]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div ref={sectionNavRef} className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
+      <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
         <SectionNavigator />
       </div>
-      <StickyNavigationBanner showBanner={showStickyNav} />
       {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
