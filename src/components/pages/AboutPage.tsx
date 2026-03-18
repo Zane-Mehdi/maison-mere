@@ -83,6 +83,79 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
   );
 };
 
+const InstructorsCarousel = ({ instructors }: { instructors: InstructorsABOUTUS[] }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  if (instructors.length === 0) {
+    return (
+      <div className="text-center py-12 text-muted-foreground">
+        Meet our instructors in person at the studio.
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+  }, []);
+
+  return (
+    <div className="md:hidden">
+      <div
+        ref={scrollContainerRef}
+        className="overflow-x-auto overflow-y-hidden bg-background rounded-lg scroll-smooth"
+        style={{
+          scrollBehavior: 'smooth',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        <div className="flex gap-4 px-4 pb-4" style={{ width: 'fit-content' }}>
+          {instructors.map((instructor) => (
+            <div
+              key={instructor._id}
+              className="block group flex-shrink-0"
+              style={{ width: '75vw', maxWidth: '400px' }}
+            >
+              <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full">
+                <div className="aspect-square overflow-hidden">
+                  <Image
+                    src={instructor.photo || 'https://static.wixstatic.com/media/980ffc_76032d75a8b044b2bc400d64f0786611~mv2.png?originWidth=256&originHeight=384'}
+                    alt={instructor.name || 'Instructor'}
+                    className="w-full h-full object-cover"
+                    width={300}
+                  />
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-heading font-bold text-foreground mb-2">
+                    {instructor.name}
+                  </h3>
+                  {instructor.specialties && (
+                    <p className="text-primary font-paragraph text-sm mb-2">
+                      {instructor.specialties}
+                    </p>
+                  )}
+                  {instructor.experienceYears && (
+                    <p className="text-foreground/60 font-paragraph text-sm mb-3">
+                      {instructor.experienceYears} years experience
+                    </p>
+                  )}
+                  <p className="text-foreground/70 font-paragraph text-sm leading-relaxed">
+                    {instructor.bio}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p className="text-center text-xs text-muted-foreground mt-4 uppercase tracking-widest">
+        Scroll to browse instructors
+      </p>
+    </div>
+  );
+};
+
 const SectionNavigator = () => {
   const sections = [
     { id: 'mission', label: 'Our Mission' },
@@ -203,7 +276,7 @@ const StickyScrollNavigator = () => {
             <button
               key={section.id}
               onClick={() => handleClick(section.id)}
-              className={`px-1.5 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold whitespace-nowrap rounded-full transition-all duration-200 border border-transparent ${
+              className={`px-1 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold whitespace-nowrap rounded-full transition-all duration-200 border border-transparent ${
                 activeSection === section.id
                   ? 'bg-primary text-primary-foreground'
                   : 'text-foreground/70 hover:text-primary hover:bg-secondary/20 hover:border-primary/30'
@@ -567,40 +640,46 @@ export default function AboutPage() {
 
           <div className="min-h-[400px]">
             {isLoading ? null : instructors.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {instructors.map((instructor, index) => (
-                  <AnimatedSection key={instructor._id} delay={index * 50}>
-                    <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                      <div className="aspect-square overflow-hidden">
-                        <Image
-                          src={instructor.photo || 'https://static.wixstatic.com/media/980ffc_76032d75a8b044b2bc400d64f0786611~mv2.png?originWidth=256&originHeight=384'}
-                          alt={instructor.name || 'Instructor'}
-                          className="w-full h-full object-cover"
-                          width={300}
-                        />
-                      </div>
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-heading font-bold text-foreground mb-2">
-                          {instructor.name}
-                        </h3>
-                        {instructor.specialties && (
-                          <p className="text-primary font-paragraph text-sm mb-2">
-                            {instructor.specialties}
+              <>
+                {/* Desktop Grid View */}
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                  {instructors.map((instructor, index) => (
+                    <AnimatedSection key={instructor._id} delay={index * 50}>
+                      <Card className="border-border bg-card overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <div className="aspect-square overflow-hidden">
+                          <Image
+                            src={instructor.photo || 'https://static.wixstatic.com/media/980ffc_76032d75a8b044b2bc400d64f0786611~mv2.png?originWidth=256&originHeight=384'}
+                            alt={instructor.name || 'Instructor'}
+                            className="w-full h-full object-cover"
+                            width={300}
+                          />
+                        </div>
+                        <CardContent className="p-6">
+                          <h3 className="text-lg font-heading font-bold text-foreground mb-2">
+                            {instructor.name}
+                          </h3>
+                          {instructor.specialties && (
+                            <p className="text-primary font-paragraph text-sm mb-2">
+                              {instructor.specialties}
+                            </p>
+                          )}
+                          {instructor.experienceYears && (
+                            <p className="text-foreground/60 font-paragraph text-sm mb-3">
+                              {instructor.experienceYears} years experience
+                            </p>
+                          )}
+                          <p className="text-foreground/70 font-paragraph text-sm leading-relaxed">
+                            {instructor.bio}
                           </p>
-                        )}
-                        {instructor.experienceYears && (
-                          <p className="text-foreground/60 font-paragraph text-sm mb-3">
-                            {instructor.experienceYears} years experience
-                          </p>
-                        )}
-                        <p className="text-foreground/70 font-paragraph text-sm leading-relaxed">
-                          {instructor.bio}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </AnimatedSection>
-                ))}
-              </div>
+                        </CardContent>
+                      </Card>
+                    </AnimatedSection>
+                  ))}
+                </div>
+
+                {/* Mobile Horizontal Carousel */}
+                <InstructorsCarousel instructors={instructors} />
+              </>
             ) : (
               <div className="text-center py-12">
                 <p className="text-foreground/60 font-paragraph">Meet our instructors in person at the studio.</p>
