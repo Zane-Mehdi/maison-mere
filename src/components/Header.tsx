@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
 
   const aboutSections = [
     { id: 'mission', label: 'Mission Statement' },
@@ -35,24 +34,7 @@ export default function Header() {
     setAboutDropdownOpen(false);
   };
 
-  const handleMobileSectionScroll = (sectionId: string) => {
-    // Check if we're already on the About page
-    const isOnAboutPage = window.location.pathname === '/about';
 
-    if (isOnAboutPage) {
-      // If on About page, scroll to section directly
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      // If not on About page, navigate to it with section hash
-      window.location.href = `/about#${sectionId}`;
-    }
-    // Close mobile menus
-    setMobileMenuOpen(false);
-    setMobileAboutDropdownOpen(false);
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -194,46 +176,14 @@ export default function Header() {
                 Home
               </Link>
 
-              {/* Mobile About Dropdown */}
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center justify-between"
-                >
-                  About
-                  <motion.div
-                    animate={{ rotate: mobileAboutDropdownOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {mobileAboutDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="flex flex-col gap-2 pl-4 border-l-2 border-primary/30 overflow-hidden"
-                    >
-                      {aboutSections.map((section) => (
-                        <motion.button
-                          key={section.id}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -10 }}
-                          transition={{ duration: 0.2 }}
-                          onClick={() => handleMobileSectionScroll(section.id)}
-                          className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm text-left"
-                        >
-                          {section.label}
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              {/* Mobile About - Direct Link */}
+              <Link
+                to="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+              >
+                About
+              </Link>
 
               <Link
                 to="/classes"

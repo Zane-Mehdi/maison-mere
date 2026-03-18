@@ -107,12 +107,12 @@ const SectionNavigator = () => {
       className="bg-white border-b border-border shadow-sm sticky top-24 z-40"
     >
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 py-4">
+        <div className="flex flex-wrap justify-center items-center gap-1 md:gap-2 py-4">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-3 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-normal text-center relative group"
+              className="px-2 md:px-3 py-2 text-xs md:text-xs lg:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap text-center relative group"
             >
               {section.label}
               <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
@@ -126,12 +126,12 @@ const SectionNavigator = () => {
 
 const StickyNavigationBanner = ({ showBanner }: { showBanner: boolean }) => {
   const sections = [
-    { id: 'mission', shortLabel: 'Mission' },
-    { id: 'values', shortLabel: 'Values' },
-    { id: 'classes', shortLabel: 'Classes' },
-    { id: 'private-classes', shortLabel: '1-1' },
-    { id: 'corporate', shortLabel: 'Corp/Events' },
-    { id: 'instructors', shortLabel: 'Instructors' }
+    { id: 'mission', label: 'Our Mission' },
+    { id: 'values', label: 'Our Values' },
+    { id: 'classes', label: 'Our Classes' },
+    { id: 'private-classes', label: 'Private Classes' },
+    { id: 'corporate', label: 'Corporate & Events' },
+    { id: 'instructors', label: 'Our Instructors' }
   ];
 
   const handleScroll = (sectionId: string) => {
@@ -154,9 +154,9 @@ const StickyNavigationBanner = ({ showBanner }: { showBanner: boolean }) => {
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-2 md:px-3 py-1.5 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap flex-shrink-0 relative group"
+              className="px-2 md:px-3 py-1.5 text-xs md:text-xs lg:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap flex-shrink-0 relative group"
             >
-              {section.shortLabel}
+              {section.label}
               <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
             </button>
           ))}
