@@ -12,8 +12,8 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   if (classTypes.length === 0) {
     return (
@@ -23,14 +23,31 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
     );
   }
 
+  const peekPercentage = 20; // Show 20% of next item
+  const itemWidth = 100 - peekPercentage; // Each item takes 80% of container
+
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setDragStart(e.clientX);
+    setDragOffset(0);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
+    setDragOffset(0);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    const currentX = e.clientX;
+    setDragOffset(currentX - dragStart);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    setDragOffset(currentX - dragStart);
   };
 
   const handleMouseUp = (e: React.MouseEvent) => {
@@ -52,35 +69,49 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
     if (Math.abs(dragDistance) > 30) {
       if (dragDistance > 0) {
         // Swiped left - go to next
-        setCurrentIndex((prev) => (prev + 1) % classTypes.length);
+        if (currentIndex < classTypes.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+        }
       } else {
         // Swiped right - go to previous
-        setCurrentIndex((prev) => (prev - 1 + classTypes.length) % classTypes.length);
+        if (currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+        }
       }
     }
+    setDragOffset(0);
   };
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
 
+  // Calculate translation: move by itemWidth percentage for each item, accounting for drag
+  const translateX = -currentIndex * itemWidth + (isDragging ? dragOffset / (containerRef.current?.offsetWidth || 1) * 100 : 0);
+
   return (
     <div className="md:hidden">
-      {/* Carousel Container - Shows 1.5 items */}
+      {/* Carousel Container - Shows item + peek of next */}
       <div
         ref={containerRef}
         className="relative overflow-hidden bg-background rounded-lg"
         onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onMouseLeave={() => setIsDragging(false)}
+        onMouseLeave={() => {
+          if (isDragging) {
+            setIsDragging(false);
+            setDragOffset(0);
+          }
+        }}
         onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <motion.div
-          ref={scrollContainerRef}
           className="flex gap-4 px-4"
-          animate={{ x: -currentIndex * (100 + 16) + '%' }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          animate={{ x: `${translateX}%` }}
+          transition={isDragging ? { type: 'inertia', velocity: dragOffset } : { type: 'spring', stiffness: 300, damping: 30 }}
           style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
         >
           {classTypes.map((classType, index) => (
@@ -88,7 +119,8 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
               key={classType._id}
               href="/book-a-class"
               className="block group flex-shrink-0"
-              style={{ width: 'calc(100% - 1rem)' }}
+              style={{ width: `${itemWidth}%` }}
+              draggable={false}
             >
               <Card className="border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-lg overflow-hidden h-full">
                 <div className="aspect-[3/4] overflow-hidden relative mb-0">
