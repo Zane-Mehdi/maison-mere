@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import HeroSlideshow from '@/components/HeroSlideshow';
+import ClassesCarousel from '@/components/ClassesCarousel';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
@@ -616,42 +617,48 @@ export default function HomePage() {
           </div>
 
           {isClassesLoading ? null : (
-            <div className="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              {aboutClassTypes.length > 0 ? aboutClassTypes.map((classType, index) => (
-                <AnimatedSection key={classType._id} delay={index * 50}>
-                  <a href="/book-a-class" className="block h-full group">
-                    <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
-                      <div className="aspect-[3/4] overflow-hidden relative mb-0">
-                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
-                          {classType.difficultyLevel || 'All Levels'}
+            <>
+              {/* Desktop Grid View */}
+              <div className="hidden md:grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                {aboutClassTypes.length > 0 ? aboutClassTypes.map((classType, index) => (
+                  <AnimatedSection key={classType._id} delay={index * 50}>
+                    <a href="/book-a-class" className="block h-full group">
+                      <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
+                        <div className="aspect-[3/4] overflow-hidden relative mb-0">
+                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
+                            {classType.difficultyLevel || 'All Levels'}
+                          </div>
+                          <Image
+                            src={classType.classTypeImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
+                            alt={classType.classTypeName || "Class Image"}
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                          />
                         </div>
-                        <Image
-                          src={classType.classTypeImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                          alt={classType.classTypeName || "Class Image"}
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
-                      <CardContent className="p-4 pt-0 text-center">
-                        <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{index + 1}</div>
-                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {classType.classTypeName}
-                        </h3>
-                        <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
-                          {classType.description}
-                        </p>
-                        <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
-                          Book Class
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </a>
-                </AnimatedSection>
-              )) : (
-                <div className="col-span-4 text-center py-12 text-muted-foreground">
-                  No classes currently available.
-                </div>
-              )}
-            </div>
+                        <CardContent className="p-4 pt-0 text-center">
+                          <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{index + 1}</div>
+                          <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                            {classType.classTypeName}
+                          </h3>
+                          <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
+                            {classType.description}
+                          </p>
+                          <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
+                            Book Class
+                          </span>
+                        </CardContent>
+                      </Card>
+                    </a>
+                  </AnimatedSection>
+                )) : (
+                  <div className="col-span-4 text-center py-12 text-muted-foreground">
+                    No classes currently available.
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Horizontal Carousel */}
+              <ClassesCarousel classTypes={aboutClassTypes} />
+            </>
           )}
         </div>
       </section>
