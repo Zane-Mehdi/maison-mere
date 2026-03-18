@@ -10,6 +10,8 @@ export default function Header() {
   const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
 
   const aboutSections = [
+    { id: 'mission', label: 'Mission Statement' },
+    { id: 'values', label: 'Our Values' },
     { id: 'classes', label: 'Our Classes' },
     { id: 'private-classes', label: 'Private Classes' },
     { id: 'corporate', label: 'Corporate & Events' },

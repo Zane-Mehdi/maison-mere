@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { Instructors, PilatesClassTypes } from '@/entities';
+import { InstructorsABOUTUS, PilatesClassTypesABOUTUS } from '@/entities';
 import { BaseCrudService } from '@/integrations';
 import { Award, Heart, Shield, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
@@ -124,8 +124,8 @@ const SectionNavigator = () => {
 };
 
 export default function AboutPage() {
-  const [instructors, setInstructors] = useState<Instructors[]>([]);
-  const [classTypes, setClassTypes] = useState<PilatesClassTypes[]>([]);
+  const [instructors, setInstructors] = useState<InstructorsABOUTUS[]>([]);
+  const [classTypes, setClassTypes] = useState<PilatesClassTypesABOUTUS[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [ctaMinimized, setCtaMinimized] = useState(false);
   const { scrollY } = useScroll();
@@ -154,8 +154,8 @@ export default function AboutPage() {
     const fetchData = async () => {
       try {
         const [instructorsResult, classTypesResult] = await Promise.all([
-          BaseCrudService.getAll<Instructors>('instructors'),
-          BaseCrudService.getAll<PilatesClassTypes>('classtypes')
+          BaseCrudService.getAll<InstructorsABOUTUS>('instructors'),
+          BaseCrudService.getAll<PilatesClassTypesABOUTUS>('classtypes')
         ]);
         setInstructors(instructorsResult.items);
         setClassTypes(classTypesResult.items);
@@ -199,10 +199,6 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
-                About Us
-              </p>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">Maison Mère Studios</h1>
               <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">A women-only reformer Pilates space in harrow, dedicated to empowering women through mindful movement, modern design, and a welcoming, inclusive atmosphere.</p>
             </div>
           </AnimatedSection>
