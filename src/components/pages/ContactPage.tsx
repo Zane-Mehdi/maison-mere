@@ -58,7 +58,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className} mt-8`}
     >
       {children}
     </div>
