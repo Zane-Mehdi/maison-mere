@@ -86,8 +86,8 @@ const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
   const sections = [
     { id: 'mission', label: 'Our Mission', abbrev: 'Mission' },
     { id: 'values', label: 'Our Values', abbrev: 'Values' },
-    { id: 'classes', label: 'Our Classes', abbrev: 'Levels' },
-    { id: 'private-classes', label: 'Private Classes', abbrev: '1-1' },
+    { id: 'classes', label: 'Class Levels', abbrev: 'Levels' },
+    { id: 'private-classes', label: 'Private 1-1', abbrev: '1-1' },
     { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp/Events' },
     { id: 'instructors', label: 'Our Instructors', abbrev: 'Instructors' }
   ];
@@ -99,32 +99,54 @@ const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
     }
   };
 
+  if (isSticky) {
+    // Sticky one-line navigation bar
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 right-0 w-full bg-white border-b border-border shadow-sm z-40"
+        style={{ paddingTop: '80px' }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center flex-wrap gap-1 py-2 transition-all duration-300">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => handleScroll(section.id)}
+                className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-sm"
+              >
+                {section.abbrev}
+              </button>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // Initial 3x3 grid layout with full titles
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`bg-white border-b border-border shadow-sm z-40 ${
-        isSticky ? 'fixed top-0 left-0 right-0 w-full' : 'relative'
-      }`}
-      style={isSticky ? { paddingTop: '80px' } : {}}
+      className="relative bg-white border-b border-border shadow-sm z-40"
     >
       <div className="container mx-auto px-4">
-        <div className={`flex justify-center flex-wrap gap-2 ${isSticky ? 'py-2' : 'py-4'} transition-all duration-300`}>
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => handleScroll(section.id)}
-              className={`font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 ${
-                isSticky 
-                  ? 'px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-sm' 
-                  : 'px-4 py-2 text-sm'
-              }`}
-            >
-              <span className="md:hidden">{section.abbrev}</span>
-              <span className="hidden md:inline">{section.label}</span>
-            </button>
-          ))}
+        <div className="py-8 transition-all duration-300">
+          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => handleScroll(section.id)}
+                className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-lg transition-all duration-200 border border-transparent hover:border-primary/30 px-4 py-3 text-sm text-center"
+              >
+                {section.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -198,9 +220,8 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="p-0 py-[98px] px-0 pt-[98px] pr-0 pb-0.5 pl-0">
-        <SectionNavigator isSticky={false} />
-      </div>
+      {/* Initial 3x3 Navigation - shown at top */}
+      {!isNavigatorSticky && <SectionNavigator isSticky={false} />}
       {/* ... keep existing code (Mission through Instructors sections) ... */}
       {/* Mission Section - Now First */}
       <section id="mission" className="py-20 bg-gradient-to-b from-background to-accent/10">
