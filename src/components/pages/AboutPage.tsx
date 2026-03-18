@@ -9,6 +9,7 @@ import { Award, Heart, Shield, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import ClassLevelsCarousel from '@/components/ClassLevelsCarousel';
 
 // --- Utility Components ---
 
@@ -380,44 +381,50 @@ export default function AboutPage() {
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             </div>
           ) : (
-            <StaggerContainer className="grid md:grid-cols-3 gap-8">
-              {classTypes.length > 0 ? classTypes.map((classType, index) => (
-                <StaggerItem key={classType._id} className="group">
-                  <Link to="/book-a-class" className="block h-full">
-                    <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
-                      <div className="aspect-[3/4] overflow-hidden relative mb-0">
-                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
-                          {classType.difficultyLevel || 'All Levels'}
+            <>
+              {/* Desktop Grid View */}
+              <div className="hidden md:grid md:grid-cols-3 gap-8">
+                {classTypes.length > 0 ? classTypes.map((classType, index) => (
+                  <StaggerItem key={classType._id} className="group">
+                    <Link to="/book-a-class" className="block h-full">
+                      <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
+                        <div className="aspect-[3/4] overflow-hidden relative mb-0">
+                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
+                            {classType.difficultyLevel || 'All Levels'}
+                          </div>
+                          <Image
+                            src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
+                            alt={classType.name || "Class Image"}
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                          />
                         </div>
-                        <Image
-                          src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                          alt={classType.name || "Class Image"}
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
-                      <CardContent className="p-4 pt-0 text-center">
-                        <div className="text-4xl font-heading font-bold text-primary/20 mb-2">
-                          0{index + 1}
-                        </div>
-                        <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {classType.name}
-                        </h3>
-                        <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
-                          {classType.description}
-                        </p>
-                        <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
-                          Book Class
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </StaggerItem>
-              )) : (
-                <div className="col-span-3 text-center py-12 text-muted-foreground">
-                  No classes currently available.
-                </div>
-              )}
-            </StaggerContainer>
+                        <CardContent className="p-4 pt-0 text-center">
+                          <div className="text-4xl font-heading font-bold text-primary/20 mb-2">
+                            0{index + 1}
+                          </div>
+                          <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                            {classType.name}
+                          </h3>
+                          <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
+                            {classType.description}
+                          </p>
+                          <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
+                            Book Class
+                          </span>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </StaggerItem>
+                )) : (
+                  <div className="col-span-3 text-center py-12 text-muted-foreground">
+                    No classes currently available.
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Horizontal Carousel */}
+              <ClassLevelsCarousel classTypes={classTypes} />
+            </>
           )}
         </div>
       </section>
