@@ -132,8 +132,8 @@ const StickyScrollNavigator = () => {
     { id: 'values', label: 'Our Values', abbrev: 'Values' },
     { id: 'classes', label: 'Our Classes', abbrev: 'Levels' },
     { id: 'private-classes', label: 'Private Classes', abbrev: '1-1' },
-    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp' },
-    { id: 'instructors', label: 'Our Instructors', abbrev: 'Instr' }
+    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp/Events' },
+    { id: 'instructors', label: 'Our Instructors', abbrev: 'Instructors' }
   ];
 
   useEffect(() => {
@@ -172,13 +172,13 @@ const StickyScrollNavigator = () => {
       transition={{ duration: 0.3 }}
       className={`fixed top-24 left-0 right-0 z-50 bg-white border-b border-border shadow-sm ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
-      <div className="container mx-auto px-2">
+      <div className="container mx-auto px-1">
         <div className="flex justify-center gap-0.5 md:gap-2 py-2 overflow-x-auto">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleClick(section.id)}
-              className={`px-2 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold whitespace-nowrap rounded-full transition-all duration-200 border border-transparent ${
+              className={`px-1.5 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold whitespace-nowrap rounded-full transition-all duration-200 border border-transparent ${
                 activeSection === section.id
                   ? 'bg-primary text-primary-foreground'
                   : 'text-foreground/70 hover:text-primary hover:bg-secondary/20 hover:border-primary/30'
