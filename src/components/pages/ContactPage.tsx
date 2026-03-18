@@ -173,7 +173,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
+      <section className="relative py-12 md:py-16 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
           backgroundSize: '30px 30px'
@@ -185,10 +185,10 @@ export default function ContactPage() {
               <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                 Get In Touch
               </p>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-3">
                 Contact Us
               </h1>
-              <p className="text-xl text-foreground/80 font-paragraph leading-relaxed">
+              <p className="text-lg md:text-xl text-foreground/80 font-paragraph leading-relaxed">
                 Have questions about our classes, memberships, or private hire? We&apos;d love to hear from you.
               </p>
             </div>
@@ -196,9 +196,9 @@ export default function ContactPage() {
         </div>
       </section>
       {/* Contact Info Cards */}
-      <section className="py-16 bg-gradient-to-b from-background to-accent/10">
+      <section className="py-8 md:py-12 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             <AnimatedSection>
               <a
                 href="https://www.google.com/maps/place/Maison+M%C3%A8re+Studio/@51.5662353,-0.3214471,17z/data=!3m1!4b1!4m6!3m5!1s0x487613a616224053:0x85765e83dbf291a4!8m2!3d51.5662353!4d-0.3214471!16s%2Fg%2F11xyd0ld08?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D"
