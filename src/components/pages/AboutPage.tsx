@@ -83,8 +83,6 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 };
 
 const SectionNavigator = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
   const sections = [
     { id: 'mission', label: 'Our Mission', shortLabel: 'Mission' },
     { id: 'classes', label: 'Our Classes', shortLabel: 'Classes' },
@@ -93,16 +91,6 @@ const SectionNavigator = () => {
     { id: 'private-classes', label: 'Private Classes', shortLabel: '1-1' },
     { id: 'instructors', label: 'Our Instructors', shortLabel: 'Instructors' }
   ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Show sticky banner after scrolling down 300px
-      setIsScrolled(window.scrollY > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -113,12 +101,12 @@ const SectionNavigator = () => {
 
   return (
     <>
-      {/* Sticky Navigation Banner - appears on scroll */}
+      {/* Sticky Navigation Banner - Always visible at top */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: isScrolled ? 1 : 0, y: isScrolled ? 0 : -20 }}
+        initial={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className={`fixed top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm ${isScrolled ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        className="fixed top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm pointer-events-auto"
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-center gap-1 md:gap-2 py-3 overflow-x-auto">
