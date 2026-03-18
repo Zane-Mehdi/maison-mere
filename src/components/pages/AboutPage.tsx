@@ -104,15 +104,15 @@ const SectionNavigator = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-white border-b border-border shadow-sm sticky top-24 z-40"
+      className="hidden md:block bg-white border-b border-border shadow-sm sticky top-24 z-40"
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-center items-center gap-1 md:gap-2 py-4">
+        <div className="flex flex-wrap justify-center items-center gap-2 py-4">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-2 md:px-3 py-2 text-xs md:text-xs lg:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap text-center relative group"
+              className="px-3 py-2 text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap text-center relative group"
             >
               {section.label}
               <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
@@ -146,15 +146,15 @@ const StickyNavigationBanner = ({ showBanner }: { showBanner: boolean }) => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: showBanner ? 1 : 0, y: showBanner ? 0 : -20 }}
       transition={{ duration: 0.3 }}
-      className={`fixed top-24 left-0 right-0 z-30 bg-white border-b border-border shadow-md ${showBanner ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      className={`md:hidden fixed top-24 left-0 right-0 z-30 bg-white border-b border-border shadow-md ${showBanner ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex justify-center items-center gap-1 md:gap-2 py-2 overflow-x-auto">
+        <div className="flex justify-center items-center gap-1 py-2 overflow-x-auto">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleScroll(section.id)}
-              className="px-2 md:px-3 py-1.5 text-xs md:text-xs lg:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap flex-shrink-0 relative group"
+              className="px-2 py-1.5 text-xs font-paragraph font-semibold text-foreground/70 hover:text-primary transition-all duration-200 whitespace-nowrap flex-shrink-0 relative group"
             >
               {section.label}
               <span className="absolute inset-0 rounded-full border-2 border-primary/0 group-hover:border-primary/100 transition-all duration-200 scale-110" />
