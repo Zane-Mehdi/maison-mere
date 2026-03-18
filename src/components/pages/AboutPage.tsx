@@ -212,6 +212,8 @@ const SectionNavigator = () => {
 const StickyScrollNavigator = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const sections = [
     { id: 'mission', label: 'Our Mission', abbrev: 'Mission' },
@@ -224,9 +226,18 @@ const StickyScrollNavigator = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky nav after scrolling past the initial navigator
-      const scrollPosition = window.scrollY;
-      setIsVisible(scrollPosition > 300);
+      const currentScrollY = window.scrollY;
+
+      // Determine scroll direction
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+
+      // Show sticky nav after scrolling past the initial navigator AND when scrolling down
+      setIsVisible(currentScrollY > 300 && scrollDirection === 'down');
+      setLastScrollY(currentScrollY);
 
       // Determine active section
       for (const section of sections) {
@@ -240,9 +251,9 @@ const StickyScrollNavigator = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY, scrollDirection]);
 
   const handleClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
