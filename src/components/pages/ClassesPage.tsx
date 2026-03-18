@@ -259,7 +259,7 @@ export default function ClassesPage() {
 
       {/* Intro Offer Banner */}
       {introOffer && (
-        <section className="py-20 relative overflow-hidden bg-gradient-to-r from-primary via-primary to-accent">
+        <section className="py-10 relative overflow-hidden bg-gradient-to-r from-primary via-primary to-accent">
           {/* Decorative background elements */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl"></div>
@@ -270,7 +270,7 @@ export default function ClassesPage() {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
                 {/* Badge */}
-                <div className="flex justify-center mb-6">
+                <div className="flex justify-center mb-3">
                   <div className="inline-block px-4 py-2 bg-primary-foreground/20 backdrop-blur-sm rounded-full border border-primary-foreground/30">
                     <span className="text-sm font-heading font-semibold text-primary-foreground">✨ Special Offer</span>
                   </div>
@@ -278,27 +278,27 @@ export default function ClassesPage() {
 
                 {/* Main content */}
                 <div className="text-center">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-primary-foreground leading-tight">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 text-primary-foreground leading-tight">
                     {introOffer.itemName}
                   </h2>
 
                   {/* Price highlight */}
                   {introOffer.itemPrice && (
-                    <div className="mb-6 inline-block">
-                      <p className="text-5xl md:text-6xl font-heading font-bold text-primary-foreground">
+                    <div className="mb-3 inline-block">
+                      <p className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground">
                         £65
                       </p>
-                      <p className="text-primary-foreground/80 text-sm mt-2 font-paragraph">Limited time offer</p>
+                      <p className="text-primary-foreground/80 text-xs mt-1 font-paragraph">Limited time offer</p>
                     </div>
                   )}
 
-                  <p className="text-lg md:text-xl mb-6 text-primary-foreground/95 font-paragraph leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-base md:text-lg mb-4 text-primary-foreground/95 font-paragraph leading-relaxed max-w-2xl mx-auto">
                     {introOffer.itemDescription}
                   </p>
 
                   {introOffer.specialNotes && (
-                    <div className="mb-8 p-4 bg-primary-foreground/10 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
-                      <p className="text-base text-primary-foreground/90 font-paragraph">
+                    <div className="mb-4 p-3 bg-primary-foreground/10 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
+                      <p className="text-sm text-primary-foreground/90 font-paragraph">
                         {introOffer.specialNotes}
                       </p>
                     </div>
@@ -307,7 +307,7 @@ export default function ClassesPage() {
                   {introOffer.buyNowUrl && (
                     <Button
                       asChild
-                      className="bg-primary-foreground text-primary hover:bg-primary-foreground/95 transition-all duration-300 font-heading hover:scale-110 active:scale-95 no-underline shadow-lg hover:shadow-xl px-8 py-6 text-lg"
+                      className="bg-primary-foreground text-primary hover:bg-primary-foreground/95 transition-all duration-300 font-heading hover:scale-110 active:scale-95 no-underline shadow-lg hover:shadow-xl px-6 py-4 text-base"
                     >
                       <a href={introOffer.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
                         Get Started Today
