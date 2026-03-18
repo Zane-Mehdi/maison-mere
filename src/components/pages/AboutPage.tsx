@@ -83,13 +83,15 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 };
 
 const SectionNavigator = () => {
+  const [isSticky, setIsSticky] = useState(false);
+
   const sections = [
     { id: 'mission', label: 'Our Mission', shortLabel: 'Mission' },
     { id: 'classes', label: 'Our Classes', shortLabel: 'Classes' },
-    { id: 'corporate', label: 'Corporate & Events', shortLabel: 'Corp/Events' },
+    { id: 'corporate', label: 'Corporate & Events', shortLabel: 'Corp' },
     { id: 'values', label: 'Our Values', shortLabel: 'Values' },
     { id: 'private-classes', label: 'Private Classes', shortLabel: '1-1' },
-    { id: 'instructors', label: 'Our Instructors', shortLabel: 'Instructors' }
+    { id: 'instructors', label: 'Our Instructors', shortLabel: 'Instr.' }
   ];
 
   const handleSectionClick = (sectionId: string) => {
@@ -99,22 +101,32 @@ const SectionNavigator = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Become sticky after scrolling down 300px
+      setIsSticky(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
-      {/* Sticky Navigation Banner - Always visible at top */}
+      {/* Navigation Banner - Fixed at top, then becomes sticky on scroll */}
       <motion.div
         initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="fixed top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm pointer-events-auto"
+        className={`${isSticky ? 'sticky' : 'fixed'} top-24 left-0 right-0 z-40 bg-white border-b border-border shadow-sm pointer-events-auto`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center gap-1 md:gap-2 py-3 overflow-x-auto">
+        <div className="container mx-auto px-2 md:px-4">
+          <div className="flex justify-center gap-0.5 md:gap-2 py-3 overflow-x-auto">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleSectionClick(section.id)}
-                className="px-3 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 flex-shrink-0"
+                className="px-2 md:px-4 py-2 text-xs md:text-sm font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 flex-shrink-0"
               >
                 <span className="hidden md:inline">{section.label}</span>
                 <span className="md:hidden">{section.shortLabel}</span>
