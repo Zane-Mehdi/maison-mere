@@ -8,7 +8,6 @@ import ClassesPage from '@/components/pages/ClassesPage';
 import AboutPage from '@/components/pages/AboutPage';
 import ContactPage from '@/components/pages/ContactPage';
 import BookAClassPage from '@/components/pages/BookAClassPage';
-import MembershipAndPricingPage from '@/components/pages/MembershipAndPricingPage';
 import PrivacyPolicyPage from '@/components/pages/PrivacyPolicyPage';
 import CancellationPolicyPage from '@/components/pages/CancellationPolicyPage';
 import TermsAndConditionsPage from '@/components/pages/TermsAndConditionsPage';
@@ -62,13 +61,6 @@ const router = createBrowserRouter([
         element: <BookAClassPage />,
         routeMetadata: {
           pageIdentifier: 'book-a-class',
-        },
-      },
-      {
-        path: "membership-and-pricing",
-        element: <MembershipAndPricingPage />,
-        routeMetadata: {
-          pageIdentifier: 'membership-and-pricing',
         },
       },
       {
