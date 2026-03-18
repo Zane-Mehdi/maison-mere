@@ -96,16 +96,13 @@ const SectionNavigator = () => {
   const handleScroll = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Get the sticky navigator height to account for offset
+      // Get the sticky navigator height to account for offset (same as sticky nav)
       const stickyNav = document.querySelector('.sticky-scroll-navigator');
-      const sectionNav = document.querySelector('.section-navigator');
-      const stickyOffset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
-      const sectionOffset = sectionNav ? sectionNav.getBoundingClientRect().height : 60;
-      const totalOffset = stickyOffset + sectionOffset;
+      const offset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
       
       // Calculate the target scroll position
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      const targetScroll = elementTop - totalOffset - 20; // 20px extra padding
+      const targetScroll = elementTop - offset - 20; // 20px extra padding
       
       // Smooth scroll to the calculated position
       window.scrollTo({
