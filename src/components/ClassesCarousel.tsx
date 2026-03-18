@@ -1,17 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
-import { AboutClassTypes } from '@/entities';
+import { AboutClassTypesHOMEPAGE } from '@/entities';
 
 interface ClassesCarouselProps {
-  classTypes: AboutClassTypes[];
+  classTypes: AboutClassTypesHOMEPAGE[];
 }
 
 export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   if (classTypes.length === 0) {
     return (
@@ -21,17 +23,33 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
     );
   }
 
-  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    setDragStart(clientX);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStart(e.clientX);
   };
 
-  const handleDragEnd = (e: React.MouseEvent | React.TouchEvent) => {
-    const clientX = 'changedTouches' in e ? e.changedTouches[0].clientX : (e as React.MouseEvent).clientX;
-    const dragDistance = dragStart - clientX;
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setDragStart(e.touches[0].clientX);
+  };
 
-    // Swipe threshold: 50px
-    if (Math.abs(dragDistance) > 50) {
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const dragDistance = dragStart - e.clientX;
+    handleSwipe(dragDistance);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const dragDistance = dragStart - e.changedTouches[0].clientX;
+    handleSwipe(dragDistance);
+  };
+
+  const handleSwipe = (dragDistance: number) => {
+    // Swipe threshold: 30px
+    if (Math.abs(dragDistance) > 30) {
       if (dragDistance > 0) {
         // Swiped left - go to next
         setCurrentIndex((prev) => (prev + 1) % classTypes.length);
@@ -46,47 +64,50 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
     setCurrentIndex(index);
   };
 
-  const current = classTypes[currentIndex];
-
   return (
     <div className="md:hidden">
-      {/* Carousel Container */}
+      {/* Carousel Container - Shows 1.5 items */}
       <div
         ref={containerRef}
         className="relative overflow-hidden bg-background rounded-lg"
-        onMouseDown={handleDragStart}
-        onMouseUp={handleDragEnd}
-        onTouchStart={handleDragStart}
-        onTouchEnd={handleDragEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={() => setIsDragging(false)}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="w-full"
-          >
-            <a href="/book-a-class" className="block group">
-              <Card className="border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
-                <div className="aspect-[3/4] overflow-hidden relative mb-0\">
+        <motion.div
+          ref={scrollContainerRef}
+          className="flex gap-4 px-4"
+          animate={{ x: -currentIndex * (100 + 16) + '%' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+        >
+          {classTypes.map((classType, index) => (
+            <a
+              key={classType._id}
+              href="/book-a-class"
+              className="block group flex-shrink-0"
+              style={{ width: 'calc(100% - 1rem)' }}
+            >
+              <Card className="border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-lg overflow-hidden h-full">
+                <div className="aspect-[3/4] overflow-hidden relative mb-0">
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
-                    {current.difficultyLevel || 'All Levels'}
+                    {classType.difficultyLevel || 'All Levels'}
                   </div>
                   <Image
-                    src={current.classTypeImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
-                    alt={current.classTypeName || "Class Image"}
+                    src={classType.classTypeImage || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
+                    alt={classType.classTypeName || "Class Image"}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <CardContent className="p-4 pt-0 text-center">
-                  <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{currentIndex + 1}</div>
+                  <div className="text-4xl font-heading font-bold text-primary/20 mb-2">0{index + 1}</div>
                   <h3 className="text-2xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {current.classTypeName}
+                    {classType.classTypeName}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
-                    {current.description}
+                    {classType.description}
                   </p>
                   <span className="inline-block text-primary text-sm uppercase tracking-widest pb-1 group-hover:text-foreground transition-all">
                     Book Class
@@ -94,8 +115,8 @@ export default function ClassesCarousel({ classTypes }: ClassesCarouselProps) {
                 </CardContent>
               </Card>
             </a>
-          </motion.div>
-        </AnimatePresence>
+          ))}
+        </motion.div>
       </div>
 
       {/* Dot Indicators */}
