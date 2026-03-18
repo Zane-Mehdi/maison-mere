@@ -1,58 +1,11 @@
 import { Image } from '@/components/ui/image';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Instagram, Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Instagram, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
-
-  const aboutSections = [
-    { id: 'mission', label: 'Mission Statement' },
-    { id: 'values', label: 'Our Values' },
-    { id: 'classes', label: 'Our Classes' },
-    { id: 'private-classes', label: 'Private Classes' },
-    { id: 'corporate', label: 'Corporate & Events' },
-    { id: 'instructors', label: 'Our Instructors' }
-  ];
-
-  const handleSectionScroll = (sectionId: string) => {
-    // Check if we're already on the About page
-    const isOnAboutPage = window.location.pathname === '/about';
-
-    if (isOnAboutPage) {
-      // If on About page, scroll to section directly
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      // If not on About page, navigate to it with section hash
-      window.location.href = `/about#${sectionId}`;
-    }
-    setAboutDropdownOpen(false);
-  };
-
-  const handleMobileSectionScroll = (sectionId: string) => {
-    // Check if we're already on the About page
-    const isOnAboutPage = window.location.pathname === '/about';
-
-    if (isOnAboutPage) {
-      // If on About page, scroll to section directly
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      // If not on About page, navigate to it with section hash
-      window.location.href = `/about#${sectionId}`;
-    }
-    // Close mobile menus
-    setMobileMenuOpen(false);
-    setMobileAboutDropdownOpen(false);
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -77,49 +30,12 @@ export default function Header() {
             >
               Home
             </Link>
-            <div className="relative group">
-              <Link
-                to="/about"
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center gap-1 cursor-pointer"
-                onMouseEnter={() => setAboutDropdownOpen(true)}
-                onMouseLeave={() => setAboutDropdownOpen(false)}
-              >
-                About
-                <motion.div
-                  animate={{ rotate: aboutDropdownOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                >
-                  <ChevronDown className="w-4 h-4" />
-                </motion.div>
-              </Link>
-              <AnimatePresence>
-                {aboutDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2, ease: 'easeInOut' }}
-                    className="absolute left-0 mt-0 w-48 bg-white border border-border rounded-lg shadow-lg py-2 z-50"
-                    onMouseEnter={() => setAboutDropdownOpen(true)}
-                    onMouseLeave={() => setAboutDropdownOpen(false)}
-                  >
-                    {aboutSections.map((section, index) => (
-                      <motion.button
-                        key={section.id}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -10 }}
-                        transition={{ duration: 0.2, delay: index * 0.05 }}
-                        onClick={() => handleSectionScroll(section.id)}
-                        className="w-full text-left px-4 py-2 text-foreground hover:bg-secondary/20 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
-                      >
-                        {section.label}
-                      </motion.button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <Link
+              to="/about"
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              About
+            </Link>
             <Link
               to="/classes"
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
@@ -177,108 +93,73 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.nav
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-border pt-4 overflow-hidden"
+        {mobileMenuOpen && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-border pt-4"
+          >
+            <Link
+              to="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
-              <Link
-                to="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-              >
-                Home
-              </Link>
+              Home
+            </Link>
 
-              {/* Mobile About Dropdown */}
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide flex items-center justify-between"
-                >
-                  About
-                  <motion.div
-                    animate={{ rotate: mobileAboutDropdownOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {mobileAboutDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="flex flex-col gap-2 pl-4 border-l-2 border-primary/30 overflow-hidden"
-                    >
-                      {aboutSections.map((section) => (
-                        <motion.button
-                          key={section.id}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -10 }}
-                          transition={{ duration: 0.2 }}
-                          onClick={() => handleMobileSectionScroll(section.id)}
-                          className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm text-left"
-                        >
-                          {section.label}
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+            <Link
+              to="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              About
+            </Link>
 
-              <Link
-                to="/classes"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-              >
-                Membership and Pricing
-              </Link>
+            <Link
+              to="/classes"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Membership and Pricing
+            </Link>
 
+            <a
+              href="/book-a-class"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Schedule
+            </a>
+
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Contact
+            </Link>
+            <div className="flex items-center gap-4 pt-2">
               <a
-                href="/book-a-class"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+                href="https://www.instagram.com/maisonmerestudio/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="Instagram"
               >
-                Schedule
+                <Instagram className="w-5 h-5" />
               </a>
-
-              <Link
-                to="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
-              >
-                Contact
-              </Link>
-              <div className="flex items-center gap-4 pt-2">
-                <a
-                  href="https://www.instagram.com/maisonmerestudio/?hl=en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:text-primary transition-colors duration-200"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-              </div>
-              <a
-                href="/book-a-class"
-                onClick={() => setMobileMenuOpen(false)}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block text-center"
-              >
-                Book Now
-              </a>
-            </motion.nav>
-          )}
-        </AnimatePresence>
+            </div>
+            <a
+              href="/book-a-class"
+              onClick={() => setMobileMenuOpen(false)}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 w-full font-heading hover:scale-105 active:scale-95 no-underline px-4 py-2 rounded inline-block text-center"
+            >
+              Book Now
+            </a>
+          </motion.nav>
+        )}
       </div>
     </header>
   );
