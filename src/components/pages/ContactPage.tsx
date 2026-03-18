@@ -446,6 +446,33 @@ export default function ContactPage() {
 
                   <Card className="border-border bg-card p-8">
                     <h3 className="text-xl font-heading font-bold text-foreground mb-4">
+                      Private One-to-One Classes
+                    </h3>
+                    <p className="text-foreground/70 font-paragraph leading-relaxed mb-4">
+                      Looking for personalized instruction tailored to your goals and fitness level? Our private one-to-one classes offer dedicated attention and customized programming.
+                    </p>
+                    <ul className="space-y-2 text-foreground/70 font-paragraph text-sm">
+                      <li className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span>Personalized fitness plans</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span>One-on-one instruction</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span>Flexible scheduling</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span>Progress tracking and support</span>
+                      </li>
+                    </ul>
+                  </Card>
+
+                  <Card className="border-border bg-card p-8">
+                    <h3 className="text-xl font-heading font-bold text-foreground mb-4">
                       Membership Inquiries
                     </h3>
                     <p className="text-foreground/70 font-paragraph leading-relaxed">
