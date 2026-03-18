@@ -84,12 +84,12 @@ export const AnimatedSection: React.FC<{children: React.ReactNode; className?: s
 
 const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
   const sections = [
-    { id: 'mission', label: 'Our Mission', abbrev: 'Mission' },
-    { id: 'values', label: 'Our Values', abbrev: 'Values' },
-    { id: 'classes', label: 'Class Levels', abbrev: 'Levels' },
-    { id: 'private-classes', label: 'Private 1-1', abbrev: '1-1' },
-    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp/Events' },
-    { id: 'instructors', label: 'Our Instructors', abbrev: 'Instructors' }
+    { id: 'mission', label: 'Our Mission', abbrev: 'Our Mission' },
+    { id: 'values', label: 'Our Values', abbrev: 'Our Values' },
+    { id: 'classes', label: 'Our Classes', abbrev: 'Our Classes' },
+    { id: 'private-classes', label: 'Private Classes', abbrev: 'Private Classes' },
+    { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corporate & Events' },
+    { id: 'instructors', label: 'Our Instructors', abbrev: 'Our Instructors' }
   ];
 
   const handleScroll = (sectionId: string) => {
@@ -100,25 +100,29 @@ const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
   };
 
   if (isSticky) {
-    // Sticky one-line navigation bar
+    // Sticky one-line navigation bar with all subtitles
     return (
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="fixed top-0 left-0 right-0 w-full bg-white border-b border-border shadow-sm z-40"
-        style={{ paddingTop: '80px' }}
+        style={{ paddingTop: '100px' }}
       >
         <div className="container mx-auto px-4">
-          <div className="flex justify-center flex-wrap gap-1 py-2 transition-all duration-300">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => handleScroll(section.id)}
-                className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-sm"
-              >
-                {section.abbrev}
-              </button>
+          <div className="flex justify-center items-center gap-2 py-3 transition-all duration-300 overflow-x-auto">
+            {sections.map((section, index) => (
+              <div key={section.id} className="flex items-center gap-2">
+                <button
+                  onClick={() => handleScroll(section.id)}
+                  className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-full transition-all duration-200 whitespace-nowrap border border-transparent hover:border-primary/30 px-3 py-1.5 text-xs md:text-sm flex-shrink-0"
+                >
+                  {section.abbrev}
+                </button>
+                {index < sections.length - 1 && (
+                  <span className="text-border text-xs md:text-sm flex-shrink-0">•</span>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -126,7 +130,7 @@ const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
     );
   }
 
-  // Initial 3x3 grid layout with full titles
+  // Initial centered layout with all 6 full titles
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -136,12 +140,12 @@ const SectionNavigator = ({ isSticky }: { isSticky: boolean }) => {
     >
       <div className="container mx-auto px-4">
         <div className="py-8 transition-all duration-300">
-          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => handleScroll(section.id)}
-                className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-lg transition-all duration-200 border border-transparent hover:border-primary/30 px-4 py-3 text-sm text-center"
+                className="font-paragraph font-semibold text-foreground/70 hover:text-primary hover:bg-secondary/20 rounded-lg transition-all duration-200 border border-transparent hover:border-primary/30 px-4 py-3 text-sm text-center whitespace-nowrap"
               >
                 {section.label}
               </button>
