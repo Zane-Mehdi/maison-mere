@@ -286,7 +286,7 @@ export default function ClassesPage() {
                   {introOffer.itemPrice && (
                     <div className="mb-3 inline-block">
                       <p className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground">
-                        £65
+                        55
                       </p>
                       <p className="text-primary-foreground/80 text-xs mt-1 font-paragraph">Limited time offer</p>
                     </div>
