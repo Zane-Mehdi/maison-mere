@@ -159,12 +159,19 @@ export default function ClassesPage() {
   // Extract intro offer (planGroup === 'Intro')
   const introOffer = pricingPlans.find(p => p.planGroup === 'Intro');
 
-  // Get unique plan groups (excluding Intro) and sort alphabetically
+  // Get unique plan groups (excluding Intro) and sort with custom order
+  const customOrder = ['Drop-In Sessions', 'Mummy & Me Pack', 'Standard Pack', 'Unlimited Membership'];
   const uniqueGroups = Array.from(new Set(
     pricingPlans
       .filter(p => p.planGroup && p.planGroup !== 'Intro')
       .map(p => p.planGroup)
-  )).sort();
+  )).sort((a, b) => {
+    const indexA = customOrder.indexOf(a);
+    const indexB = customOrder.indexOf(b);
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    return indexA - indexB;
+  });
 
   // Create dynamic grouped plans
   const groupedPlans = uniqueGroups.reduce((acc, group) => {
