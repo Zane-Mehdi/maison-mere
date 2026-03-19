@@ -398,7 +398,6 @@ export default function ClassesPage() {
                 </div>
                 <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
                   <p className="text-sm text-foreground/70 font-paragraph">
-                    * For Mummy & Me, pre-bookings are required (x1 child per session)<br/>
                     * All classes expire after 30 days of purchase
                   </p>
                 </div>
