@@ -196,6 +196,14 @@ export default function ClassesPage() {
     return displayNameMap[group] || group;
   };
 
+  const getDisclaimerMessage = (group: string): string => {
+    const disclaimers: Record<string, string> = {
+      'Mummy & Me Pack': '* All classes expire after 30 days of purchase',
+      'Unlimited Membership': '* Private 1-1 sessions must be scheduled within 7 days of booking'
+    };
+    return disclaimers[group] || '';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -403,10 +411,10 @@ export default function ClassesPage() {
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
-                {(group === 'Membership' || group === 'Unlimited Membership') && (
+                {getDisclaimerMessage(group) && (
                   <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
                     <p className="text-sm text-foreground/70 font-paragraph">
-                      * All classes expire after 30 days of purchase
+                      {getDisclaimerMessage(group)}
                     </p>
                   </div>
                 )}
