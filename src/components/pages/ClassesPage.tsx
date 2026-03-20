@@ -403,11 +403,13 @@ export default function ClassesPage() {
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
-                <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
-                  <p className="text-sm text-foreground/70 font-paragraph">
-                    * All classes expire after 30 days of purchase
-                  </p>
-                </div>
+                {(group === 'Mummy & Me Pack' || group === 'Unlimited Membership') && (
+                  <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
+                    <p className="text-sm text-foreground/70 font-paragraph">
+                      * All classes expire after 30 days of purchase
+                    </p>
+                  </div>
+                )}
               </div>
             </AnimatedSection>
           ))}
