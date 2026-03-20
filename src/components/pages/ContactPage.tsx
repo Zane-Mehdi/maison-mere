@@ -85,7 +85,7 @@ export default function ContactPage() {
         </div>
       </section>
       {/* Contact Info Cards */}
-      <section className="py-8 md:py-12 bg-gradient-to-b from-background to-accent/10">
+      <section className="pb-8 md:pb-12 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             <AnimatedSection>
@@ -156,7 +156,7 @@ export default function ContactPage() {
         </div>
       </section>
       {/* Contact Form & Info Section */}
-      <section className="py-20 bg-background">
+      <section className="pb-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
