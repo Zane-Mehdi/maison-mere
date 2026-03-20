@@ -62,7 +62,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
           {plan.planGroup === 'Unlimited Membership' ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">All Classes</p>
           ) : plan.numberOfClasses ? (
-            <p className="text-sm text-foreground/60 font-paragraph mb-4">£{plan.numberOfClasses}/classes</p>
+            <p className="text-sm text-foreground/60 font-paragraph mb-4">£{plan.numberOfClasses}/class</p>
           ) : plan.itemName?.includes('Drop-In') ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
           ) : null}
