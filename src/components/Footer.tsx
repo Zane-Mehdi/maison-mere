@@ -99,7 +99,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-            <p className="text-background/60 font-paragraph text-sm">© 2025 Maison Mère Studio.  All rights reserved.</p>
+            <p className="text-background/60 font-paragraph text-sm">© 2026 Maison Mère Studio.  All rights reserved.</p>
             <div className="flex items-center gap-4">
             <a
               href="https://instagram.com"
