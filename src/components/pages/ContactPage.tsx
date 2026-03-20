@@ -1,37 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-
-// Sanitization utility to prevent XSS and injection attacks
-const sanitizeInput = (input: string): string => {
-  if (!input) return '';
-
-  // Remove any HTML tags and dangerous characters
-  return input
-    .replace(/[<>]/g, '') // Remove angle brackets
-    .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/on\w+\s*=/gi, '') // Remove event handlers (onclick, onerror, etc.)
-    .trim();
-};
-
-// Validate email format
-const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
-
-// Validate phone format (basic validation)
-const isValidPhone = (phone: string): boolean => {
-  if (!phone) return true; // Phone is optional
-  const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-  return phoneRegex.test(phone) && phone.replace(/\D/g, '').length >= 10;
-};
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -66,108 +37,26 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 };
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  });
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
   useEffect(() => {
     document.title = 'Contact | Maison Mère Studio';
-  }, []);
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    // Validate name
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    } else if (formData.name.length > 100) {
-      newErrors.name = 'Name must be less than 100 characters';
-    }
-
-    // Validate email
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!isValidEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    // Validate phone if provided
-    if (formData.phone && !isValidPhone(formData.phone)) {
-      newErrors.phone = 'Please enter a valid phone number';
-    }
-
-    // Validate subject
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    } else if (formData.subject.length > 200) {
-      newErrors.subject = 'Subject must be less than 200 characters';
-    }
-
-    // Validate message
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.length > 5000) {
-      newErrors.message = 'Message must be less than 5000 characters';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validate form data
-    if (!validateForm()) {
-      return;
-    }
-
-    // Sanitize all form inputs
-    const sanitizedData = {
-      name: sanitizeInput(formData.name),
-      email: sanitizeInput(formData.email),
-      phone: sanitizeInput(formData.phone),
-      subject: sanitizeInput(formData.subject),
-      message: sanitizeInput(formData.message)
+    
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    script.onload = () => {
+      if (typeof window !== 'undefined' && (window as any).Tally) {
+        (window as any).Tally.loadEmbeds();
+      }
     };
+    document.body.appendChild(script);
 
-    // Create email body with sanitized data
-    const emailBody = `Name: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nPhone: ${sanitizedData.phone}\n\n${sanitizedData.message}`;
-
-    // Create mailto link with pre-populated data
-    const mailtoLink = `mailto:contact@maisonmerestudio.com?subject=${encodeURIComponent(sanitizedData.subject)}&body=${encodeURIComponent(emailBody)}`;
-
-    // Open default email client
-    window.location.href = mailtoLink;
-
-    // Show success message
-    setSubmitSuccess(true);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    setErrors({});
-
-    setTimeout(() => setSubmitSuccess(false), 5000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -271,7 +160,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
+              {/* Tally Form */}
               <AnimatedSection>
                 <div>
                   <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
@@ -281,109 +170,17 @@ export default function ContactPage() {
                     Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
 
-                  {submitSuccess && (
-                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                      <p className="text-green-800 font-paragraph text-sm">
-                        Thank you for your message! We&apos;ll be in touch soon.
-                      </p>
-                    </div>
-                  )}
-
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <Label htmlFor="name" className="text-foreground font-paragraph mb-2 block">
-                        Name *
-                      </Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={`border-border focus:border-primary ${errors.name ? 'border-red-500' : ''}`}
-                        placeholder="Your name"
-                      />
-                      {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="email" className="text-foreground font-paragraph mb-2 block">
-                        Email *
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`border-border focus:border-primary ${errors.email ? 'border-red-500' : ''}`}
-                        placeholder="your.email@example.com"
-                      />
-                      {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="phone" className="text-foreground font-paragraph mb-2 block">
-                        Phone
-                      </Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className={`border-border focus:border-primary ${errors.phone ? 'border-red-500' : ''}`}
-                        placeholder="Your phone number"
-                      />
-                      {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="subject" className="text-foreground font-paragraph mb-2 block">
-                        Subject *
-                      </Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        required
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className={`border-border focus:border-primary ${errors.subject ? 'border-red-500' : ''}`}
-                        placeholder="What is this regarding?"
-                      />
-                      {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="message" className="text-foreground font-paragraph mb-2 block">
-                        Message *
-                      </Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleChange}
-                        className={`border-border focus:border-primary min-h-[150px] ${errors.message ? 'border-red-500' : ''}`}
-                        placeholder="Tell us more about your inquiry..."
-                      />
-                      {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-                    </div>
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
-                    >
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
-                      </>
-                    </Button>
-                  </form>
+                  <iframe
+                    data-tally-src="https://tally.so/embed/VL8Oey?alignLeft=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="457"
+                    frameBorder="0"
+                    marginHeight={0}
+                    marginWidth={0}
+                    title="Contact Form"
+                    style={{ border: 'none' }}
+                  />
                 </div>
               </AnimatedSection>
 
@@ -492,7 +289,6 @@ export default function ContactPage() {
             <div className="max-w-6xl mx-auto">
               <div className="mb-8">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">Find Us</h2>
-
               </div>
               <div className="aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-lg">
                 <iframe
