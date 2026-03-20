@@ -108,7 +108,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
                       transition={{ duration: 0.3, delay: 0.1 }}
                       className="text-sm text-foreground/80 font-paragraph leading-relaxed"
                     >
-                      Valid for 14 days from purchase date. Non-transferable
+                      {plan.specialNotes}
                     </motion.p>
                   </div>
                 </motion.div>
