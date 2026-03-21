@@ -411,6 +411,13 @@ export default function ClassesPage() {
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
+                {group === 'Standard Pack' && (
+                  <div className="mt-6 p-4 bg-primary/20 rounded-lg border border-primary/30">
+                    <p className="text-sm text-foreground font-paragraph">
+                      Validity: 2 months (5 classes) • 3 months (10 & 20 classes)
+                    </p>
+                  </div>
+                )}
                 {getDisclaimerMessage(group) && (
                   <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
                     <p className="text-sm text-foreground/70 font-paragraph">
