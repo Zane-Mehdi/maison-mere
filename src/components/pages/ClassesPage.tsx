@@ -413,7 +413,7 @@ export default function ClassesPage() {
                   </div>
                 )}
                 {getDisclaimerMessage(group) && (
-                  <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">* Validity: 2 months (5 classes) • 3 months (10 & 20 classes)</div>
+                  <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border font-noticia-text">* Validity: 2 months (5 classes) • 3 months (10 & 20 classes)</div>
                 )}
               </div>
             </AnimatedSection>
