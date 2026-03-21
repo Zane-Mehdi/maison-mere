@@ -327,7 +327,7 @@ export default function ClassesPage() {
                   {introOffer.specialNotes && (
                     <div className="mb-4 p-3 bg-primary-foreground/10 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
                       <p className="text-sm text-primary-foreground/90 font-paragraph">
-                        {introOffer.specialNotes}
+                        Valid for 30 days from purchase date.
                       </p>
                     </div>
                   )}
