@@ -198,7 +198,7 @@ export default function ClassesPage() {
 
   const getDisclaimerMessage = (group: string): string => {
     const disclaimers: Record<string, string> = {
-      'Memberships': 'Auto-renews monthly after the initial term. To cancel, please contact us.',
+      'Memberships': '* All classes expire after 30 days of purchase',
       'Private 1-1': '* Private 1-1 sessions must be scheduled within 7 days of booking'
     };
     return disclaimers[group] || '';
