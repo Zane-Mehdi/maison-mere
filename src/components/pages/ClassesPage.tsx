@@ -198,7 +198,7 @@ export default function ClassesPage() {
 
   const getDisclaimerMessage = (group: string): string => {
     const disclaimers: Record<string, string> = {
-      'Memberships': '* All classes expire after 30 days of purchase',
+      'Memberships': 'Auto-renews monthly after the initial term. To cancel, please contact us.',
       'Private 1-1': '* Private 1-1 sessions must be scheduled within 7 days of booking'
     };
     return disclaimers[group] || '';
@@ -227,7 +227,6 @@ export default function ClassesPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       {/* Sticky Minimized CTA - Always visible when scrolling */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -257,7 +256,6 @@ export default function ClassesPage() {
           </Button>
         </div>
       </motion.div>
-
       {/* Hero Section */}
       <section className="pt-32 pb-6 bg-accent text-accent-foreground">
         <div className="container mx-auto px-4">
@@ -284,7 +282,6 @@ export default function ClassesPage() {
           </AnimatedSection>
         </div>
       </section>
-
       {/* Intro Offer Banner */}
       {introOffer && (
         <section className="py-10 relative overflow-hidden bg-gradient-to-r from-primary via-primary to-accent">
@@ -327,7 +324,7 @@ export default function ClassesPage() {
                   {introOffer.specialNotes && (
                     <div className="mb-4 p-3 bg-primary-foreground/10 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
                       <p className="text-sm text-primary-foreground/90 font-paragraph">
-                        {introOffer.specialNotes}
+                        Valid for 30 days from purchase date.
                       </p>
                     </div>
                   )}
@@ -348,7 +345,6 @@ export default function ClassesPage() {
           </div>
         </section>
       )}
-
       {/* Membership & Pricing Section */}
       <section className="py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
@@ -411,11 +407,14 @@ export default function ClassesPage() {
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
+                {group === 'Standard Pack' && (
+                  <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
+                    <p className="text-sm text-foreground font-paragraph">*Validity: 2 months (5 classes) • 3 months (10 & 20 classes)</p>
+                  </div>
+                )}
                 {getDisclaimerMessage(group) && (
-                  <div className="mt-4 p-4 bg-secondary/30 rounded-lg border border-border">
-                    <p className="text-sm text-foreground/70 font-paragraph">
-                      {getDisclaimerMessage(group)}
-                    </p>
+                  <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
+                    <p className="text-sm text-foreground font-paragraph">{getDisclaimerMessage(group)}</p>
                   </div>
                 )}
               </div>
@@ -423,7 +422,6 @@ export default function ClassesPage() {
           ))}
         </div>
       </section>
-
       {/* Benefits Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
