@@ -6,6 +6,8 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const ENABLE_MINDBODY_EMBED = false;
+
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -43,6 +45,10 @@ function MindbodySchedule() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!ENABLE_MINDBODY_EMBED) {
+      return;
+    }
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -68,6 +74,19 @@ function MindbodySchedule() {
       container.innerHTML = '';
     };
   }, []);
+
+  if (!ENABLE_MINDBODY_EMBED) {
+    return (
+      <div className="rounded-lg border border-border bg-card p-8 text-center">
+        <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+          Online booking is temporarily unavailable
+        </h3>
+        <p className="text-foreground/70 font-paragraph">
+          The embedded booking widget has been disabled for now. Please contact the studio directly to book a class.
+        </p>
+      </div>
+    );
+  }
 
   return <div ref={containerRef} className="w-full" />;
 }
