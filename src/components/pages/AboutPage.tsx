@@ -592,10 +592,10 @@ export default function AboutPage() {
                   <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">Looking to create a unique wellness experience? We host private Pilates sessions for birthdays, baby showers, corporate events and intimate group gatherings. Each booking is fully tailored to your needs from class style and group size to optional extras such as studio styling and event touches.</p>
                   <ul className="space-y-4 mb-8">
                     {[
-                      'On-site or studio-based sessions available',
-                      'Flexible group sizes and scheduling',
-                      'Professional, certified instructors',
-                      'Customizable programs for your needs'
+                      'Private group classes for birthdays, events, or team sessions',
+                      'Instructor hire for on-site or in-studio experiences',
+                      'Flexible formats tailored to your group and occasion',
+                      'Optional styling and personalised event setup'
                     ].map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
