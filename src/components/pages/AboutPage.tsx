@@ -427,7 +427,7 @@ export default function AboutPage() {
               {
                 icon: <Users className="w-8 h-8" />,
                 title: 'Community',
-                description: 'Building connections and supporting each other on our wellness journeys.'
+                description: 'Creating a supportive environment where women feel connected and encouraged.'
               },
               {
                 icon: <Award className="w-8 h-8" />,
