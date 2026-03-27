@@ -398,12 +398,33 @@ export default function ClassesPage() {
           </AnimatedSection>
 
           {/* Dynamic Plan Groups */}
-          {uniqueGroups.map((group, groupIndex) => (
+          {uniqueGroups.map((group, groupIndex) => {
+            // Custom sort for Drop-In Sessions: drop-in first, 5 class second, 10 class last
+            let plansToDisplay = groupedPlans[group];
+            if (group === 'Drop-In Sessions') {
+              const dropInOrder = ['Drop-In', '5', '10'];
+              plansToDisplay = [...groupedPlans[group]].sort((a, b) => {
+                const aName = a.itemName || '';
+                const bName = b.itemName || '';
+                
+                // Find which category each plan belongs to
+                const aIndex = dropInOrder.findIndex(keyword => aName.includes(keyword));
+                const bIndex = dropInOrder.findIndex(keyword => bName.includes(keyword));
+                
+                // If both found, sort by order; otherwise put unfound items at end
+                if (aIndex === -1 && bIndex === -1) return 0;
+                if (aIndex === -1) return 1;
+                if (bIndex === -1) return -1;
+                return aIndex - bIndex;
+              });
+            }
+            
+            return (
             <AnimatedSection key={group} delay={100 + groupIndex * 50}>
               <div className="mb-16" id={`category-${group}`}>
                 <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{getDisplayName(group)}</h3>
-                <div className={`grid ${groupedPlans[group].length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : groupedPlans[group].length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
-                  {groupedPlans[group].map((plan) => (
+                <div className={`grid ${plansToDisplay.length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : plansToDisplay.length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
+                  {plansToDisplay.map((plan) => (
                     <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                   ))}
                 </div>
@@ -419,7 +440,8 @@ export default function ClassesPage() {
                 )}
               </div>
             </AnimatedSection>
-          ))}
+            );
+          })}
         </div>
       </section>
       {/* Benefits Section */}

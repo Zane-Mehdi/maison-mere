@@ -463,7 +463,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <FadeIn>
-              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes Levels</p>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Class Levels</p>
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
                 We Offer A Range Of Classes
               </h2>
