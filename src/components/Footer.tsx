@@ -1,4 +1,4 @@
-import { Instagram, Mail, MapPin, Phone, Music } from 'lucide-react';
+import { Instagram, Mail, MapPin, Phone, Music, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -71,6 +71,18 @@ export default function Footer() {
                 >
                   <Instagram className="w-4 h-4" />
                   Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://tiktok.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                  aria-label="TikTok"
+                >
+                  <Music2 className="w-4 h-4" />
+                  TikTok
                 </a>
               </li>
 
