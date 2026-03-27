@@ -4,9 +4,6 @@ import { Card } from '@/components/ui/card';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-const ENABLE_TALLY_EMBED = false;
-const ENABLE_MAP_EMBED = false;
-
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -42,11 +39,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 export default function ContactPage() {
   useEffect(() => {
     document.title = 'Contact | Maison Mère Studio';
-
-    if (!ENABLE_TALLY_EMBED) {
-      return;
-    }
-
+    
     // Load Tally embed script
     const script = document.createElement('script');
     script.src = 'https://tally.so/widgets/embed.js';
@@ -176,36 +169,18 @@ export default function ContactPage() {
                   <p className="text-foreground/70 font-paragraph mb-8 leading-relaxed">
                     Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
-                  {ENABLE_TALLY_EMBED ? (
-                    <iframe
-                      data-tally-src="https://tally.so/embed/VL8Oey?alignLeft=1&hideTitle=1&dynamicHeight=1"
-                      loading="lazy"
-                      width="100%"
-                      height="420"
-                      frameBorder="0"
-                      marginHeight={0}
-                      marginWidth={0}
-                      title="Contact Form"
-                      style={{ border: 'none' }}
-                    />
-                  ) : (
-                    <Card className="border-border bg-card p-8">
-                      <p className="text-foreground/70 font-paragraph leading-relaxed">
-                        The embedded contact form has been disabled for now. Please email
-                        {' '}
-                        <a className="text-primary underline underline-offset-4" href="mailto:contact@maisonmerestudio.com">
-                          contact@maisonmerestudio.com
-                        </a>
-                        {' '}
-                        or call
-                        {' '}
-                        <a className="text-primary underline underline-offset-4" href="tel:07304499808">
-                          07304 499808
-                        </a>
-                        .
-                      </p>
-                    </Card>
-                  )}
+
+                  <iframe
+                    data-tally-src="https://tally.so/embed/VL8Oey?alignLeft=1&hideTitle=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="420"
+                    frameBorder="0"
+                    marginHeight={0}
+                    marginWidth={0}
+                    title="Contact Form"
+                    style={{ border: 'none' }}
+                  />
                 </div>
               </AnimatedSection>
 
@@ -316,28 +291,15 @@ export default function ContactPage() {
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">Find Us</h2>
               </div>
               <div className="aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-lg">
-                {ENABLE_MAP_EMBED ? (
-                  <iframe
-                    src="https://www.google.com/maps?q=Maison+M%C3%A8re+Studio+Harrow&output=embed"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center bg-card p-8 text-center">
-                    <div>
-                      <h3 className="text-xl font-heading font-bold text-foreground mb-3">
-                        Map embed is disabled
-                      </h3>
-                      <p className="text-foreground/70 font-paragraph">
-                        View the studio location at 207 Watford Rd, Harrow HA1 3UA using the link above.
-                      </p>
-                    </div>
-                  </div>
-                )}
+                <iframe
+                  src="https://www.google.com/maps?q=Maison+M%C3%A8re+Studio+Harrow&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
           </AnimatedSection>
