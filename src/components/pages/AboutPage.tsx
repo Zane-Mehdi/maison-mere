@@ -382,7 +382,7 @@ export default function AboutPage() {
                     Our Mission
                   </p>
                   <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">The Meaning Behind Maison Mère</h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studio, we believe movement should fit into your life not the other way around. Maison Mère meaning "Mother House", represents a space of support, grounding and community, created with an understanding of the demands women navigate daily.</p>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mère Studio, we believe movement should fit into your life not the other way around. Maison Mère meaning "Mother House", represents a space of support, grounding and community, created with an understanding of the demands women navigate daily.</p>
                   <p className="text-foreground/70 font-paragraph mb-8 text-lg">Whether you are balancing work, motherhood, studies or simply carving out time for yourself, our mission is to provide a private, women-only environment where you can prioritise your well-being without compromise. A space where every woman feels comfortable, supported and part of something.</p>
                   <Button
                     asChild
