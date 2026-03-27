@@ -160,8 +160,8 @@ const SectionNavigator = () => {
   const sections = [
     { id: 'mission', label: 'Our Mission' },
     { id: 'values', label: 'Our Values' },
-    { id: 'classes', label: 'Class Levels' },
-    { id: 'private-classes', label: 'Private Classes' },
+    { id: 'classes', label: "Class Levels" },
+    { id: 'private-classes', label: "Private 1-1" },
     { id: 'corporate', label: 'Corporate & Events' },
     { id: 'instructors', label: 'Our Instructors' }
   ];
@@ -169,19 +169,20 @@ const SectionNavigator = () => {
   const handleScroll = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Get the sticky navigator height to account for offset (same as sticky nav)
-      const stickyNav = document.querySelector('.sticky-scroll-navigator');
-      const offset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
+      const headerHeight = 80; // Header height
+      const navHeight = 60; // Navigator height
+      const totalOffset = headerHeight + navHeight + 20;
 
-      // Calculate the target scroll position
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      const targetScroll = elementTop - offset - 20; // 20px extra padding
-
-      // Smooth scroll to the calculated position
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth'
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Adjust scroll position after a brief delay to account for header
+      setTimeout(() => {
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementTop - totalOffset,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   };
 
@@ -218,8 +219,8 @@ const StickyScrollNavigator = () => {
   const sections = [
     { id: 'mission', label: 'Our Mission', abbrev: 'Mission' },
     { id: 'values', label: 'Our Values', abbrev: 'Values' },
-    { id: 'classes', label: 'Our Classes', abbrev: 'Levels' },
-    { id: 'private-classes', label: 'Private Classes', abbrev: '1-1' },
+    { id: 'classes', label: "Class Levels", abbrev: 'Levels' },
+    { id: 'private-classes', label: "Private 1-1", abbrev: '1-1' },
     { id: 'corporate', label: 'Corporate & Events', abbrev: 'Corp/Events' },
     { id: 'instructors', label: 'Our Instructors', abbrev: 'Instructors' }
   ];
@@ -258,19 +259,19 @@ const StickyScrollNavigator = () => {
   const handleClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Get the sticky navigator height to account for offset
-      const stickyNav = document.querySelector('.sticky-scroll-navigator');
-      const offset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
+      const headerHeight = 80;
+      const navHeight = 60;
+      const totalOffset = headerHeight + navHeight + 20;
 
-      // Calculate the target scroll position
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      const targetScroll = elementTop - offset - 20; // 20px extra padding
-
-      // Smooth scroll to the calculated position
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth'
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      setTimeout(() => {
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementTop - totalOffset,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   };
 
