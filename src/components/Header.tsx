@@ -1,8 +1,22 @@
 import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
-import { Instagram, Menu, MessageCircle, Phone, X } from 'lucide-react';
+import { Instagram, Menu, Phone, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+const WhatsAppIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="w-5 h-5"
+  >
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -65,7 +79,7 @@ export default function Header() {
               className="text-foreground hover:text-primary transition-colors duration-200"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-5 h-5" />
+              <WhatsAppIcon />
             </a>
             <a
               href="tel:07304499808"
@@ -164,7 +178,7 @@ export default function Header() {
                 className="text-foreground hover:text-primary transition-colors duration-200"
                 aria-label="WhatsApp"
               >
-                <MessageCircle className="w-5 h-5" />
+                <WhatsAppIcon />
               </a>
               <a
                 href="tel:07304499808"
