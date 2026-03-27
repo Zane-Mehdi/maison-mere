@@ -1,3 +1,4 @@
+import ClassLevelsCarousel from '@/components/ClassLevelsCarousel';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
@@ -5,11 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { InstructorsABOUTUS, PilatesClassTypesABOUTUS } from '@/entities';
 import { BaseCrudService } from '@/integrations';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Award, Heart, Shield, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import ClassLevelsCarousel from '@/components/ClassLevelsCarousel';
 
 // --- Utility Components ---
 
@@ -172,11 +172,11 @@ const SectionNavigator = () => {
       // Get the sticky navigator height to account for offset (same as sticky nav)
       const stickyNav = document.querySelector('.sticky-scroll-navigator');
       const offset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
-      
+
       // Calculate the target scroll position
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
       const targetScroll = elementTop - offset - 20; // 20px extra padding
-      
+
       // Smooth scroll to the calculated position
       window.scrollTo({
         top: targetScroll,
@@ -190,7 +190,7 @@ const SectionNavigator = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="section-navigator bg-white border-b border-border shadow-sm sticky top-24 z-40"
+      className="section-navigator bg-white border-b border-border shadow-sm sticky top-30 z-40"
     >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
@@ -261,11 +261,11 @@ const StickyScrollNavigator = () => {
       // Get the sticky navigator height to account for offset
       const stickyNav = document.querySelector('.sticky-scroll-navigator');
       const offset = stickyNav ? stickyNav.getBoundingClientRect().height : 60;
-      
+
       // Calculate the target scroll position
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
       const targetScroll = elementTop - offset - 20; // 20px extra padding
-      
+
       // Smooth scroll to the calculated position
       window.scrollTo({
         top: targetScroll,
@@ -697,7 +697,7 @@ export default function AboutPage() {
       <section ref={ctaRef} className="py-20 bg-gradient-to-b from-accent/10 to-background relative">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto bg-gradient-to-br from-primary/5 to-accent/10 rounded-3xl p-12 md:p-16 border border-primary/20 text-center"
               animate={{
                 opacity: ctaMinimized ? 0 : 1,
