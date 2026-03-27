@@ -381,8 +381,8 @@ export default function AboutPage() {
                   <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                     Our Mission
                   </p>
-                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">Movement Designed for Women</h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studios, we believe movement is about more than just exercise. It's about building strength, confidence and connection in a space where women feel supported and comfortable.Our studio brings together Reformer Pilates, mat Pilates and yoga in a welcoming women-only environment. We're also proud to be baby-friendly, with dedicated pre</p>
+                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">The Meaning Behind Maison Mère</h2>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studio in Harrow, we believe</p>
                   <p className="text-base text-foreground/70 font-paragraph mb-8 leading-relaxed">
                     Our studio combines premium reformer equipment with expert instruction in a beautifully designed, women-only environment. We&apos;re committed to providing an inclusive space where women of all backgrounds, fitness levels, and abilities can thrive.
                   </p>
