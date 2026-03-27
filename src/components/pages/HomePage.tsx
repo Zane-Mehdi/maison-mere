@@ -438,7 +438,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{
             opacity: isSticky && scrollDirection === 'down' ? 1 : 0,
-            y: isSticky && scrollDirection === 'down' ? 0 : -18,
+            y: isSticky && scrollDirection === 'down' ? 0 : -10,
           }}
           transition={{ duration: 0.3 }}
           className="fixed top-28 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg pointer-events-none"
