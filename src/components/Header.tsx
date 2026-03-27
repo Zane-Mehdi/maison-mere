@@ -1,7 +1,7 @@
 import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
 import { Instagram, Menu, Phone, X, MapPin } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const WhatsAppIcon = () => (
@@ -24,20 +24,55 @@ const WhatsAppIcon = () => (
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLocationBannerVisible, setIsLocationBannerVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Hide banner when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsLocationBannerVisible(false);
+      } else {
+        setIsLocationBannerVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
       {/* Location Banner */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20">
+      <motion.div
+        initial={{ opacity: 1, height: 'auto' }}
+        animate={{
+          opacity: isLocationBannerVisible ? 1 : 0,
+          height: isLocationBannerVisible ? 'auto' : 0,
+          marginBottom: isLocationBannerVisible ? 0 : -48,
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20 overflow-hidden"
+      >
         <div className="container mx-auto px-4 flex items-center justify-center gap-2">
           <MapPin className="w-4 h-4 flex-shrink-0" />
           <p className="font-paragraph text-sm text-center">
             📍 Maison Mère Studio, London
           </p>
         </div>
-      </div>
+      </motion.div>
 
-      <header className="fixed top-12 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <motion.header
+        animate={{
+          top: isLocationBannerVisible ? 48 : 0,
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
+      >
         <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -222,7 +257,7 @@ export default function Header() {
           </motion.nav>
         )}
         </div>
-      </header>
+      </motion.header>
     </>
   );
 }
