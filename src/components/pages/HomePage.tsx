@@ -1,7 +1,7 @@
+import ClassesCarousel from '@/components/ClassesCarousel';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import HeroSlideshow from '@/components/HeroSlideshow';
-import ClassesCarousel from '@/components/ClassesCarousel';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
@@ -438,7 +438,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{
             opacity: isSticky && scrollDirection === 'down' ? 1 : 0,
-            y: isSticky && scrollDirection === 'down' ? 0 : -20,
+            y: isSticky && scrollDirection === 'down' ? 0 : -18,
           }}
           transition={{ duration: 0.3 }}
           className="fixed top-28 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg pointer-events-none"
