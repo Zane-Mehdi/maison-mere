@@ -140,7 +140,7 @@ export default function Footer() {
             <p className="text-background/60 font-paragraph text-sm">© 2026 Maison Mère Studio.  All rights reserved.</p>
             <div className="flex items-center gap-4">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/maisonmerestudio/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/80 hover:text-primary transition-colors duration-200"
