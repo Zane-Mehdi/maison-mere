@@ -158,7 +158,7 @@ export default function Header() {
             </Link>
             <div className="flex items-center gap-4 pt-2">
               <a
-                href="https://wa.me/07304499808"
+                href="https://wa.me/447304499808"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground hover:text-primary transition-colors duration-200"
