@@ -257,7 +257,7 @@ export default function ClassesPage() {
         </div>
       </motion.div>
       {/* Hero Section */}
-      <section className="pt-32 pb-6 bg-accent text-accent-foreground">
+      <section className="pt-40 pb-6 bg-accent text-accent-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex items-center justify-between gap-4 flex-wrap">
