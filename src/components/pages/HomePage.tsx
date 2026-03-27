@@ -492,7 +492,7 @@ export default function HomePage() {
               Discover your strength through <span className="italic text-primary">mindful movement</span>, <span className="italic text-primary">expert guidance</span>, and <span className="italic text-primary">sisterhood</span>.
             </h2>
             <div className="w-20 h-[1px] bg-primary mx-auto mb-8" />
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">At Maison Mère Studio every class is more than movement. It is an opportunity to build strength, confidence and connection in a supportive women's - only environment designed for comfort and empowerment.</p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">A boutique Pilates space in Harrow, designed to build strength, confidence and connection in a supportive women's-only environment.</p>
             <Button
               onClick={() => navigate('/classes')}
               variant="outline"
@@ -553,12 +553,8 @@ export default function HomePage() {
                   <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
                     Women-Only Studio & Hijab Friendly
                   </h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
-                    Step into a serene, elegant space designed exclusively for women. Our studio combines modern aesthetics with comfort, providing a chic and supportive atmosphere where you can focus on your well-being without feeling uncomfortable.
-                  </p>
-                  <p className="text-base text-foreground/70 font-paragraph mb-6 leading-relaxed">
-                    We are proud to be a hijab-friendly Pilates studio, providing a private and comfortable space where women can move freely and focus on their wellness journey. Our studio ensures that all women, regardless of their attire, feel welcome and respected.
-                  </p>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">Step into a calm, welcoming space designed exclusively for women. Our studio combines comfort, privacy and a supportive atmosphere where you can focus fully on your movement and well-being.</p>
+                  <p className="text-foreground/70 font-paragraph mb-6 text-lg">We've created an environment where all women feel respected and at ease including those who prefer a more private setting. We are also a child-friendly studio, allowing mothers to attend classes with peace of mind.</p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -570,7 +566,7 @@ export default function HomePage() {
                       <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <div className="w-2 h-2 rounded-full bg-primary" />
                       </div>
-                      <p className="text-foreground/80 font-paragraph">Hijab-friendly facilities</p>
+                      <p className="text-foreground/80 font-paragraph">Hijab-friendly and inclusive space</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
