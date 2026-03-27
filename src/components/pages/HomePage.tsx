@@ -439,10 +439,12 @@ export default function HomePage() {
           animate={{
             opacity: isSticky && scrollDirection === 'down' ? 1 : 0,
             y: isSticky && scrollDirection === 'down' ? 0 : -20,
-            pointerEvents: isSticky && scrollDirection === 'down' ? 'auto' : 'none',
           }}
           transition={{ duration: 0.3 }}
-          className="fixed top-28 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg"
+          className="fixed top-28 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg pointer-events-none"
+          style={{
+            pointerEvents: isSticky && scrollDirection === 'down' ? 'auto' : 'none',
+          }}
         >
           <div className="container mx-auto px-4 py-5 pt-[2rem] flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
