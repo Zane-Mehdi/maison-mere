@@ -716,7 +716,7 @@ export default function HomePage() {
           </div>
         </section>
         {/* FAQ SECTION */}
-        <section className="py-24 bg-background">
+        <section id="faq" className="py-24 bg-background">
           <div className="container mx-auto px-4 max-w-3xl">
             <div className="text-center mb-16">
               <FadeIn>

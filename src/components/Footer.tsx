@@ -9,46 +9,52 @@ export default function Footer() {
           {/* Brand */}
            <div>
             <h3 className="text-2xl font-heading font-bold mb-4">Maison Mère Studio</h3>
-            <p className="text-background/80 font-paragraph text-sm leading-relaxed">
-              Premium Reformer Pilates for women seeking strength, balance, and wellness in an inclusive, supportive community environment.
-            </p>
+            <p className="text-background/80 font-paragraph text-sm leading-relaxed">Premium women’s-only Pilates and wellness studio in Harrow, offering reformer, mat, yoga and pre & postnatal classes in a supportive, elevated space.</p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-heading font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/classes"
-                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
-                >Membership and Pricing</Link>
-              </li>
-              <li>
-                <Link
-                  to="/book-a-class"
-                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
-                >
-                  Schedule
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
+            <li>
+              <Link
+                to="/about"
+                className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/classes"
+                className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+              >Membership and Pricing</Link>
+            </li>
+            <li>
+              <Link
+                to="/book-a-class"
+                className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+              >
+                Schedule
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+              >
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/#faq"
+                className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+              >
+                FAQ
+              </Link>
+            </li>
+          </ul>
           </div>
 
           {/* Contact Info */}

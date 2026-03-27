@@ -210,9 +210,9 @@ export default function BookAClassPage() {
                 </p>
                 <ul className="space-y-2 font-paragraph text-foreground/70 text-sm">
                   <li>• Cancel up to 24 hours before class for a full credit</li>
-                  <li>• Cancellations within 24 hours may forfeit the class</li>
+                  <li>• Cancellations within 24 hours will forfeit your credit</li>
                   <li>• No-shows will be marked as used from your package</li>
-                  <li>• Contact us for any special circumstances</li>
+
                 </ul>
               </div>
             </div>
