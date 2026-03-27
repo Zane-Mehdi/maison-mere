@@ -1,11 +1,11 @@
-import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Mail, MapPin, Phone, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
            <div>
             <h3 className="text-2xl font-heading font-bold mb-4">MAISON MÈRE</h3>
