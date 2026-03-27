@@ -68,7 +68,7 @@ export default function ContactPage() {
           backgroundSize: '30px 30px'
         }} />
 
-        <div className="container mx-auto px-4 relative z-20 pt-10 md:pt-0">
+        <div className="container mx-auto px-4 relative z-15 pt-10 md:pt-0">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
