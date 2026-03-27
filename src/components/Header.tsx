@@ -1,6 +1,6 @@
 import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
-import { Instagram, Menu, Phone, X } from 'lucide-react';
+import { Instagram, Menu, Phone, X, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -26,8 +26,19 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4 py-4">
+    <>
+      {/* Location Banner */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20">
+        <div className="container mx-auto px-4 flex items-center justify-center gap-2">
+          <MapPin className="w-4 h-4 flex-shrink-0" />
+          <p className="font-paragraph text-sm text-center">
+            📍 Maison Mère Studio, London
+          </p>
+        </div>
+      </div>
+
+      <header className="fixed top-12 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
@@ -210,7 +221,8 @@ export default function Header() {
             </a>
           </motion.nav>
         )}
-      </div>
-    </header>
+        </div>
+      </header>
+    </>
   );
 }

@@ -432,7 +432,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground pt-24">
+      <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground pt-32">
         {/* Sticky Minimized CTA - Always visible when scrolling */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -442,7 +442,7 @@ export default function HomePage() {
             pointerEvents: isSticky && scrollDirection === 'down' ? 'auto' : 'none',
           }}
           transition={{ duration: 0.3 }}
-          className="fixed top-20 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg"
+          className="fixed top-28 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg"
         >
           <div className="container mx-auto px-4 py-5 pt-[2rem] flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
