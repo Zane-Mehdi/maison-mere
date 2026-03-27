@@ -160,7 +160,7 @@ export default function ClassesPage() {
   // Extract intro offer (planGroup === 'Intro')
   const introOffer = pricingPlans.find(p => p.planGroup === 'Intro');
 
-  // Get unique plan groups (excluding Intro) and sort with custom order
+  // Get unique plan groups (excluding Intro) and sort by priority
   const customOrder = ['Drop-In Sessions', 'Mummy & Me Pack', 'Standard Pack', 'Unlimited Membership'];
   const uniqueGroups = Array.from(new Set(
     pricingPlans
@@ -174,10 +174,14 @@ export default function ClassesPage() {
     const minPriorityA = Math.min(...groupAPlans.map(p => p.priority ?? Infinity));
     const minPriorityB = Math.min(...groupBPlans.map(p => p.priority ?? Infinity));
     
-    // If both groups have priority values, sort by priority
+    // If both groups have priority values, sort by priority (ascending order)
     if (minPriorityA !== Infinity && minPriorityB !== Infinity) {
       return minPriorityA - minPriorityB;
     }
+    
+    // If only one has priority, prioritize the one with a priority value
+    if (minPriorityA !== Infinity) return -1;
+    if (minPriorityB !== Infinity) return 1;
     
     // Fall back to custom order if priority is not available
     const indexA = customOrder.indexOf(a);
