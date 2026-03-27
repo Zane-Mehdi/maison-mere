@@ -437,7 +437,7 @@ export default function AboutPage() {
               {
                 icon: <Shield className="w-8 h-8" />,
                 title: 'Safety',
-                description: 'A comfortable, private environment where you can focus on your practice with confidence.'
+                description: 'A private, comfortable space where you can move with confidence and ease.'
               }
             ].map((value, index) => (
               <AnimatedSection key={index} delay={index * 100}>
