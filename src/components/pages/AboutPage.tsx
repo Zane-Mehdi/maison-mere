@@ -382,7 +382,7 @@ export default function AboutPage() {
                     Our Mission
                   </p>
                   <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">The Meaning Behind Maison Mère</h2>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studio in Harrow, we believe</p>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mere Studio in Harrow, we believe movement should fit into your life not the other way around. Maison Mère meaning "Mother House", represents a space of support, grounding and community, created with an understanding of the demands women navigate daily.</p>
                   <p className="text-base text-foreground/70 font-paragraph mb-8 leading-relaxed">
                     Our studio combines premium reformer equipment with expert instruction in a beautifully designed, women-only environment. We&apos;re committed to providing an inclusive space where women of all backgrounds, fitness levels, and abilities can thrive.
                   </p>

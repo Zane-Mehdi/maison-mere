@@ -1,6 +1,6 @@
 import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
-import { Instagram, Menu, X } from 'lucide-react';
+import { Instagram, Menu, X, MessageCircle, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -58,6 +58,22 @@ export default function Header() {
 
           {/* Social Icons & CTA */}
           <div className="hidden md:flex items-center gap-4">
+            <a
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:text-primary transition-colors duration-200"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="w-5 h-5" />
+            </a>
+            <a
+              href="tel:+1234567890"
+              className="text-foreground hover:text-primary transition-colors duration-200"
+              aria-label="Phone"
+            >
+              <Phone className="w-5 h-5" />
+            </a>
             <a
               href="https://www.instagram.com/maisonmerestudio/?hl=en"
               target="_blank"
@@ -141,6 +157,22 @@ export default function Header() {
               Contact
             </Link>
             <div className="flex items-center gap-4 pt-2">
+              <a
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </a>
+              <a
+                href="tel:+1234567890"
+                className="text-foreground hover:text-primary transition-colors duration-200"
+                aria-label="Phone"
+              >
+                <Phone className="w-5 h-5" />
+              </a>
               <a
                 href="https://www.instagram.com/maisonmerestudio/?hl=en"
                 target="_blank"
