@@ -53,7 +53,6 @@ export default function Header() {
         animate={{
           opacity: isLocationBannerVisible ? 1 : 0,
           height: isLocationBannerVisible ? 'auto' : 0,
-          marginBottom: isLocationBannerVisible ? 0 : -48,
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20 overflow-hidden"
@@ -68,7 +67,7 @@ export default function Header() {
 
       <motion.header
         animate={{
-          top: isLocationBannerVisible ? 48 : 0,
+          top: isLocationBannerVisible ? '48px' : 0,
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
