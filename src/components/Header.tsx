@@ -59,12 +59,9 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 flex items-center justify-center gap-2">
           <MapPin className="w-4 h-4 flex-shrink-0" />
-          <p className="font-paragraph text-sm text-center">
-            📍 Maison Mère Studio, London
-          </p>
+          <p className="font-paragraph text-sm text-center">Maison Mère Studio, 207 Watford Road, London</p>
         </div>
       </motion.div>
-
       <motion.header
         animate={{
           top: isLocationBannerVisible ? '37px' : 0,
