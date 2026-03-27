@@ -789,6 +789,41 @@ export default function HomePage() {
             </FadeIn>
           </div>
         </section>
+        {/* CONNECT WITH US SECTION */}
+        <section className="py-24 bg-background">
+          <div className="container mx-auto px-4 text-center max-w-3xl">
+            <FadeIn>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-12">
+                Connect With Us
+              </h2>
+              <div className="space-y-8">
+                <div>
+                  <p className="text-muted-foreground text-sm uppercase tracking-widest mb-3 font-semibold">Instagram</p>
+                  <a 
+                    href="https://instagram.com/maisonmerestudio" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-2xl md:text-3xl font-heading font-bold text-primary hover:text-accent transition-colors duration-300"
+                  >
+                    @maisonmerestudio
+                  </a>
+                </div>
+                <div className="w-12 h-[1px] bg-border mx-auto" />
+                <div>
+                  <p className="text-muted-foreground text-sm uppercase tracking-widest mb-3 font-semibold">TikTok</p>
+                  <a 
+                    href="https://tiktok.com/@maisonmerestudio" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-2xl md:text-3xl font-heading font-bold text-primary hover:text-accent transition-colors duration-300"
+                  >
+                    @maisonmerestudio
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
         <Footer />
       </div>
     </>
