@@ -187,7 +187,7 @@ const SectionNavigator = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className="section-navigator bg-white border-b border-border shadow-sm sticky top-20 z-40"
