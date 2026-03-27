@@ -174,7 +174,7 @@ const SectionNavigator = () => {
       const totalOffset = headerHeight + navHeight + 20;
 
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+      
       // Adjust scroll position after a brief delay to account for header
       setTimeout(() => {
         const elementTop = element.getBoundingClientRect().top + window.scrollY;
@@ -191,7 +191,7 @@ const SectionNavigator = () => {
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="section-navigator bg-white border-b border-border shadow-sm sticky top-20 z-40 py-[7px] px-0 pt-[10px] pr-0 pb-[7px] pl-0"
+      className="section-navigator bg-white border-b border-border shadow-sm sticky top-20 z-40 py-[7px] px-0 pt-[37px] pr-0 pb-[7px] pl-0"
     >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
@@ -264,7 +264,7 @@ const StickyScrollNavigator = () => {
       const totalOffset = headerHeight + navHeight + 20;
 
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+      
       setTimeout(() => {
         const elementTop = element.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
@@ -463,7 +463,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <FadeIn>
-              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes</p>
+              <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Our Classes Levels</p>
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
                 We Offer A Range Of Classes
               </h2>
