@@ -529,7 +529,7 @@ export default function AboutPage() {
             <AnimatedSection>
               <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Personalized Training</p>
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">1-1 Private Classes</h2>
-              <p className="text-muted-foreground text-lg">Tailored sessions designed specifically for your goals and fitness level</p>
+              <p className="text-muted-foreground text-lg">Tailored sessions designed around your body, goals and lifestyle.</p>
             </AnimatedSection>
           </div>
           <div className="max-w-6xl mx-auto">
@@ -547,9 +547,7 @@ export default function AboutPage() {
               <AnimatedSection delay={100}>
                 <div>
                   <h3 className="text-3xl font-heading font-bold text-foreground mb-6">Get Expert Attention</h3>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
-                    Our 1-1 private classes offer personalized instruction in a dedicated environment. Work one-on-one with our certified instructors to achieve your specific fitness goals, whether you're recovering from an injury, preparing for an event, or seeking advanced training.
-                  </p>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">Whether you are recovering from an injury or looking for a more tailored approach, our 1–1 private sessions are designed around your individual needs. As sessions are fully bespoke, availability is arranged individually enquire to discuss your goals, schedule and to be matched with the right instructor.</p>
                   <ul className="space-y-4 mb-8">
                     {[
                       'Customized workout plans tailored to your needs',
