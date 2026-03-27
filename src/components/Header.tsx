@@ -2,7 +2,7 @@ import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
 import { Instagram, MapPin, Menu, Phone, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const WhatsAppIcon = () => (
   <svg
@@ -26,6 +26,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLocationBannerVisible, setIsLocationBannerVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,33 +46,38 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  // Hide banner on About page
+  const isAboutPage = location.pathname === '/about';
+
   return (
     <>
       {/* Location Banner */}
-      <motion.div
-        initial={{ opacity: 1, height: 'auto' }}
-        animate={{
-          opacity: isLocationBannerVisible ? 1 : 0,
-          height: isLocationBannerVisible ? 'auto' : 0,
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20 overflow-hidden"
-      >
-        <div className="container mx-auto px-4 flex items-center justify-center gap-2">
-          <MapPin className="w-4 h-4 flex-shrink-0" />
-          <a
-            href="https://maps.app.goo.gl/jUMoCgRDpUjsvzbV8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-paragraph text-sm text-center hover:underline cursor-pointer transition-all duration-200"
-          >
-            207 Watford Road, Harrow, HA1 3UA
-          </a>
-        </div>
-      </motion.div>
+      {!isAboutPage && (
+        <motion.div
+          initial={{ opacity: 1, height: 'auto' }}
+          animate={{
+            opacity: isLocationBannerVisible ? 1 : 0,
+            height: isLocationBannerVisible ? 'auto' : 0,
+          }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20 overflow-hidden"
+        >
+          <div className="container mx-auto px-4 flex items-center justify-center gap-2">
+            <MapPin className="w-4 h-4 flex-shrink-0" />
+            <a
+              href="https://maps.app.goo.gl/jUMoCgRDpUjsvzbV8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-paragraph text-sm text-center hover:underline cursor-pointer transition-all duration-200"
+            >
+              207 Watford Road, Harrow, HA1 3UA
+            </a>
+          </div>
+        </motion.div>
+      )}
       <motion.header
         animate={{
-          top: isLocationBannerVisible ? '37px' : 0,
+          top: !isAboutPage && isLocationBannerVisible ? '37px' : 0,
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
