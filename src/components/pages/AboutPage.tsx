@@ -190,7 +190,7 @@ const SectionNavigator = () => {
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="section-navigator bg-white border-b border-border shadow-sm sticky top-20 z-40"
+      className="section-navigator bg-white border-b border-border shadow-sm sticky top-20 z-40 py-[7px] px-0 pt-[37px] pr-0 pb-[7px] pl-0"
     >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:flex md:overflow-x-auto md:justify-center md:flex-wrap gap-2 py-4">
