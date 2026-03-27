@@ -435,7 +435,7 @@ export default function HomePage() {
       <div className="min-h-screen bg-background font-paragraph text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary-foreground pt-32">
         {/* Sticky Minimized CTA - Always visible when scrolling */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           animate={{
             opacity: isSticky && scrollDirection === 'down' ? 1 : 0,
             y: isSticky && scrollDirection === 'down' ? 0 : -20,
