@@ -1,4 +1,4 @@
-import { Instagram, Mail, MapPin, Phone, Music, Music2 } from 'lucide-react';
+import { Instagram, Mail, MapPin, Music2, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -75,7 +75,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://tiktok.com"
+                  href="https://www.tiktok.com/@maisonmerestudioldn"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
@@ -95,7 +95,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <a 
+                <a
                   href="https://maps.google.com/?q=207+Watford+Rd,+Harrow+HA1+3UA"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -106,7 +106,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <a 
+                <a
                   href="tel:+447304499808"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >
@@ -115,7 +115,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
-                <a 
+                <a
                   href="mailto:Contact@maisonmerestudio.com"
                   className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >contact@maisonmerestudio.com</a>
@@ -150,7 +150,7 @@ export default function Footer() {
             </a>
           </div>
           </div>
-          
+
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-6 text-background/70 font-paragraph text-sm">
             <Link
