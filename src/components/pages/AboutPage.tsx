@@ -580,8 +580,8 @@ export default function AboutPage() {
           <div className="text-center mb-16">
             <AnimatedSection>
               <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Corporate & Events</p>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Private Classes & Instructor Hire</h2>
-              <p className="text-muted-foreground text-lg">Bring wellness to your team or event with our professional instructors</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Private Hire</h2>
+              <p className="text-muted-foreground text-lg">Bring a tailored wellness experience with our expert instructors.</p>
             </AnimatedSection>
           </div>
           <div className="max-w-6xl mx-auto">
@@ -589,9 +589,7 @@ export default function AboutPage() {
               <AnimatedSection delay={100}>
                 <div>
                   <h3 className="text-3xl font-heading font-bold text-foreground mb-6">Corporate Wellness & Events</h3>
-                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">
-                    Looking to bring wellness to your workplace or special event? We offer private group classes and can hire our expert instructors for corporate wellness programs, team building events, or special occasions. Create a memorable experience that promotes health and connection.
-                  </p>
+                  <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">Looking to create a unique wellness experience? We host private Pilates sessions for birthdays, baby showers, corporate events and intimate group gatherings. Each booking is fully tailored to your needs from class style and group size to optional extras such as studio styling and event touches.</p>
                   <ul className="space-y-4 mb-8">
                     {[
                       'On-site or studio-based sessions available',
