@@ -2,7 +2,7 @@ import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
 import { Instagram, MapPin, Menu, Phone, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const WhatsAppIcon = () => (
   <svg
@@ -24,63 +24,51 @@ const WhatsAppIcon = () => (
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isLocationBannerVisible, setIsLocationBannerVisible] = useState(true);
+  const [showBanner, setShowBanner] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Hide banner when scrolling down, show when scrolling up
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setIsLocationBannerVisible(false);
+      
+      // Show banner at top of page or when scrolling up
+      if (currentScrollY < 50 || currentScrollY < lastScrollY) {
+        setShowBanner(true);
       } else {
-        setIsLocationBannerVisible(true);
+        setShowBanner(false);
       }
 
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Hide banner on About page
-  const isAboutPage = location.pathname === '/about';
-
   return (
     <>
-      {/* Location Banner */}
-      {!isAboutPage && (
-        <motion.div
-          initial={{ opacity: 1, height: 'auto' }}
-          animate={{
-            opacity: isLocationBannerVisible ? 1 : 0,
-            height: isLocationBannerVisible ? 'auto' : 0,
-          }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 border-b border-primary/20 overflow-hidden"
-        >
-          <div className="container mx-auto px-4 flex items-center justify-center gap-2">
-            <MapPin className="w-4 h-4 flex-shrink-0" />
-            <a
-              href="https://maps.app.goo.gl/jUMoCgRDpUjsvzbV8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-paragraph text-sm text-center hover:underline cursor-pointer transition-all duration-200"
-            >
-              207 Watford Road, Harrow, HA1 3UA
-            </a>
-          </div>
-        </motion.div>
-      )}
-      <motion.header
-        animate={{
-          top: !isAboutPage && isLocationBannerVisible ? '37px' : 0,
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
+      {/* Location Banner - slides down when scrolling up */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground py-2 border-b border-primary/20 transition-transform duration-300 ${
+          showBanner ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="container mx-auto px-4 flex items-center justify-center gap-2">
+          <MapPin className="w-4 h-4 flex-shrink-0" />
+          <a
+            href="https://maps.app.goo.gl/jUMoCgRDpUjsvzbV8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-paragraph text-sm text-center hover:underline cursor-pointer transition-all duration-200"
+          >
+            207 Watford Road, Harrow, HA1 3UA
+          </a>
+        </div>
+      </div>
+      <header 
+        className={`fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300 ${
+          showBanner ? 'top-[37px]' : 'top-0'
+        }`}
       >
         <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -266,7 +254,7 @@ export default function Header() {
           </motion.nav>
         )}
         </div>
-      </motion.header>
+      </header>
     </>
   );
 }

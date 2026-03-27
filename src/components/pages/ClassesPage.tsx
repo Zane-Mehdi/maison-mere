@@ -218,11 +218,22 @@ export default function ClassesPage() {
       // Show sticky section when scrolled past hero
       setIsSticky(currentScrollY > 300);
       setLastScrollY(currentScrollY);
+
+      // Track active category based on scroll position
+      for (const group of uniqueGroups) {
+        const element = document.getElementById(`category-${group}`);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 250) {
+            setActiveCategory(group);
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, uniqueGroups]);
 
   return (
     <div className="min-h-screen bg-background">

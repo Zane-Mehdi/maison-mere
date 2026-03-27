@@ -169,20 +169,15 @@ const SectionNavigator = () => {
   const handleScroll = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Header height
-      const navHeight = 60; // Navigator height
+      const headerHeight = 80;
+      const navHeight = 60;
       const totalOffset = headerHeight + navHeight + 20;
 
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Adjust scroll position after a brief delay to account for header
-      setTimeout(() => {
-        const elementTop = element.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: elementTop - totalOffset,
-          behavior: 'smooth'
-        });
-      }, 100);
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -263,15 +258,11 @@ const StickyScrollNavigator = () => {
       const navHeight = 60;
       const totalOffset = headerHeight + navHeight + 20;
 
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      setTimeout(() => {
-        const elementTop = element.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: elementTop - totalOffset,
-          behavior: 'smooth'
-        });
-      }, 100);
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -280,7 +271,7 @@ const StickyScrollNavigator = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
       transition={{ duration: 0.3 }}
-      className={`sticky-scroll-navigator fixed top-24 left-0 right-0 z-50 bg-white border-b border-border shadow-sm ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      className={`sticky-scroll-navigator fixed top-20 left-0 right-0 z-50 bg-white border-b border-border shadow-sm ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
       <div className="container mx-auto px-1">
         <div className="flex justify-center gap-0.5 md:gap-2 py-2 overflow-x-auto">
