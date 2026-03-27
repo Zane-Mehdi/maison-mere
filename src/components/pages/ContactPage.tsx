@@ -62,7 +62,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Hero Section */}
-      <section className="relative py-16 md:py-10 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
+      <section className="relative py-16 md:py-40 bg-gradient-to-br from-accent/20 via-background to-background overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: 'radial-gradient(circle, rgba(179,160,131,0.4) 1px, transparent 1px)',
           backgroundSize: '30px 30px'
