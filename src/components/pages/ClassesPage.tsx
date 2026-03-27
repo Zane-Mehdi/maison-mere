@@ -216,7 +216,7 @@ export default function ClassesPage() {
 
   const getDisclaimerMessage = (group: string): string => {
     const disclaimers: Record<string, string> = {
-      'Memberships': 'Auto-renews monthly after the initial term. To cancel, please contact us.',
+      'Memberships': '* Auto-renews monthly after the initial term. To cancel, please contact us.',
       'Private 1-1': '* Not sure what\'s right for you? Enquire first and we\'ll guide you'
     };
     return disclaimers[group] || '';
