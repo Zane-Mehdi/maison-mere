@@ -550,10 +550,10 @@ export default function AboutPage() {
                   <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">Whether you are recovering from an injury or looking for a more tailored approach, our 1–1 private sessions are designed around your individual needs. As sessions are fully bespoke, availability is arranged individually enquire to discuss your goals, schedule and to be matched with the right instructor.</p>
                   <ul className="space-y-4 mb-8">
                     {[
-                      'Customized workout plans tailored to your needs',
-                      'Flexible scheduling to fit your lifestyle',
-                      'Expert form correction and technique guidance',
-                      'Progressive training programs'
+                      'Personalised sessions tailored to your goals and level',
+                      'Suitable for beginners, post-injury, and pre & postnatal clients',
+                      'Flexible scheduling arranged around you',
+                      'One-to-one guidance with focused support and correction'
                     ].map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
