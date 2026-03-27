@@ -153,15 +153,15 @@ export default function HeroSlideshow({
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <div className="container mx-auto px-4 text-center text-white">
             <SlideInText delay={0.2}>
-              <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
-                {currentSlideData?.subtitle}
-              </p>
-            </SlideInText>
-
-            <SlideInText delay={0.4}>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight tracking-tight">
                 {currentSlideData?.title}
               </h1>
+            </SlideInText>
+
+            <SlideInText delay={0.4}>
+              <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-white/90 font-medium">
+                {currentSlideData?.subtitle}
+              </p>
             </SlideInText>
 
             {currentSlideData?.cta && (
