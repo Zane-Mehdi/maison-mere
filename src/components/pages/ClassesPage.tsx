@@ -431,26 +431,26 @@ export default function ClassesPage() {
             }
             
             return (
-            <AnimatedSection key={group} delay={100 + groupIndex * 50}>
-              <div className="mb-16" id={`category-${group}`}>
-                <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{getDisplayName(group)}</h3>
-                <div className={`grid ${plansToDisplay.length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : plansToDisplay.length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
-                  {plansToDisplay.map((plan) => (
-                    <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
-                  ))}
+              <AnimatedSection key={group} delay={100 + groupIndex * 50}>
+                <div className="mb-16" id={`category-${group}`}>
+                  <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{getDisplayName(group)}</h3>
+                  <div className={`grid ${plansToDisplay.length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : plansToDisplay.length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
+                    {plansToDisplay.map((plan) => (
+                      <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
+                    ))}
+                  </div>
+                  {group === 'Standard Pack' && (
+                    <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
+                      <p className="text-sm text-foreground font-paragraph">*Validity: 2 months (5 classes) • 3 months (10 & 20 classes)</p>
+                    </div>
+                  )}
+                  {getDisclaimerMessage(group) && (
+                    <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
+
+                    </div>
+                  )}
                 </div>
-                {group === 'Standard Pack' && (
-                  <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
-                    <p className="text-sm text-foreground font-paragraph">*Validity: 2 months (5 classes) • 3 months (10 & 20 classes)</p>
-                  </div>
-                )}
-                {getDisclaimerMessage(group) && (
-                  <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
-                    <p className="text-sm text-foreground font-paragraph">{getDisclaimerMessage(group)}</p>
-                  </div>
-                )}
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
             );
           })}
         </div>

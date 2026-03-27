@@ -166,6 +166,8 @@ export interface PricingPlansMEMBERSHIPSANDPLANS {
   numberOfClasses?: number;
   /** @wixFieldType text */
   specialNotes?: string;
+  /** @wixFieldType number */
+  priority?: number;
 }
 
 

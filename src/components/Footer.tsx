@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-12 mb-12">
           {/* Brand */}
            <div>
             <h3 className="text-2xl font-heading font-bold mb-4">Maison Mère Studio</h3>
@@ -55,6 +55,26 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h4 className="text-lg font-heading font-semibold mb-4">Connect</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4" />
+                  Instagram
+                </a>
+              </li>
+
+            </ul>
           </div>
 
           {/* Contact Info */}
