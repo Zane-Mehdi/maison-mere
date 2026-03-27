@@ -16,6 +16,7 @@ interface PricingPlan {
   specialNotes?: string;
   buyNowUrl?: string;
   planGroup?: string;
+  priority?: number;
 }
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
@@ -166,6 +167,19 @@ export default function ClassesPage() {
       .filter(p => p.planGroup && p.planGroup !== 'Intro')
       .map(p => p.planGroup)
   )).sort((a, b) => {
+    // Get the minimum priority for each group
+    const groupAPlans = pricingPlans.filter(p => p.planGroup === a);
+    const groupBPlans = pricingPlans.filter(p => p.planGroup === b);
+    
+    const minPriorityA = Math.min(...groupAPlans.map(p => p.priority ?? Infinity));
+    const minPriorityB = Math.min(...groupBPlans.map(p => p.priority ?? Infinity));
+    
+    // If both groups have priority values, sort by priority
+    if (minPriorityA !== Infinity && minPriorityB !== Infinity) {
+      return minPriorityA - minPriorityB;
+    }
+    
+    // Fall back to custom order if priority is not available
     const indexA = customOrder.indexOf(a);
     const indexB = customOrder.indexOf(b);
     if (indexA === -1) return 1;
@@ -427,6 +441,13 @@ export default function ClassesPage() {
                 if (aIndex === -1) return 1;
                 if (bIndex === -1) return -1;
                 return aIndex - bIndex;
+              });
+            } else {
+              // Sort by priority field if it exists
+              plansToDisplay = [...groupedPlans[group]].sort((a, b) => {
+                const priorityA = a.priority ?? Infinity;
+                const priorityB = b.priority ?? Infinity;
+                return priorityA - priorityB;
               });
             }
             
