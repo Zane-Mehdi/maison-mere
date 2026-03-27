@@ -441,7 +441,7 @@ export default function HomePage() {
             y: isSticky && scrollDirection === 'down' ? 0 : -20,
           }}
           transition={{ duration: 0.3 }}
-          className="fixed top-20 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg pointer-events-none"
+          className="fixed top-25 left-0 right-0 z-40 bg-accent text-accent-foreground shadow-lg pointer-events-none"
           style={{
             pointerEvents: isSticky && scrollDirection === 'down' ? 'auto' : 'none',
           }}
