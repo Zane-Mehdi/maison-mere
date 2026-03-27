@@ -160,7 +160,7 @@ const SectionNavigator = () => {
   const sections = [
     { id: 'mission', label: 'Our Mission' },
     { id: 'values', label: 'Our Values' },
-    { id: 'classes', label: 'Our Classes' },
+    { id: 'classes', label: 'Class Levels' },
     { id: 'private-classes', label: 'Private Classes' },
     { id: 'corporate', label: 'Corporate & Events' },
     { id: 'instructors', label: 'Our Instructors' }

@@ -59,7 +59,14 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 flex items-center justify-center gap-2">
           <MapPin className="w-4 h-4 flex-shrink-0" />
-          <p className="font-paragraph text-sm text-center">207 Watford Road, Harrow, HA1 3UA</p>
+          <a
+            href="https://www.google.com/maps/search/207+Watford+Road,+Harrow,+HA1+3UA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-paragraph text-sm text-center hover:underline cursor-pointer transition-all duration-200"
+          >
+            207 Watford Road, Harrow, HA1 3UA
+          </a>
         </div>
       </motion.div>
       <motion.header
