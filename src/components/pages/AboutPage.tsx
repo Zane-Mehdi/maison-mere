@@ -432,7 +432,7 @@ export default function AboutPage() {
               {
                 icon: <Award className="w-8 h-8" />,
                 title: 'Excellence',
-                description: 'Premium equipment, expert instruction, and attention to detail in everything we do.'
+                description: 'High-quality instruction, premium equipment and attention to detail in every class.'
               },
               {
                 icon: <Shield className="w-8 h-8" />,
