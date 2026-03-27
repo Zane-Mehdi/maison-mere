@@ -422,7 +422,7 @@ export default function AboutPage() {
               {
                 icon: <Heart className="w-8 h-8" />,
                 title: 'Inclusivity',
-                description: 'A welcoming space for all women, regardless of background, fitness level, or experience.'
+                description: 'A welcoming space for all women, regardless of background, experience, or fitness level.'
               },
               {
                 icon: <Users className="w-8 h-8" />,
