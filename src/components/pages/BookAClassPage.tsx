@@ -104,7 +104,6 @@ export default function BookAClassPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       {/* Sticky Minimized CTA - Always visible when scrolling */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -134,7 +133,6 @@ export default function BookAClassPage() {
           </Button>
         </div>
       </motion.div>
-
       {/* Banner CTA */}
       <section className="bg-accent text-accent-foreground py-6 pt-32">
         <div className="container mx-auto px-4">
@@ -161,18 +159,13 @@ export default function BookAClassPage() {
           </AnimatedSection>
         </div>
       </section>
-
       {/* Main Content */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-4">
-                Book A Class
-              </h1>
-              <p className="text-xl text-foreground/70 font-paragraph mb-12">
-                Our Schedule
-              </p>
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-4">Our Schedule</h1>
+              <p className="text-xl text-foreground/70 font-paragraph mb-12">Book a class</p>
             </div>
           </AnimatedSection>
 
@@ -226,7 +219,6 @@ export default function BookAClassPage() {
           </AnimatedSection>
         </div>
       </section>
-
       <Footer />
     </div>
   );
