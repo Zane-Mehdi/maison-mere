@@ -464,9 +464,14 @@ export default function ClassesPage() {
                       <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
                     ))}
                   </div>
-                  {(group === 'Standard Pack' || group === 'Mummy & Me Pack' || group === 'Unlimited Membership' || group === 'Yoga/Mat Pilates') && (
+                  {(group === 'Standard Pack' || group === 'Mummy & Me Pack' || group === 'Unlimited Membership') && (
                     <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
                       <p className="text-sm text-foreground font-paragraph">* Validity: 2 months (5 classes) • 3 months (10 & 20 classes)</p>
+                    </div>
+                  )}
+                  {group === 'Yoga/Mat Pilates' && (
+                    <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
+                      <p className="text-sm text-foreground font-paragraph">* Credits apply to all Yoga and Mat classes only</p>
                     </div>
                   )}
                   {getDisclaimerMessage(group) && (
