@@ -1,7 +1,7 @@
 import { Image } from '@/components/ui/image';
 import { motion } from 'framer-motion';
-import { Instagram, Menu, Phone, X, MapPin } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Instagram, MapPin, Menu, Phone, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const WhatsAppIcon = () => (
@@ -30,14 +30,14 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Hide banner when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsLocationBannerVisible(false);
       } else {
         setIsLocationBannerVisible(true);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
@@ -67,7 +67,7 @@ export default function Header() {
 
       <motion.header
         animate={{
-          top: isLocationBannerVisible ? '48px' : 0,
+          top: isLocationBannerVisible ? 0 : 0,
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
