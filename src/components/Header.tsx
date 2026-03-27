@@ -59,7 +59,7 @@ export default function Header() {
           {/* Social Icons & CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="https://wa.me/07304499808"
+              href="https://wa.me/447304499808"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors duration-200"
@@ -68,7 +68,7 @@ export default function Header() {
               <MessageCircle className="w-5 h-5" />
             </a>
             <a
-              href="tel:07304 499808"
+              href="tel:07304499808"
               className="text-foreground hover:text-primary transition-colors duration-200"
               aria-label="Phone"
             >
