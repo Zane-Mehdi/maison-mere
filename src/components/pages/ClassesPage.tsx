@@ -54,6 +54,22 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
 
 const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void}> = ({ plan, expandedPlanId, setExpandedPlanId }) => {
   const isExpanded = expandedPlanId === plan._id;
+  const embedRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (plan.embedCode && embedRef.current) {
+      // Execute any scripts in the embed code
+      const scripts = embedRef.current.querySelectorAll('script');
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        newScript.textContent = script.textContent;
+        newScript.src = script.src;
+        if (script.async) newScript.async = true;
+        if (script.defer) newScript.defer = true;
+        embedRef.current?.appendChild(newScript);
+      });
+    }
+  }, [plan.embedCode]);
 
   return (
     <div className="w-full">
@@ -71,6 +87,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
           {plan.embedCode && (
             <div className="w-full mt-auto">
               <div
+                ref={embedRef}
                 dangerouslySetInnerHTML={{
                   __html: plan.embedCode
                 }}
