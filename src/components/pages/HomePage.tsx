@@ -666,7 +666,7 @@ export default function HomePage() {
               <div className="lg:col-span-8">
                 <StaggerContainer className="grid sm:grid-cols-2 gap-6">
                   <StaggerItem>
-                    <Card className="border-none shadow-none bg-background h-full">
+                    <Card className="border-none shadow-none bg-background h-full flex flex-col">
                       <div className="aspect-video overflow-hidden">
                         <Image
                           src="https://static.wixstatic.com/media/3133d9_66ff80aab54244578853afa086cf075f~mv2.jpg"
@@ -676,14 +676,21 @@ export default function HomePage() {
                           focalPointX={72.23443223443223}
                           focalPointY={65} />
                       </div>
-                      <CardContent className="p-6">
+                      <CardContent className="p-6 flex flex-col flex-grow">
                         <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>
-                        <p className="text-sm text-muted-foreground">Tailored sessions designed around your individual goals. Ideal for beginners, injury support or those looking for a more personalised approach.</p>
+                        <p className="text-sm text-muted-foreground mb-6 flex-grow">Tailored sessions designed around your individual goals. Ideal for beginners, injury support or those looking for a more personalised approach.</p>
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-6 py-4 uppercase tracking-widest text-xs bg-transparent font-heading hover:scale-105 active:scale-95 no-underline w-full"
+                        >
+                          <a href="#one-to-one-private-sessions" className="no-underline">Learn More</a>
+                        </Button>
                       </CardContent>
                     </Card>
                   </StaggerItem>
                   <StaggerItem>
-                    <Card className="border-none shadow-none bg-background h-full">
+                    <Card className="border-none shadow-none bg-background h-full flex flex-col">
                       <div className="aspect-video overflow-hidden">
                         <Image
                           src="https://static.wixstatic.com/media/3133d9_ed403d35d6ba430a9e44904c548d4ab8~mv2.jpg"
@@ -693,9 +700,16 @@ export default function HomePage() {
                           focalPointX={68.05860805860806}
                           focalPointY={42.7978515625} />
                       </div>
-                      <CardContent className="p-6">
+                      <CardContent className="p-6 flex flex-col flex-grow">
                         <h3 className="text-xl font-heading font-bold mb-2">Private Hire & Events</h3>
-                        <p className="text-sm text-muted-foreground">A calm, beautifully designed space available for private bookings, small sessions and wellness-focused events.</p>
+                        <p className="text-sm text-muted-foreground mb-6 flex-grow">A calm, beautifully designed space available for private bookings, small sessions and wellness-focused events.</p>
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-6 py-4 uppercase tracking-widest text-xs bg-transparent font-heading hover:scale-105 active:scale-95 no-underline w-full"
+                        >
+                          <a href="#private-hire-events" className="no-underline">Learn More</a>
+                        </Button>
                       </CardContent>
                     </Card>
                   </StaggerItem>
