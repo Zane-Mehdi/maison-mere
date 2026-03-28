@@ -509,7 +509,7 @@ export default function ClassesPage() {
                   )}
                   {getDisclaimerMessage(group) && (
                     <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border">
-                      <p className="text-sm text-foreground font-paragraph">{getDisclaimerMessage(group)}</p>
+                      <p className="text-sm text-foreground font-paragraph">* Contact us to plan your personalised private sessions</p>
                     </div>
                   )}
                 </div>
