@@ -146,6 +146,7 @@ export default function ClassesPage() {
   const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const introOfferEmbedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.title = 'Classes | Maison Mère Studio';
@@ -177,6 +178,22 @@ export default function ClassesPage() {
 
   // Extract intro offer (planGroup === 'Intro')
   const introOffer = pricingPlans.find(p => p.planGroup === 'Intro');
+
+  // Handle intro offer embed code
+  useEffect(() => {
+    if (introOffer?.embedCode && introOfferEmbedRef.current) {
+      // Execute any scripts in the intro offer embed code
+      const scripts = introOfferEmbedRef.current.querySelectorAll('script');
+      scripts.forEach((script) => {
+        const newScript = document.createElement('script');
+        newScript.textContent = script.textContent;
+        newScript.src = script.src;
+        if (script.async) newScript.async = true;
+        if (script.defer) newScript.defer = true;
+        introOfferEmbedRef.current?.appendChild(newScript);
+      });
+    }
+  }, [introOffer?.embedCode]);
 
   // Get unique plan groups (excluding Intro) and sort by priority
   const customOrder = ['Drop-In Sessions', 'Mummy & Me Pack', 'Standard Pack', 'Unlimited Membership'];
@@ -385,6 +402,18 @@ export default function ClassesPage() {
                         Get Started Today
                       </a>
                     </Button>
+                  )}
+
+                  {introOffer.embedCode && (
+                    <div className="mt-6">
+                      <div
+                        ref={introOfferEmbedRef}
+                        className="flex justify-center [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:px-6 [&_a]:py-4 [&_a]:bg-primary-foreground [&_a]:text-primary [&_a]:rounded-lg [&_a]:font-heading [&_a]:font-semibold [&_a]:text-base [&_a]:transition-all [&_a]:duration-300 [&_a]:hover:bg-primary-foreground/95 [&_a]:no-underline [&_a]:cursor-pointer [&_a]:border [&_a]:border-primary-foreground [&_a]:shadow-lg [&_a]:hover:shadow-xl"
+                        dangerouslySetInnerHTML={{
+                          __html: introOffer.embedCode
+                        }}
+                      />
+                    </div>
                   )}
                 </div>
               </div>
