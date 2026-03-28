@@ -152,6 +152,8 @@ export interface PricingPlansMEMBERSHIPSANDPLANS {
   _updatedDate?: Date;
   /** @wixFieldType text */
   planGroup?: string;
+  /** @wixFieldType text */
+  embedCode?: string;
   /** @wixFieldType url */
   buyNowUrl?: string;
   /** @wixFieldType text */

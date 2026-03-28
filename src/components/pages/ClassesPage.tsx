@@ -17,6 +17,7 @@ interface PricingPlan {
   buyNowUrl?: string;
   planGroup?: string;
   priority?: number;
+  embedCode?: string;
 }
 
 const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; delay?: number}> = ({ children, className = '', delay = 0 }) => {
@@ -67,11 +68,11 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
           ) : plan.itemName?.includes('Drop-In') ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
           ) : null}
-          {plan.buyNowUrl && (
+          {plan.embedCode && (
             <div className="w-full mt-auto">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: `<script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"><\/script><healcode-widget data-version="0.2" data-link-class="healcode-pricing-option-text-link" data-site-id="128142" data-mb-site-id="5746875" data-service-id="100075" data-bw-identity-site="true" data-type="pricing-link" data-inner-html="Buy Now" />`
+                  __html: plan.embedCode
                 }}
               />
             </div>
