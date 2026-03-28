@@ -68,14 +68,13 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
             <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
           ) : null}
           {plan.buyNowUrl && (
-            <Button
-              asChild
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 font-heading hover:scale-105 active:scale-95 no-underline mt-auto"
-            >
-              <a href={plan.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                Buy Now
-              </a>
-            </Button>
+            <div className="w-full mt-auto">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `<script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"><\/script><healcode-widget data-version="0.2" data-link-class="healcode-pricing-option-text-link" data-site-id="128142" data-mb-site-id="5746875" data-service-id="100075" data-bw-identity-site="true" data-type="pricing-link" data-inner-html="Buy Now" />`
+                }}
+              />
+            </div>
           )}
         </div>
         {plan.specialNotes && (
