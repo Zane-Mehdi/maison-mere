@@ -88,6 +88,7 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
             <div className="w-full mt-auto">
               <div
                 ref={embedRef}
+                className="[&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:px-4 [&_a]:py-2 [&_a]:bg-primary [&_a]:text-primary-foreground [&_a]:rounded-lg [&_a]:font-heading [&_a]:font-semibold [&_a]:text-sm [&_a]:transition-all [&_a]:duration-200 [&_a]:hover:bg-primary/90 [&_a]:no-underline [&_a]:cursor-pointer [&_a]:border [&_a]:border-primary"
                 dangerouslySetInnerHTML={{
                   __html: plan.embedCode
                 }}
