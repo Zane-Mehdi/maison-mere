@@ -684,7 +684,7 @@ export default function HomePage() {
                           variant="outline"
                           className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-none px-6 py-4 uppercase tracking-widest text-xs bg-transparent font-heading hover:scale-105 active:scale-95 no-underline w-full"
                         >
-                          <a href="#one-to-one-private-sessions" className="no-underline">Learn More</a>
+                          <a href="/about#one-to-one-private-sessions" className="no-underline">Learn More</a>
                         </Button>
                       </CardContent>
                     </Card>
