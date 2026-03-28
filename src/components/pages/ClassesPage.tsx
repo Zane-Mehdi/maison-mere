@@ -370,7 +370,6 @@ export default function ClassesPage() {
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 text-primary-foreground leading-tight">
                     {introOffer.itemName}
                   </h2>
-
                   {/* Price highlight */}
                   {introOffer.itemPrice && (
                     <div className="mb-3 inline-block">
@@ -380,28 +379,15 @@ export default function ClassesPage() {
                       <p className="text-primary-foreground/80 text-xs mt-1 font-paragraph">Limited time offer</p>
                     </div>
                   )}
-
                   <p className="text-base md:text-lg mb-4 text-primary-foreground/95 font-paragraph leading-relaxed max-w-2xl mx-auto">
                     {introOffer.itemDescription}
                   </p>
-
                   {introOffer.specialNotes && (
                     <div className="mb-4 p-3 bg-primary-foreground/10 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
                       <p className="text-sm text-primary-foreground/90 font-paragraph">
                         Valid for 30 days from purchase date.
                       </p>
                     </div>
-                  )}
-
-                  {introOffer.buyNowUrl && (
-                    <Button
-                      asChild
-                      className="bg-primary-foreground text-primary hover:bg-primary-foreground/95 transition-all duration-300 font-heading hover:scale-110 active:scale-95 no-underline shadow-lg hover:shadow-xl px-6 py-4 text-base"
-                    >
-                      <a href={introOffer.buyNowUrl} target="_blank" rel="noopener noreferrer" className="no-underline">
-                        Get Started Today
-                      </a>
-                    </Button>
                   )}
 
                   {introOffer.embedCode && (
