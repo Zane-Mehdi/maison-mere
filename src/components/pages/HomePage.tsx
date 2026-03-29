@@ -584,7 +584,7 @@ export default function HomePage() {
                 <FadeIn delay={0.1}>
                   <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                     <Image
-                      src="https://static.wixstatic.com/media/980ffc_4f6a8e211a4b4abc8d918d0aac1066d4~mv2.png?originWidth=448&originHeight=576"
+                      src="https://static.wixstatic.com/media/3133d9_87152ef377e146ed9a619ab4f1fdd64a~mv2.jpg"
                       alt="Women practicing Pilates"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                       width={500}
