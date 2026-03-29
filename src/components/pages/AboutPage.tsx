@@ -489,6 +489,8 @@ export default function AboutPage() {
                             src={classType.image || "https://static.wixstatic.com/media/980ffc_53ba6cf33fa74be29706e2179f45c6de~mv2.png?originWidth=768&originHeight=1024"}
                             alt={classType.name || "Class Image"}
                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                            width={400}
+                            height={533}
                           />
                         </div>
                         <CardContent className="p-4 pt-0 text-center">
@@ -535,7 +537,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
-                  <Image src="https://static.wixstatic.com/media/3133d9_2441dbdc03de431d88831146036e9ee0~mv2.jpg" alt="1-1 Private Classes" className="w-full h-full object-cover" />
+                  <Image src="https://static.wixstatic.com/media/3133d9_2441dbdc03de431d88831146036e9ee0~mv2.jpg" alt="1-1 Private Classes" className="w-full h-full object-cover" width={500} height={625} />
                 </div>
               </AnimatedSection>
               <AnimatedSection delay={100}>
