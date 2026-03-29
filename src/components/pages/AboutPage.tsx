@@ -389,7 +389,7 @@ export default function AboutPage() {
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="https://static.wixstatic.com/media/3133d9_0095765ec4d94509802f4d109336bb5f~mv2.jpg"
+                    src="https://static.wixstatic.com/media/3133d9_1d0fa880334e4d8eaa1877096d45ed52~mv2.jpg"
                     alt="Pilates studio equipment"
                     width={500}
                     height={625}
