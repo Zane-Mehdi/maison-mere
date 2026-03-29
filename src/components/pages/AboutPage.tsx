@@ -394,6 +394,7 @@ export default function AboutPage() {
                     width={500}
                     height={625}
                     className="w-full h-full object-cover"
+                    fittingType="fit"
                   />
                 </div>
               </AnimatedSection>
