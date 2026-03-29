@@ -780,7 +780,7 @@ export default function HomePage() {
           </div>
         </section>
         {/* CTA SECTION */}
-        <section className="py-24 text-white relative overflow-hidden bg-cover bg-center" style={{backgroundImage: "url('https://static.wixstatic.com/media/3133d9_255f7fd9311a4e9bb3d0a1eea405caf0~mv2.jpg')"}}>
+        <section className="py-24 text-white relative overflow-hidden bg-cover bg-center" style={{backgroundImage: "url('https://static.wixstatic.com/media/3133d9_f0823e0e826348bebb02b9f7508ef975~mv2.jpg')"}}>
           <div className="absolute inset-0 bg-black/40"></div>
           <div className="container mx-auto px-4 text-center relative z-10">
             <FadeIn>
