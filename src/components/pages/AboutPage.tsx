@@ -535,12 +535,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
-                  <Image
-                    src="https://static.wixstatic.com/media/3133d9_2441dbdc03de431d88831146036e9ee0~mv2.jpg"
-                    alt="1-1 Private Classes"
-                    className="w-full h-full object-cover"
-                    width={400}
-                  />
+                  <Image src="https://static.wixstatic.com/media/3133d9_2441dbdc03de431d88831146036e9ee0~mv2.jpg" alt="1-1 Private Classes" className="w-full h-full object-cover" />
                 </div>
               </AnimatedSection>
               <AnimatedSection delay={100}>
