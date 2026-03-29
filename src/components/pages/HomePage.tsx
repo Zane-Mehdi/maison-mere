@@ -720,7 +720,7 @@ export default function HomePage() {
                 <FadeIn>
                   <p className="text-primary text-sm uppercase tracking-widest mb-4 font-semibold">Maison Mère Studio</p>
                   <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">Private Sessions & Studio Hire</h2>
-                  <p className="text-lg text-muted-foreground mb-8 leading-relaxed">A personalised approach to Pilates, with private sessions and exclusive bookings available.</p>
+                  <p className="text-lg text-muted-foreground mb-8 leading-relaxed">* Contact us to plan your personalised private sessions</p>
                  <Button
                    onClick={() => navigate('/contact')}
                    variant="outline"
