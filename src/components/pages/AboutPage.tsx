@@ -393,7 +393,7 @@ export default function AboutPage() {
                     alt="Pilates studio equipment"
                     width={500}
                     height={625}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-[1]"
                     fittingType="fit"
                   />
                 </div>
