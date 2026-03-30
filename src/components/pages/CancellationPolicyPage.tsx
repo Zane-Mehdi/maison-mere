@@ -12,9 +12,7 @@ export default function CancellationPolicyPage() {
           <div className="prose prose-lg max-w-none text-foreground space-y-8">
             <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Class Cancellations</h2>
-              <p className="font-paragraph text-lg leading-relaxed">
-                We understand that life happens. If you need to cancel a class booking, please review our cancellation policy below.
-              </p>
+              <p className="font-paragraph text-lg leading-relaxed">At Maison Mère Studio, we aim to keep our schedule fair and accessible for all clients. Please review our cancellation policy below.</p>
             </section>
 
             <section>
