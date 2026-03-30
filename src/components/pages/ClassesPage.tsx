@@ -252,7 +252,7 @@ export default function ClassesPage() {
   const getDisclaimerMessage = (group: string): string => {
     const disclaimers: Record<string, string> = {
       'Memberships': '* 2-month minimum term, then auto-renews monthly unless cancelled. Contact us to cancel.',
-      'Private 1-1': '* Not sure what\'s right for you? Enquire first and we\'ll guide you'
+      'Private 1-1': '* Contact us to plan your personalised private sessions'
     };
     return disclaimers[group] || '';
   };
