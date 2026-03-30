@@ -242,9 +242,7 @@ export default function ContactPage() {
                   </Card>
 
                   <Card className="border-border bg-card p-8">
-                    <h3 className="text-xl font-heading font-bold text-foreground mb-4">
-                      Private One-to-One Classes
-                    </h3>
+                    <h3 className="text-xl font-heading font-bold text-foreground mb-4">Private 1-1 Classes</h3>
                     <p className="text-foreground/70 font-paragraph leading-relaxed mb-4">
                       Looking for personalized instruction tailored to your goals and fitness level? Our private one-to-one classes offer dedicated attention and customized programming.
                     </p>
