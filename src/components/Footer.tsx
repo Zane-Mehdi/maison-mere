@@ -31,12 +31,12 @@ export default function Footer() {
               >Membership and Pricing</Link>
             </li>
             <li>
-              <Link
-                to="/book-a-class"
+              <a
+                href="/book-a-class"
                 className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
               >
                 Schedule
-              </Link>
+              </a>
             </li>
             <li>
               <Link
