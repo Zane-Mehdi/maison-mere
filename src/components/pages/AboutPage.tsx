@@ -479,7 +479,7 @@ export default function AboutPage() {
               <div className="hidden md:grid md:grid-cols-3 gap-8">
                 {classTypes.length > 0 ? classTypes.map((classType, index) => (
                   <StaggerItem key={classType._id} className="group">
-                    <Link to="/book-a-class" className="block h-full">
+                    <a href="/book-a-class" className="block h-full">
                       <Card className="h-full border-none shadow-none bg-transparent hover:bg-secondary/10 transition-colors duration-300 rounded-none overflow-hidden">
                         <div className="aspect-[3/4] overflow-hidden relative mb-0">
                           <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider z-10">
@@ -508,7 +508,7 @@ export default function AboutPage() {
                           </span>
                         </CardContent>
                       </Card>
-                    </Link>
+                    </a>
                   </StaggerItem>
                 )) : (
                   <div className="col-span-3 text-center py-12 text-muted-foreground">
