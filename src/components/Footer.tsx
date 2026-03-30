@@ -1,4 +1,4 @@
-import { Instagram, Mail, MapPin, Music2, Phone } from 'lucide-react';
+import { Instagram, Mail, MapPin, Music2, Phone, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand */}
            <div>
             <h3 className="text-2xl font-heading font-bold mb-4">Maison Mère Studio</h3>
-            <p className="text-background/80 font-paragraph text-sm leading-relaxed">Premium women’s-only Pilates and wellness studio in Harrow, offering reformer, mat, yoga and pre & postnatal classes in a supportive, elevated space.</p>
+            <p className="text-background/80 font-paragraph text-sm leading-relaxed">Premium women's-only Pilates and wellness studio in Harrow, offering reformer, mat, yoga and pre & postnatal classes in a supportive, elevated space.</p>
           </div>
 
           {/* Quick Links */}
@@ -127,8 +127,8 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-heading font-semibold mb-4">Opening Hours</h4>
             <ul className="space-y-2 text-background/80 font-paragraph text-sm">
-              <li>Monday - Friday: 7:00am - 9:00am | 6:00pm - 9:00pm</li>
-              <li>Saturday: 3pm - 5pm</li>
+              <li>Monday - Friday: 7:00am - 9:00am | 6:00pm - 9:00pm</li>
+              <li>Saturday: 3pm - 5pm</li>
               <li>Sunday: 10am - 1pm</li>
             </ul>
           </div>
@@ -137,8 +137,17 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-            <p className="text-background/60 font-paragraph text-sm">© 2026 Maison Mère Studio.  All rights reserved.</p>
+            <p className="text-background/60 font-paragraph text-sm">© 2026 Maison Mère Studio.  All rights reserved.</p>
             <div className="flex items-center gap-4">
+            <a
+              href="https://www.tiktok.com/@maisonmerestudioldn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/80 hover:text-primary transition-colors duration-200"
+              aria-label="TikTok"
+            >
+              <Music className="w-5 h-5" />
+            </a>
             <a
               href="https://instagram.com"
               target="_blank"
