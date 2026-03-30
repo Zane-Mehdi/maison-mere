@@ -201,7 +201,7 @@ export default function ContactPage() {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Monday - Friday</span>
-                        <span className="text-foreground font-paragraph font-semibold text-justify">7:00 AM - 9:00 AM6:00 PM - 9:00PM</span>
+                        <span className="text-foreground font-paragraph font-semibold text-justify">7:00 AM - 9:00 AM | 6:00 PM - 9:00PM</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-foreground/80 font-paragraph">Saturday</span>
