@@ -129,7 +129,7 @@ export default function Footer() {
             <ul className="space-y-2 text-background/80 font-paragraph text-sm">
               <li>Monday - Friday: 7:00am - 9:00am | 6:00pm - 9:00pm</li>
               <li>Saturday: 3pm - 5pm</li>
-              <li>Sunday: 12pm - 1pm | 9:00pm - 9:00pm</li>
+              <li>Sunday: 10am - 1pm</li>
             </ul>
           </div>
         </div>
