@@ -373,7 +373,7 @@ export default function AboutPage() {
                   <p className="text-primary font-paragraph text-sm uppercase tracking-widest mb-4">
                     Our Mission
                   </p>
-                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">The Meaning Behind Maison Mère</h2>
+                  <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">The Story Behind Maison Mère</h2>
                   <p className="text-lg text-foreground/80 font-paragraph mb-6 leading-relaxed">At Maison Mère Studio, we believe movement should fit into your life not the other way around. Maison Mère meaning "Mother House", represents a space of support, grounding and community, created with an understanding of the demands women navigate daily.</p>
                   <p className="text-foreground/70 font-paragraph mb-8 text-lg">Whether you are balancing work, motherhood, studies or simply carving out time for yourself, our mission is to provide a private, women-only environment where you can prioritise your well-being without compromise. A space where every woman feels comfortable, supported and part of something.</p>
                   <Button
@@ -538,14 +538,14 @@ export default function AboutPage() {
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
                   <Image
-                    src="https://static.wixstatic.com/media/3133d9_6ad1dd007e304ff58d07b7f79d44efbb~mv2.jpg"
+                    src="https://static.wixstatic.com/media/980ffc_a0d95240807c4aa9ae3b9e7abf601310~mv2.jpg"
                     className="w-full h-full object-cover"
                     width={500}
                     height={625}
-                    originWidth={4128}
-                    originHeight={6192}
-                    focalPointX={23.655523255813954}
-                    focalPointY={27.640503875968992} />
+                    originWidth={2000}
+                    originHeight={3000}
+                    focalPointX={52.25}
+                    focalPointY={19.45} />
                 </div>
               </AnimatedSection>
               <AnimatedSection delay={100}>

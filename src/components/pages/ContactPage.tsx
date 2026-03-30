@@ -272,9 +272,7 @@ export default function ContactPage() {
                     <h3 className="text-xl font-heading font-bold text-foreground mb-4">
                       Membership Inquiries
                     </h3>
-                    <p className="text-foreground/70 font-paragraph leading-relaxed">
-                      Want to learn more about our membership options, class packages, or intro offers? Send us a message and we&apos;ll provide all the details you need to get started.
-                    </p>
+                    <p className="text-foreground/70 font-paragraph leading-relaxed">Want to learn more about our membership options, class packages, or intro offers? Send us a message and we'll provide all the details you need to get started.</p>
                   </Card>
                 </div>
               </AnimatedSection>
