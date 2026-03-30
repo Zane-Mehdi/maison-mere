@@ -113,7 +113,7 @@ export default function HeroSlideshow({
               />
             )}
             {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/20 font-heading" />
+            <div className="absolute inset-0 bg-black/10 font-heading" />
           </motion.div>
         ))}
 
