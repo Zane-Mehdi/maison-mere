@@ -205,19 +205,19 @@ export default function ClassesPage() {
     // Get the minimum priority for each group
     const groupAPlans = pricingPlans.filter(p => p.planGroup === a);
     const groupBPlans = pricingPlans.filter(p => p.planGroup === b);
-    
+
     const minPriorityA = Math.min(...groupAPlans.map(p => p.priority ?? Infinity));
     const minPriorityB = Math.min(...groupBPlans.map(p => p.priority ?? Infinity));
-    
+
     // If both groups have priority values, sort by priority (ascending order)
     if (minPriorityA !== Infinity && minPriorityB !== Infinity) {
       return minPriorityA - minPriorityB;
     }
-    
+
     // If only one has priority, prioritize the one with a priority value
     if (minPriorityA !== Infinity) return -1;
     if (minPriorityB !== Infinity) return 1;
-    
+
     // Fall back to custom order if priority is not available
     const indexA = customOrder.indexOf(a);
     const indexB = customOrder.indexOf(b);
@@ -468,11 +468,11 @@ export default function ClassesPage() {
               plansToDisplay = [...groupedPlans[group]].sort((a, b) => {
                 const aName = a.itemName || '';
                 const bName = b.itemName || '';
-                
+
                 // Find which category each plan belongs to
                 const aIndex = dropInOrder.findIndex(keyword => aName.includes(keyword));
                 const bIndex = dropInOrder.findIndex(keyword => bName.includes(keyword));
-                
+
                 // If both found, sort by order; otherwise put unfound items at end
                 if (aIndex === -1 && bIndex === -1) return 0;
                 if (aIndex === -1) return 1;
@@ -487,7 +487,7 @@ export default function ClassesPage() {
                 return priorityA - priorityB;
               });
             }
-            
+
             return (
               <AnimatedSection key={group} delay={100 + groupIndex * 50}>
                 <div className="mb-16" id={`category-${group}`}>
