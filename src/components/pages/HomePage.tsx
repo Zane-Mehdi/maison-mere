@@ -669,12 +669,12 @@ export default function HomePage() {
                     <Card className="border-none shadow-none bg-background h-full flex flex-col">
                       <div className="aspect-video overflow-hidden">
                         <Image
-                          src="https://static.wixstatic.com/media/3133d9_66ff80aab54244578853afa086cf075f~mv2.jpg"
+                          src="https://static.wixstatic.com/media/3133d9_be4e36e3beae4fbd854ab310362bb51f~mv2.jpg"
                           className="w-full h-full object-cover opacity-[1]"
-                          originWidth={1365}
-                          originHeight={2048}
-                          focalPointX={72.23443223443223}
-                          focalPointY={65} />
+                          originWidth={4128}
+                          originHeight={6192}
+                          focalPointX={57.11603682170543}
+                          focalPointY={59.40326227390182} />
                       </div>
                       <CardContent className="p-6 flex flex-col flex-grow">
                         <h3 className="text-xl font-heading font-bold mb-2">1-1 Private Sessions</h3>

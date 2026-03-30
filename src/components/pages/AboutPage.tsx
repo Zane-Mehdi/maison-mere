@@ -389,13 +389,13 @@ export default function AboutPage() {
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="https://static.wixstatic.com/media/3133d9_63c5b48fe5b0412686db56f51cd7f62f~mv2.jpg"
-                    alt="Pilates studio equipment"
+                    src="https://static.wixstatic.com/media/3133d9_1d0fa880334e4d8eaa1877096d45ed52~mv2.jpg"
                     width={500}
                     height={625}
                     className="w-full h-full object-cover opacity-[1]"
                     fittingType="fit"
-                  />
+                    originWidth={4128}
+                    originHeight={6192} />
                 </div>
               </AnimatedSection>
             </div>
@@ -537,7 +537,15 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
-                  <Image src="https://static.wixstatic.com/media/3133d9_2441dbdc03de431d88831146036e9ee0~mv2.jpg" alt="1-1 Private Classes" className="w-full h-full object-cover" width={500} height={625} />
+                  <Image
+                    src="https://static.wixstatic.com/media/3133d9_6ad1dd007e304ff58d07b7f79d44efbb~mv2.jpg"
+                    className="w-full h-full object-cover"
+                    width={500}
+                    height={625}
+                    originWidth={4128}
+                    originHeight={6192}
+                    focalPointX={23.655523255813954}
+                    focalPointY={27.640503875968992} />
                 </div>
               </AnimatedSection>
               <AnimatedSection delay={100}>
@@ -611,11 +619,11 @@ export default function AboutPage() {
               <AnimatedSection>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-secondary/20">
                   <Image
-                    src="https://static.wixstatic.com/media/3133d9_68426ea9bd044d899a25a178b018cd2c~mv2.png?originWidth=384&originHeight=448"
-                    alt="Private Classes & Instructor Hire"
+                    src="https://static.wixstatic.com/media/3133d9_7eea06941ae04d518bd04eebd7024da3~mv2.jpg"
                     className="w-full h-full object-cover"
                     width={400}
-                  />
+                    originWidth={1455}
+                    originHeight={2048} />
                 </div>
               </AnimatedSection>
             </div>
