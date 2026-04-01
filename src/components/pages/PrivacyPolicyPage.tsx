@@ -120,9 +120,16 @@ You have the right to:
                 <li> Withdraw consent for marketing
 </li>
               <p className="font-paragraph text-lg leading-relaxed">
-You have the right to:
+To exercise your rights, please contact us directly.
               </p>
               </ul>
+            </section>
+
+                                    <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">How We Protect Your Data</h2>
+              <p className="font-paragraph text-lg leading-relaxed">
+We take appropriate technical and organisational measures to protect your data, including secure systems and
+restricted access to personal information.              </p>
             </section>
 
             <section>
