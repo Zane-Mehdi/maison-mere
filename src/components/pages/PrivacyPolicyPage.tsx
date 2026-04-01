@@ -89,7 +89,8 @@ We do not sell or share your data for third-party marketing purposes.
 We retain your personal data only as long as necessary:
               </p>
                             <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>Booking platforms (e.g. Mindbody)</li>
+                <li>General client records: up to 6 years after your last interaction
+</li>
                 <li>Payment providers</li>
                 <li> Email and communication platforms
 </li>
