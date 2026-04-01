@@ -99,14 +99,8 @@ We retain your personal data only as long as necessary:
                         <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">How We Protect Your Data</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                We only share your data where necessary to provide our services, including:
-              </p>
-                            <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>Booking platforms (e.g. Mindbody)</li>
-                <li>Payment providers</li>
-                <li> Email and communication platforms
-</li>
-              </ul>
+We take appropriate technical and organisational measures to protect your data, including secure systems and
+restricted access to personal information.              </p>
                 <p className="font-paragraph text-lg leading-relaxed">
 We do not sell or share your data for third-party marketing purposes.
               </p>
