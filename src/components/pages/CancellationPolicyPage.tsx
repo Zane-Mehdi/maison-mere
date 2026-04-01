@@ -27,7 +27,8 @@ export default function CancellationPolicyPage() {
                 <div className="border-l-4 border-accent pl-4">
                   <h3 className="font-heading text-xl mb-2 text-foreground">Late Arrival</h3>
                   <p className="font-paragraph text-lg">
-                    50% refund or credit. We understand emergencies happen, but we do charge a cancellation fee to account for our instructor's time.
+                    Clients are expected to arrive on time. Entry may not be permitted if you arrive more than 10 minutes late, as this
+may disrupt the class and compromise safety.
                   </p>
                 </div>
                 <div className="border-l-4 border-muted-foreground pl-4">
