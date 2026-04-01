@@ -97,7 +97,7 @@ We retain your personal data only as long as necessary:
             </section>
 
                         <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground"> Sharing Your Data</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">How We Protect Your Data</h2>
               <p className="font-paragraph text-lg leading-relaxed">
                 We only share your data where necessary to provide our services, including:
               </p>
