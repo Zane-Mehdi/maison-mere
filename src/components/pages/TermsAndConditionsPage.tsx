@@ -116,6 +116,62 @@ In the event that the studio cancels a class, clients will have their studio cre
                 <li>You will follow all instructor guidance and safety protocols</li>
               </ul>
             </section>
+                               <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
+              <p className="font-paragraph text-lg leading-relaxed mb-4">
+                Classes may be cancelled if minimum attendance is not met. Clients will be notified at least 2 hours in advance for
+same-day classes and by 9pm the evening prior for morning sessions.
+In the event that the studio cancels a class, clients will have their studio credit reimbursed.
+              </p>
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>You are in good physical health and able to participate in pilates classes</li>
+                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
+                <li>You assume all risks associated with participation in our classes</li>
+                <li>You will follow all instructor guidance and safety protocols</li>
+              </ul>
+            </section>
+                               <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
+              <p className="font-paragraph text-lg leading-relaxed mb-4">
+                Classes may be cancelled if minimum attendance is not met. Clients will be notified at least 2 hours in advance for
+same-day classes and by 9pm the evening prior for morning sessions.
+In the event that the studio cancels a class, clients will have their studio credit reimbursed.
+              </p>
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>You are in good physical health and able to participate in pilates classes</li>
+                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
+                <li>You assume all risks associated with participation in our classes</li>
+                <li>You will follow all instructor guidance and safety protocols</li>
+              </ul>
+            </section>
+                               <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
+              <p className="font-paragraph text-lg leading-relaxed mb-4">
+                Classes may be cancelled if minimum attendance is not met. Clients will be notified at least 2 hours in advance for
+same-day classes and by 9pm the evening prior for morning sessions.
+In the event that the studio cancels a class, clients will have their studio credit reimbursed.
+              </p>
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>You are in good physical health and able to participate in pilates classes</li>
+                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
+                <li>You assume all risks associated with participation in our classes</li>
+                <li>You will follow all instructor guidance and safety protocols</li>
+              </ul>
+            </section>
+                               <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
+              <p className="font-paragraph text-lg leading-relaxed mb-4">
+                Classes may be cancelled if minimum attendance is not met. Clients will be notified at least 2 hours in advance for
+same-day classes and by 9pm the evening prior for morning sessions.
+In the event that the studio cancels a class, clients will have their studio credit reimbursed.
+              </p>
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>You are in good physical health and able to participate in pilates classes</li>
+                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
+                <li>You assume all risks associated with participation in our classes</li>
+                <li>You will follow all instructor guidance and safety protocols</li>
+              </ul>
+            </section>
 
             <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Contact Us</h2>
