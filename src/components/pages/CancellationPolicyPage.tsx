@@ -52,16 +52,12 @@ may disrupt the class and compromise safety.
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Package and Membership Cancellations</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Membership Cancellations</h2>
               <p className="font-paragraph text-lg leading-relaxed mb-4">
-                For class packages and memberships:
+                Memberships require a minimum 2-month commitment.
+After this period, memberships continue on a rolling monthly basis and may be cancelled at any time by contacting
+the studio prior to the next billing date.
               </p>
-              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>Cancellations must be requested in writing</li>
-                <li>Refunds are issued within 7-10 business days</li>
-                <li>Unused classes in a package may be refunded if requested within 30 days of purchase</li>
-                <li>Monthly memberships can be cancelled with 7 days' notice</li>
-              </ul>
             </section>
 
             <section>
