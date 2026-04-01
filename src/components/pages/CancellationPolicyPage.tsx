@@ -41,16 +41,13 @@ may disrupt the class and compromise safety.
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">How to Cancel</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
               <p className="font-paragraph text-lg leading-relaxed mb-4">
-                To cancel a class, please:
+                If a class is cancelled by the studio, clients will receive either:
               </p>
               <ol className="list-decimal list-inside space-y-2 font-paragraph text-lg">
-                <li>Log into your account on our website</li>
-                <li>Navigate to "My Bookings"</li>
-                <li>Select the class you wish to cancel</li>
-                <li>Click "Cancel Booking"</li>
-                <li>Confirm your cancellation</li>
+                <li> A replacement class, or</li>
+                <li> Studio credit</li>
               </ol>
               <p className="font-paragraph text-lg leading-relaxed mt-4">
                 Alternatively, you can contact us directly at least 24 hours before your class.
