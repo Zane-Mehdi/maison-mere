@@ -111,7 +111,9 @@ You have the right to:
                             <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
                 <li>Access your personal data
 </li>
-                <li>Health and waiver forms: retained as required for legal and safety purposes
+                <li> Request correction of inaccurate data
+</li>
+                <li> Request correction of inaccurate data
 </li>
               </ul>
             </section>
