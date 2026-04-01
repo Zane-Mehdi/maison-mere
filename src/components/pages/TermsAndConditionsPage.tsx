@@ -80,11 +80,13 @@ We reserve the right to request medical clearance where appropriate.
               <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Environment</h2>
               <p className="font-paragraph text-lg leading-relaxed">
                 To maintain a respectful and safe space:
-• Filming or photography is not permitted without prior consent
-• Please arrive at least 10 minutes before class
-• Disruptive or inappropriate behaviour may result in refusal of entry or removal
-• Equipment must be wiped down after use
-• Please do not attend if you are unwell
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>Filming or photography is not permitted without prior consent</li>
+                <li>Please arrive at least 10 minutes before class</li>
+                <li>Disruptive or inappropriate behaviour may result in refusal of entry or removal</li>
+                <li>Equipment must be wiped down after use</li>
+                <li>Please do not attend if you are unwell</li>
+              </ul>
               </p>
             </section>
 
@@ -95,12 +97,6 @@ We reserve the right to request medical clearance where appropriate.
 Parents or guardians are fully responsible for their child’s supervision and safety at all times. Maison Mère Studio
 accepts no liability for any injury or incident involving children on the premises.
               </p>
-              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>You are in good physical health and able to participate in pilates classes</li>
-                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
-                <li>You assume all risks associated with participation in our classes</li>
-                <li>You will follow all instructor guidance and safety protocols</li>
-              </ul>
             </section>
                    <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
@@ -109,12 +105,6 @@ accepts no liability for any injury or incident involving children on the premis
 same-day classes and by 9pm the evening prior for morning sessions.
 In the event that the studio cancels a class, clients will have their studio credit reimbursed.
               </p>
-              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>You are in good physical health and able to participate in pilates classes</li>
-                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
-                <li>You assume all risks associated with participation in our classes</li>
-                <li>You will follow all instructor guidance and safety protocols</li>
-              </ul>
             </section>
                                <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Pricing & Offers</h2>
@@ -123,12 +113,6 @@ In the event that the studio cancels a class, clients will have their studio cre
 Changes to pricing or offers do not entitle clients to refunds, partial refunds, or price adjustments on previous
 purchases.
               </p>
-              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>You are in good physical health and able to participate in pilates classes</li>
-                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
-                <li>You assume all risks associated with participation in our classes</li>
-                <li>You will follow all instructor guidance and safety protocols</li>
-              </ul>
             </section>
                                <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground"> Lost Property</h2>
