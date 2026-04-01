@@ -63,15 +63,25 @@ We are the data controller responsible for the personal information you provide 
 </li>
               </ul>
               <p className="font-paragraph text-lg leading-relaxed">
-                We only use your data where we have a lawful basis under UK GDPR, including:
+You may withdraw your consent to marketing communications at any time.
               </p>
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Security of Your Information</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground"> Sharing Your Data</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                We use administrative, technical, and physical security measures to protect your personal information. However, no method of transmission over the Internet or method of electronic storage is 100% secure.
+                We only share your data where necessary to provide our services, including:
               </p>
+                            <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>To manage bookings, memberships, and payments)</li>
+                <li>To ensure your health and safety during classes</li>
+                <li>To communicate with you regarding your bookings or enquiries
+</li>
+                <li>To send marketing communications (only where you have opted in)
+</li>
+<li>To improve our services and client experience
+</li>
+              </ul>
             </section>
 
             <section>
