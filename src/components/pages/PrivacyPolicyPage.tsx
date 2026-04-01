@@ -117,8 +117,11 @@ You have the right to:
 </li>
                 <li> Object to or restrict processing
 </li>
-                <li> Object to or restrict processing
+                <li> Withdraw consent for marketing
 </li>
+              <p className="font-paragraph text-lg leading-relaxed">
+You have the right to:
+              </p>
               </ul>
             </section>
 
