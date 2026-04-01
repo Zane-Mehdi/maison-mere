@@ -49,9 +49,6 @@ may disrupt the class and compromise safety.
                 <li> A replacement class, or</li>
                 <li> Studio credit</li>
               </ol>
-              <p className="font-paragraph text-lg leading-relaxed mt-4">
-                Alternatively, you can contact us directly at least 24 hours before your class.
-              </p>
             </section>
 
             <section>
