@@ -109,7 +109,7 @@ restricted access to personal information.              </p>
 You have the right to:
               </p>
                             <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>General client records: up to 6 years after your last interaction
+                <li>Access your personal data
 </li>
                 <li>Health and waiver forms: retained as required for legal and safety purposes
 </li>
