@@ -115,7 +115,9 @@ You have the right to:
 </li>
                 <li> Request deletion of your data
 </li>
-                <li> Request deletion of your data
+                <li> Object to or restrict processing
+</li>
+                <li> Object to or restrict processing
 </li>
               </ul>
             </section>
