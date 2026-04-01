@@ -126,7 +126,7 @@ To exercise your rights, please contact us directly.
             </section>
 
                                     <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">How We Protect Your Data</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Changes to This Policy</h2>
               <p className="font-paragraph text-lg leading-relaxed">
 We take appropriate technical and organisational measures to protect your data, including secure systems and
 restricted access to personal information.              </p>
