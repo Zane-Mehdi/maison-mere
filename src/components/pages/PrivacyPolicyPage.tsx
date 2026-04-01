@@ -43,9 +43,7 @@ We are the data controller responsible for the personal information you provide 
                 <li>Register or book classes (including via platforms such as Mindbody)</li>
                 <li>Complete health forms, waivers, or questionnaires (online or in-studio)</li>
                 <li>Contact us via email, phone, or social media</li>
-                <li>Generate a personal profile about you so that future visits to our site will be personalized</li>
-                <li>Increase the efficiency and operation of our site</li>
-                <li>Monitor and analyze usage and trends to improve your experience with our site</li>
+                <li>Sign up for updates, offers, or newsletters</li>
               </ul>
             </section>
 
