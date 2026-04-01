@@ -49,9 +49,12 @@ of confirmed studio error or where required by law.
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Accuracy of Materials</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Cancellations & Attendance</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                The materials appearing on our website could include technical, typographical, or photographic errors. We do not warrant that any of the materials on our website are accurate, complete, or current. We may make changes to the materials contained on our website at any time without notice.
+                Clients must cancel or reschedule classes at least 24 hours in advance. Late cancellations or missed sessions will
+result in the class being forfeited.
+Clients are expected to arrive on time. Entry may be refused if you arrive more than 10 minutes late for safety and
+class flow.
               </p>
             </section>
 
