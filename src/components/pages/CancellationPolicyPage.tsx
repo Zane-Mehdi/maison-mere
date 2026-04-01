@@ -19,13 +19,13 @@ export default function CancellationPolicyPage() {
               <h2 className="font-heading text-3xl mb-4 text-foreground">Class Cancellations</h2>
               <div className="space-y-4">
                 <div className="border-l-4 border-primary pl-4">
-                  <h3 className="font-heading text-xl mb-2 text-foreground">24+ Hours Before Class</h3>
+                  <h3 className="font-heading text-xl mb-2 text-foreground">All classes must be cancelled or rescheduled at least 24 hours in advance of the scheduled start time.</h3>
                   <p className="font-paragraph text-lg">
-                    Full refund or credit to your account. No questions asked.
+                    Cancellations made within 24 hours, or missed sessions, will result in the class being forfeited.
                   </p>
                 </div>
                 <div className="border-l-4 border-accent pl-4">
-                  <h3 className="font-heading text-xl mb-2 text-foreground">Less Than 24 Hours Before Class</h3>
+                  <h3 className="font-heading text-xl mb-2 text-foreground">Late Arrival</h3>
                   <p className="font-paragraph text-lg">
                     50% refund or credit. We understand emergencies happen, but we do charge a cancellation fee to account for our instructor's time.
                   </p>
