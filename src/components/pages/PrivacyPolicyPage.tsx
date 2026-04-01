@@ -101,9 +101,19 @@ We retain your personal data only as long as necessary:
               <p className="font-paragraph text-lg leading-relaxed">
 We take appropriate technical and organisational measures to protect your data, including secure systems and
 restricted access to personal information.              </p>
-                <p className="font-paragraph text-lg leading-relaxed">
-We do not sell or share your data for third-party marketing purposes.
+            </section>
+
+                         <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground"> Data Retention</h2>
+              <p className="font-paragraph text-lg leading-relaxed">
+We retain your personal data only as long as necessary:
               </p>
+                            <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>General client records: up to 6 years after your last interaction
+</li>
+                <li>Health and waiver forms: retained as required for legal and safety purposes
+</li>
+              </ul>
             </section>
 
             <section>
