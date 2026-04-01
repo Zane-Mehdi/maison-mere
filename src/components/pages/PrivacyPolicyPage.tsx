@@ -28,8 +28,10 @@ We are the data controller responsible for the personal information you provide 
                 <li>Identity Data: name, date of birth</li>
                 <li>Contact Data: email address, phone number</li>
                 <li>Health Data: relevant medical information, injuries, pregnancy status (only where necessary for your safety)</li>
-                <li>Device information and usage data</li>
-                <li>Cookies and similar tracking technologies</li>
+                <li>Booking Data: class bookings, attendance history</li>
+                <li>Financial Data: payment details (processed securely via third-party providers)</li>
+                                <li>Financial Data: payment details (processed securely via third-party providers)</li>
+
               </ul>
             </section>
 
