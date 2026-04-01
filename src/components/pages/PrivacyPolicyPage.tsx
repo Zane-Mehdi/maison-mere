@@ -57,7 +57,10 @@ We are the data controller responsible for the personal information you provide 
                 <li>To ensure your health and safety during classes</li>
                 <li>To communicate with you regarding your bookings or enquiries
 </li>
-                <li>Sign up for updates, offers, or newsletters</li>
+                <li>To send marketing communications (only where you have opted in)
+</li>
+<li>To send marketing communications (only where you have opted in)
+</li>
               </ul>
             </section>
 
