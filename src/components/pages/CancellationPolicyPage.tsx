@@ -61,9 +61,10 @@ the studio prior to the next billing date.
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Instructor Cancellations</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Exceptional Circumstances</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                If we need to cancel a class due to instructor unavailability, you will be notified as soon as possible. You will receive a full refund or credit, and we will offer you an alternative class time if available.
+                We understand that unforeseen situations may arise. While our policy is in place to ensure fairness, exceptions may
+be considered at the studio’s discretion.
               </p>
             </section>
 
