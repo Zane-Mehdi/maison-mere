@@ -53,8 +53,8 @@ We are the data controller responsible for the personal information you provide 
                 We only use your data where we have a lawful basis under UK GDPR, including:
               </p>
               <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>Register or book classes (including via platforms such as Mindbody)</li>
-                <li>Complete health forms, waivers, or questionnaires (online or in-studio)</li>
+                <li>To manage bookings, memberships, and payments)</li>
+                <li>To ensure your health and safety during classes</li>
                 <li>Contact us via email, phone, or social media</li>
                 <li>Sign up for updates, offers, or newsletters</li>
               </ul>
