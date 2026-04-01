@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export default function PrivacyPolicyPage() {
   return (
@@ -8,10 +8,10 @@ export default function PrivacyPolicyPage() {
       <main className="flex-1 w-full">
         <div className="max-w-[100rem] mx-auto px-4 py-16 md:py-24">
           <h1 className="font-heading text-5xl md:text-6xl mb-8 text-foreground">Privacy Policy</h1>
-          
+
           <div className="prose prose-lg max-w-none text-foreground space-y-8">
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Introduction</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Who We Are</h2>
               <p className="font-paragraph text-lg leading-relaxed">
                 We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
               </p>
