@@ -84,7 +84,7 @@ We do not sell or share your data for third-party marketing purposes.
             </section>
 
              <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground"> Sharing Your Data</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground"> Data Retention</h2>
               <p className="font-paragraph text-lg leading-relaxed">
 We retain your personal data only as long as necessary:
               </p>
