@@ -59,9 +59,12 @@ We are the data controller responsible for the personal information you provide 
 </li>
                 <li>To send marketing communications (only where you have opted in)
 </li>
-<li>To send marketing communications (only where you have opted in)
+<li>To improve our services and client experience
 </li>
               </ul>
+              <p className="font-paragraph text-lg leading-relaxed">
+                We only use your data where we have a lawful basis under UK GDPR, including:
+              </p>
             </section>
 
             <section>
