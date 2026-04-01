@@ -106,7 +106,7 @@ restricted access to personal information.              </p>
                          <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Your Rights (UK GDPR)</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-We retain your personal data only as long as necessary:
+You have the right to:
               </p>
                             <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
                 <li>General client records: up to 6 years after your last interaction
