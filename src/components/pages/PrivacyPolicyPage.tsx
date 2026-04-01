@@ -128,8 +128,8 @@ To exercise your rights, please contact us directly.
                                     <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Changes to This Policy</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-We take appropriate technical and organisational measures to protect your data, including secure systems and
-restricted access to personal information.              </p>
+We may update this Privacy Policy from time to time. Continued use of our services constitutes acceptance of any
+updates.              </p>
             </section>
 
             <section>
