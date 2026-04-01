@@ -59,9 +59,13 @@ class flow.
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Links</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Health & Responsibility</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                We have not reviewed all of the sites linked to our website and are not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by us of the site. Use of any such linked website is at the user's own risk.
+                By attending classes, you confirm that you are physically and medically fit to participate. You must inform the
+instructor of any injuries, medical conditions or pregnancy prior to class.
+Participation is at your own risk. Maison Mère Studio is not liable for any injury, loss, or damage sustained during
+classes, except where required by law.
+We reserve the right to request medical clearance where appropriate.
               </p>
             </section>
 
@@ -73,16 +77,37 @@ class flow.
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Governing Law</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Environment</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which our company is located, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.
+                To maintain a respectful and safe space:
+• Filming or photography is not permitted without prior consent
+• Please arrive at least 10 minutes before class
+• Disruptive or inappropriate behaviour may result in refusal of entry or removal
+• Equipment must be wiped down after use
+• Please do not attend if you are unwell
               </p>
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Class Participation</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Children in the Studio</h2>
               <p className="font-paragraph text-lg leading-relaxed mb-4">
-                By participating in our classes, you acknowledge that:
+                Children are only permitted during designated Hot Mama Reformer sessions.
+Parents or guardians are fully responsible for their child’s supervision and safety at all times. Maison Mère Studio
+accepts no liability for any injury or incident involving children on the premises.
+              </p>
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>You are in good physical health and able to participate in pilates classes</li>
+                <li>You have consulted with a healthcare provider if you have any medical conditions</li>
+                <li>You assume all risks associated with participation in our classes</li>
+                <li>You will follow all instructor guidance and safety protocols</li>
+              </ul>
+            </section>
+                   <section>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
+              <p className="font-paragraph text-lg leading-relaxed mb-4">
+                Classes may be cancelled if minimum attendance is not met. Clients will be notified at least 2 hours in advance for
+same-day classes and by 9pm the evening prior for morning sessions.
+In the event that the studio cancels a class, clients will have their studio credit reimbursed.
               </p>
               <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
                 <li>You are in good physical health and able to participate in pilates classes</li>
