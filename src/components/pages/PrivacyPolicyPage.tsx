@@ -55,7 +55,8 @@ We are the data controller responsible for the personal information you provide 
               <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
                 <li>To manage bookings, memberships, and payments)</li>
                 <li>To ensure your health and safety during classes</li>
-                <li>Contact us via email, phone, or social media</li>
+                <li>To communicate with you regarding your bookings or enquiries
+</li>
                 <li>Sign up for updates, offers, or newsletters</li>
               </ul>
             </section>
