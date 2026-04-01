@@ -131,11 +131,11 @@ purchases.
               </ul>
             </section>
                                <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Studio Cancellations</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground"> Lost Property</h2>
               <p className="font-paragraph text-lg leading-relaxed mb-4">
-                Classes may be cancelled if minimum attendance is not met. Clients will be notified at least 2 hours in advance for
-same-day classes and by 9pm the evening prior for morning sessions.
-In the event that the studio cancels a class, clients will have their studio credit reimbursed.
+                All personal belongings are brought into the studio at your own risk. We do not accept responsibility for loss, theft,
+or damage.
+Any lost property will be held for up to 30 days, after which it may be donated or disposed of.
               </p>
               <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
                 <li>You are in good physical health and able to participate in pilates classes</li>
