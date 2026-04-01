@@ -35,14 +35,14 @@ We are the data controller responsible for the personal information you provide 
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">How We Use Your Information</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">How We Collect Your Data</h2>
               <p className="font-paragraph text-lg leading-relaxed mb-4">
-                Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the site to:
+                We collect your data when you:
               </p>
               <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>Process your transactions and send related information</li>
-                <li>Email you regarding your account or order</li>
-                <li>Fulfill and manage purchases, orders, payments, and other transactions related to our services</li>
+                <li>Register or book classes (including via platforms such as Mindbody)</li>
+                <li>Complete health forms, waivers, or questionnaires (online or in-studio)</li>
+                <li>Contact us via email, phone, or social media</li>
                 <li>Generate a personal profile about you so that future visits to our site will be personalized</li>
                 <li>Increase the efficiency and operation of our site</li>
                 <li>Monitor and analyze usage and trends to improve your experience with our site</li>
