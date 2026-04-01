@@ -41,7 +41,10 @@ export default function TermsAndConditionsPage() {
             <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground"> Bookings & Payments</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                In no event shall our company or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website, even if we or our authorized representative has been notified orally or in writing of the possibility of such damage.
+                All classes must be booked in advance through our booking system or through MINDBODY. Full payment is required
+at the time of booking to secure your space.
+We accept major payment methods as available on our platform. All purchases are non-refundable, except in cases
+of confirmed studio error or where required by law.
               </p>
             </section>
 
