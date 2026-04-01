@@ -73,15 +73,14 @@ You may withdraw your consent to marketing communications at any time.
                 We only share your data where necessary to provide our services, including:
               </p>
                             <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>To manage bookings, memberships, and payments)</li>
-                <li>To ensure your health and safety during classes</li>
-                <li>To communicate with you regarding your bookings or enquiries
-</li>
-                <li>To send marketing communications (only where you have opted in)
-</li>
-<li>To improve our services and client experience
+                <li>Booking platforms (e.g. Mindbody)</li>
+                <li>Payment providers</li>
+                <li> Email and communication platforms
 </li>
               </ul>
+                <p className="font-paragraph text-lg leading-relaxed">
+You may withdraw your consent to marketing communications at any time.
+              </p>
             </section>
 
             <section>
