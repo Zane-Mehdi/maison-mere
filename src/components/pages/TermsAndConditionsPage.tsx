@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export default function TermsAndConditionsPage() {
   return (
@@ -39,7 +39,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Limitations</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground"> Bookings & Payments</h2>
               <p className="font-paragraph text-lg leading-relaxed">
                 In no event shall our company or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website, even if we or our authorized representative has been notified orally or in writing of the possibility of such damage.
               </p>
