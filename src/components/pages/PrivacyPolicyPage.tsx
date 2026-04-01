@@ -104,7 +104,7 @@ restricted access to personal information.              </p>
             </section>
 
                          <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground"> Data Retention</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Your Rights (UK GDPR)</h2>
               <p className="font-paragraph text-lg leading-relaxed">
 We retain your personal data only as long as necessary:
               </p>
