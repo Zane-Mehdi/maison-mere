@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function TermsAndConditionsPage() {
   return (
@@ -11,7 +11,7 @@ export default function TermsAndConditionsPage() {
 
           <div className="prose prose-lg max-w-none text-foreground space-y-8">
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Bookings & Payments</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">Agreement to Terms</h2>
               <p className="font-paragraph text-lg leading-relaxed">
                 By accessing and using this website and our services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
