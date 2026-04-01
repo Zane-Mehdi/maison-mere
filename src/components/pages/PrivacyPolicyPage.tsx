@@ -13,7 +13,9 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="font-heading text-3xl mb-4 text-foreground">Who We Are</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+                Maison Mère Studio is a women’s-only Pilates and wellness studio based in Harrow, offering reformer, mat Pilates,
+yoga and pre & postnatal classes.
+We are the data controller responsible for the personal information you provide when engaging with our studio.
               </p>
             </section>
 
