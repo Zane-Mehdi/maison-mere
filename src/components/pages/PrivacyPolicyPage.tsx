@@ -20,14 +20,14 @@ We are the data controller responsible for the personal information you provide 
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Information We Collect</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">What Data We Collect</h2>
               <p className="font-paragraph text-lg leading-relaxed mb-4">
-                We may collect information about you in a variety of ways. The information we may collect on the site includes:
+                We may collect and process the following types of personal data:
               </p>
               <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
-                <li>Personal identification information (name, email address, phone number, etc.)</li>
-                <li>Billing and payment information</li>
-                <li>Class preferences and booking history</li>
+                <li>Identity Data: name, date of birth</li>
+                <li>Contact Data: email address, phone number</li>
+                <li>Health Data: relevant medical information, injuries, pregnancy status (only where necessary for your safety)</li>
                 <li>Device information and usage data</li>
                 <li>Cookies and similar tracking technologies</li>
               </ul>
