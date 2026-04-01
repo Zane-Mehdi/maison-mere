@@ -113,7 +113,9 @@ You have the right to:
 </li>
                 <li> Request correction of inaccurate data
 </li>
-                <li> Request correction of inaccurate data
+                <li> Request deletion of your data
+</li>
+                <li> Request deletion of your data
 </li>
               </ul>
             </section>
