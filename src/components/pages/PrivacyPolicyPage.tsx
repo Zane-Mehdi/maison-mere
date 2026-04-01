@@ -30,8 +30,7 @@ We are the data controller responsible for the personal information you provide 
                 <li>Health Data: relevant medical information, injuries, pregnancy status (only where necessary for your safety)</li>
                 <li>Booking Data: class bookings, attendance history</li>
                 <li>Financial Data: payment details (processed securely via third-party providers)</li>
-                                <li>Financial Data: payment details (processed securely via third-party providers)</li>
-
+                <li>Marketing Preferences: your preferences for receiving communications</li>
               </ul>
             </section>
 
