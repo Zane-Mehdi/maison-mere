@@ -48,10 +48,16 @@ We are the data controller responsible for the personal information you provide 
             </section>
 
             <section>
-              <h2 className="font-heading text-3xl mb-4 text-foreground">Disclosure of Your Information</h2>
+              <h2 className="font-heading text-3xl mb-4 text-foreground">How We Use Your Data</h2>
               <p className="font-paragraph text-lg leading-relaxed">
-                We may share your information with third parties who perform services for us, including payment processors, email service providers, and analytics providers. We will not sell, trade, or rent your personal information to others without your consent, except as required by law.
+                We only use your data where we have a lawful basis under UK GDPR, including:
               </p>
+              <ul className="list-disc list-inside space-y-2 font-paragraph text-lg">
+                <li>Register or book classes (including via platforms such as Mindbody)</li>
+                <li>Complete health forms, waivers, or questionnaires (online or in-studio)</li>
+                <li>Contact us via email, phone, or social media</li>
+                <li>Sign up for updates, offers, or newsletters</li>
+              </ul>
             </section>
 
             <section>
