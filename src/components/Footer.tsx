@@ -1,4 +1,4 @@
-import { Instagram, Mail, MapPin, Phone, Music } from 'lucide-react';
+import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const TikTokIcon = () => (
@@ -155,7 +155,7 @@ export default function Footer() {
               <TikTokIcon />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/maisonmerestudio/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-background/80 hover:text-primary transition-colors duration-200"
