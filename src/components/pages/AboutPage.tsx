@@ -348,7 +348,9 @@ export default function AboutPage() {
       if (ctaRef.current) {
         const rect = ctaRef.current.getBoundingClientRect();
         // Minimize when CTA section scrolls past the header
-        setCtaMinimized(rect.top < 100);
+        // Use larger threshold on mobile to prevent early fade-out
+        const threshold = window.innerWidth < 768 ? 200 : 100;
+        setCtaMinimized(rect.top < threshold);
       }
     };
 
