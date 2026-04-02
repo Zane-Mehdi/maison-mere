@@ -127,7 +127,9 @@ const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [mobileSlideMinHeight, setMobileSlideMinHeight] = useState(0);
   const autoPlayRef = useRef<NodeJS.Timeout>();
+  const measurementRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -156,6 +158,29 @@ const TestimonialCarousel = () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
   }, [autoPlay, testimonials.length]);
+
+  useEffect(() => {
+    if (testimonials.length === 0) return;
+
+    const measureMobileHeight = () => {
+      if (window.innerWidth >= 768) {
+        setMobileSlideMinHeight(0);
+        return;
+      }
+
+      const tallestSlide = measurementRefs.current.reduce((maxHeight, node) => {
+        if (!node) return maxHeight;
+        return Math.max(maxHeight, node.offsetHeight);
+      }, 0);
+
+      setMobileSlideMinHeight(tallestSlide);
+    };
+
+    measureMobileHeight();
+    window.addEventListener('resize', measureMobileHeight);
+
+    return () => window.removeEventListener('resize', measureMobileHeight);
+  }, [testimonials]);
 
   const goToPrevious = () => {
     setAutoPlay(false);
@@ -191,64 +216,114 @@ const TestimonialCarousel = () => {
   return (
     <section className="py-24 bg-background flex items-center justify-center">
       <div className="container mx-auto px-4 max-w-5xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="text-center"
-          >
-            {/* Stars */}
-            <div className="mb-8 flex justify-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1, duration: 0.3 }}
-                >
-                  <Star className="w-5 h-5 text-primary fill-primary" />
-                </motion.div>
-              ))}
-            </div>
+        <div className="relative">
+          <div className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10 md:hidden" aria-hidden="true">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={testimonial._id || index}
+                ref={(node) => {
+                  measurementRefs.current[index] = node;
+                }}
+                className="text-center"
+              >
+                <div className="mb-8 flex justify-center gap-1">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <div key={starIndex}>
+                      <Star className="w-5 h-5 text-primary fill-primary" />
+                    </div>
+                  ))}
+                </div>
 
-            {/* Quote */}
-            <blockquote className="text-2xl md:text-3xl font-heading font-light italic leading-relaxed text-foreground mb-8">
-              "{current.quote}"
-            </blockquote>
+                <blockquote className="text-2xl md:text-3xl font-heading font-light italic leading-relaxed text-foreground mb-8">
+                  "{testimonial.quote}"
+                </blockquote>
 
-            {/* Author Info */}
-            <div className="flex flex-col items-center gap-3">
-              {current.authorPhoto && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.4 }}
-                  className="w-12 h-12 rounded-full overflow-hidden border border-primary/20"
-                >
-                  <Image
-                    src={current.authorPhoto}
-                    className="w-full h-full object-cover"
-                    alt={current.authorName || 'Author'}
-                    width={48}
-                  />
-                </motion.div>
-              )}
-              <div>
-                <p className="text-sm font-bold uppercase tracking-widest text-foreground">
-                  {current.authorName}
-                </p>
-                {current.authorTitle && (
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">
-                    {current.authorTitle}
-                  </p>
-                )}
+                <div className="flex flex-col items-center gap-3">
+                  {testimonial.authorPhoto && (
+                    <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20">
+                      <Image
+                        src={testimonial.authorPhoto}
+                        className="w-full h-full object-cover"
+                        alt={testimonial.authorName || 'Author'}
+                        width={48}
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-sm font-bold uppercase tracking-widest text-foreground">
+                      {testimonial.authorName}
+                    </p>
+                    {testimonial.authorTitle && (
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">
+                        {testimonial.authorTitle}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            ))}
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="text-center"
+              style={mobileSlideMinHeight ? { minHeight: mobileSlideMinHeight } : undefined}
+            >
+              {/* Stars */}
+              <div className="mb-8 flex justify-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1, duration: 0.3 }}
+                  >
+                    <Star className="w-5 h-5 text-primary fill-primary" />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Quote */}
+              <blockquote className="text-2xl md:text-3xl font-heading font-light italic leading-relaxed text-foreground mb-8">
+                "{current.quote}"
+              </blockquote>
+
+              {/* Author Info */}
+              <div className="flex flex-col items-center gap-3">
+                {current.authorPhoto && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
+                    className="w-12 h-12 rounded-full overflow-hidden border border-primary/20"
+                  >
+                    <Image
+                      src={current.authorPhoto}
+                      className="w-full h-full object-cover"
+                      alt={current.authorName || 'Author'}
+                      width={48}
+                    />
+                  </motion.div>
+                )}
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-widest text-foreground">
+                    {current.authorName}
+                  </p>
+                  {current.authorTitle && (
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mt-1">
+                      {current.authorTitle}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Navigation Controls */}
         {testimonials.length > 1 && (
