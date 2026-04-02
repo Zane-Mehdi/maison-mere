@@ -7,7 +7,7 @@ export default function CancellationPolicyPage() {
       <Header />
       <main className="flex-1 w-full">
         <div className="max-w-[100rem] mx-auto px-4 py-16 md:py-24">
-          <h1 className="font-heading text-5xl md:text-6xl text-foreground m-0 mt-[50px] mr-0 mb-0 ml-0">Cancellation Policy</h1>
+          <h1 className="font-heading text-5xl md:text-6xl text-foreground m-0 mt-[87px] mr-0 mb-0 ml-0">Cancellation Policy</h1>
 
           <div className="prose prose-lg max-w-none text-foreground space-y-8">
             <section>
