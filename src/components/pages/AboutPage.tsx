@@ -347,10 +347,9 @@ export default function AboutPage() {
     const handleScroll = () => {
       if (ctaRef.current) {
         const rect = ctaRef.current.getBoundingClientRect();
-        // Minimize when CTA section scrolls past the header
-        // Use larger threshold on mobile to prevent early fade-out
-        const threshold = window.innerWidth < 768 ? 200 : 100;
-        setCtaMinimized(rect.top < threshold);
+        // Only minimize when CTA section is completely scrolled out of view (top of section above viewport)
+        // This ensures it stays visible until the footer pushes it out
+        setCtaMinimized(rect.bottom < 0);
       }
     };
 
