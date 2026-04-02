@@ -744,29 +744,7 @@ export default function AboutPage() {
           transition={{ duration: 0.3 }}
           style={{ paddingTop: 'var(--header-height, 80px)' }}
         >
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-heading font-bold text-foreground">Ready to Start Your Journey?</h3>
-              <p className="text-sm text-muted-foreground">Join our welcoming community today</p>
-            </div>
-            <div className="flex gap-3">
-              <Button
-                asChild
-                size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
-              >
-                <Link to="/classes">Book Class</Link>
-              </Button>
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-              >
-                <Link to="/contact">Contact</Link>
-              </Button>
-            </div>
-          </div>
+
         </motion.div>
       </section>
       <Footer />
