@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { BaseCrudService } from '@/integrations';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, Clock, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Clock, TrendingUp, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface PricingPlan {
@@ -52,8 +52,7 @@ const AnimatedSection: React.FC<{children: React.ReactNode; className?: string; 
   );
 };
 
-const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setExpandedPlanId: (id: string | null) => void}> = ({ plan, expandedPlanId, setExpandedPlanId }) => {
-  const isExpanded = expandedPlanId === plan._id;
+const PlanCard: React.FC<{plan: PricingPlan}> = ({ plan }) => {
   const embedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -77,6 +76,13 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
         <div className="p-6 flex flex-col flex-grow">
           <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
           <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
+          {plan.specialNotes && (
+            <div className="mb-4 p-3 bg-secondary/20 rounded-lg border border-border">
+              <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">
+                {plan.specialNotes}
+              </p>
+            </div>
+          )}
           {plan.planGroup === 'Unlimited Membership' ? (
             <p className="text-sm text-foreground/60 font-paragraph mb-4">All Classes</p>
           ) : plan.numberOfClasses ? (
@@ -96,45 +102,6 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
             </div>
           )}
         </div>
-        {plan.specialNotes && (
-          <div className="border-t border-border">
-            <button
-              onClick={() => setExpandedPlanId(isExpanded ? null : plan._id)}
-              className="w-full px-6 py-3 flex items-center justify-between hover:bg-secondary/30 transition-colors duration-200"
-            >
-              <span className="font-heading font-semibold text-foreground">Pack Details</span>
-              <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-              >
-                <ChevronDown className="w-5 h-5 text-primary" />
-              </motion.div>
-            </button>
-            <AnimatePresence initial={false}>
-              {isExpanded && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4, ease: 'easeInOut' }}
-                  className="overflow-hidden"
-                >
-                  <div className="px-6 py-4 bg-secondary/20 border-t border-border">
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      className="text-sm text-foreground/80 font-paragraph leading-relaxed"
-                    >
-                      {plan.specialNotes}
-                    </motion.p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
       </Card>
     </div>
   );
@@ -143,7 +110,6 @@ const PlanCard: React.FC<{plan: PricingPlan; expandedPlanId: string | null; setE
 export default function ClassesPage() {
   const [pricingPlans, setPricingPlans] = useState<PricingPlan[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [expandedPlanId, setExpandedPlanId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const introOfferEmbedRef = useRef<HTMLDivElement>(null);
@@ -494,7 +460,7 @@ export default function ClassesPage() {
                   <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{getDisplayName(group)}</h3>
                   <div className={`grid ${plansToDisplay.length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : plansToDisplay.length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
                     {plansToDisplay.map((plan) => (
-                      <PlanCard key={plan._id} plan={plan} expandedPlanId={expandedPlanId} setExpandedPlanId={setExpandedPlanId} />
+                      <PlanCard key={plan._id} plan={plan} />
                     ))}
                   </div>
                   {(group === 'Standard Pack' || group === 'Mummy & Me Pack' || group === 'Unlimited Membership') && (
