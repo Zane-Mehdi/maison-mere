@@ -11,15 +11,15 @@ export default function Footer() {
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
-           <div>
+           <div className="min-w-0">
             <h3 className="text-2xl font-heading font-bold mb-4">Maison Mère Studio</h3>
             <p className="text-background/80 font-paragraph text-sm leading-relaxed">Premium women's-only Pilates and wellness studio in Harrow, offering reformer, mat, yoga and pre & postnatal classes in a supportive, elevated space.</p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="min-w-0">
             <h4 className="text-lg font-heading font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
             <li>
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
 
           {/* Connect */}
-          <div>
+          <div className="min-w-0">
             <h4 className="text-lg font-heading font-semibold mb-4">Connect</h4>
             <ul className="space-y-3">
               <li>
@@ -96,7 +96,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="min-w-0">
             <h4 className="text-lg font-heading font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
@@ -123,14 +123,14 @@ export default function Footer() {
                 <Mail className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
                 <a
                   href="mailto:Contact@maisonmerestudio.com"
-                  className="text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
+                  className="break-all text-background/80 hover:text-primary transition-colors duration-200 font-paragraph text-sm"
                 >contact@maisonmerestudio.com</a>
               </li>
             </ul>
           </div>
 
           {/* Opening Hours */}
-          <div>
+          <div className="min-w-0">
             <h4 className="text-lg font-heading font-semibold mb-4">Opening Hours</h4>
             <ul className="space-y-2 text-background/80 font-paragraph text-sm">
               <li>Monday - Friday: 7:00am - 9:00am | 6:00pm - 9:00pm</li>
