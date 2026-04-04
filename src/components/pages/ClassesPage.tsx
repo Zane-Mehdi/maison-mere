@@ -71,7 +71,7 @@ const PlanCard: React.FC<{plan: PricingPlan}> = ({ plan }) => {
   }, [plan.embedCode]);
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-[360px]">
       <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
         <div className="p-6 flex flex-col flex-grow">
           <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
@@ -460,7 +460,7 @@ export default function ClassesPage() {
               <AnimatedSection key={group} delay={100 + groupIndex * 50}>
                 <div className="mb-16" id={`category-${group}`}>
                   <h3 className="text-3xl font-heading font-bold text-foreground mb-8">{getDisplayName(group)}</h3>
-                  <div className={`grid ${plansToDisplay.length === 2 ? 'md:grid-cols-2 lg:grid-cols-4 max-w-full' : plansToDisplay.length === 3 ? 'md:grid-cols-3 lg:grid-cols-5 max-w-full' : 'md:grid-cols-2 lg:grid-cols-4 max-w-full'} gap-6`}>
+                  <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,320px))] justify-start gap-6">
                     {plansToDisplay.map((plan) => (
                       <PlanCard key={plan._id} plan={plan} />
                     ))}
