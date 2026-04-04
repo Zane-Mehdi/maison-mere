@@ -75,7 +75,16 @@ const PlanCard: React.FC<{plan: PricingPlan}> = ({ plan }) => {
       <Card className="border-border bg-card hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
         <div className="p-6 flex flex-col flex-grow">
           <h4 className="text-lg font-heading font-bold text-foreground mb-2">{plan.itemName}</h4>
-          <p className="text-3xl font-heading font-bold text-primary mb-4">£{plan.itemPrice?.toFixed(2)}</p>
+          <div className="flex items-baseline gap-2 mb-4">
+            <p className="text-3xl font-heading font-bold text-primary">£{plan.itemPrice?.toFixed(2)}</p>
+            {plan.planGroup === 'Unlimited Membership' ? (
+              <p className="text-sm text-foreground/60 font-paragraph italic">[All Classes]</p>
+            ) : plan.numberOfClasses ? (
+              <p className="text-sm text-foreground/60 font-paragraph italic">[£{plan.numberOfClasses}/class]</p>
+            ) : plan.itemName?.includes('Drop-In') ? (
+              <p className="text-sm text-foreground/60 font-paragraph italic">[Per session]</p>
+            ) : null}
+          </div>
           {plan.specialNotes && (
             <div className="mb-4 p-3 bg-secondary/20 rounded-lg border border-border">
               <p className="text-sm text-foreground/80 font-paragraph leading-relaxed">
@@ -83,13 +92,6 @@ const PlanCard: React.FC<{plan: PricingPlan}> = ({ plan }) => {
               </p>
             </div>
           )}
-          {plan.planGroup === 'Unlimited Membership' ? (
-            <p className="text-sm text-foreground/60 font-paragraph mb-4">All Classes</p>
-          ) : plan.numberOfClasses ? (
-            <p className="text-sm text-foreground/60 font-paragraph mb-4">£{plan.numberOfClasses}/class</p>
-          ) : plan.itemName?.includes('Drop-In') ? (
-            <p className="text-sm text-foreground/60 font-paragraph mb-4">Per session</p>
-          ) : null}
           {plan.embedCode && (
             <div className="w-full mt-auto">
               <div
