@@ -206,7 +206,7 @@ export default function ClassesPage() {
 
   // Mapping for display names
   const displayNameMap: Record<string, string> = {
-    'Drop-In Sessions': 'Drop-In Sessions',
+    'Drop-In Sessions': 'BARRE / MAT PILATES',
     'Intro': 'Intro',
     'Mummy & Me Pack': 'Memberships',
     'Standard Pack': 'Standard Packs',
