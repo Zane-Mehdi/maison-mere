@@ -164,7 +164,7 @@ export default function ClassesPage() {
   }, [introOffer?.embedCode]);
 
   // Get unique plan groups (excluding Intro) and sort by priority
-  const customOrder = ['Drop-In Sessions', 'Mummy & Me Pack', 'Standard Pack', 'Unlimited Membership'];
+  const customOrder = ['Drop-In', 'Mummy & Me Pack', 'Standard Pack', 'Unlimited Membership'];
   const uniqueGroups = Array.from(new Set(
     pricingPlans
       .filter(p => p.planGroup && p.planGroup !== 'Intro')
@@ -206,7 +206,7 @@ export default function ClassesPage() {
 
   // Mapping for display names
   const displayNameMap: Record<string, string> = {
-    'Drop-In Sessions': 'BARRE / MAT PILATES',
+    'Drop-In': 'BARRE / MAT PILATES',
     'Intro': 'Intro',
     'Mummy & Me Pack': 'Memberships',
     'Standard Pack': 'Standard Packs',
@@ -429,9 +429,9 @@ export default function ClassesPage() {
 
           {/* Dynamic Plan Groups */}
           {uniqueGroups.map((group, groupIndex) => {
-            // Custom sort for Drop-In Sessions: drop-in first, 5 class second, 10 class last
+            // Custom sort for Drop-In: drop-in first, 5 class second, 10 class last
             let plansToDisplay = groupedPlans[group];
-            if (group === 'Drop-In Sessions') {
+            if (group === 'Drop-In') {
               const dropInOrder = ['Drop-In', '5', '10'];
               plansToDisplay = [...groupedPlans[group]].sort((a, b) => {
                 const aName = a.itemName || '';
