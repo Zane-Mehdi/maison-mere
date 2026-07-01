@@ -27,6 +27,33 @@ export interface AboutClassTypesHOMEPAGE {
 
 
 /**
+ * Collection ID: announcements
+ * Interface for Announcements
+ */
+export interface Announcements {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  announcementText?: string;
+  /** @wixFieldType text */
+  linkText?: string;
+  /** @wixFieldType url */
+  linkUrl?: string;
+  /** @wixFieldType boolean */
+  active?: boolean;
+  /** @wixFieldType datetime */
+  startDate?: Date | string;
+  /** @wixFieldType datetime */
+  endDate?: Date | string;
+  /** @wixFieldType number */
+  priority?: number;
+  /** @wixFieldType boolean */
+  showOnAllPages?: boolean;
+}
+
+
+/**
  * Collection ID: classtypes
  * Interface for PilatesClassTypesABOUTUS
  */
@@ -46,6 +73,54 @@ export interface PilatesClassTypesABOUTUS {
   benefits?: string;
   /** @wixFieldType text */
   difficultyLevel?: string;
+}
+
+
+/**
+ * Collection ID: events
+ * @catalog This collection is an eCommerce catalog
+ * Interface for Events
+ */
+export interface Events {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType text */
+  itemName?: string;
+  /** @wixFieldType text */
+  slug?: string;
+  /** @wixFieldType text */
+  eventType?: string;
+  /** @wixFieldType datetime */
+  startDate?: Date | string;
+  /** @wixFieldType datetime */
+  endDate?: Date | string;
+  /** @wixFieldType text */
+  time?: string;
+  /** @wixFieldType text */
+  location?: string;
+  /** @wixFieldType text */
+  shortDescription?: string;
+  /** @wixFieldType text */
+  fullDescription?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  itemImage?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  galleryImages?: string;
+  /** @wixFieldType number */
+  itemPrice?: number;
+  /** @wixFieldType number */
+  itemQuantity?: number;
+  /** @wixFieldType url */
+  itemUrl?: string;
+  /** @wixFieldType text */
+  eventStatus?: string;
+  /** @wixFieldType boolean */
+  isFeatured?: boolean;
+  /** @wixFieldType text */
+  seoTitle?: string;
+  /** @wixFieldType text */
+  seoDescription?: string;
 }
 
 

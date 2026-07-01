@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Instagram, MapPin, Menu, Phone, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AnnouncementBar from './AnnouncementBar';
 
 const WhatsAppIcon = () => (
   <svg
@@ -47,6 +48,9 @@ export default function Header() {
 
   return (
     <>
+      {/* CMS-Powered Announcement Bar */}
+      <AnnouncementBar />
+      
       {/* Location Banner - slides down when scrolling up */}
       <div
         className={`fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground py-2 border-b border-primary/20 transition-transform duration-300 ${
@@ -102,6 +106,12 @@ export default function Header() {
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Membership and Pricing
+            </Link>
+            <Link
+              to="/events"
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Events
             </Link>
             <a
               href="/book-a-class"
@@ -200,6 +210,14 @@ export default function Header() {
               className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
             >
               Membership and Pricing
+            </Link>
+
+            <Link
+              to="/events"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-paragraph text-sm uppercase tracking-wide"
+            >
+              Events
             </Link>
 
             <a
